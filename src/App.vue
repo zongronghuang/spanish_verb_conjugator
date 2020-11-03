@@ -1,5 +1,5 @@
 <template>
-  <div id="verb-conjugator">
+  <div id="verb-conjugator" class="bg-light">
     <router-view />
   </div>
 </template>
