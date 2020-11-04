@@ -1,5 +1,5 @@
 <template>
-  <h1>Not found</h1>
+  <h1 class="text-center">Not found</h1>
 </template>
 
 <script>

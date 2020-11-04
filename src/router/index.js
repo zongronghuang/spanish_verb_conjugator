@@ -1,10 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NotFound from '../views/NotFound.vue'
+import Search from '../views/Search.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    redirect: '/search'
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: Search
+  },
   {
     path: '/wordcard',
     name: 'word-card',
