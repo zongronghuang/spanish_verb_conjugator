@@ -1,10 +1,8 @@
 <template>
   <div class="container mt-4">
-    <div class="row position-relative mb-3">
-      <div class="col-6 mx-auto" id="upper-display">
-        <button class="btn btn-info mt-3 float-right" id="add-to-list">
-          Add to list
-        </button>
+    <div class="row mb-3">
+      <div class="col-6 mx-auto position-relative" id="upper-display">
+        <button class="btn btn-info mt-3" id="add-to-list">Add to list</button>
 
         <div class="d-flex flex-column text-center mb-3 mx-1">
           <h1>comer</h1>
@@ -16,13 +14,14 @@
           <span class="align-text-top">:</span>
           <span>100</span>
         </div>
+
+        <!-- <button class="btn btn-warning mt-3" id="peek">Peek</button> -->
       </div>
     </div>
 
     <div class="row">
-      <div class="col text-center col-6 mx-auto position-relative" id="tense">
+      <div class="col text-center col-6 mx-auto">
         <span class="h4 my-4">時態名稱</span>
-        <button class="btn btn-warning border" id="peek">Peek</button>
       </div>
     </div>
 
@@ -75,7 +74,7 @@ export default {
 #peek {
   position: absolute;
   right: 0%;
-  top: -20%;
+  top: 0%;
 }
 
 #add-to-list {
