@@ -1,17 +1,17 @@
 <template>
   <div class="container mt-4">
-    <div class="row d-flex justify-content-center">
-      <div class="col">
-        <button class="btn btn-info mt-3 float-right">Add to list</button>
-      </div>
+    <div class="row position-relative mb-3">
+      <div class="col-6 mx-auto" id="upper-display">
+        <button class="btn btn-info mt-3 float-right" id="add-to-list">
+          Add to list
+        </button>
 
-      <div class="d-flex flex-column text-center mb-3 col">
-        <h1>comer</h1>
-        <small>to eat</small>
-      </div>
+        <div class="d-flex flex-column text-center mb-3 mx-1">
+          <h1>comer</h1>
+          <small>to eat</small>
+        </div>
 
-      <div class="font-weight-bold col float-left">
-        <div class="mt-3 h4">
+        <div class="mt-3 h4 font-weight-bold" id="hits">
           <span>Hits</span>
           <span class="align-text-top">:</span>
           <span>100</span>
@@ -19,37 +19,10 @@
       </div>
     </div>
 
-    <!-- 時態選單
     <div class="row">
-      <div class="dropdown col text-center">
-        <button
-          class="btn btn-primary dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          選擇時態
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Present indicative</a>
-          <a class="dropdown-item" href="#">Preterite indicative</a>
-          <a class="dropdown-item" href="#">Imperfect indicative</a>
-        </div>
-      </div>
-    </div> -->
-
-    <div class="row">
-      <span class="h4 my-4 text-center mx-auto">時態名稱</span>
-    </div>
-
-    <div class="row">
-      <div class="col border text-right col-6 mx-auto">
+      <div class="col text-center col-6 mx-auto position-relative" id="tense">
         <span class="h4 my-4">時態名稱</span>
-      </div>
-      <div class="border col">
-        <button class="btn btn-warning">Peek</button>
+        <button class="btn btn-warning border" id="peek">Peek</button>
       </div>
     </div>
 
@@ -99,4 +72,25 @@ export default {
 </script>
 
 <style scoped>
+#peek {
+  position: absolute;
+  right: 0%;
+  top: -20%;
+}
+
+#add-to-list {
+  position: absolute;
+  left: 0%;
+  top: -5%;
+}
+
+#hits {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+}
+
+#upper-display {
+  min-width: 400px;
+}
 </style>
