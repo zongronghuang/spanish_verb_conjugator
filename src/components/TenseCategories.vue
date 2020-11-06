@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-group d-flex" role="group" aria-label="Basic example">
+  <div class="btn-group d-flex mt-4" role="group" aria-label="Basic example">
     <button
       type="button"
       class="btn btn-primary flex-fill rounded-0 border-white"

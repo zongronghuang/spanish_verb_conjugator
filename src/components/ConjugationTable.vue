@@ -2,11 +2,13 @@
   <div class="container mt-4">
     <div class="row mb-3">
       <div class="col-6 mx-auto position-relative" id="upper-display">
-        <button class="btn btn-info mt-3" id="add-to-list">Add to list</button>
+        <button class="btn btn-info mt-3 font-weight-bold" id="add-to-list">
+          Add to list
+        </button>
 
         <div class="d-flex flex-column text-center mb-3 mx-1">
           <h1>comer</h1>
-          <small>to eat</small>
+          <span class="font-weight-bold h4 mt-2">to eat</span>
         </div>
 
         <div class="mt-3 h4 font-weight-bold" id="hits">
@@ -15,18 +17,20 @@
           <span>100</span>
         </div>
 
-        <!-- <button class="btn btn-warning mt-3" id="peek">Peek</button> -->
+        <button class="btn btn-warning mt-3 font-weight-bold" id="peek">
+          Peek
+        </button>
       </div>
     </div>
 
     <div class="row">
-      <div class="col text-center col-6 mx-auto">
+      <div class="text-center col-6 mx-auto">
         <span class="h4 my-4">時態名稱</span>
       </div>
     </div>
 
-    <div class="row">
-      <table class="table mx-auto mt-3 mb-5 col-6 text-center">
+    <div class="row mt-3 mb-1">
+      <table class="table mx-auto col-6 text-center">
         <tbody>
           <tr class="border">
             <th scope="row" class="w-50">yo</th>
@@ -61,6 +65,24 @@
         </tbody>
       </table>
     </div>
+
+    <div class="row mb-5 justify-content-between">
+      <div class="col-6 mx-auto" id="lower-display">
+        <div id="stressed-letters" class="mr-2">
+          <button class="btn btn-info font-weight-bold mr-2">á</button>
+          <button class="btn btn-info font-weight-bold mr-2">é</button>
+          <button class="btn btn-info font-weight-bold mr-2">í</button>
+          <button class="btn btn-info font-weight-bold mr-2">ó</button>
+          <button class="btn btn-info font-weight-bold mr-2">ú</button>
+          <button class="btn btn-info font-weight-bold mr-2">ü</button>
+          <button class="btn btn-info font-weight-bold">ñ</button>
+        </div>
+
+        <div id="check">
+          <button class="btn btn-info font-weight-bold">Check</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -71,6 +93,12 @@ export default {
 </script>
 
 <style scoped>
+#upper-display,
+#lower-display,
+table {
+  min-width: 400px;
+}
+
 #peek {
   position: absolute;
   right: 0%;
@@ -89,7 +117,14 @@ export default {
   right: 0%;
 }
 
-#upper-display {
-  min-width: 400px;
+#stressed-letters {
+  position: absolute;
+  left: 0%;
+  margin-bottom: 15px;
+}
+
+#check {
+  position: absolute;
+  right: 0%;
 }
 </style>
