@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4" id="conjugation-table">
+  <div class="container mt-4">
     <div class="row mb-3">
       <div class="col-6 mx-auto position-relative" id="upper-display">
         <button class="btn btn-info mt-3 font-weight-bold" id="add-to-list">
@@ -136,21 +136,5 @@ tbody td::after {
   content: "\0021";
   position: absolute;
   right: 10%;
-}
-
-#conjugation-table::before {
-  content: "\2906";
-  position: absolute;
-  top: 35%;
-  left: 5%;
-  font-size: 6rem;
-}
-
-#conjugation-table::after {
-  content: "\2907";
-  position: absolute;
-  top: 35%;
-  right: 5%;
-  font-size: 6rem;
 }
 </style>
