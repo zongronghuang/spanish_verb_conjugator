@@ -66,7 +66,7 @@
       </table>
     </div>
 
-    <div class="row mb-5 justify-content-between">
+    <div class="row">
       <div class="col-6 mx-auto" id="lower-display">
         <div id="stressed-letters" class="mr-2">
           <button class="btn btn-info font-weight-bold mr-2">á</button>
@@ -126,5 +126,9 @@ table {
 #check {
   position: absolute;
   right: 0%;
+}
+
+#lower-display {
+  margin-bottom: 80px;
 }
 </style>
