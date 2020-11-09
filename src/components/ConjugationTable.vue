@@ -79,7 +79,7 @@
         </div>
 
         <div id="check">
-          <button class="btn btn-info font-weight-bold">Check</button>
+          <button class="btn btn-warning font-weight-bold">Check</button>
         </div>
       </div>
     </div>
