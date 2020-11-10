@@ -25,15 +25,14 @@ export default {
 
 #left-panel:hover a {
   visibility: visible;
-  background-color: aquamarine;
 }
 
 #left-arrow::after {
   content: "\21DA";
   display: inline-block;
   position: absolute;
-  top: 50%;
-  right: 0%;
+  top: 45%;
+  left: 25%;
   height: 100%;
   font-size: 4rem;
 }

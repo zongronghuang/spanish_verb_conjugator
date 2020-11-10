@@ -28,15 +28,14 @@ export default {
 
 #right-panel:hover a {
   visibility: visible;
-  background-color: aquamarine;
 }
 
 #right-arrow::before {
   content: "\21DB";
   display: inline-block;
   position: absolute;
-  top: 50%;
-  left: 0%;
+  top: 45%;
+  right: 25%;
   height: 100%;
   font-size: 4rem;
 }
