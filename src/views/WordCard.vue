@@ -7,6 +7,7 @@
       <ConjugationTable />
       <RightPanel />
     </div>
+    <BottomPanel />
 
     <TenseCategories />
   </div>
@@ -18,6 +19,7 @@ import ControlPanel from "../components/ControlPanel.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
 import LeftPanel from "../components/LeftPanel.vue";
 import RightPanel from "../components/RightPanel.vue";
+import BottomPanel from "../components/BottomPanel.vue";
 
 export default {
   name: "word-card",
@@ -27,6 +29,7 @@ export default {
     ConjugationTable,
     LeftPanel,
     RightPanel,
+    BottomPanel,
   },
 };
 </script>

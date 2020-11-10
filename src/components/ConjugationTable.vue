@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-4">
-    <div class="row mb-3">
+    <div class="row mb-1">
       <div class="col-6 mx-auto position-relative" id="upper-display">
         <button class="btn btn-info mt-3 font-weight-bold" id="add-to-list">
           Add to list
@@ -35,32 +35,36 @@
           <tr class="border">
             <th scope="row" class="w-50">yo</th>
             <td>Mark</td>
+            <td>!</td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-50">tu</th>
             <td>Jacob</td>
+            <td>!</td>
           </tr>
           <tr class="border">
-            <th scope="row" class="w-50">
-              el / ella <br />
-              usted
-            </th>
-            <td>Larry</td>
+            <th scope="row" class="w-50">el <br />ella <br />usted</th>
+            <td><br />Larry</td>
+            <td><br />!</td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-50">nosotros</th>
             <td>Larry</td>
+            <td>!</td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-50">vosotros</th>
             <td>Larry</td>
+            <td>?</td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-50">
-              ellos/ellas <br />
+              ellos <br />
+              ellas <br />
               ustedes
             </th>
-            <td>Larry</td>
+            <td><br />Larry</td>
+            <td><br />!</td>
           </tr>
         </tbody>
       </table>
@@ -129,12 +133,6 @@ table {
 }
 
 #lower-display {
-  margin-bottom: 80px;
-}
-
-tbody td::after {
-  content: "\0021";
-  position: absolute;
-  right: 10%;
+  margin-bottom: 60px;
 }
 </style>

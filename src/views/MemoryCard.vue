@@ -1,7 +1,13 @@
 <template>
   <div>
     <ControlPanel />
-    <ConjugationTable />
+
+    <div class="d-flex justify-content-between">
+      <LeftPanel />
+      <ConjugationTable />
+      <RightPanel />
+    </div>
+
     <TenseCategories />
   </div>
 </template>
@@ -10,6 +16,8 @@
 import TenseCategories from "../components/TenseCategories.vue";
 import ControlPanel from "../components/ControlPanel.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
+import RightPanel from "../components/RightPanel.vue";
+import LeftPanel from "../components/LeftPanel.vue";
 
 export default {
   name: "memory-card",
@@ -17,6 +25,8 @@ export default {
     TenseCategories,
     ControlPanel,
     ConjugationTable,
+    RightPanel,
+    LeftPanel,
   },
 };
 </script>
