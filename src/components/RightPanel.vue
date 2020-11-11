@@ -31,11 +31,11 @@ export default {
 }
 
 #right-arrow::before {
-  content: "\21DB";
+  content: "\21D2";
   display: inline-block;
   position: absolute;
   top: 45%;
-  right: 25%;
+  right: 0%;
   height: 100%;
   font-size: 4rem;
 }

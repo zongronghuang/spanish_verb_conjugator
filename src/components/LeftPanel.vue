@@ -28,7 +28,7 @@ export default {
 }
 
 #left-arrow::after {
-  content: "\21DA";
+  content: "\21D0";
   display: inline-block;
   position: absolute;
   top: 45%;

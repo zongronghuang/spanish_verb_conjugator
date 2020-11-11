@@ -4,10 +4,10 @@
     id="bottom-panel"
   >
     <a
-      class="d-inline-block text-decoration-none w-100 position-relative"
+      class="text-decoration-none w-100 position-relative text-center"
       id="bottom-arrow"
       href="#"
-    >
+      >&dArr;
     </a>
   </div>
 </template>
@@ -20,26 +20,15 @@ export default {
 
 <style scoped>
 #bottom-panel {
-  height: 10%;
+  height: 5%;
 }
 
 #bottom-panel a {
   visibility: hidden;
-  padding-top: 7%;
+  font-size: 4rem;
 }
 
 #bottom-panel:hover a {
   visibility: visible;
-}
-
-#bottom-arrow::after {
-  content: "\21DA";
-  display: inline-block;
-  position: absolute;
-  top: 0%;
-  left: 43.5%;
-  height: 100%;
-  font-size: 4rem;
-  transform: rotate(-90deg);
 }
 </style>
