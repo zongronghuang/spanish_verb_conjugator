@@ -4,10 +4,11 @@
     id="bottom-panel"
   >
     <a
-      class="text-decoration-none w-100 position-relative text-center"
+      class="text-decoration-none w-100 text-center"
       id="bottom-arrow"
       href="#"
-      >&dArr;
+      title="Next tense"
+      >&#8681;
     </a>
   </div>
 </template>
@@ -25,7 +26,7 @@ export default {
 
 #bottom-panel a {
   visibility: hidden;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 #bottom-panel:hover a {

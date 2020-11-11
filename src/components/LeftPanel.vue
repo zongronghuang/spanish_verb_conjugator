@@ -1,9 +1,13 @@
 <template>
-  <div class="d-flex align-items-center justify-content-center" id="left-panel">
+  <div
+    class="d-flex align-items-center w-25 justify-content-center"
+    id="left-panel"
+  >
     <a
       class="d-inline-block text-decoration-none w-100 h-100 position-relative"
       id="left-arrow"
       href="#"
+      title="Back"
     ></a>
   </div>
 </template>
@@ -28,12 +32,12 @@ export default {
 }
 
 #left-arrow::after {
-  content: "\21D0";
+  content: "\21E6";
   display: inline-block;
   position: absolute;
   top: 45%;
-  left: 25%;
+  right: 0%;
   height: 100%;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 </style>

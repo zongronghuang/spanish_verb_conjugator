@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container pt-2">
     <div class="row mb-1">
       <div class="col-6 mx-auto position-relative" id="upper-display">
         <button class="btn btn-info mt-3 font-weight-bold" id="add-to-list">
@@ -33,38 +33,52 @@
       <table class="table mx-auto col-6 text-center">
         <tbody>
           <tr class="border">
-            <th scope="row" class="w-50">yo</th>
-            <td>Mark</td>
-            <td>!</td>
+            <th scope="row" class="w-25 align-middle">yo</th>
+            <td class="align-middle">Mark</td>
+            <td class="align-middle">
+              <button class="btn btn-warning error-tooltip">!</button>
+            </td>
           </tr>
           <tr class="border">
-            <th scope="row" class="w-50">tu</th>
-            <td>Jacob</td>
-            <td>!</td>
+            <th scope="row" class="w-25 align-middle">tu</th>
+            <td class="align-middle">Jacob</td>
+            <td class="align-middle">
+              <button class="btn btn-warning error-tooltip">!</button>
+            </td>
           </tr>
           <tr class="border">
-            <th scope="row" class="w-50">el <br />ella <br />usted</th>
-            <td><br />Larry</td>
-            <td><br />!</td>
+            <th scope="row" class="w-25 align-middle">
+              el <br />ella <br />usted
+            </th>
+            <td class="align-middle">Larry</td>
+            <td class="align-middle">
+              <button class="btn btn-warning error-tooltip">!</button>
+            </td>
           </tr>
           <tr class="border">
-            <th scope="row" class="w-50">nosotros</th>
-            <td>Larry</td>
-            <td>!</td>
+            <th scope="row" class="w-25 align-middle">nosotros</th>
+            <td class="align-middle">Larry</td>
+            <td class="align-middle">
+              <button class="btn btn-warning error-tooltip">!</button>
+            </td>
           </tr>
           <tr class="border">
-            <th scope="row" class="w-50">vosotros</th>
-            <td>Larry</td>
-            <td>?</td>
+            <th scope="row" class="w-25 align-middle">vosotros</th>
+            <td class="align-middle">Larry</td>
+            <td class="align-middle">
+              <button class="btn btn-warning error-tooltip">!</button>
+            </td>
           </tr>
           <tr class="border">
-            <th scope="row" class="w-50">
+            <th scope="row" class="w-25 align-middle">
               ellos <br />
               ellas <br />
               ustedes
             </th>
-            <td><br />Larry</td>
-            <td><br />!</td>
+            <td class="align-middle">Larry</td>
+            <td class="align-middle">
+              <button class="btn btn-warning error-tooltip">!</button>
+            </td>
           </tr>
         </tbody>
       </table>

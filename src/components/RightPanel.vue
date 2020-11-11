@@ -1,12 +1,13 @@
 <template>
   <div
-    class="d-flex align-items-center justify-content-center"
+    class="d-flex align-items-center w-25 justify-content-center"
     id="right-panel"
   >
     <a
       class="d-inline-block text-decoration-none w-100 h-100 position-relative"
       id="right-arrow"
       href="#"
+      title="Next"
     ></a>
   </div>
 </template>
@@ -31,12 +32,12 @@ export default {
 }
 
 #right-arrow::before {
-  content: "\21D2";
+  content: "\21E8";
   display: inline-block;
   position: absolute;
   top: 45%;
-  right: 0%;
+  left: 0%;
   height: 100%;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 </style>
