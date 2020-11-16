@@ -4721,7 +4721,7 @@
       }
     ]
   },
-  {
+  "reir": {
     "id": "reir",
     "metadata": {
       "operation": "retrieve",
