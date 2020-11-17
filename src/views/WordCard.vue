@@ -238,6 +238,36 @@ export default {
     RightPanel,
     BottomPanel,
   },
+  data() {
+    return {
+      indicative: {
+        present: [],
+        future: [],
+        preterite: [],
+        imperfect: [],
+        presentPerfect: [],
+        pastPerfect: [],
+        futurePerfect: [],
+        conditional: [],
+      },
+      subjunctive: {
+        present: [],
+        future: [],
+        preterite: [],
+        imperfect1: [],
+        imperfect2: [],
+        presentPerfect: [],
+        pastPerfect: [],
+        futurePerfect: [],
+        conditional: [],
+      },
+      imperative: [],
+      gerund: "",
+      pastParticiple: "",
+    };
+  },
+  created() {},
+  methods: {},
 };
 </script>
 
