@@ -30,7 +30,7 @@
     </div>
 
     <div class="row mt-3 mb-1">
-      <table class="table mx-auto col-6 text-center">
+      <table class="table mx-auto col-6 text-center shadow">
         <tbody>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">yo</th>
