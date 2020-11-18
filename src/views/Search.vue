@@ -1,23 +1,23 @@
 <template>
-  <div>
+  <div class="pb-1">
     <ControlPanel />
 
     <!-- 搜尋區域 -->
-    <div class="mx-auto my-4 w-50">
-      <h2>Feed a Spanish Verb</h2>
+    <div class="mx-auto my-4 w-75" id="search-area">
+      <h3>Feed a Spanish Verb</h3>
 
       <div class="input-group pb-3 mb-1 mt-5">
         <input
           type="text"
-          class="form-control font-weight-bold"
+          class="form-control shadow font-weight-bold"
           placeholder="Infinitive (-ar, -er, -ir)"
           aria-label="Feed an infinitive Spanish verb"
           aria-describedby="button-addon2"
           v-model.trim="input"
         />
-        <div class="input-group-append">
+        <div class="input-group-append shadow">
           <button
-            class="btn btn-outline-secondary font-weight-bold"
+            class="btn btn-info font-weight-bold"
             type="button"
             id="button-addon2"
             @click.prevent.stop="checkInput"
@@ -29,11 +29,19 @@
     </div>
     <!-- 錯誤訊息 -->
     <div
-      class="alert alert-warning w-50 text-center mx-auto"
+      class="alert alert-warning w-75 text-center mx-auto"
       role="alert"
-      v-if="alert"
+      id="alert"
+      v-show="alert"
     >
-      {{ alert }}
+      <span
+        class="float-left font-weight-bold mr-2"
+        id="cross"
+        @click.stop.prevent="collapseAlert"
+      >
+        X
+      </span>
+      <span>{{ alert }}</span>
     </div>
   </div>
 </template>
@@ -54,44 +62,57 @@ export default {
   },
   methods: {
     checkInput() {
-      console.log("got the input", this.input, Boolean(this.input));
-      console.log("length", this.input.length);
+      const input = this.input.toLowerCase();
+      this.alert = "";
+
       // 不可為空字串
-
-      this.alert = "yayaya";
-      console.log("yaya");
-
-      if (!this.input) {
-        this.alert = "未輸入動詞，無法搜尋";
+      if (!input) {
+        return (this.alert = "未輸入動詞，無法搜尋");
       }
 
-      // 不可含數字、特殊符號或空白
-      const regex = /[a-záéíóúü]/;
-      if (this.input.toLowerCase().search(regex)) {
-        this.alert = "不可輸入數字、空白或特殊符號";
+      // 只接受西班牙文字母 (不可有數字、特殊符號或空白)
+      const regex = /[^a-záéíóúü]/;
+      if (input.search(regex) !== -1) {
+        return (this.alert = "不可輸入數字、空白或特殊符號");
       }
 
       // 結尾是 arse, erse, irse (提醒拿掉 se 即可)
-      const longEnding = this.input.substring(this.input.length - 4);
+      const longEnding = input.substring(input.length - 4);
       if (
         longEnding === "arse" ||
         longEnding === "erse" ||
         longEnding === "irse"
       ) {
-        this.alert = "不可輸入反身動詞；請移除字尾 -se";
+        return (this.alert = "請移除結尾 -se");
       }
 
       // 非原形動詞結尾非 -ar, -er, -ir
-      const ending = this.input.substring(this.input.length - 2);
-      if (ending !== "ar" || ending !== "er" || ending !== "ir") {
-        this.alert = "必須輸入原形動詞";
+      const ending = input.substring(input.length - 2);
+      if (ending !== "ar" && ending !== "er" && ending !== "ir") {
+        return (this.alert = "請輸入原形動詞");
       }
 
-      // 透過 API 確認輸入的動詞存在
+      // 透過 API 確認輸入的動詞存在 => 轉址到 wordcard 頁面
+    },
+    collapseAlert() {
+      this.alert = "";
     },
   },
 };
 </script>
 
 <style scoped>
+#search-area,
+#alert {
+  max-width: 450px;
+}
+
+#cross:hover {
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: gray;
+  opacity: 70%;
+}
 </style>
