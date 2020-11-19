@@ -3,12 +3,12 @@
     class="d-flex align-items-center w-25 justify-content-center"
     id="right-panel"
   >
-    <a
+    <router-link
       class="d-inline-block text-decoration-none w-100 h-100 position-relative"
       id="right-arrow"
-      href="#"
+      to=""
       title="Next"
-    ></a>
+    ></router-link>
   </div>
 </template>
 

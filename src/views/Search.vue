@@ -92,7 +92,10 @@ export default {
         return (this.alert = "請輸入原形動詞");
       }
 
-      // 透過 API 確認輸入的動詞存在 => 轉址到 wordcard 頁面
+      // 透過 API 確認輸入的動詞存在
+
+      // 轉址到 wordcard 頁面
+      this.$router.push("/wordcard");
     },
     collapseAlert() {
       this.alert = "";

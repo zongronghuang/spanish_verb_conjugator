@@ -3,13 +3,13 @@
     class="d-flex align-items-center justify-content-center mb-1"
     id="bottom-panel"
   >
-    <a
+    <router-link
       class="text-decoration-none w-100 text-center"
       id="bottom-arrow"
-      href="#"
+      to=""
       title="Next tense"
       >&#8681;
-    </a>
+    </router-link>
   </div>
 </template>
 

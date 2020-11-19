@@ -9,7 +9,11 @@
     </select>
 
     <!-- 使用模式選單 -->
-    <select class="custom-select custom-select-lg w-25 text-white bg-primary">
+    <select
+      class="custom-select custom-select-lg w-25 text-white bg-primary"
+      v-model="mode"
+      @click.prevent.stop="changeMode"
+    >
       <option value="0" selected>模式</option>
       <option value="1">查詢</option>
       <option value="2">記憶</option>
@@ -28,6 +32,30 @@
 <script>
 export default {
   name: "control-panel",
+  data() {
+    return {
+      list: 0,
+      mode: 0,
+      theme: 0,
+    };
+  },
+  methods: {
+    changeList() {},
+    changeMode() {
+      switch (this.mode) {
+        case "1":
+          this.$router.push("/wordcard");
+          break;
+        case "2":
+          this.$router.push("/memorycard");
+          break;
+        case "3":
+          this.$router.push("/testcard");
+          break;
+      }
+    },
+    changeTheme() {},
+  },
 };
 </script>
 

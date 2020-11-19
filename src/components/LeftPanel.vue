@@ -3,12 +3,12 @@
     class="d-flex align-items-center w-25 justify-content-center"
     id="left-panel"
   >
-    <a
+    <router-link
       class="d-inline-block text-decoration-none w-100 h-100 position-relative"
       id="left-arrow"
-      href="#"
+      to=""
       title="Back"
-    ></a>
+    ></router-link>
   </div>
 </template>
 
