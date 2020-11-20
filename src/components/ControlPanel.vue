@@ -14,10 +14,10 @@
       v-model="mode"
       @click.prevent.stop="changeMode"
     >
-      <option value="0" selected>模式</option>
-      <option value="1">查詢</option>
-      <option value="2">記憶</option>
-      <option value="3">填空</option>
+      <option value="0" :selected="mode === '0'">模式</option>
+      <option value="1" :selected="mode === '1'">查詢</option>
+      <option value="2" :selected="mode === '2'">記憶</option>
+      <option value="3" :selected="mode === '3'">填空</option>
     </select>
 
     <!-- 主題模式 -->

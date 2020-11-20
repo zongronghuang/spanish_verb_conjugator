@@ -71,7 +71,7 @@ export default {
       }
 
       // 只接受西班牙文字母 (不可有數字、特殊符號或空白)
-      const regex = /[^a-záéíóúü]/;
+      const regex = /[^a-záéíóúüñ]/;
       if (input.search(regex) !== -1) {
         return (this.alert = "不可輸入數字、空白或特殊符號");
       }
