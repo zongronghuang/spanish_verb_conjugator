@@ -1,7 +1,5 @@
 <template>
   <div class="pb-1">
-    <ControlPanel />
-
     <!-- 搜尋區域 -->
     <div class="mx-auto my-4 w-75" id="search-area">
       <h3>Feed a Spanish Verb</h3>
@@ -47,13 +45,8 @@
 </template>
 
 <script>
-import ControlPanel from "../components/ControlPanel.vue";
-
 export default {
   name: "search",
-  components: {
-    ControlPanel,
-  },
   data() {
     return {
       input: "",

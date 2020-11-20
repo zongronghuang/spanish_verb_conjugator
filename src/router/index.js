@@ -15,21 +15,21 @@ const routes = [
     name: 'search',
     component: Search
   },
-  {
-    path: '/wordcard',
-    name: 'word-card',
-    component: () => import('../views/WordCard.vue')
-  },
-  {
-    path: '/memorycard',
-    name: 'memory-card',
-    component: () => import('../views/MemoryCard.vue')
-  },
-  {
-    path: '/testcard',
-    name: 'test-card',
-    component: () => import('../views/TestCard.vue')
-  },
+  // {
+  //   path: '/wordcard',
+  //   name: 'word-card',
+  //   component: () => import('../views/WordCard.vue')
+  // },
+  // {
+  //   path: '/memorycard',
+  //   name: 'memory-card',
+  //   component: () => import('../views/MemoryCard.vue')
+  // },
+  // {
+  //   path: '/testcard',
+  //   name: 'test-card',
+  //   component: () => import('../views/TestCard.vue')
+  // },
   {
     path: '*',
     name: 'not-found',
