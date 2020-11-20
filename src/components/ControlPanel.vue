@@ -1,18 +1,22 @@
 <template>
   <nav class="nav d-flex justify-content-around py-2">
     <!-- 字表選單 -->
-    <select class="custom-select custom-select-lg w-25 text-white bg-primary">
-      <option value="0" selected>字彙表</option>
-      <option value="1">我的字彙表</option>
-      <option value="2">預設字表 1</option>
-      <option value="3">預設字表 2</option>
+    <select
+      class="custom-select custom-select-lg w-25 text-white bg-primary"
+      v-model="list"
+      @change.prevent.stop="$emit('change-list', list)"
+    >
+      <option value="0" :selected="list === '0'">字彙表</option>
+      <option value="1" :selected="list === '1'">我的字彙表</option>
+      <option value="2" :selected="list === '2'">預設字表 1</option>
+      <option value="3" :selected="list === '3'">預設字表 2</option>
     </select>
 
     <!-- 使用模式選單 -->
     <select
       class="custom-select custom-select-lg w-25 text-white bg-primary"
       v-model="mode"
-      @click.prevent.stop="changeMode"
+      @change.prevent.stop="$emit('change-mode', mode)"
     >
       <option value="0" :selected="mode === '0'">模式</option>
       <option value="1" :selected="mode === '1'">查詢</option>
@@ -21,10 +25,14 @@
     </select>
 
     <!-- 主題模式 -->
-    <select class="custom-select custom-select-lg w-25 text-white bg-primary">
-      <option value="0" selected>主題</option>
-      <option value="1">預設</option>
-      <option value="2">深色</option>
+    <select
+      class="custom-select custom-select-lg w-25 text-white bg-primary"
+      v-model="theme"
+      @change.prevent.stop="$emit('change-theme', theme)"
+    >
+      <option value="0" :selected="theme === '0'">主題</option>
+      <option value="1" :selected="theme === '1'">預設</option>
+      <option value="2" :selected="theme === '2'">深色</option>
     </select>
   </nav>
 </template>
@@ -38,23 +46,6 @@ export default {
       mode: 0,
       theme: 0,
     };
-  },
-  methods: {
-    changeList() {},
-    changeMode() {
-      switch (this.mode) {
-        case "1":
-          this.$router.push("/wordcard");
-          break;
-        case "2":
-          this.$router.push("/memorycard");
-          break;
-        case "3":
-          this.$router.push("/testcard");
-          break;
-      }
-    },
-    changeTheme() {},
   },
 };
 </script>

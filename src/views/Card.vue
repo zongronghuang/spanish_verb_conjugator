@@ -1,10 +1,14 @@
 <template>
   <div>
-    <ControlPanel />
+    <ControlPanel
+      @change-list="changeList"
+      @change-mode="changeMode"
+      @change-theme="changeTheme"
+    />
 
     <div class="d-flex justify-content-between">
       <LeftPanel />
-      <ConjugationTable />
+      <ConjugationTable :chosen-mode="mode" />
       <RightPanel />
     </div>
     <BottomPanel />
@@ -229,7 +233,7 @@ import BottomPanel from "../components/BottomPanel.vue";
 // };
 
 export default {
-  name: "word-card",
+  name: "conjugation-card",
   components: {
     TenseCategories,
     ControlPanel,
@@ -240,6 +244,9 @@ export default {
   },
   data() {
     return {
+      list: "0",
+      mode: "0",
+      theme: "0",
       indicative: {
         present: [],
         future: [],
@@ -267,7 +274,17 @@ export default {
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    changeList(option) {
+      this.list = option;
+    },
+    changeMode(option) {
+      this.mode = option;
+    },
+    changeTheme(option) {
+      this.theme = option;
+    },
+  },
 };
 </script>
 

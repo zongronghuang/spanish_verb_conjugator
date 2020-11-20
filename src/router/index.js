@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NotFound from '../views/NotFound.vue'
 import Search from '../views/Search.vue'
+import ConjugationCard from '../views/Card.vue'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,11 @@ const routes = [
     path: '/search',
     name: 'search',
     component: Search
+  },
+  {
+    path: '/conjugation_card',
+    name: 'conjugation-card',
+    component: ConjugationCard
   },
   // {
   //   path: '/wordcard',

@@ -107,6 +107,12 @@
 <script>
 export default {
   name: "conjugation-table",
+  props: {
+    chosenMode: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>
 
