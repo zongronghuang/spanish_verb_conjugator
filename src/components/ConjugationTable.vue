@@ -11,13 +11,21 @@
           <span class="font-weight-bold h4 mt-2">to eat</span>
         </div>
 
-        <div class="mt-3 h4 font-weight-bold" id="hits">
+        <div
+          class="mt-3 h4 font-weight-bold"
+          id="hits"
+          v-show="chosenMode === '3'"
+        >
           <span>Hits</span>
           <span class="align-text-top">:</span>
           <span>100</span>
         </div>
 
-        <button class="btn btn-warning mt-3 font-weight-bold" id="peek">
+        <button
+          class="btn btn-warning mt-3 font-weight-bold"
+          id="peek"
+          v-show="chosenMode === '2'"
+        >
           Peek
         </button>
       </div>
@@ -34,15 +42,33 @@
         <tbody>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">yo</th>
-            <td class="align-middle">Mark</td>
-            <td class="align-middle">
+            <td
+              class="align-middle"
+              v-show="chosenMode !== '3' && !blurringToggle"
+            >
+              Mark
+            </td>
+            <td
+              class="align-middle"
+              v-show="chosenMode === '2' && blurringToggle"
+              id="xxx"
+            >
+              Mark
+            </td>
+            <td class="align-middle" v-show="chosenMode === '3'">
+              <input type="text" />
+            </td>
+            <td class="align-middle" v-show="chosenMode === '3'">
               <button class="btn btn-warning error-tooltip">!</button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">tu</th>
-            <td class="align-middle">Jacob</td>
-            <td class="align-middle">
+            <td class="align-middle" v-show="chosenMode !== '3'">Jacob</td>
+            <td class="align-middle" v-show="chosenMode === '3'">
+              <input type="text" />
+            </td>
+            <td class="align-middle" v-show="chosenMode === '3'">
               <button class="btn btn-warning error-tooltip">!</button>
             </td>
           </tr>
@@ -50,22 +76,31 @@
             <th scope="row" class="w-25 align-middle">
               el <br />ella <br />usted
             </th>
-            <td class="align-middle">Larry</td>
-            <td class="align-middle">
+            <td class="align-middle" v-show="chosenMode !== '3'">Larry</td>
+            <td class="align-middle" v-show="chosenMode === '3'">
+              <input type="text" />
+            </td>
+            <td class="align-middle" v-show="chosenMode === '3'">
               <button class="btn btn-warning error-tooltip">!</button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">nosotros</th>
-            <td class="align-middle">Larry</td>
-            <td class="align-middle">
+            <td class="align-middle" v-show="chosenMode !== '3'">Larry</td>
+            <td class="align-middle" v-show="chosenMode === '3'">
+              <input type="text" />
+            </td>
+            <td class="align-middle" v-show="chosenMode === '3'">
               <button class="btn btn-warning error-tooltip">!</button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">vosotros</th>
-            <td class="align-middle">Larry</td>
-            <td class="align-middle">
+            <td class="align-middle" v-show="chosenMode !== '3'">Larry</td>
+            <td class="align-middle" v-show="chosenMode === '3'">
+              <input type="text" />
+            </td>
+            <td class="align-middle" v-show="chosenMode === '3'">
               <button class="btn btn-warning error-tooltip">!</button>
             </td>
           </tr>
@@ -75,8 +110,11 @@
               ellas <br />
               ustedes
             </th>
-            <td class="align-middle">Larry</td>
-            <td class="align-middle">
+            <td class="align-middle" v-show="chosenMode !== '3'">Larry</td>
+            <td class="align-middle" v-show="chosenMode === '3'">
+              <input type="text" />
+            </td>
+            <td class="align-middle" v-show="chosenMode === '3'">
               <button class="btn btn-warning error-tooltip">!</button>
             </td>
           </tr>
@@ -84,7 +122,7 @@
       </table>
     </div>
 
-    <div class="row">
+    <div class="row" v-show="chosenMode === '3'">
       <div class="col-6 mx-auto" id="lower-display">
         <div id="stressed-letters" class="mr-2">
           <button class="btn btn-info font-weight-bold mr-2">á</button>
@@ -112,6 +150,11 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      blurringToggle: false,
+    };
   },
 };
 </script>
@@ -154,5 +197,9 @@ table {
 
 #lower-display {
   margin-bottom: 60px;
+}
+
+#xxx {
+  filter: blur(5px);
 }
 </style>
