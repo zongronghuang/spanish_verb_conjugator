@@ -18,10 +18,9 @@
       v-model="mode"
       @change.prevent.stop="$emit('change-mode', mode)"
     >
-      <option value="0" :selected="mode === '0'">模式</option>
-      <option value="1" :selected="mode === '1'">查詢</option>
-      <option value="2" :selected="mode === '2'">記憶</option>
-      <option value="3" :selected="mode === '3'">填空</option>
+      <option value="0" :selected="mode === '1'">查詢</option>
+      <option value="1" :selected="mode === '2'">記憶</option>
+      <option value="2" :selected="mode === '3'">填空</option>
     </select>
 
     <!-- 主題模式 -->
@@ -30,9 +29,8 @@
       v-model="theme"
       @change.prevent.stop="$emit('change-theme', theme)"
     >
-      <option value="0" :selected="theme === '0'">主題</option>
-      <option value="1" :selected="theme === '1'">預設</option>
-      <option value="2" :selected="theme === '2'">深色</option>
+      <option value="0" :selected="theme === '1'">預設</option>
+      <option value="1" :selected="theme === '2'">深色</option>
     </select>
   </nav>
 </template>

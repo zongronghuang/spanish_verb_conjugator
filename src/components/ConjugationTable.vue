@@ -14,19 +14,19 @@
         <div
           class="mt-3 h4 font-weight-bold"
           id="hits"
-          v-show="chosenMode === '3'"
+          v-show="chosenMode === '2'"
         >
-          <span>Hits</span>
-          <span class="align-text-top">:</span>
-          <span>100</span>
+          <span>X</span>
+          <span>%</span>
         </div>
 
         <button
           class="btn btn-warning mt-3 font-weight-bold"
           id="peek"
-          v-show="chosenMode === '2'"
+          v-show="chosenMode === '1'"
+          @click.stop.prevent="textToggle"
         >
-          Peek
+          {{ displayText ? "Hide" : "Peek" }}
         </button>
       </div>
     </div>
@@ -41,67 +41,101 @@
       <table class="table mx-auto col-6 text-center shadow">
         <tbody>
           <tr class="border">
-            <th scope="row" class="w-25 align-middle">yo</th>
-            <td
-              class="align-middle"
-              v-show="chosenMode !== '3' && !blurringToggle"
-            >
-              Mark
+            <th scope="row" class="w-50 align-middle">yo</th>
+
+            <!-- mode 0 -->
+            <td class="align-middle h5" v-show="chosenMode === '0'">Mark</td>
+
+            <!-- mode 1 -->
+            <td class="align-middle h5" v-show="chosenMode === '1'">
+              {{ displayText ? "Mark" : "&iquest; &quest;" }}
             </td>
-            <td
-              class="align-middle"
-              v-show="chosenMode === '2' && blurringToggle"
-              id="xxx"
-            >
-              Mark
-            </td>
-            <td class="align-middle" v-show="chosenMode === '3'">
+
+            <!-- mode 2 -->
+            <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '3'">
-              <button class="btn btn-warning error-tooltip">!</button>
+            <td class="align-middle" v-show="chosenMode === '2'">
+              <button
+                class="btn btn-warning error-tooltip"
+                @click.prevent.stop="hintToggle"
+              >
+                {{ displayHint ? "answer" : "!" }}
+              </button>
             </td>
           </tr>
           <tr class="border">
-            <th scope="row" class="w-25 align-middle">tu</th>
-            <td class="align-middle" v-show="chosenMode !== '3'">Jacob</td>
-            <td class="align-middle" v-show="chosenMode === '3'">
+            <th scope="row" class="w-25 align-middle">tú</th>
+            <td class="align-middle" v-show="chosenMode === '0'">Jacob</td>
+            <td class="align-middle h5" v-show="chosenMode === '1'">
+              {{ displayText ? "Jacob" : "&iquest; &quest;" }}
+            </td>
+            <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '3'">
-              <button class="btn btn-warning error-tooltip">!</button>
+            <td class="align-middle" v-show="chosenMode === '2'">
+              <button
+                class="btn btn-warning error-tooltip"
+                @click.prevent.stop="hintToggle"
+              >
+                {{ displayHint ? "answer" : "!" }}
+              </button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">
-              el <br />ella <br />usted
+              él <br />ella <br />usted
             </th>
-            <td class="align-middle" v-show="chosenMode !== '3'">Larry</td>
-            <td class="align-middle" v-show="chosenMode === '3'">
+            <td class="align-middle" v-show="chosenMode === '0'">Larry</td>
+            <td class="align-middle h5" v-show="chosenMode === '1'">
+              {{ displayText ? "Larry" : "&iquest; &quest;" }}
+            </td>
+            <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '3'">
-              <button class="btn btn-warning error-tooltip">!</button>
+            <td class="align-middle" v-show="chosenMode === '2'">
+              <button
+                class="btn btn-warning error-tooltip"
+                @click.prevent.stop="hintToggle"
+              >
+                {{ displayHint ? "answer" : "!" }}
+              </button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">nosotros</th>
-            <td class="align-middle" v-show="chosenMode !== '3'">Larry</td>
-            <td class="align-middle" v-show="chosenMode === '3'">
+            <td class="align-middle" v-show="chosenMode === '0'">Larry</td>
+            <td class="align-middle h5" v-show="chosenMode === '1'">
+              {{ displayText ? "Larry" : "&iquest; &quest;" }}
+            </td>
+            <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '3'">
-              <button class="btn btn-warning error-tooltip">!</button>
+            <td class="align-middle" v-show="chosenMode === '2'">
+              <button
+                class="btn btn-warning error-tooltip"
+                @click.prevent.stop="hintToggle"
+              >
+                {{ displayHint ? "answer" : "!" }}
+              </button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">vosotros</th>
-            <td class="align-middle" v-show="chosenMode !== '3'">Larry</td>
-            <td class="align-middle" v-show="chosenMode === '3'">
+            <td class="align-middle" v-show="chosenMode === '0'">Larry</td>
+            <td class="align-middle h5" v-show="chosenMode === '1'">
+              {{ displayText ? "Larry" : "&iquest; &quest;" }}
+            </td>
+            <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '3'">
-              <button class="btn btn-warning error-tooltip">!</button>
+            <td class="align-middle" v-show="chosenMode === '2'">
+              <button
+                class="btn btn-warning error-tooltip"
+                @click.prevent.stop="hintToggle"
+              >
+                {{ displayHint ? "answer" : "!" }}
+              </button>
             </td>
           </tr>
           <tr class="border">
@@ -110,19 +144,27 @@
               ellas <br />
               ustedes
             </th>
-            <td class="align-middle" v-show="chosenMode !== '3'">Larry</td>
-            <td class="align-middle" v-show="chosenMode === '3'">
+            <td class="align-middle" v-show="chosenMode === '0'">Larry</td>
+            <td class="align-middle h5" v-show="chosenMode === '1'">
+              {{ displayText ? "Larry" : "&iquest; &quest;" }}
+            </td>
+            <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '3'">
-              <button class="btn btn-warning error-tooltip">!</button>
+            <td class="align-middle" v-show="chosenMode === '2'">
+              <button
+                class="btn btn-warning error-tooltip"
+                @click.prevent.stop="hintToggle"
+              >
+                {{ displayHint ? "answer" : "!" }}
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="row" v-show="chosenMode === '3'">
+    <div class="row" v-show="chosenMode === '2'">
       <div class="col-6 mx-auto" id="lower-display">
         <div id="stressed-letters" class="mr-2">
           <button class="btn btn-info font-weight-bold mr-2">á</button>
@@ -153,8 +195,22 @@ export default {
   },
   data() {
     return {
-      blurringToggle: false,
+      displayText: false,
+      displayHint: false,
     };
+  },
+  methods: {
+    textToggle() {
+      this.displayText = !this.displayText;
+    },
+    hintToggle() {
+      this.displayHint = !this.displayHint;
+    },
+  },
+  watch: {
+    chosenMode: function (oldMode, newMode) {
+      if (newMode === "1") this.displayText = false;
+    },
   },
 };
 </script>
