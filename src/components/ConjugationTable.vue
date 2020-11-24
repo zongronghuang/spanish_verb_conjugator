@@ -17,7 +17,8 @@
           v-show="chosenMode === '2'"
         >
           <span>X</span>
-          <span>%</span>
+          <span>/</span>
+          <span>6</span>
         </div>
 
         <button
@@ -39,9 +40,9 @@
 
     <div class="row mt-3 mb-1">
       <table class="table mx-auto col-6 text-center shadow">
-        <tbody>
+        <tbody @click.prevent.stop="markAsActiveInput">
           <tr class="border">
-            <th scope="row" class="w-50 align-middle">yo</th>
+            <th scope="row" class="w-25 align-middle">yo</th>
 
             <!-- mode 0 -->
             <td class="align-middle h5" v-show="chosenMode === '0'">Mark</td>
@@ -60,7 +61,7 @@
                 class="btn btn-warning error-tooltip"
                 @click.prevent.stop="hintToggle"
               >
-                {{ displayHint ? "answer" : "!" }}
+                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -78,7 +79,7 @@
                 class="btn btn-warning error-tooltip"
                 @click.prevent.stop="hintToggle"
               >
-                {{ displayHint ? "answer" : "!" }}
+                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -98,7 +99,7 @@
                 class="btn btn-warning error-tooltip"
                 @click.prevent.stop="hintToggle"
               >
-                {{ displayHint ? "answer" : "!" }}
+                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -116,7 +117,7 @@
                 class="btn btn-warning error-tooltip"
                 @click.prevent.stop="hintToggle"
               >
-                {{ displayHint ? "answer" : "!" }}
+                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -134,7 +135,7 @@
                 class="btn btn-warning error-tooltip"
                 @click.prevent.stop="hintToggle"
               >
-                {{ displayHint ? "answer" : "!" }}
+                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -156,7 +157,7 @@
                 class="btn btn-warning error-tooltip"
                 @click.prevent.stop="hintToggle"
               >
-                {{ displayHint ? "answer" : "!" }}
+                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -166,7 +167,11 @@
 
     <div class="row" v-show="chosenMode === '2'">
       <div class="col-6 mx-auto" id="lower-display">
-        <div id="stressed-letters" class="mr-2">
+        <div
+          id="stressed-letters"
+          class="mr-2"
+          @click.prevent.stop="typeCharacter"
+        >
           <button class="btn btn-info font-weight-bold mr-2">á</button>
           <button class="btn btn-info font-weight-bold mr-2">é</button>
           <button class="btn btn-info font-weight-bold mr-2">í</button>
@@ -205,6 +210,28 @@ export default {
     },
     hintToggle() {
       this.displayHint = !this.displayHint;
+    },
+    markAsActiveInput(event) {
+      const currentInput = event.target;
+      const inputs = document.querySelectorAll("input");
+
+      inputs.forEach((input) => {
+        if (input.classList.contains("activeInput"))
+          input.classList.remove("activeInput");
+      });
+
+      if (currentInput.tagName === "INPUT") {
+        currentInput.classList.add("activeInput");
+      }
+    },
+    typeCharacter(event) {
+      const character = event.target.innerText;
+      console.log("character", character);
+
+      const activeInput = document.querySelector(".activeInput");
+      console.log("iiiinput", activeInput.innerText);
+
+      // 將字母加到輸入框內
     },
   },
   watch: {
@@ -257,5 +284,10 @@ table {
 
 #xxx {
   filter: blur(5px);
+}
+
+.activeInput {
+  background-color: gainsboro;
+  font-weight: bold;
 }
 </style>
