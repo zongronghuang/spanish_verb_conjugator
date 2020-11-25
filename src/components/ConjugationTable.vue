@@ -225,13 +225,15 @@ export default {
       }
     },
     typeCharacter(event) {
-      const character = event.target.innerText;
-      console.log("character", character);
-
+      const target = event.target;
+      const character = target.innerText;
       const activeInput = document.querySelector(".activeInput");
-      console.log("iiiinput", activeInput.innerText);
-
       // 將字母加到輸入框內
+
+      if (target.tagName === "BUTTON") {
+        activeInput.value = activeInput.value + character;
+        activeInput.focus();
+      }
     },
   },
   watch: {
@@ -287,7 +289,6 @@ table {
 }
 
 .activeInput {
-  background-color: gainsboro;
   font-weight: bold;
 }
 </style>
