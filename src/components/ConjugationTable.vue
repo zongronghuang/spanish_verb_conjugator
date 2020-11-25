@@ -41,6 +41,7 @@
     <div class="row mt-3 mb-1">
       <table class="table mx-auto col-6 text-center shadow">
         <tbody @click.prevent.stop="markAsActiveInput">
+          <!-- //////////////////////////////////////////////////// -->
           <tr class="border">
             <th scope="row" class="w-25 align-middle">yo</th>
 
@@ -54,17 +55,19 @@
 
             <!-- mode 2 -->
             <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" />
+              <input type="text" v-model="inputs[0]" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td class="align-middle" v-if="chosenMode === '2'">
               <button
-                class="btn btn-warning error-tooltip"
+                class="btn btn-warning"
                 @click.prevent.stop="hintToggle"
+                v-show="!results[0]"
               >
-                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
+                {{ displayHint ? conjugations[0] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
+          <!-- //////////////////////////////////////////////////////// -->
           <tr class="border">
             <th scope="row" class="w-25 align-middle">tú</th>
             <td class="align-middle" v-show="chosenMode === '0'">Jacob</td>
@@ -72,14 +75,15 @@
               {{ displayText ? "Jacob" : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" />
+              <input type="text" v-model="inputs[1]" />
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
-                class="btn btn-warning error-tooltip"
+                class="btn btn-warning"
                 @click.prevent.stop="hintToggle"
+                v-show="results[1] === false"
               >
-                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
+                {{ displayHint ? conjugations[1] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -92,14 +96,15 @@
               {{ displayText ? "Larry" : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" />
+              <input type="text" v-model="inputs[2]" />
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
-                class="btn btn-warning error-tooltip"
+                class="btn btn-warning"
                 @click.prevent.stop="hintToggle"
+                v-show="results[2] === false"
               >
-                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
+                {{ displayHint ? conjugations[2] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -110,14 +115,15 @@
               {{ displayText ? "Larry" : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" />
+              <input type="text" v-model="inputs[3]" />
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
-                class="btn btn-warning error-tooltip"
+                class="btn btn-warning"
                 @click.prevent.stop="hintToggle"
+                v-show="results[3] === false"
               >
-                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
+                {{ displayHint ? conjugations[3] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -128,14 +134,15 @@
               {{ displayText ? "Larry" : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" />
+              <input type="text" v-model="inputs[4]" />
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
-                class="btn btn-warning error-tooltip"
+                class="btn btn-warning"
                 @click.prevent.stop="hintToggle"
+                v-show="results[4] === false"
               >
-                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
+                {{ displayHint ? conjugations[4] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -150,14 +157,15 @@
               {{ displayText ? "Larry" : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" />
+              <input type="text" v-model="inputs[5]" />
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
-                class="btn btn-warning error-tooltip"
+                class="btn btn-warning"
                 @click.prevent.stop="hintToggle"
+                v-show="results[5] === false"
               >
-                {{ displayHint ? "answer" : "&iexcl; &excl;" }}
+                {{ displayHint ? conjugations[5] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -182,7 +190,12 @@
         </div>
 
         <div id="check">
-          <button class="btn btn-warning font-weight-bold">Check</button>
+          <button
+            class="btn btn-warning font-weight-bold"
+            @click.stop.prevent="checkInputs"
+          >
+            Check
+          </button>
         </div>
       </div>
     </div>
@@ -200,6 +213,9 @@ export default {
   },
   data() {
     return {
+      conjugations: ["como", "comes", "come", "comemos", "coméis", "comen"],
+      inputs: [],
+      results: [],
       displayText: false,
       displayHint: false,
     };
@@ -235,12 +251,45 @@ export default {
         activeInput.focus();
       }
     },
+    checkInputs() {
+      console.log("===========");
+      console.log("inputs element", this.inputs);
+
+      if (this.inputs.length === 0) {
+        return alert("不可輸入空白");
+      }
+
+      for (let i = 0; i < 6; i++) {
+        if (this.inputs[i] === this.conjugations[i]) {
+          this.results[i] = true;
+        } else {
+          this.results[i] = false;
+        }
+      }
+
+      // 要解決無法即時反應的問題
+      console.log("results", this.results);
+    },
   },
   watch: {
-    chosenMode: function (oldMode, newMode) {
+    chosenMode: function (newMode) {
       if (newMode === "1") this.displayText = false;
     },
   },
+  // computed: {
+  //   results: function () {
+  //     const results = [];
+  //     for (let i = 0; i < 6; i++) {
+  //       if (this.inputs[i] === this.conjugations[i]) {
+  //         results.push("good");
+  //       } else {
+  //         results.push("bad");
+  //       }
+  //     }
+
+  //     return results;
+  //   },
+  // },
 };
 </script>
 
