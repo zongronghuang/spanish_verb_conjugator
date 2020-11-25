@@ -16,7 +16,7 @@
           id="hits"
           v-show="chosenMode === '2'"
         >
-          <span>X</span>
+          <span>{{ correctHits }}</span>
           <span>/</span>
           <span>6</span>
         </div>
@@ -60,10 +60,11 @@
             <td class="align-middle" v-if="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle"
-                v-show="!results[0]"
+                data-id="0"
+                @click.prevent.stop="hintToggle(0)"
+                v-show="results[0] === false"
               >
-                {{ displayHint ? conjugations[0] : "&iexcl; &excl;" }}
+                {{ displayHints[0] ? conjugations[0] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -80,10 +81,10 @@
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle"
+                @click.prevent.stop="hintToggle(1)"
                 v-show="results[1] === false"
               >
-                {{ displayHint ? conjugations[1] : "&iexcl; &excl;" }}
+                {{ displayHints[1] ? conjugations[1] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -101,10 +102,10 @@
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle"
+                @click.prevent.stop="hintToggle(2)"
                 v-show="results[2] === false"
               >
-                {{ displayHint ? conjugations[2] : "&iexcl; &excl;" }}
+                {{ displayHints[2] ? conjugations[2] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -120,10 +121,10 @@
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle"
+                @click.prevent.stop="hintToggle(3)"
                 v-show="results[3] === false"
               >
-                {{ displayHint ? conjugations[3] : "&iexcl; &excl;" }}
+                {{ displayHints[3] ? conjugations[3] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -139,10 +140,10 @@
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle"
+                @click.prevent.stop="hintToggle(4)"
                 v-show="results[4] === false"
               >
-                {{ displayHint ? conjugations[4] : "&iexcl; &excl;" }}
+                {{ displayHints[4] ? conjugations[4] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -162,10 +163,10 @@
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle"
+                @click.prevent.stop="hintToggle(5)"
                 v-show="results[5] === false"
               >
-                {{ displayHint ? conjugations[5] : "&iexcl; &excl;" }}
+                {{ displayHints[5] ? conjugations[5] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -217,25 +218,30 @@ export default {
       inputs: [],
       results: [],
       displayText: false,
-      displayHint: false,
+      correctHits: 0,
+      displayHints: Array(6).fill(false),
     };
   },
   methods: {
     textToggle() {
       this.displayText = !this.displayText;
     },
-    hintToggle() {
-      this.displayHint = !this.displayHint;
+    hintToggle(index) {
+      // 開關個別 tooltip
+      const status = !this.displayHints[index];
+      this.displayHints.splice(index, 1, status);
     },
     markAsActiveInput(event) {
       const currentInput = event.target;
       const inputs = document.querySelectorAll("input");
 
+      // 清除所有 input 的 activeInput class
       inputs.forEach((input) => {
         if (input.classList.contains("activeInput"))
           input.classList.remove("activeInput");
       });
 
+      // 把按到的 input 加上 activeInput class
       if (currentInput.tagName === "INPUT") {
         currentInput.classList.add("activeInput");
       }
@@ -244,31 +250,36 @@ export default {
       const target = event.target;
       const character = target.innerText;
       const activeInput = document.querySelector(".activeInput");
-      // 將字母加到輸入框內
 
+      // 將字母加到輸入框中 + focus 輸入框
       if (target.tagName === "BUTTON") {
         activeInput.value = activeInput.value + character;
         activeInput.focus();
       }
     },
     checkInputs() {
-      console.log("===========");
-      console.log("inputs element", this.inputs);
+      // 人稱 * 單複數 = 6
+      const numberOfConjugations = 6;
 
-      if (this.inputs.length === 0) {
-        return alert("不可輸入空白");
+      // 之後要決定如何確認：length 數值 === 6 或每個 input 皆有值
+      if (this.inputs.length < numberOfConjugations) {
+        return alert("所有空格都要填入答案");
       }
 
-      for (let i = 0; i < 6; i++) {
+      // 強制將輸入文字轉為小寫
+      this.inputs = this.inputs.map((input) => input.toLowerCase());
+
+      // 比對結果 + 計算正確答案數量
+      this.results = [];
+      this.correctHits = 0;
+      for (let i = 0; i < numberOfConjugations; i++) {
         if (this.inputs[i] === this.conjugations[i]) {
-          this.results[i] = true;
+          this.results.push(true);
+          this.correctHits++;
         } else {
-          this.results[i] = false;
+          this.results.push(false);
         }
       }
-
-      // 要解決無法即時反應的問題
-      console.log("results", this.results);
     },
   },
   watch: {
@@ -276,20 +287,6 @@ export default {
       if (newMode === "1") this.displayText = false;
     },
   },
-  // computed: {
-  //   results: function () {
-  //     const results = [];
-  //     for (let i = 0; i < 6; i++) {
-  //       if (this.inputs[i] === this.conjugations[i]) {
-  //         results.push("good");
-  //       } else {
-  //         results.push("bad");
-  //       }
-  //     }
-
-  //     return results;
-  //   },
-  // },
 };
 </script>
 
