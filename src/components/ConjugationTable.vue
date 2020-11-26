@@ -25,7 +25,7 @@
           class="btn btn-warning mt-3 font-weight-bold"
           id="peek"
           v-show="chosenMode === '1'"
-          @click.stop.prevent="textToggle"
+          @click.stop.prevent="peekToggle"
         >
           {{ displayText ? "Hide" : "Peek" }}
         </button>
@@ -46,11 +46,13 @@
             <th scope="row" class="w-25 align-middle">yo</th>
 
             <!-- mode 0 -->
-            <td class="align-middle h5" v-show="chosenMode === '0'">Mark</td>
+            <td class="align-middle h5" v-show="chosenMode === '0'">
+              {{ conjugations[0] }}
+            </td>
 
             <!-- mode 1 -->
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? "Mark" : "&iquest; &quest;" }}
+              {{ displayText ? conjugations[0] : "&iquest; &quest;" }}
             </td>
 
             <!-- mode 2 -->
@@ -71,9 +73,11 @@
           <!-- //////////////////////////////////////////////////////// -->
           <tr class="border">
             <th scope="row" class="w-25 align-middle">tú</th>
-            <td class="align-middle" v-show="chosenMode === '0'">Jacob</td>
+            <td class="align-middle h5" v-show="chosenMode === '0'">
+              {{ conjugations[1] }}
+            </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? "Jacob" : "&iquest; &quest;" }}
+              {{ displayText ? conjugations[1] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[1]" />
@@ -92,9 +96,11 @@
             <th scope="row" class="w-25 align-middle">
               él <br />ella <br />usted
             </th>
-            <td class="align-middle" v-show="chosenMode === '0'">Larry</td>
+            <td class="align-middle h5" v-show="chosenMode === '0'">
+              {{ conjugations[2] }}
+            </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? "Larry" : "&iquest; &quest;" }}
+              {{ displayText ? conjugations[2] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[2]" />
@@ -111,9 +117,11 @@
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">nosotros</th>
-            <td class="align-middle" v-show="chosenMode === '0'">Larry</td>
+            <td class="align-middle h5" v-show="chosenMode === '0'">
+              {{ conjugations[3] }}
+            </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? "Larry" : "&iquest; &quest;" }}
+              {{ displayText ? conjugations[3] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[3]" />
@@ -130,9 +138,11 @@
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">vosotros</th>
-            <td class="align-middle" v-show="chosenMode === '0'">Larry</td>
+            <td class="align-middle h5" v-show="chosenMode === '0'">
+              {{ conjugations[4] }}
+            </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? "Larry" : "&iquest; &quest;" }}
+              {{ displayText ? conjugations[4] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[4]" />
@@ -153,9 +163,11 @@
               ellas <br />
               ustedes
             </th>
-            <td class="align-middle" v-show="chosenMode === '0'">Larry</td>
+            <td class="align-middle h5" v-show="chosenMode === '0'">
+              {{ conjugations[5] }}
+            </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? "Larry" : "&iquest; &quest;" }}
+              {{ displayText ? conjugations[5] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[5]" />
@@ -215,15 +227,15 @@ export default {
   data() {
     return {
       conjugations: ["como", "comes", "come", "comemos", "coméis", "comen"],
-      inputs: [],
-      results: [],
+      inputs: Array(6),
+      results: Array(6),
       displayText: false,
       correctHits: 0,
       displayHints: Array(6).fill(false),
     };
   },
   methods: {
-    textToggle() {
+    peekToggle() {
       this.displayText = !this.displayText;
     },
     hintToggle(index) {
@@ -266,8 +278,8 @@ export default {
         return alert("所有空格都要填入答案");
       }
 
-      // 強制將輸入文字轉為小寫
-      this.inputs = this.inputs.map((input) => input.toLowerCase());
+      // 強制將輸入文字轉為小寫 + 去除兩旁空格
+      this.inputs = this.inputs.map((input) => input.trim().toLowerCase());
 
       // 比對結果 + 計算正確答案數量
       this.results = [];
