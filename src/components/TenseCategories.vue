@@ -14,7 +14,10 @@
       >
         Indicative
       </button>
-      <div class="dropdown-menu w-100 text-center">
+      <div
+        class="dropdown-menu w-100 text-center"
+        @click.prevent.stop="markAsActiveItem"
+      >
         <!-- Dropdown menu links -->
         <a
           class="dropdown-item"
@@ -135,8 +138,29 @@ export default {
       ],
     };
   },
+  methods: {
+    markAsActiveItem(event) {
+      const items = document.querySelectorAll("a");
+
+      items.forEach((item) => {
+        if (item.classList.contains("qqq")) {
+          item.classList.remove("qqq");
+        }
+      });
+
+      if (event.target.TagName === "A") {
+        console.log("-------");
+        console.log("element", event.target);
+        event.target.classList.add("qqq");
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
+.qqq {
+  font-weight: bold;
+  background-color: green;
+}
 </style>
