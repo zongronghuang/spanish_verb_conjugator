@@ -8,7 +8,7 @@
 
         <div class="d-flex flex-column text-center mb-3 mx-1">
           <h1>{{ "comer" | capitalize }}</h1>
-          <span class="font-weight-bold h4 mt-2">to eat</span>
+          <span class="h4 mt-2">to eat</span>
         </div>
 
         <div
