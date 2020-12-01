@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex" @click="selectTense">
     <div
       class="btn-group dropup flex-grow-1"
       role="group"
@@ -14,17 +14,15 @@
       >
         Indicative
       </button>
-      <div
-        class="dropdown-menu w-100 text-center"
-        @click.prevent.stop="markAsActiveItem"
-      >
+      <div class="dropdown-menu w-100 text-center">
         <!-- Dropdown menu links -->
         <a
           class="dropdown-item"
           href="#"
+          :id="tense"
           v-for="tense in indicativeTenses"
           :key="tense.id"
-          >{{ tense }}</a
+          >{{ tense | removeMood }}</a
         >
       </div>
     </div>
@@ -48,9 +46,10 @@
         <a
           class="dropdown-item"
           href="#"
+          :id="tense"
           v-for="tense in conditionalTenses"
           :key="tense.id"
-          >{{ tense }}</a
+          >{{ tense | removeMood }}</a
         >
       </div>
     </div>
@@ -74,9 +73,10 @@
         <a
           class="dropdown-item"
           href="#"
+          :id="tense"
           v-for="tense in imperativeTenses"
           :key="tense.id"
-          >{{ tense }}</a
+          >{{ tense | removeMood }}</a
         >
       </div>
     </div>
@@ -100,9 +100,10 @@
         <a
           class="dropdown-item"
           href="#"
+          :id="tense"
           v-for="tense in subjunctiveTenses"
           :key="tense.id"
-          >{{ tense }}</a
+          >{{ tense | removeMood }}</a
         >
       </div>
     </div>
@@ -112,46 +113,49 @@
 <script>
 export default {
   name: "tense-categories",
+  filters: {
+    removeMood(tense) {
+      const newTense = tense.split(" ");
+      newTense.shift();
+      const name = newTense.join(" ");
+
+      console.log("new name", name);
+      return name;
+    },
+  },
   data() {
     return {
+      tense: "Indicative Present",
       indicativeTenses: [
-        "Present",
-        "Preterite",
-        "Imperfect",
-        "Future",
-        "Perfect",
-        "Pluperfect",
-        "Preterite perfect",
-        "Future perfect",
+        "Indicative Present",
+        "Indicative Preterite ",
+        "Indicative Imperfect",
+        "Indicative Future",
+        "Indicative Perfect",
+        "Indicative Pluperfect",
+        "Indicative Preterite perfect",
+        "Indicative Future perfect",
       ],
-      conditionalTenses: ["Present", "Perfect"],
-      imperativeTenses: ["Affirmative", "Negative"],
+      conditionalTenses: ["Conditional Present", "Conditional Perfect"],
+      imperativeTenses: ["Imperative Affirmative", "Imperative Negative"],
       subjunctiveTenses: [
-        "Present",
-        "Preterite",
-        "Imperfect",
-        "Future",
-        "Perfect",
-        "Pluperfect",
-        "Preterite perfect",
-        "Future perfect",
+        "Subjunctive Present",
+        "Subjunctive Preterite",
+        "Subjunctive Imperfect",
+        "Subjunctive Future",
+        "Subjunctive Perfect",
+        "Subjunctive Pluperfect",
+        "Subjunctive Preterite perfect",
+        "Subjunctive Future perfect",
       ],
     };
   },
   methods: {
-    markAsActiveItem(event) {
-      const items = document.querySelectorAll("a");
-
-      items.forEach((item) => {
-        if (item.classList.contains("qqq")) {
-          item.classList.remove("qqq");
-        }
-      });
-
-      if (event.target.TagName === "A") {
-        console.log("-------");
-        console.log("element", event.target);
-        event.target.classList.add("qqq");
+    selectTense(event) {
+      if (event.target.tagName === "A") {
+        this.tense = event.target.id;
+        console.log("new tense", this.tense);
+        this.$emit("selected-tense", this.tense);
       }
     },
   },
@@ -159,8 +163,4 @@ export default {
 </script>
 
 <style scoped>
-.qqq {
-  font-weight: bold;
-  background-color: green;
-}
 </style>

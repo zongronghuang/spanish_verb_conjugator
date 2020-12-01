@@ -34,7 +34,7 @@
 
     <div class="row">
       <div class="text-center col-6 mx-auto">
-        <span class="h4 my-4">時態名稱</span>
+        <span class="h4 my-4">{{ tense }}</span>
       </div>
     </div>
 
@@ -223,6 +223,9 @@ export default {
       type: String,
       required: true,
     },
+    selectedTense: {
+      type: String,
+    },
   },
   data() {
     return {
@@ -232,6 +235,7 @@ export default {
       displayText: false,
       correctHits: 0,
       displayHints: Array(6).fill(false),
+      tense: "Indicative Present",
     };
   },
   filters: {
@@ -302,6 +306,9 @@ export default {
   watch: {
     chosenMode: function (newMode) {
       if (newMode === "1") this.displayText = false;
+    },
+    selectedTense: function (newTense) {
+      this.tense = newTense;
     },
   },
 };
