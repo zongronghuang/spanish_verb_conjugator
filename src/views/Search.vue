@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import dictionaryAPIs from "../apis/dictionary.js";
+
 export default {
   name: "search",
   data() {
@@ -54,7 +56,7 @@ export default {
     };
   },
   methods: {
-    checkInput() {
+    async checkInput() {
       const input = this.input.toLowerCase();
       this.alert = "";
 
@@ -86,6 +88,9 @@ export default {
       }
 
       // 透過 API 確認輸入的動詞存在
+      const data = await dictionaryAPIs.getLexicalCategory(input);
+
+      console.log("lexical category", data);
 
       // 轉址到 wordcard 頁面
       this.$router.push("/wordcard");
