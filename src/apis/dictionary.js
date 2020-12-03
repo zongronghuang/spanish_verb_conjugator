@@ -1,5 +1,7 @@
 import axios from 'axios'
-const baseURL = "https://od-api.oxforddictionaries.com/api/v2"
+const baseURL = process.env.VUE_APP_DOMAIN + '/api/v2'
+const queryLang = 'es'
+const targetLang = 'en'
 const strictMatch = "false"
 const responseFormat = 'application/json'
 
@@ -9,7 +11,6 @@ const axiosInstance = axios.create({
 
   // Oxford dictionaries API 必須提供的 header 資訊
   headers: {
-    "Access-Control-Allow-Origin": "*",
     Accept: responseFormat,
     app_id: process.env.VUE_APP_ID,
     app_key: process.env.VUE_APP_KEY
@@ -25,23 +26,26 @@ const dictionary = axiosInstance
 export default {
   // 確認是否存在，是否為動詞
   getLexicalCategory(word) {
-    // console.log('ID', process.env.VUE_APP_ID)
-    // console.log('key', process.env.VUE_APP_KEY)
-    return dictionary.get(`/lemmas/es/${word}?strictMatch=${strictMatch}`)
+    console.log('ID', process.env.VUE_APP_ID)
+    console.log('key', process.env.VUE_APP_KEY)
+    console.log('domain', process.env.VUE_APP_DOMAIN)
+    console.log('base url', baseURL)
+    // return dictionary.get(`/lemmas/${queryLang}/${word}?strictMatch=${strictMatch}`)
+    return dictionary.get(`/lemmas/${queryLang}/${word}`)
   },
 
   // 取得動詞相關資料
   getMetadata(verb) {
-    return dictionary.get(`/entries/es/${verb}?strictMatch=${strictMatch}`)
+    return dictionary.get(`/entries/${queryLang}/${verb}?strictMatch=${strictMatch}`)
   },
 
   // 確認是否為規則動詞 (需權限升級)
   getInflections(verb) {
-    return dictionary.get(`/inflections/es/${verb}?strictMatch=${strictMatch}`)
+    return dictionary.get(`/inflections/${queryLang}/${verb}?strictMatch=${strictMatch}`)
   },
 
   // 取得動詞的英文翻譯 (需權限升級)
   getEngTranslations(verb) {
-    return dictionary.get(`/translations/es/en/${verb}?strictMatch=${strictMatch}`)
+    return dictionary.get(`/translations/${queryLang}/${targetLang}/${verb}?strictMatch=${strictMatch}`)
   }
 }
