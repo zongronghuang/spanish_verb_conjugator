@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = process.env.VUE_APP_DOMAIN + '/api/v2'
+const baseURL = process.env.VUE_APP_DOMAIN
 const queryLang = 'es'
 const targetLang = 'en'
 const strictMatch = "false"
@@ -8,7 +8,6 @@ const responseFormat = 'application/json'
 // 建立 axios instance
 const axiosInstance = axios.create({
   baseURL,
-
   // Oxford dictionaries API 必須提供的 header 資訊
   headers: {
     Accept: responseFormat,
@@ -25,12 +24,12 @@ const dictionary = axiosInstance
 
 export default {
   // 確認是否存在，是否為動詞
+  // getLexicalCategory(word) {
+  //   // return dictionary.get(`/lemmas/${queryLang}/${word}?strictMatch=${strictMatch}`)
+  //   return dictionary.get(`/lemmas/${queryLang}/${word}`)
+  // },
+
   getLexicalCategory(word) {
-    console.log('ID', process.env.VUE_APP_ID)
-    console.log('key', process.env.VUE_APP_KEY)
-    console.log('domain', process.env.VUE_APP_DOMAIN)
-    console.log('base url', baseURL)
-    // return dictionary.get(`/lemmas/${queryLang}/${word}?strictMatch=${strictMatch}`)
     return dictionary.get(`/lemmas/${queryLang}/${word}`)
   },
 
