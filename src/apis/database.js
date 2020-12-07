@@ -11,18 +11,18 @@ export default {
 
     for (let i = 0; i < data.length; i = i + 18) {
 
-      const array = data.slice(i, i + 18)
-      console.log('start', i, 'array', array)
+      // const array = data.slice(i, i + 18)
+      // console.log('start', i, 'array', array)
 
 
 
 
-      // const index = infinitives.findIndex(ele => ele === data[i].infinitive)
-      // if (index === -1) {
-      //   infinitives.push(data[i].infinitive)
-      // } else {
-      //   // console.log('repeated element', data[i].infinitive, 'id', i)
-      // }
+      const index = infinitives.findIndex(ele => ele === data[i].infinitive)
+      if (index === -1) {
+        infinitives.push(data[i].infinitive)
+      } else {
+        console.log('repeated element', data[i].infinitive, 'id', i)
+      }
     }
 
     console.log('Fetched all verb infinitives')
