@@ -15,6 +15,10 @@ const axiosInstance = axios.create({
     Accept: responseFormat,
     app_id: process.env.VUE_APP_ID,
     app_key: process.env.VUE_APP_KEY
+  },
+  proxy: {
+    protocol: 'https',
+    host: "https://od-api.oxforddictionaries.com",
   }
 })
 
@@ -27,8 +31,8 @@ const dictionary = axiosInstance
 export default {
   // 確認是否存在，是否為動詞
   getLexicalCategory(word) {
-    // return dictionary.get(`/lemmas/${queryLang}/${word}?strictMatch=${strictMatch}`)
-    return dictionary.get(`http://localhost:8080/api/v2/lemmas/${queryLang}/${word}`)
+    // return dictionary.get(`http://localhost:8080/api/v2/lemmas/${queryLang}/${word}`)
+    return dictionary.get(`${baseURL}/lemmas/${queryLang}/${word}`)
   },
 
   // getLexicalCategory(word) {
