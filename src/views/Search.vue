@@ -57,8 +57,9 @@ export default {
     };
   },
   created() {
-    const infinitives = databaseAPIs.fetchInfinitives();
-    this.infinitives = [...infinitives];
+    // const infinitives = databaseAPIs.fetchInfinitives();
+    //this.infinitives = [...infinitives];
+    databaseAPIs.fetchInfinitives();
     console.log("App ready!");
   },
   methods: {
