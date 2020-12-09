@@ -88,18 +88,11 @@ export default {
         return (this.alert = "請輸入原形動詞");
       }
 
-      // 透過 API 確認輸入的動詞存在
-      const index = this.infinitives.findIndex(
-        (infinitive) => infinitive === input
-      );
-      if (index === -1) {
-        return (this.alert = "資料庫內找不到此動詞");
-      }
-
-      // 動詞存在 => 取得動詞的所有變化 + 轉址到 conjugation card 頁面
+      // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
       const conjugations = datasetAPIs.getConjugations(input);
-      console.log("conjugations", conjugations);
+      this.$store.commit("setVerb", conjugations);
 
+      // 轉址到 conjugation card 頁面
       this.$router.push("/conjugation_card");
     },
     collapseAlert() {

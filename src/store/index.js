@@ -10,16 +10,16 @@ export default new Vuex.Store({
       engTranslation: '',
       conjugations: []
     },
-    infinitives: []
   },
   mutations: {
-    setInfinitives(state, infinitives) {
-      state.infinitives = [...infinitives]
-    },
     setVerb(state, conjugations) {
       state.verb.infinitive = conjugations[0].infinitive
       state.verb.engTranslation = conjugations[0].infinitive_english
       state.verb.conjugations = [...conjugations]
+
+      console.log(state.verb.infinitive)
+      console.log(state.verb.engTranslation)
+      console.log(state.verb.conjugations)
     }
   },
   actions: {

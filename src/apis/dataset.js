@@ -1,11 +1,11 @@
 import dataset from '../assets/verb-conjugations.json'
 const data = [...dataset]
-const infinitives = []
-const conjugationRange = 18
 
 export default {
   // 取得所有動詞的原形動詞
   fetchInfinitives() {
+    const infinitives = []
+
     if (data.length === 0) {
       return console.log('=== dataset missing! ===')
     }
@@ -18,26 +18,34 @@ export default {
       }
     }
 
-    console.log('=== Verb infinitives fetched ===')
-    console.log('Verb count', infinitives.length)
-
-    return infinitives
+    // 取得原形動詞陣列 = 成功
+    if (infinitives instanceof Array) {
+      localStorage.setItem('infinitives', JSON.stringify(infinitives))
+      console.log('=== Verb infinitives fetched ===')
+      console.log('Verb count', infinitives.length)
+      console.log("=== App ready ===");
+    } else {
+      return console.log("=== Failed to initialize app ===");
+    }
   },
 
   // 取得動詞的所有變化
   getConjugations(verb) {
+    const conjugationRange = 18
+    const infinitives = JSON.parse(localStorage.getItem('infinitives'))
     const index = infinitives.findIndex(infinitive => infinitive === verb)
 
     if (index === -1) {
-      return console.log('Verb not found')
+      return console.log('=== Verb not found ===')
     }
 
-    const conjugations = [...data.slice(index, index + conjugationRange)]
+    const conjugations = [...data.slice((index * conjugationRange), (index * conjugationRange) + conjugationRange)]
     return conjugations
   },
 
   // 取得動詞的中繼資料
   getMetadata(verb) {
+    const infinitives = localStorage.getItem('infinitives')
     const index = infinitives.findIndex(infinitive => infinitive === verb)
 
     if (index === -1) {
