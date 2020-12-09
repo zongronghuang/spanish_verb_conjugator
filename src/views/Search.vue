@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import databaseAPIs from "../apis/database.js";
+import datasetAPIs from "../apis/dataset.js";
 
 export default {
   name: "search",
@@ -55,12 +55,6 @@ export default {
       alert: "",
       infinitives: [],
     };
-  },
-  created() {
-    // const infinitives = databaseAPIs.fetchInfinitives();
-    //this.infinitives = [...infinitives];
-    databaseAPIs.fetchInfinitives();
-    console.log("App ready!");
   },
   methods: {
     checkInput() {
@@ -103,8 +97,9 @@ export default {
       }
 
       // 動詞存在 => 取得動詞的所有變化 + 轉址到 conjugation card 頁面
-      const conjugations = databaseAPIs.getConjugations(input);
+      const conjugations = datasetAPIs.getConjugations(input);
       console.log("conjugations", conjugations);
+
       this.$router.push("/conjugation_card");
     },
     collapseAlert() {

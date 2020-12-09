@@ -1,7 +1,7 @@
 // 確認資料庫的資料狀態及是否正確
 // 自行更新資料庫後，用來檢查資料庫是否正確
-import database from '../assets/verb-conjugations.json'
-const data = [...database]
+import dataset from '../assets/verb-conjugations.json'
+const data = [...dataset]
 
 export default {
   // 取得目前動詞數量
