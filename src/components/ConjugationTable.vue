@@ -7,8 +7,8 @@
         </button>
 
         <div class="d-flex flex-column text-center mb-3 mx-1">
-          <h1>{{ "comer" | capitalize }}</h1>
-          <span class="h4 mt-2">to eat</span>
+          <h1>{{ displayData.infinitive | capitalize }}</h1>
+          <span class="h4 mt-2">{{ displayData.infinitive_english }}</span>
         </div>
 
         <div
@@ -34,7 +34,9 @@
 
     <div class="row">
       <div class="text-center col-6 mx-auto">
-        <span class="h4 my-4">{{ tense }}</span>
+        <span class="h4 my-4"
+          >{{ displayData.mood_english }} {{ displayData.tense_english }}</span
+        >
       </div>
     </div>
 
@@ -47,12 +49,14 @@
 
             <!-- mode 0 -->
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[0] }}
+              {{ displayData.conjugations[0] }}
             </td>
 
             <!-- mode 1 -->
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[0] : "&iquest; &quest;" }}
+              {{
+                displayText ? displayData.conjugations[0] : "&iquest; &quest;"
+              }}
             </td>
 
             <!-- mode 2 -->
@@ -66,7 +70,11 @@
                 @click.prevent.stop="hintToggle(0)"
                 v-show="results[0] === false"
               >
-                {{ displayHints[0] ? conjugations[0] : "&iexcl; &excl;" }}
+                {{
+                  displayHints[0]
+                    ? displayData.conjugations[0]
+                    : "&iexcl; &excl;"
+                }}
               </button>
             </td>
           </tr>
@@ -74,10 +82,12 @@
           <tr class="border">
             <th scope="row" class="w-25 align-middle">tú</th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[1] }}
+              {{ displayData.conjugations[1] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[1] : "&iquest; &quest;" }}
+              {{
+                displayText ? displayData.conjugations[1] : "&iquest; &quest;"
+              }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[1]" />
@@ -88,7 +98,11 @@
                 @click.prevent.stop="hintToggle(1)"
                 v-show="results[1] === false"
               >
-                {{ displayHints[1] ? conjugations[1] : "&iexcl; &excl;" }}
+                {{
+                  displayHints[1]
+                    ? displayData.conjugations[1]
+                    : "&iexcl; &excl;"
+                }}
               </button>
             </td>
           </tr>
@@ -97,10 +111,12 @@
               él <br />ella <br />usted
             </th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[2] }}
+              {{ displayData.conjugations[2] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[2] : "&iquest; &quest;" }}
+              {{
+                displayText ? displayData.conjugations[2] : "&iquest; &quest;"
+              }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[2]" />
@@ -111,17 +127,23 @@
                 @click.prevent.stop="hintToggle(2)"
                 v-show="results[2] === false"
               >
-                {{ displayHints[2] ? conjugations[2] : "&iexcl; &excl;" }}
+                {{
+                  displayHints[2]
+                    ? displayData.conjugations[2]
+                    : "&iexcl; &excl;"
+                }}
               </button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">nosotros</th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[3] }}
+              {{ displayData.conjugations[3] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[3] : "&iquest; &quest;" }}
+              {{
+                displayText ? displayData.conjugations[3] : "&iquest; &quest;"
+              }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[3]" />
@@ -132,17 +154,23 @@
                 @click.prevent.stop="hintToggle(3)"
                 v-show="results[3] === false"
               >
-                {{ displayHints[3] ? conjugations[3] : "&iexcl; &excl;" }}
+                {{
+                  displayHints[3]
+                    ? displayData.conjugations[3]
+                    : "&iexcl; &excl;"
+                }}
               </button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">vosotros</th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[4] }}
+              {{ displayData.conjugations[4] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[4] : "&iquest; &quest;" }}
+              {{
+                displayText ? displayData.conjugations[4] : "&iquest; &quest;"
+              }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[4]" />
@@ -153,7 +181,11 @@
                 @click.prevent.stop="hintToggle(4)"
                 v-show="results[4] === false"
               >
-                {{ displayHints[4] ? conjugations[4] : "&iexcl; &excl;" }}
+                {{
+                  displayHints[4]
+                    ? displayData.conjugations[4]
+                    : "&iexcl; &excl;"
+                }}
               </button>
             </td>
           </tr>
@@ -164,10 +196,12 @@
               ustedes
             </th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[5] }}
+              {{ displayData.conjugations[5] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[5] : "&iquest; &quest;" }}
+              {{
+                displayText ? displayData.conjugations[5] : "&iquest; &quest;"
+              }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[5]" />
@@ -178,7 +212,11 @@
                 @click.prevent.stop="hintToggle(5)"
                 v-show="results[5] === false"
               >
-                {{ displayHints[5] ? conjugations[5] : "&iexcl; &excl;" }}
+                {{
+                  displayHints[5]
+                    ? displayData.conjugations[5]
+                    : "&iexcl; &excl;"
+                }}
               </button>
             </td>
           </tr>
@@ -216,6 +254,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "conjugation-table",
   props: {
@@ -229,13 +269,12 @@ export default {
   },
   data() {
     return {
-      conjugations: ["como", "comes", "come", "comemos", "coméis", "comen"],
+      displayData: {},
       inputs: Array(6),
       results: Array(6),
       displayText: false,
       correctHits: 0,
       displayHints: Array(6).fill(false),
-      tense: "Indicative Present",
     };
   },
   filters: {
@@ -243,7 +282,47 @@ export default {
       return text.toUpperCase();
     },
   },
+  created() {
+    this.getVerb();
+  },
   methods: {
+    getVerb() {
+      const {
+        infinitive,
+        infinitive_english,
+        mood,
+        mood_english,
+        tense,
+        tense_english,
+      } = this.verb;
+
+      const conjugationSet = this.verb.conjugations.filter(
+        (conjugation) =>
+          conjugation.mood_english === mood_english &&
+          conjugation.tense_english === tense_english
+      )[0];
+
+      const conjugations = [
+        conjugationSet.form_1s,
+        conjugationSet.form_2s,
+        conjugationSet.form_3s,
+        conjugationSet.form_1p,
+        conjugationSet.form_2p,
+        conjugationSet.form_3p,
+      ];
+
+      this.displayData = {
+        infinitive,
+        infinitive_english,
+        mood,
+        mood_english,
+        tense,
+        tense_english,
+        conjugations,
+      };
+
+      console.log("display data", this.displayData);
+    },
     peekToggle() {
       this.displayText = !this.displayText;
     },
@@ -294,7 +373,7 @@ export default {
       this.results = [];
       this.correctHits = 0;
       for (let i = 0; i < numberOfConjugations; i++) {
-        if (this.inputs[i] === this.conjugations[i]) {
+        if (this.inputs[i] === this.displayData.conjugations[i]) {
           this.results.push(true);
           this.correctHits++;
         } else {
@@ -310,6 +389,9 @@ export default {
     selectedTense: function (newTense) {
       this.tense = newTense;
     },
+  },
+  computed: {
+    ...mapState(["verb"]),
   },
 };
 </script>

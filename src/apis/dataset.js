@@ -31,15 +31,17 @@ export default {
 
   // 取得動詞的所有變化
   getConjugations(verb) {
-    const conjugationRange = 18
     const infinitives = JSON.parse(localStorage.getItem('infinitives'))
     const index = infinitives.findIndex(infinitive => infinitive === verb)
+    const conjugationRange = 18
+    const startId = index * conjugationRange
+    const endId = startId + conjugationRange
 
     if (index === -1) {
       return console.log('=== Verb not found ===')
     }
 
-    const conjugations = [...data.slice((index * conjugationRange), (index * conjugationRange) + conjugationRange)]
+    const conjugations = [...data.slice(startId, endId)]
     return conjugations
   },
 
