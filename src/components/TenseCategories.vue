@@ -39,33 +39,6 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Conditional
-      </button>
-      <div class="dropdown-menu w-100 text-center">
-        <!-- Dropdown menu links -->
-        <a
-          class="dropdown-item"
-          href="#"
-          :id="tense"
-          v-for="tense in conditionalTenses"
-          :key="tense.id"
-          >{{ tense | removeMood }}</a
-        >
-      </div>
-    </div>
-
-    <div
-      class="btn-group dropup flex-grow-1"
-      role="group"
-      aria-label="Basic example"
-    >
-      <button
-        type="button"
-        class="btn btn-primary rounded-0"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
         Imperative
       </button>
       <div class="dropdown-menu w-100 text-center">
@@ -111,6 +84,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "tense-categories",
   filters: {
@@ -125,39 +100,62 @@ export default {
   },
   data() {
     return {
-      tense: "Indicative Present",
       indicativeTenses: [
         "Indicative Present",
-        "Indicative Preterite ",
-        "Indicative Imperfect",
         "Indicative Future",
-        "Indicative Perfect",
-        "Indicative Pluperfect",
-        "Indicative Preterite Perfect",
+        "Indicative Imperfect",
+        "Indicative Preterite",
+        "Indicative Conditional",
+        "Indicative Present Perfect",
         "Indicative Future Perfect",
+        "Indicative Past Perfect",
+        "Indicative Preterite (Archaic)",
+        "Indicative Conditional Perfect",
       ],
-      conditionalTenses: ["Conditional Present", "Conditional Perfect"],
       imperativeTenses: ["Imperative Affirmative", "Imperative Negative"],
       subjunctiveTenses: [
         "Subjunctive Present",
-        "Subjunctive Preterite",
         "Subjunctive Imperfect",
         "Subjunctive Future",
-        "Subjunctive Perfect",
-        "Subjunctive Pluperfect",
-        "Subjunctive Preterite Perfect",
+        "Subjunctive Present Perfect",
         "Subjunctive Future Perfect",
+        "Subjunctive Past Perfect",
       ],
     };
   },
   methods: {
     selectTense(event) {
       if (event.target.tagName === "A") {
-        this.tense = event.target.id;
-        console.log("new tense", this.tense);
-        this.$emit("selected-tense", this.tense);
+        // 取得時態和語氣的英文名稱
+        const moodAndTense_english = event.target.id.split(" ");
+        const mood_english = moodAndTense_english[0];
+        moodAndTense_english.shift();
+        const tense_english = moodAndTense_english.join(" ");
+
+        // 找到符合指定時態和語氣的動詞變化
+        const conjugationSet = this.verb.allConjugations.filter(
+          (conjugation) =>
+            conjugation.mood_english === mood_english &&
+            conjugation.tense_english === tense_english
+        );
+
+        // 取得時態和語氣的西班牙文名稱
+        const mood = conjugationSet[0].mood;
+        const tense = conjugationSet[0].tense;
+
+        this.$store.commit("setMoodAndTense", {
+          mood,
+          tense,
+          mood_english,
+          tense_english,
+        });
+
+        this.$emit("fetch-conjugation-set", conjugationSet);
       }
     },
+  },
+  computed: {
+    ...mapState(["verb"]),
   },
 };
 </script>

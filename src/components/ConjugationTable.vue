@@ -2,23 +2,13 @@
   <div class="container pt-2">
     <div class="row mb-1">
       <div class="col-6 mx-auto position-relative" id="upper-display">
-        <button class="btn btn-info mt-3 font-weight-bold" id="add-to-list">
+        <!-- <button class="btn btn-info mt-3 font-weight-bold" id="add-to-list">
           Add to list
-        </button>
+        </button> -->
 
         <div class="d-flex flex-column text-center mb-3 mx-1">
-          <h1>{{ displayData.infinitive | capitalize }}</h1>
-          <span class="h4 mt-2">{{ displayData.infinitive_english }}</span>
-        </div>
-
-        <div
-          class="mt-3 h4 font-weight-bold"
-          id="hits"
-          v-show="chosenMode === '2'"
-        >
-          <span>{{ correctHits }}</span>
-          <span>/</span>
-          <span>6</span>
+          <h1>{{ verb.infinitive | capitalize }}</h1>
+          <span class="h4 mt-2">{{ verb.infinitive_english }}</span>
         </div>
 
         <button
@@ -35,7 +25,7 @@
     <div class="row">
       <div class="text-center col-6 mx-auto">
         <span class="h4 my-4"
-          >{{ displayData.mood_english }} {{ displayData.tense_english }}</span
+          >{{ verb.mood_english }} {{ verb.tense_english }}</span
         >
       </div>
     </div>
@@ -49,14 +39,12 @@
 
             <!-- mode 0 -->
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ displayData.conjugations[0] }}
+              {{ verbData.conjugations[0] }}
             </td>
 
             <!-- mode 1 -->
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{
-                displayText ? displayData.conjugations[0] : "&iquest; &quest;"
-              }}
+              {{ displayText ? verbData.conjugations[0] : "&iquest; &quest;" }}
             </td>
 
             <!-- mode 2 -->
@@ -71,9 +59,7 @@
                 v-show="results[0] === false"
               >
                 {{
-                  displayHints[0]
-                    ? displayData.conjugations[0]
-                    : "&iexcl; &excl;"
+                  displayHints[0] ? verbData.conjugations[0] : "&iexcl; &excl;"
                 }}
               </button>
             </td>
@@ -82,12 +68,10 @@
           <tr class="border">
             <th scope="row" class="w-25 align-middle">tú</th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ displayData.conjugations[1] }}
+              {{ verbData.conjugations[1] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{
-                displayText ? displayData.conjugations[1] : "&iquest; &quest;"
-              }}
+              {{ displayText ? verbData.conjugations[1] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[1]" />
@@ -99,9 +83,7 @@
                 v-show="results[1] === false"
               >
                 {{
-                  displayHints[1]
-                    ? displayData.conjugations[1]
-                    : "&iexcl; &excl;"
+                  displayHints[1] ? verbData.conjugations[1] : "&iexcl; &excl;"
                 }}
               </button>
             </td>
@@ -111,12 +93,10 @@
               él <br />ella <br />usted
             </th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ displayData.conjugations[2] }}
+              {{ verbData.conjugations[2] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{
-                displayText ? displayData.conjugations[2] : "&iquest; &quest;"
-              }}
+              {{ displayText ? verbData.conjugations[2] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[2]" />
@@ -128,9 +108,7 @@
                 v-show="results[2] === false"
               >
                 {{
-                  displayHints[2]
-                    ? displayData.conjugations[2]
-                    : "&iexcl; &excl;"
+                  displayHints[2] ? verbData.conjugations[2] : "&iexcl; &excl;"
                 }}
               </button>
             </td>
@@ -138,12 +116,10 @@
           <tr class="border">
             <th scope="row" class="w-25 align-middle">nosotros</th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ displayData.conjugations[3] }}
+              {{ verbData.conjugations[3] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{
-                displayText ? displayData.conjugations[3] : "&iquest; &quest;"
-              }}
+              {{ displayText ? verbData.conjugations[3] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[3]" />
@@ -155,9 +131,7 @@
                 v-show="results[3] === false"
               >
                 {{
-                  displayHints[3]
-                    ? displayData.conjugations[3]
-                    : "&iexcl; &excl;"
+                  displayHints[3] ? verbData.conjugations[3] : "&iexcl; &excl;"
                 }}
               </button>
             </td>
@@ -165,12 +139,10 @@
           <tr class="border">
             <th scope="row" class="w-25 align-middle">vosotros</th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ displayData.conjugations[4] }}
+              {{ verbData.conjugations[4] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{
-                displayText ? displayData.conjugations[4] : "&iquest; &quest;"
-              }}
+              {{ displayText ? verbData.conjugations[4] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[4]" />
@@ -182,9 +154,7 @@
                 v-show="results[4] === false"
               >
                 {{
-                  displayHints[4]
-                    ? displayData.conjugations[4]
-                    : "&iexcl; &excl;"
+                  displayHints[4] ? verbData.conjugations[4] : "&iexcl; &excl;"
                 }}
               </button>
             </td>
@@ -196,12 +166,10 @@
               ustedes
             </th>
             <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ displayData.conjugations[5] }}
+              {{ verbData.conjugations[5] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{
-                displayText ? displayData.conjugations[5] : "&iquest; &quest;"
-              }}
+              {{ displayText ? verbData.conjugations[5] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[5]" />
@@ -213,9 +181,7 @@
                 v-show="results[5] === false"
               >
                 {{
-                  displayHints[5]
-                    ? displayData.conjugations[5]
-                    : "&iexcl; &excl;"
+                  displayHints[5] ? verbData.conjugations[5] : "&iexcl; &excl;"
                 }}
               </button>
             </td>
@@ -263,17 +229,24 @@ export default {
       type: String,
       required: true,
     },
-    selectedTense: {
-      type: String,
+    conjugationUpdate: {
+      type: Array,
     },
   },
   data() {
     return {
-      displayData: {},
+      verbData: {
+        infinitive: "",
+        infinitive_english: "",
+        mood: "",
+        mood_english: "",
+        tense: "",
+        tense_english: "",
+        conjugations: [],
+      },
       inputs: Array(6),
       results: Array(6),
       displayText: false,
-      correctHits: 0,
       displayHints: Array(6).fill(false),
     };
   },
@@ -296,7 +269,7 @@ export default {
         tense_english,
       } = this.verb;
 
-      const conjugationSet = this.verb.conjugations.filter(
+      const conjugationSet = this.verb.allConjugations.filter(
         (conjugation) =>
           conjugation.mood_english === mood_english &&
           conjugation.tense_english === tense_english
@@ -311,7 +284,7 @@ export default {
         conjugationSet.form_3p,
       ];
 
-      this.displayData = {
+      this.verbData = {
         infinitive,
         infinitive_english,
         mood,
@@ -320,8 +293,6 @@ export default {
         tense_english,
         conjugations,
       };
-
-      console.log("display data", this.displayData);
     },
     peekToggle() {
       this.displayText = !this.displayText;
@@ -361,21 +332,14 @@ export default {
       // 人稱 * 單複數 = 6
       const numberOfConjugations = 6;
 
-      // 之後要決定如何確認：length 數值 === 6 或每個 input 皆有值
-      if (this.inputs.length < numberOfConjugations) {
-        return alert("所有空格都要填入答案");
-      }
-
       // 強制將輸入文字轉為小寫 + 去除兩旁空格
       this.inputs = this.inputs.map((input) => input.trim().toLowerCase());
 
       // 比對結果 + 計算正確答案數量
       this.results = [];
-      this.correctHits = 0;
       for (let i = 0; i < numberOfConjugations; i++) {
-        if (this.inputs[i] === this.displayData.conjugations[i]) {
+        if (this.inputs[i] === this.verbData.conjugations[i]) {
           this.results.push(true);
-          this.correctHits++;
         } else {
           this.results.push(false);
         }
@@ -386,8 +350,16 @@ export default {
     chosenMode: function (newMode) {
       if (newMode === "1") this.displayText = false;
     },
-    selectedTense: function (newTense) {
-      this.tense = newTense;
+    conjugationUpdate: function (newConjugations) {
+      if (newConjugations.length > 0)
+        this.verbData.conjugations = [
+          newConjugations[0].form_1s,
+          newConjugations[0].form_2s,
+          newConjugations[0].form_3s,
+          newConjugations[0].form_1p,
+          newConjugations[0].form_2p,
+          newConjugations[0].form_2p,
+        ];
     },
   },
   computed: {

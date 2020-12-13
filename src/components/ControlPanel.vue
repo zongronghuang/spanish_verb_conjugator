@@ -1,6 +1,6 @@
 <template>
   <nav class="nav d-flex justify-content-around py-2">
-    <!-- 字表選單 -->
+    <!-- 字表選單
     <select
       class="custom-select custom-select-lg w-25 text-white bg-primary"
       v-model="list"
@@ -10,7 +10,7 @@
       <option value="1" :selected="list === '1'">我的字彙表</option>
       <option value="2" :selected="list === '2'">預設字表 1</option>
       <option value="3" :selected="list === '3'">預設字表 2</option>
-    </select>
+    </select> -->
 
     <!-- 使用模式選單 -->
     <select
@@ -40,7 +40,6 @@ export default {
   name: "control-panel",
   data() {
     return {
-      list: 0,
       mode: 0,
       theme: 0,
     };

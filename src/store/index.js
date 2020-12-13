@@ -12,25 +12,34 @@ export default new Vuex.Store({
       mood_english: '',
       tense: '',
       tense_english: '',
-      conjugations: []
+      allConjugations: []
     },
+    infinitives: [],
   },
   mutations: {
-    setVerb(state, conjugations) {
+    setInfinitives(state, infinitives) {
+      state.infinitives = [...infinitives]
+    },
+    setVerb(state, allConjugations) {
       // 動詞 metadata
-      // 時態預設為 indicative present
-      const { infinitive, infinitive_english, mood, mood_english, tense, tense_english } = conjugations[0]
+      // 時態和語氣預設為 indicative present
+      const { infinitive, infinitive_english, mood, mood_english, tense, tense_english } = allConjugations[0]
+
       state.verb.infinitive = infinitive
       state.verb.infinitive_english = infinitive_english
       state.verb.mood = mood
       state.verb.mood_english = mood_english
       state.verb.tense = tense
       state.verb.tense_english = tense_english
+      state.verb.allConjugations = [...allConjugations]
+    },
+    setMoodAndTense(state, moodAndTense) {
+      const { mood, tense, mood_english, tense_english } = moodAndTense
 
-      // 匯入完整的動詞變化
-      state.verb.conjugations = [...conjugations]
-
-      //console.log('state', state)
+      state.verb.mood_english = mood_english
+      state.verb.tense_english = tense_english
+      state.verb.mood = mood
+      state.verb.tense = tense
     }
   },
   actions: {

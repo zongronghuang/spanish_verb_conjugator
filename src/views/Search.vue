@@ -46,6 +46,7 @@
 
 <script>
 import datasetAPIs from "../apis/dataset.js";
+import { mapState } from "vuex";
 
 export default {
   name: "search",
@@ -53,7 +54,6 @@ export default {
     return {
       input: "",
       alert: "",
-      infinitives: [],
     };
   },
   methods: {
@@ -89,8 +89,12 @@ export default {
       }
 
       // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
-      const conjugations = datasetAPIs.getConjugations(input);
-      this.$store.commit("setVerb", conjugations);
+      const result = datasetAPIs.getAllConjugations(input, this.infinitives);
+      if (result.length > 0) {
+        this.$store.commit("setVerb", result);
+      } else {
+        return (this.alert = "Verb not found in the database");
+      }
 
       // 轉址到 conjugation card 頁面
       this.$router.push("/conjugation_card");
@@ -98,6 +102,9 @@ export default {
     collapseAlert() {
       this.alert = "";
     },
+  },
+  computed: {
+    ...mapState(["infinitives"]),
   },
 };
 </script>

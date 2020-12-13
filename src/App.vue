@@ -12,7 +12,10 @@ import datasetAPIs from "./apis/dataset.js";
 export default {
   name: "App",
   created() {
-    datasetAPIs.fetchInfinitives();
+    const infinitives = datasetAPIs.fetchInfinitives();
+    if (infinitives instanceof Array) {
+      this.$store.commit("setInfinitives", infinitives);
+    }
   },
 };
 </script>

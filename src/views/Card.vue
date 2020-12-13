@@ -1,19 +1,18 @@
 <template>
   <div>
-    <ControlPanel
-      @change-list="changeList"
-      @change-mode="changeMode"
-      @change-theme="changeTheme"
-    />
+    <ControlPanel @change-mode="changeMode" @change-theme="changeTheme" />
 
     <div class="d-flex justify-content-between">
       <LeftPanel />
-      <ConjugationTable :chosen-mode="mode" :selectedTense="tense" />
+      <ConjugationTable
+        :chosen-mode="mode"
+        :conjugation-update="conjugationSet"
+      />
       <RightPanel />
     </div>
     <BottomPanel />
 
-    <TenseCategories @selected-tense="registerSelectedTense" />
+    <TenseCategories @fetch-conjugation-set="fetchConjugationSet" />
   </div>
 </template>
 
@@ -37,50 +36,21 @@ export default {
   },
   data() {
     return {
-      list: "0",
       mode: "0",
       theme: "0",
-      tense: "",
-      indicative: {
-        present: [],
-        future: [],
-        preterite: [],
-        imperfect: [],
-        presentPerfect: [],
-        pastPerfect: [],
-        futurePerfect: [],
-        conditional: [],
-      },
-      subjunctive: {
-        present: [],
-        future: [],
-        preterite: [],
-        imperfect1: [],
-        imperfect2: [],
-        presentPerfect: [],
-        pastPerfect: [],
-        futurePerfect: [],
-        conditional: [],
-      },
-      imperative: [],
-      gerund: "",
-      pastParticiple: "",
+      conjugationSet: [],
     };
   },
   created() {},
   methods: {
-    changeList(option) {
-      this.list = option;
-    },
     changeMode(option) {
       this.mode = option;
     },
     changeTheme(option) {
       this.theme = option;
     },
-    registerSelectedTense(tense) {
-      this.tense = tense;
-      console.log("this tense", this.tense);
+    fetchConjugationSet(conjugationSet) {
+      if (conjugationSet.length > 0) this.conjugationSet = conjugationSet;
     },
   },
 };
