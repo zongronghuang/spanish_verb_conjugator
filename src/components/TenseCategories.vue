@@ -93,8 +93,6 @@ export default {
       const newTense = tense.split(" ");
       newTense.shift();
       const name = newTense.join(" ");
-
-      console.log("new name", name);
       return name;
     },
   },
@@ -112,7 +110,10 @@ export default {
         "Indicative Preterite (Archaic)",
         "Indicative Conditional Perfect",
       ],
-      imperativeTenses: ["Imperative Affirmative", "Imperative Negative"],
+      imperativeTenses: [
+        "Imperative Affirmative Present",
+        "Imperative Negative Present",
+      ],
       subjunctiveTenses: [
         "Subjunctive Present",
         "Subjunctive Imperfect",
@@ -126,20 +127,29 @@ export default {
   methods: {
     selectTense(event) {
       if (event.target.tagName === "A") {
-        // 取得時態和語氣的英文名稱
         const moodAndTense_english = event.target.id.split(" ");
-        const mood_english = moodAndTense_english[0];
-        moodAndTense_english.shift();
-        const tense_english = moodAndTense_english.join(" ");
+        let mood_english = "";
+        let tense_english = "";
 
-        // 找到符合指定時態和語氣的動詞變化
+        // 取得 mood 和 tense 的英文名稱
+        // Imperative 的 mood 和 tense 名稱組合方式不同
+        if (moodAndTense_english[0] === "Imperative") {
+          mood_english = `${moodAndTense_english[0]} ${moodAndTense_english[1]}`;
+          tense_english = moodAndTense_english[2];
+        } else {
+          mood_english = moodAndTense_english[0];
+          moodAndTense_english.shift();
+          tense_english = moodAndTense_english.join(" ");
+        }
+
+        // 找到符合 mood 和 tense 的動詞變化
         const conjugationSet = this.verb.allConjugations.filter(
           (conjugation) =>
             conjugation.mood_english === mood_english &&
             conjugation.tense_english === tense_english
         );
 
-        // 取得時態和語氣的西班牙文名稱
+        // 取得 mood 和 tense 的西班牙文名稱
         const mood = conjugationSet[0].mood;
         const tense = conjugationSet[0].tense;
 

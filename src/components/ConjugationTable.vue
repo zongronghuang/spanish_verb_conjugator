@@ -48,10 +48,16 @@
             </td>
 
             <!-- mode 2 -->
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td
+              class="align-middle"
+              v-show="chosenMode === '2' && verbData.conjugations[0]"
+            >
               <input type="text" v-model="inputs[0]" />
             </td>
-            <td class="align-middle" v-if="chosenMode === '2'">
+            <td
+              class="align-middle"
+              v-show="chosenMode === '2' && verbData.conjugations[0]"
+            >
               <button
                 class="btn btn-warning"
                 data-id="0"
@@ -121,10 +127,16 @@
             <td class="align-middle h5" v-show="chosenMode === '1'">
               {{ displayText ? verbData.conjugations[3] : "&iquest; &quest;" }}
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td
+              class="align-middle"
+              v-show="chosenMode === '2' && verbData.conjugations[3]"
+            >
               <input type="text" v-model="inputs[3]" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td
+              class="align-middle"
+              v-show="chosenMode === '2' && verbData.conjugations[3]"
+            >
               <button
                 class="btn btn-warning"
                 @click.prevent.stop="hintToggle(3)"
@@ -275,14 +287,36 @@ export default {
           conjugation.tense_english === tense_english
       )[0];
 
-      const conjugations = [
-        conjugationSet.form_1s,
-        conjugationSet.form_2s,
-        conjugationSet.form_3s,
-        conjugationSet.form_1p,
-        conjugationSet.form_2p,
-        conjugationSet.form_3p,
-      ];
+      let conjugations = [];
+
+      if (mood_english.split(" ")[0] === "Imperative") {
+        conjugations = [
+          "",
+          conjugationSet.form_2s,
+          conjugationSet.form_3s,
+          "",
+          conjugationSet.form_2p,
+          conjugationSet.form_3p,
+        ];
+      } else {
+        conjugations = [
+          conjugationSet.form_1s,
+          conjugationSet.form_2s,
+          conjugationSet.form_3s,
+          conjugationSet.form_1p,
+          conjugationSet.form_2p,
+          conjugationSet.form_3p,
+        ];
+      }
+
+      // const conjugations = [
+      //   conjugationSet.form_1s,
+      //   conjugationSet.form_2s,
+      //   conjugationSet.form_3s,
+      //   conjugationSet.form_1p,
+      //   conjugationSet.form_2p,
+      //   conjugationSet.form_3p,
+      // ];
 
       this.verbData = {
         infinitive,
