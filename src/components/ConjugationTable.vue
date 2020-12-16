@@ -15,9 +15,9 @@
           class="btn btn-warning mt-3 font-weight-bold"
           id="peek"
           v-show="chosenMode === '1'"
-          @click.stop.prevent="peekToggle"
+          @click.stop.prevent="togglePeekStatus"
         >
-          {{ displayText ? "Hide" : "Peek" }}
+          {{ displayToggle ? "Hide" : "Peek" }}
         </button>
       </div>
     </div>
@@ -44,7 +44,9 @@
 
             <!-- mode 1 -->
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? verbData.conjugations[0] : "&iquest; &quest;" }}
+              {{
+                displayToggle ? verbData.conjugations[0] : "&iquest; &quest;"
+              }}
             </td>
 
             <!-- mode 2 -->
@@ -61,7 +63,7 @@
               <button
                 class="btn btn-warning"
                 data-id="0"
-                @click.prevent.stop="hintToggle(0)"
+                @click.prevent.stop="toggleHintStatus(0)"
                 v-show="results[0] === false"
               >
                 {{
@@ -77,7 +79,9 @@
               {{ verbData.conjugations[1] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? verbData.conjugations[1] : "&iquest; &quest;" }}
+              {{
+                displayToggle ? verbData.conjugations[1] : "&iquest; &quest;"
+              }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[1]" />
@@ -85,7 +89,7 @@
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle(1)"
+                @click.prevent.stop="toggleHintStatus(1)"
                 v-show="results[1] === false"
               >
                 {{
@@ -102,7 +106,9 @@
               {{ verbData.conjugations[2] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? verbData.conjugations[2] : "&iquest; &quest;" }}
+              {{
+                displayToggle ? verbData.conjugations[2] : "&iquest; &quest;"
+              }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[2]" />
@@ -110,7 +116,7 @@
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle(2)"
+                @click.prevent.stop="toggleHintStatus(2)"
                 v-show="results[2] === false"
               >
                 {{
@@ -125,7 +131,9 @@
               {{ verbData.conjugations[3] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? verbData.conjugations[3] : "&iquest; &quest;" }}
+              {{
+                displayToggle ? verbData.conjugations[3] : "&iquest; &quest;"
+              }}
             </td>
             <td
               class="align-middle"
@@ -139,7 +147,7 @@
             >
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle(3)"
+                @click.prevent.stop="toggleHintStatus(3)"
                 v-show="results[3] === false"
               >
                 {{
@@ -154,7 +162,9 @@
               {{ verbData.conjugations[4] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? verbData.conjugations[4] : "&iquest; &quest;" }}
+              {{
+                displayToggle ? verbData.conjugations[4] : "&iquest; &quest;"
+              }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[4]" />
@@ -162,7 +172,7 @@
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle(4)"
+                @click.prevent.stop="toggleHintStatus(4)"
                 v-show="results[4] === false"
               >
                 {{
@@ -181,7 +191,9 @@
               {{ verbData.conjugations[5] }}
             </td>
             <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? verbData.conjugations[5] : "&iquest; &quest;" }}
+              {{
+                displayToggle ? verbData.conjugations[5] : "&iquest; &quest;"
+              }}
             </td>
             <td class="align-middle" v-show="chosenMode === '2'">
               <input type="text" v-model="inputs[5]" />
@@ -189,7 +201,7 @@
             <td class="align-middle" v-show="chosenMode === '2'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="hintToggle(5)"
+                @click.prevent.stop="toggleHintStatus(5)"
                 v-show="results[5] === false"
               >
                 {{
@@ -209,13 +221,25 @@
           class="mr-2"
           @click.prevent.stop="typeCharacter"
         >
-          <button class="btn btn-info font-weight-bold mr-2">á</button>
-          <button class="btn btn-info font-weight-bold mr-2">é</button>
-          <button class="btn btn-info font-weight-bold mr-2">í</button>
-          <button class="btn btn-info font-weight-bold mr-2">ó</button>
-          <button class="btn btn-info font-weight-bold mr-2">ú</button>
-          <button class="btn btn-info font-weight-bold mr-2">ü</button>
-          <button class="btn btn-info font-weight-bold">ñ</button>
+          <button class="btn btn-info font-weight-bold mr-2 character">
+            á
+          </button>
+          <button class="btn btn-info font-weight-bold mr-2 character">
+            é
+          </button>
+          <button class="btn btn-info font-weight-bold mr-2 character">
+            í
+          </button>
+          <button class="btn btn-info font-weight-bold mr-2 character">
+            ó
+          </button>
+          <button class="btn btn-info font-weight-bold mr-2 character">
+            ú
+          </button>
+          <button class="btn btn-info font-weight-bold mr-2 character">
+            ü
+          </button>
+          <button class="btn btn-info font-weight-bold character">ñ</button>
         </div>
 
         <div id="check">
@@ -258,7 +282,7 @@ export default {
       },
       inputs: Array(6),
       results: Array(6),
-      displayText: false,
+      displayToggle: false,
       displayHints: Array(6).fill(false),
     };
   },
@@ -328,10 +352,10 @@ export default {
         conjugations,
       };
     },
-    peekToggle() {
-      this.displayText = !this.displayText;
+    togglePeekStatus() {
+      this.displayToggle = !this.displayToggle;
     },
-    hintToggle(index) {
+    toggleHintStatus(index) {
       // 開關個別 tooltip
       const status = !this.displayHints[index];
       this.displayHints.splice(index, 1, status);
@@ -355,10 +379,20 @@ export default {
       const target = event.target;
       const character = target.innerText;
       const activeInput = document.querySelector(".activeInput");
+      const inputs = document.querySelectorAll("input");
+      const activeInputId = [...inputs].findIndex(
+        (input) => input === activeInput
+      );
 
       // 將字母加到輸入框中 + focus 輸入框
-      if (target.tagName === "BUTTON") {
+      if (target.tagName === "BUTTON" && activeInput) {
+        const updatedInputs = [...this.inputs];
+
         activeInput.value = activeInput.value + character;
+        updatedInputs[activeInputId] = activeInput.value;
+        this.inputs = [];
+        updatedInputs.forEach((update) => this.inputs.push(update));
+
         activeInput.focus();
       }
     },
@@ -367,7 +401,13 @@ export default {
       const numberOfConjugations = 6;
 
       // 強制將輸入文字轉為小寫 + 去除兩旁空格
-      this.inputs = this.inputs.map((input) => input.trim().toLowerCase());
+      this.inputs = this.inputs.map((input) => {
+        if (input) {
+          return input.trim().toLowerCase();
+        } else {
+          return undefined;
+        }
+      });
 
       // 比對結果 + 計算正確答案數量
       this.results = [];
@@ -382,7 +422,7 @@ export default {
   },
   watch: {
     chosenMode: function (newMode) {
-      if (newMode === "1") this.displayText = false;
+      if (newMode === "1") this.displayToggle = false;
     },
     conjugationUpdate: function (newConjugations) {
       if (newConjugations.length > 0)
@@ -394,6 +434,16 @@ export default {
           newConjugations[0].form_2p,
           newConjugations[0].form_2p,
         ];
+    },
+    verbData: {
+      handler: function (newValues) {
+        if (newValues) {
+          this.inputs = Array(6);
+          this.results = Array(6);
+          this.displayHints = Array(6).fill(false);
+        }
+      },
+      deep: true,
     },
   },
   computed: {
