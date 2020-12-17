@@ -149,6 +149,8 @@ export default {
             conjugation.tense_english === tense_english
         );
 
+        console.log("====", conjugationSet);
+
         // 取得 mood 和 tense 的西班牙文名稱
         const mood = conjugationSet[0].mood;
         const tense = conjugationSet[0].tense;

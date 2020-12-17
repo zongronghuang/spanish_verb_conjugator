@@ -4,10 +4,7 @@
 
     <div class="d-flex justify-content-between">
       <LeftPanel />
-      <ConjugationTable
-        :chosen-mode="mode"
-        :conjugation-update="conjugationSet"
-      />
+      <ConjugationTable :chosen-mode="mode" :conjugation-set="conjugationSet" />
       <RightPanel />
     </div>
     <BottomPanel />

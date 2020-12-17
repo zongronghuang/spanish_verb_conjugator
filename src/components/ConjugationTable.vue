@@ -265,7 +265,7 @@ export default {
       type: String,
       required: true,
     },
-    conjugationUpdate: {
+    conjugationSet: {
       type: Array,
     },
   },
@@ -424,16 +424,18 @@ export default {
     chosenMode: function (newMode) {
       if (newMode === "1") this.displayToggle = false;
     },
-    conjugationUpdate: function (newConjugations) {
-      if (newConjugations.length > 0)
+    conjugationSet: function (newConjugations) {
+      if (newConjugations.length > 0) {
         this.verbData.conjugations = [
           newConjugations[0].form_1s,
           newConjugations[0].form_2s,
           newConjugations[0].form_3s,
           newConjugations[0].form_1p,
           newConjugations[0].form_2p,
-          newConjugations[0].form_2p,
+          newConjugations[0].form_3p,
         ];
+      }
+      console.log("?????", this.verbData.conjugations);
     },
     verbData: {
       handler: function (newValues) {
