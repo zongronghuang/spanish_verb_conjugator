@@ -40,5 +40,5 @@ export default {
 
     const conjugations = [...data.slice(startId, endId)]
     return conjugations
-  },
+  }
 }

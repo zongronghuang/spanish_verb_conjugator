@@ -221,25 +221,13 @@
           class="mr-2"
           @click.prevent.stop="typeCharacter"
         >
-          <button class="btn btn-info font-weight-bold mr-2 character">
-            á
-          </button>
-          <button class="btn btn-info font-weight-bold mr-2 character">
-            é
-          </button>
-          <button class="btn btn-info font-weight-bold mr-2 character">
-            í
-          </button>
-          <button class="btn btn-info font-weight-bold mr-2 character">
-            ó
-          </button>
-          <button class="btn btn-info font-weight-bold mr-2 character">
-            ú
-          </button>
-          <button class="btn btn-info font-weight-bold mr-2 character">
-            ü
-          </button>
-          <button class="btn btn-info font-weight-bold character">ñ</button>
+          <button class="btn btn-info font-weight-bold mr-2">á</button>
+          <button class="btn btn-info font-weight-bold mr-2">é</button>
+          <button class="btn btn-info font-weight-bold mr-2">í</button>
+          <button class="btn btn-info font-weight-bold mr-2">ó</button>
+          <button class="btn btn-info font-weight-bold mr-2">ú</button>
+          <button class="btn btn-info font-weight-bold mr-2">ü</button>
+          <button class="btn btn-info font-weight-bold">ñ</button>
         </div>
 
         <div id="check">
@@ -332,15 +320,6 @@ export default {
           conjugationSet.form_3p,
         ];
       }
-
-      // const conjugations = [
-      //   conjugationSet.form_1s,
-      //   conjugationSet.form_2s,
-      //   conjugationSet.form_3s,
-      //   conjugationSet.form_1p,
-      //   conjugationSet.form_2p,
-      //   conjugationSet.form_3p,
-      // ];
 
       this.verbData = {
         infinitive,
@@ -435,7 +414,6 @@ export default {
           newConjugations[0].form_3p,
         ];
       }
-      console.log("?????", this.verbData.conjugations);
     },
     verbData: {
       handler: function (newValues) {
