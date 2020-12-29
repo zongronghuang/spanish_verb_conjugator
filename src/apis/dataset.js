@@ -38,12 +38,17 @@ export default {
 
     if (index === -1) return []
 
-    const conjugations = [...data.slice(startId, endId)]
+    let conjugations = [...data.slice(startId, endId)]
 
+    conjugations = this.addImperativeForm1P(conjugations)
+
+    return conjugations
+  },
+  addImperativeForm1P(conjugations) {
     // Imperative Affirmative 和 Negative 加上第一人稱複數型
     const imperative_1p = conjugations.find(conjugation => conjugation.mood_english === 'Subjunctive' && conjugation.tense_english === 'Present').form_1p
 
-    const updatedConjugations = conjugations.map(conjugation => {
+    conjugations = conjugations.map(conjugation => {
       if (conjugation.mood_english === 'Imperative Affirmative') {
         conjugation.form_1p = imperative_1p
       }
@@ -55,6 +60,6 @@ export default {
       return conjugation
     })
 
-    return updatedConjugations
+    return conjugations
   }
 }

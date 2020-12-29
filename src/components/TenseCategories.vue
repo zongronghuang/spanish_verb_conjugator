@@ -117,6 +117,7 @@ export default {
       subjunctiveTenses: [
         "Subjunctive Present",
         "Subjunctive Imperfect",
+        "Subjunctive Imperfect 2",
         "Subjunctive Future",
         "Subjunctive Present Perfect",
         "Subjunctive Future Perfect",
@@ -148,8 +149,6 @@ export default {
             conjugation.mood_english === mood_english &&
             conjugation.tense_english === tense_english
         );
-
-        console.log("====", conjugationSet);
 
         // 取得 mood 和 tense 的西班牙文名稱
         const mood = conjugationSet[0].mood;
