@@ -32,14 +32,14 @@
       id="alert"
       v-show="alert"
     >
+      <span>{{ alert }}</span>
       <span
-        class="float-left font-weight-bold mr-2"
+        class="float-right font-weight-bold mr-2"
         id="cross"
         @click.stop.prevent="collapseAlert"
       >
         X
       </span>
-      <span>{{ alert }}</span>
     </div>
   </div>
 </template>
