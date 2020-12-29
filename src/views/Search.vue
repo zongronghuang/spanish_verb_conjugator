@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-1">
+  <div class="pb-1" @keyup.enter="checkInput">
     <!-- 搜尋區域 -->
     <div class="mx-auto my-4 w-75" id="search-area">
       <h3>Feed a Spanish Verb</h3>
@@ -108,7 +108,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 #search-area,
 #alert {
