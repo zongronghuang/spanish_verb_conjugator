@@ -22,6 +22,13 @@
       </div>
     </div>
 
+    <div class="row mb-4">
+      <div class="text-center col-6 mx-auto h5 font-weight-bold text-primary">
+        <span class="float-left">Gerund: {{ verb.gerund }} </span>
+        <span class="float-right">Participle: {{ verb.pastParticiple }}</span>
+      </div>
+    </div>
+
     <div class="row">
       <div class="text-center col-6 mx-auto">
         <span class="h4 my-4"
