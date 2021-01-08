@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav d-flex justify-content-around py-2">
+  <nav class="nav d-flex justify-content-around py-2 bg-primary">
     <!-- 使用模式選單 -->
     <select
       class="custom-select custom-select-lg w-25 text-white bg-primary"

@@ -17,7 +17,7 @@
       <div class="dropdown-menu w-100 text-center">
         <!-- Dropdown menu links -->
         <a
-          class="dropdown-item"
+          class="dropdown-item h4"
           href="#"
           :id="tense"
           v-for="tense in indicativeTenses"
@@ -44,7 +44,7 @@
       <div class="dropdown-menu w-100 text-center">
         <!-- Dropdown menu links -->
         <a
-          class="dropdown-item"
+          class="dropdown-item h4"
           href="#"
           :id="tense"
           v-for="tense in imperativeTenses"
@@ -71,7 +71,7 @@
       <div class="dropdown-menu w-100 text-center">
         <!-- Dropdown menu links -->
         <a
-          class="dropdown-item"
+          class="dropdown-item h4"
           href="#"
           :id="tense"
           v-for="tense in subjunctiveTenses"
