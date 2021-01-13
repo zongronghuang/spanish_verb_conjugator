@@ -1,5 +1,5 @@
 <template>
-  <div id="verb-conjugator" class="bg-light">
+  <div id="verb-conjugator">
     <router-view />
   </div>
 </template>
@@ -21,9 +21,13 @@ export default {
 </script>
 
 <style>
-body {
-  margin: 0px;
-  padding: 0px;
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: gray;
 }
 </style>
 

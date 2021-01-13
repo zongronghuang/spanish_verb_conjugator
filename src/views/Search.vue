@@ -14,13 +14,16 @@
           v-model.trim="input"
         />
         <div class="input-group-append shadow">
+          <button class="btn btn-info font-weight-bold">
+            <font-awesome-icon :icon="['fas', 'keyboard']" size="1x" />
+          </button>
           <button
-            class="btn btn-info font-weight-bold"
+            class="btn btn-primary font-weight-bold"
             type="button"
             id="button-addon2"
             @click.prevent.stop="checkInput"
           >
-            Conjugate
+            <font-awesome-icon :icon="['fas', 'search']" size="1x" />
           </button>
         </div>
       </div>
