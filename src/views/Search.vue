@@ -1,7 +1,7 @@
 <template>
   <div class="pb-1" @keyup.enter="checkInput">
     <!-- 搜尋區域 -->
-    <div class="mx-auto my-4 w-75" id="search-area">
+    <div class="mx-auto my-2 w-75" id="search-area">
       <h3>Feed a Spanish Verb</h3>
 
       <div class="input-group pb-3 mb-1 mt-5">
@@ -14,7 +14,10 @@
           v-model.trim="input"
         />
         <div class="input-group-append shadow">
-          <button class="btn btn-info font-weight-bold">
+          <button
+            class="btn btn-info font-weight-bold"
+            @click.stop.prevent="toggleKeyboard"
+          >
             <font-awesome-icon :icon="['fas', 'keyboard']" size="1x" />
           </button>
           <button
@@ -28,12 +31,29 @@
         </div>
       </div>
     </div>
+
+    <!-- 輸入輔助鍵 -->
+    <div
+      class="w-75 mx-auto mb-2 bg-dark d-flex justify-content-center border rounded-pill"
+      id="keyboard"
+      @click.stop.prevent="typeCharacter"
+      v-if="keyboard"
+    >
+      <button class="btn btn-info font-weight-bold mr-2">á</button>
+      <button class="btn btn-info font-weight-bold mr-2">é</button>
+      <button class="btn btn-info font-weight-bold mr-2">í</button>
+      <button class="btn btn-info font-weight-bold mr-2">ó</button>
+      <button class="btn btn-info font-weight-bold mr-2">ú</button>
+      <button class="btn btn-info font-weight-bold mr-2">ü</button>
+      <button class="btn btn-info font-weight-bold">ñ</button>
+    </div>
+
     <!-- 錯誤訊息 -->
     <div
       class="alert alert-warning w-75 text-center mx-auto"
       role="alert"
       id="alert"
-      v-show="alert"
+      v-if="alert"
     >
       <span>{{ alert }}</span>
       <span
@@ -57,6 +77,7 @@ export default {
     return {
       input: "",
       alert: "",
+      keyboard: false,
     };
   },
   methods: {
@@ -80,14 +101,20 @@ export default {
       if (
         longEnding === "arse" ||
         longEnding === "erse" ||
-        longEnding === "irse"
+        longEnding === "irse" ||
+        longEnding === "írse"
       ) {
         return (this.alert = "請移除結尾 -se");
       }
 
       // 非原形動詞結尾非 -ar, -er, -ir
       const ending = input.substring(input.length - 2);
-      if (ending !== "ar" && ending !== "er" && ending !== "ir") {
+      if (
+        ending !== "ar" &&
+        ending !== "er" &&
+        ending !== "ir" &&
+        ending !== "ír"
+      ) {
         return (this.alert = "請輸入原形動詞");
       }
 
@@ -105,6 +132,22 @@ export default {
     collapseAlert() {
       this.alert = "";
     },
+    toggleKeyboard() {
+      this.keyboard = !this.keyboard;
+    },
+    // 待簡化
+    typeCharacter(event) {
+      const target = event.target;
+      const character = target.innerText;
+      const input = document.querySelector("input");
+
+      // 將字母加到輸入框中 + focus 輸入框
+      if (target.tagName === "BUTTON" && input) {
+        input.value = input.value + character;
+        this.input = input.value;
+        input.focus();
+      }
+    },
   },
   computed: {
     ...mapState(["infinitives"]),
@@ -113,8 +156,10 @@ export default {
 </script>
 <style scoped>
 #search-area,
-#alert {
+#alert,
+#keyboard {
   max-width: 450px;
+  min-width: 350px;
 }
 
 #cross:hover {
