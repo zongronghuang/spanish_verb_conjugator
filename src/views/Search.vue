@@ -1,5 +1,11 @@
 <template>
-  <SearchBar />
+  <div class="pb-1">
+    <!-- 搜尋區域 -->
+    <div class="mx-auto my-2 w-75" id="search-area">
+      <h3>Feed a Spanish Verb</h3>
+      <SearchBar />
+    </div>
+  </div>
 </template>
 
 <script>

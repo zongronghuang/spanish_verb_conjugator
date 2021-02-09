@@ -2,10 +2,6 @@
   <div class="container pt-2">
     <div class="row mb-1">
       <div class="col-6 mx-auto position-relative" id="upper-display">
-        <!-- <button class="btn btn-info mt-3 font-weight-bold" id="add-to-list">
-          Add to list
-        </button> -->
-
         <div class="d-flex flex-column text-center mb-3 mx-1">
           <h1>{{ verb.infinitive | capitalize }}</h1>
           <span class="h4 mt-2">{{ verb.infinitive_english }}</span>
@@ -18,16 +14,21 @@
           @click.stop.prevent="togglePeekStatus"
         >
           {{ displayToggle ? "Hide" : "Peek" }}
+
+          <!-- 
+            hide: <i class="fas fa-eye-slash"></i>
+            peek: <i class="fas fa-eye"></i>
+           -->
         </button>
       </div>
     </div>
 
-    <div class="row mb-4">
+    <!-- <div class="row mb-4">
       <div class="text-center col-6 mx-auto h5 font-weight-bold text-primary">
         <span class="float-left">Gerund: {{ verb.gerund }} </span>
         <span class="float-right">Participle: {{ verb.pastParticiple }}</span>
       </div>
-    </div>
+    </div> -->
 
     <div class="row">
       <div class="text-center col-6 mx-auto">

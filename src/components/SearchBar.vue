@@ -1,40 +1,35 @@
 <template>
-  <div class="pb-1" @keyup.enter="checkInput">
-    <!-- 搜尋區域 -->
-    <div class="mx-auto my-2 w-75" id="search-area">
-      <h3>Feed a Spanish Verb</h3>
-
-      <div class="input-group pb-3 mb-1 mt-5">
-        <input
-          type="text"
-          class="form-control shadow font-weight-bold"
-          placeholder="Infinitive (-ar, -er, -ir)"
-          aria-label="Feed an infinitive Spanish verb"
-          aria-describedby="button-addon2"
-          v-model.trim="input"
-        />
-        <div class="input-group-append shadow">
-          <button
-            class="btn btn-info font-weight-bold"
-            @click.stop.prevent="toggleKeyboard"
-          >
-            <font-awesome-icon :icon="['fas', 'keyboard']" size="1x" />
-          </button>
-          <button
-            class="btn btn-primary font-weight-bold"
-            type="button"
-            id="button-addon2"
-            @click.prevent.stop="checkInput"
-          >
-            <font-awesome-icon :icon="['fas', 'search']" size="1x" />
-          </button>
-        </div>
+  <div id="search-area" @keyup.enter="checkInput">
+    <div class="input-group pb-1 mt-1">
+      <input
+        type="text"
+        class="form-control shadow font-weight-bold"
+        placeholder="Infinitive (-ar, -er, -ir)"
+        aria-label="Feed an infinitive Spanish verb"
+        aria-describedby="button-addon2"
+        v-model.trim="input"
+      />
+      <div class="input-group-append shadow">
+        <button
+          class="btn btn-info font-weight-bold border border-white"
+          @click.stop.prevent="toggleKeyboard"
+        >
+          <font-awesome-icon :icon="['fas', 'keyboard']" size="1x" />
+        </button>
+        <button
+          class="btn btn-primary font-weight-bold border border-white"
+          type="button"
+          id="button-addon2"
+          @click.prevent.stop="checkInput"
+        >
+          <font-awesome-icon :icon="['fas', 'search']" size="1x" />
+        </button>
       </div>
     </div>
 
     <!-- 輸入輔助鍵 -->
     <div
-      class="w-75 mx-auto mb-2 bg-dark d-flex justify-content-center border rounded-pill"
+      class="w-25 mx-auto mb-2 d-flex justify-content-center rounded-pill mt-1 shadow"
       id="keyboard"
       @click.stop.prevent="typeCharacter"
       v-if="keyboard"
@@ -50,7 +45,7 @@
 
     <!-- 錯誤訊息 -->
     <div
-      class="alert alert-warning w-75 text-center mx-auto"
+      class="alert alert-warning w-25 text-center mx-auto rounded-pill shadow"
       role="alert"
       id="alert"
       v-if="alert"
@@ -73,6 +68,17 @@
 #keyboard {
   max-width: 450px;
   min-width: 350px;
+}
+
+#keyboard {
+  position: absolute;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+}
+
+#alert {
+  position: absolute;
+  z-index: 20;
 }
 
 #cross:hover {

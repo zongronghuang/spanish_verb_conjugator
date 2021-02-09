@@ -7,7 +7,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary rounded-0"
+        class="btn btn-primary rounded-0 border border-white"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -17,7 +17,7 @@
       <div class="dropdown-menu w-100 text-center">
         <!-- Dropdown menu links -->
         <a
-          class="dropdown-item h4"
+          class="dropdown-item h5"
           href="#"
           :id="tense"
           v-for="tense in indicativeTenses"
@@ -34,7 +34,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary rounded-0"
+        class="btn btn-primary rounded-0 border border-white"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -44,7 +44,7 @@
       <div class="dropdown-menu w-100 text-center">
         <!-- Dropdown menu links -->
         <a
-          class="dropdown-item h4"
+          class="dropdown-item h5"
           href="#"
           :id="tense"
           v-for="tense in imperativeTenses"
@@ -61,7 +61,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary rounded-0"
+        class="btn btn-primary rounded-0 border border-white"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -71,7 +71,7 @@
       <div class="dropdown-menu w-100 text-center">
         <!-- Dropdown menu links -->
         <a
-          class="dropdown-item h4"
+          class="dropdown-item h5"
           href="#"
           :id="tense"
           v-for="tense in subjunctiveTenses"
