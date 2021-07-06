@@ -1,8 +1,28 @@
 <template>
-  <div class="pb-1">
+  <div
+    class="
+      pb-1
+      d-flex
+      align-items-center
+      justify-content-center
+      bg-danger
+      search-page
+    "
+  >
     <!-- 搜尋區域 -->
-    <div class="mx-auto my-2 w-75" id="search-area">
-      <h3>Feed a Spanish Verb</h3>
+    <div
+      class="
+        h-50
+        w-50
+        d-flex
+        flex-nowrap
+        align-items-center
+        border border-warning
+        rounded
+      "
+      id="search-area"
+    >
+      <h3 class="text-center">Feed a Spanish Verb</h3>
       <SearchBar />
     </div>
   </div>
@@ -21,4 +41,7 @@ export default {
 
 
 <style scoped>
+.search-page {
+  height: 100vh;
+}
 </style>
