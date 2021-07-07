@@ -1,6 +1,6 @@
 <template>
   <div id="search-area" @keyup.enter="checkInput">
-    <div class="input-group pb-1 mt-1">
+    <div class="input-group pb-1">
       <input
         type="text"
         class="form-control shadow font-weight-bold"
@@ -29,7 +29,16 @@
 
     <!-- 輸入輔助鍵 -->
     <div
-      class="w-25 mx-auto mb-2 d-flex justify-content-center rounded-pill mt-1 shadow"
+      class="
+        w-25
+        mx-auto
+        mb-2
+        d-flex
+        justify-content-center
+        rounded-pill
+        mt-1
+        shadow
+      "
       id="keyboard"
       @click.stop.prevent="typeCharacter"
       v-if="keyboard"

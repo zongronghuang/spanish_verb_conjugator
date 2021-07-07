@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="conjugation-page">
     <ControlPanel @change-mode="changeMode" @change-theme="changeTheme" />
 
     <div class="d-flex justify-content-between">
@@ -54,4 +54,7 @@ export default {
 </script>
 
 <style scoped>
+#conjugation-page {
+  height: 100vh;
+}
 </style>

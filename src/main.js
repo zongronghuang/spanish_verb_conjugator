@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import 'normalize.css/normalize.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 // 匯入 fontawesome 圖示
 import { faKeyboard, faSearch, faUserNinja } from '@fortawesome/free-solid-svg-icons'

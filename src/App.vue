@@ -21,13 +21,14 @@ export default {
 </script>
 
 <style>
-html {
+html,
+body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   border: none;
-  background-color: gray;
 }
 </style>
 

@@ -43,12 +43,16 @@ export default new Vuex.Store({
       // state.verb.allConjugations = [...allConjugations]
     },
     setMoodAndTense(state, moodAndTense) {
-      const { mood, tense, mood_english, tense_english } = moodAndTense
+      //const { mood, tense, mood_english, tense_english } = moodAndTense
 
-      state.verb.mood_english = mood_english
-      state.verb.tense_english = tense_english
-      state.verb.mood = mood
-      state.verb.tense = tense
+      state.verb = {
+        ...state.verb,
+        ...moodAndTense
+      }
+      // state.verb.mood_english = mood_english
+      // state.verb.tense_english = tense_english
+      // state.verb.mood = mood
+      // state.verb.tense = tense
     }
   },
   actions: {
