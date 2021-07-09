@@ -1,5 +1,5 @@
 <template>
-  <div id="search-area" @keyup.enter="checkInput">
+  <div id="search-area" @keyup.enter="getVerbConjugations(checkInput())">
     <div class="input-group pb-1">
       <input
         type="text"
@@ -20,7 +20,7 @@
           class="btn btn-primary font-weight-bold border border-white"
           type="button"
           id="button-addon2"
-          @click.prevent.stop="checkInput"
+          @click.prevent.stop="getVerbConjugations(checkInput())"
         >
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
         </button>
@@ -151,8 +151,28 @@ export default {
         return (this.alert = "請輸入原形動詞");
       }
 
+      return {
+        isPossibleVerb: true,
+        input,
+      };
+
+      // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
+      // const result = datasetAPIs.getAllConjugations(input, this.infinitives);
+      // if (result.length > 0) {
+      //   this.$store.commit("setVerb", result);
+      // } else {
+      //   return (this.alert = "Verb not found in the database");
+      // }
+
+      // // 轉址到 conjugation card 頁面
+      // this.$router.push("/conjugation_card");
+    },
+    getVerbConjugations({ isPossibleVerb, input }) {
+      if (!isPossibleVerb) return;
+
       // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
       const result = datasetAPIs.getAllConjugations(input, this.infinitives);
+
       if (result.length > 0) {
         this.$store.commit("setVerb", result);
       } else {
