@@ -32,6 +32,8 @@ export default new Vuex.Store({
       state.verb.allConjugations = [...allConjugations]
       delete state.verb.pastparticiple
 
+      console.log('state verb', state.verb)
+      return state.verb
       // state.verb.infinitive = infinitive
       // state.verb.infinitive_english = infinitive_english
       // state.verb.mood = mood

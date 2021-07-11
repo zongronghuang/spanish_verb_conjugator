@@ -288,6 +288,15 @@ export default {
     },
   },
   created() {
+    // const savedVerbConjugations = JSON.parse(
+    //   localStorage.getItem("verb_conjugations")
+    // );
+    // console.log("saved verb conjugations", savedVerbConjugations);
+
+    // if (!this.verb.infinitive && savedVerbConjugations) {
+    //   this.$store.commit("setVerb", [...savedVerbConjugations]);
+    // }
+
     this.getVerb();
   },
   methods: {
@@ -435,7 +444,10 @@ export default {
     },
   },
   computed: {
-    ...mapState(["verb"]),
+    ...mapState({
+      verb: (state) => state.verb,
+      verbAlias: "verb",
+    }),
   },
 };
 </script>

@@ -1,6 +1,28 @@
 <template>
-  <div id="search-area" @keyup.enter="getVerbConjugations(checkInput())">
-    <div class="input-group pb-1">
+  <div
+    id="search-area"
+    class="d-flex align-items-around position-relative"
+    @keyup.enter="isInputValid() && getVerbConjugations()"
+  >
+    <!-- 錯誤訊息 -->
+    <div
+      class="alert alert-warning w-25 text-center mx-auto rounded-pill shadow"
+      role="alert"
+      id="alert"
+      v-show="alert"
+    >
+      <span>{{ alert }}</span>
+      <span
+        class="float-right font-weight-bold mr-2"
+        id="cross"
+        @click.stop.prevent="collapseAlert"
+      >
+        X
+      </span>
+    </div>
+
+    <!-- 搜尋欄 -->
+    <div class="input-group pb-1" id="search-bar">
       <input
         type="text"
         class="form-control shadow font-weight-bold"
@@ -20,7 +42,7 @@
           class="btn btn-primary font-weight-bold border border-white"
           type="button"
           id="button-addon2"
-          @click.prevent.stop="getVerbConjugations(checkInput())"
+          @click.prevent.stop="isInputValid() && getVerbConjugations()"
         >
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
         </button>
@@ -40,8 +62,8 @@
         shadow
       "
       id="keyboard"
-      @click.stop.prevent="typeCharacter"
       v-if="keyboard"
+      @click.stop.prevent="typeCharacter"
     >
       <button class="btn btn-info font-weight-bold mr-2">á</button>
       <button class="btn btn-info font-weight-bold mr-2">é</button>
@@ -50,23 +72,6 @@
       <button class="btn btn-info font-weight-bold mr-2">ú</button>
       <button class="btn btn-info font-weight-bold mr-2">ü</button>
       <button class="btn btn-info font-weight-bold">ñ</button>
-    </div>
-
-    <!-- 錯誤訊息 -->
-    <div
-      class="alert alert-warning w-25 text-center mx-auto rounded-pill shadow"
-      role="alert"
-      id="alert"
-      v-if="alert"
-    >
-      <span>{{ alert }}</span>
-      <span
-        class="float-right font-weight-bold mr-2"
-        id="cross"
-        @click.stop.prevent="collapseAlert"
-      >
-        X
-      </span>
     </div>
   </div>
 </template>
@@ -88,6 +93,11 @@
 #alert {
   position: absolute;
   z-index: 20;
+}
+
+#search-bar {
+  position: absolute;
+  bottom: 0px;
 }
 
 #cross:hover {
@@ -114,31 +124,34 @@ export default {
     };
   },
   methods: {
-    checkInput() {
+    isInputValid() {
       const input = this.input.toLowerCase();
       this.alert = "";
 
       // 不可為空字串
       if (!input) {
-        return (this.alert = "未輸入動詞，無法搜尋");
+        this.alert = "未輸入動詞，無法搜尋";
+        return false;
       }
 
       // 只接受西班牙文字母 (不可有數字、特殊符號或空白)
       const regex = /[^a-záéíóúüñ]/;
       if (input.search(regex) !== -1) {
-        return (this.alert = "不可輸入數字、空白或特殊符號");
+        this.alert = "不可輸入數字、空白或特殊符號";
+        return false;
       }
 
       // 結尾是 arse, erse, irse (提醒拿掉 se 即可)
-      const longEnding = input.substring(input.length - 4);
-      if (
-        longEnding === "arse" ||
-        longEnding === "erse" ||
-        longEnding === "irse" ||
-        longEnding === "írse"
-      ) {
-        return (this.alert = "請移除結尾 -se");
-      }
+      // const longEnding = input.substring(input.length - 4);
+      // if (
+      //   longEnding === "arse" ||
+      //   longEnding === "erse" ||
+      //   longEnding === "irse" ||
+      //   longEnding === "írse"
+      // ) {
+      //   this.alert = "請移除結尾 -se";
+      //   return false;
+      // }
 
       // 非原形動詞結尾非 -ar, -er, -ir
       const ending = input.substring(input.length - 2);
@@ -146,18 +159,22 @@ export default {
         ending !== "ar" &&
         ending !== "er" &&
         ending !== "ir" &&
-        ending !== "ír"
+        ending !== "ír" &&
+        ending !== "se"
       ) {
-        return (this.alert = "請輸入原形動詞");
+        this.alert = "請輸入原形動詞";
+        return false;
       }
 
-      return {
-        isPossibleVerb: true,
-        input,
-      };
+      return true;
+
+      // return {
+      //   isPossibleVerb: true,
+      //   input,
+      // };
 
       // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
-      // const result = datasetAPIs.getAllConjugations(input, this.infinitives);
+      // const verbConjugations = datasetAPIs.getAllConjugations(input, this.infinitives);
       // if (result.length > 0) {
       //   this.$store.commit("setVerb", result);
       // } else {
@@ -167,16 +184,24 @@ export default {
       // // 轉址到 conjugation card 頁面
       // this.$router.push("/conjugation_card");
     },
-    getVerbConjugations({ isPossibleVerb, input }) {
-      if (!isPossibleVerb) return;
+    getVerbConjugations() {
+      const input = this.input.toLowerCase();
 
       // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
-      const result = datasetAPIs.getAllConjugations(input, this.infinitives);
+      const verbConjugations = datasetAPIs.getAllConjugations(
+        input,
+        this.infinitives
+      );
 
-      if (result.length > 0) {
-        this.$store.commit("setVerb", result);
+      if (verbConjugations.length > 0) {
+        this.$store.commit("setVerb", verbConjugations);
+        localStorage.setItem(
+          "verb_conjugations",
+          JSON.stringify(verbConjugations)
+        );
       } else {
-        return (this.alert = "Verb not found in the database");
+        this.alert = "資料庫內找不到這個動詞";
+        return;
       }
 
       // 轉址到 conjugation card 頁面
