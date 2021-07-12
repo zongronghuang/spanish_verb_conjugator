@@ -30,7 +30,7 @@ export default {
   },
 
   // 取得動詞的所有變化
-  getAllConjugations(verb, infinitives) {
+  getAllConjugationsByVerb(verb, infinitives) {
     const index = infinitives.findIndex(infinitive => infinitive === verb)
     const conjugationRange = 18
     const startId = index * conjugationRange

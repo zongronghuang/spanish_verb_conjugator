@@ -2,7 +2,7 @@
   <div
     id="search-area"
     class="d-flex align-items-around position-relative"
-    @keyup.enter="isInputValid() && getVerbConjugations()"
+    @keyup.enter="isInputValid() && getConjugationsByVerb()"
   >
     <!-- 錯誤訊息 -->
     <div
@@ -42,7 +42,7 @@
           class="btn btn-primary font-weight-bold border border-white"
           type="button"
           id="button-addon2"
-          @click.prevent.stop="isInputValid() && getVerbConjugations()"
+          @click.prevent.stop="isInputValid() && getConjugationsByVerb()"
         >
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
         </button>
@@ -63,7 +63,7 @@
       "
       id="keyboard"
       v-if="keyboard"
-      @click.stop.prevent="typeCharacter"
+      @click.stop.prevent="inputSpecialCharacter"
     >
       <button class="btn btn-info font-weight-bold mr-2">á</button>
       <button class="btn btn-info font-weight-bold mr-2">é</button>
@@ -141,18 +141,6 @@ export default {
         return false;
       }
 
-      // 結尾是 arse, erse, irse (提醒拿掉 se 即可)
-      // const longEnding = input.substring(input.length - 4);
-      // if (
-      //   longEnding === "arse" ||
-      //   longEnding === "erse" ||
-      //   longEnding === "irse" ||
-      //   longEnding === "írse"
-      // ) {
-      //   this.alert = "請移除結尾 -se";
-      //   return false;
-      // }
-
       // 非原形動詞結尾非 -ar, -er, -ir
       const ending = input.substring(input.length - 2);
       if (
@@ -167,38 +155,20 @@ export default {
       }
 
       return true;
-
-      // return {
-      //   isPossibleVerb: true,
-      //   input,
-      // };
-
-      // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
-      // const verbConjugations = datasetAPIs.getAllConjugations(input, this.infinitives);
-      // if (result.length > 0) {
-      //   this.$store.commit("setVerb", result);
-      // } else {
-      //   return (this.alert = "Verb not found in the database");
-      // }
-
-      // // 轉址到 conjugation card 頁面
-      // this.$router.push("/conjugation_card");
     },
-    getVerbConjugations() {
+    getConjugationsByVerb() {
       const input = this.input.toLowerCase();
 
       // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
-      const verbConjugations = datasetAPIs.getAllConjugations(
+      // conjugations [{...}, {...}, ...]
+      const conjugations = datasetAPIs.getAllConjugationsByVerb(
         input,
         this.infinitives
       );
 
-      if (verbConjugations.length > 0) {
-        this.$store.commit("setVerb", verbConjugations);
-        localStorage.setItem(
-          "verb_conjugations",
-          JSON.stringify(verbConjugations)
-        );
+      if (conjugations.length > 0) {
+        this.$store.commit("setVerb", conjugations);
+        localStorage.setItem("verb_conjugations", JSON.stringify(conjugations));
       } else {
         this.alert = "資料庫內找不到這個動詞";
         return;
@@ -214,16 +184,16 @@ export default {
       this.keyboard = !this.keyboard;
     },
     // 待簡化
-    typeCharacter(event) {
+    inputSpecialCharacter(event) {
       const target = event.target;
       const character = target.innerText;
-      const input = document.querySelector("input");
+      const inputField = document.querySelector("input");
 
       // 將字母加到輸入框中 + focus 輸入框
-      if (target.tagName === "BUTTON" && input) {
-        input.value = input.value + character;
-        this.input = input.value;
-        input.focus();
+      if (target.tagName === "BUTTON") {
+        inputField.value = inputField.value + character;
+        this.input = inputField.value;
+        inputField.focus();
       }
     },
   },
