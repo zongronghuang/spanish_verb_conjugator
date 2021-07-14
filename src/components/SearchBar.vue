@@ -157,12 +157,12 @@ export default {
       return true;
     },
     getConjugationsByVerb() {
-      const input = this.input.toLowerCase();
+      const infinitive = this.input.toLowerCase();
 
       // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
       // conjugations [{...}, {...}, ...]
       const conjugations = datasetAPIs.getAllConjugationsByVerb(
-        input,
+        infinitive,
         this.infinitives
       );
 
