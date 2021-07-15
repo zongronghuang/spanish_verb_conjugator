@@ -10,7 +10,7 @@
         <button
           class="btn btn-warning mt-3 font-weight-bold"
           id="peek"
-          v-show="mode === '1'"
+          v-show="mode === 'memory'"
           @click.stop.prevent="togglePeekStatus"
         >
           <!-- 顯示動詞變化按鍵 -->
@@ -46,12 +46,12 @@
             <th scope="row" class="w-25 align-middle">yo</th>
 
             <!-- mode 0 -->
-            <td class="align-middle h5" v-show="mode === '0'">
+            <td class="align-middle h5" v-show="mode === 'view'">
               {{ verbData.conjugations[0] }}
             </td>
 
             <!-- mode 1 -->
-            <td class="align-middle h5" v-show="mode === '1'">
+            <td class="align-middle h5" v-show="mode === 'memory'">
               {{
                 displayToggle ? verbData.conjugations[0] : "&iquest; &quest;"
               }}
@@ -60,13 +60,13 @@
             <!-- mode 2 -->
             <td
               class="align-middle"
-              v-show="mode === '2' && verbData.conjugations[0]"
+              v-show="mode === 'fill-in' && verbData.conjugations[0]"
             >
               <input type="text" v-model="inputs[0]" />
             </td>
             <td
               class="align-middle"
-              v-show="mode === '2' && verbData.conjugations[0]"
+              v-show="mode === 'fill-in' && verbData.conjugations[0]"
             >
               <button
                 class="btn btn-warning"
@@ -83,18 +83,18 @@
           <!-- //////////////////////////////////////////////////////// -->
           <tr class="border">
             <th scope="row" class="w-25 align-middle">tú</th>
-            <td class="align-middle h5" v-show="mode === '0'">
+            <td class="align-middle h5" v-show="mode === 'view'">
               {{ verbData.conjugations[1] }}
             </td>
-            <td class="align-middle h5" v-show="mode === '1'">
+            <td class="align-middle h5" v-show="mode === 'memory'">
               {{
                 displayToggle ? verbData.conjugations[1] : "&iquest; &quest;"
               }}
             </td>
-            <td class="align-middle" v-show="mode === '2'">
+            <td class="align-middle" v-show="mode === 'fill-in'">
               <input type="text" v-model="inputs[1]" />
             </td>
-            <td class="align-middle" v-show="mode === '2'">
+            <td class="align-middle" v-show="mode === 'fill-in'">
               <button
                 class="btn btn-warning"
                 @click.prevent.stop="toggleHintStatus(1)"
@@ -110,18 +110,18 @@
             <th scope="row" class="w-25 align-middle">
               él <br />ella <br />usted
             </th>
-            <td class="align-middle h5" v-show="mode === '0'">
+            <td class="align-middle h5" v-show="mode === 'view'">
               {{ verbData.conjugations[2] }}
             </td>
-            <td class="align-middle h5" v-show="mode === '1'">
+            <td class="align-middle h5" v-show="mode === 'memory'">
               {{
                 displayToggle ? verbData.conjugations[2] : "&iquest; &quest;"
               }}
             </td>
-            <td class="align-middle" v-show="mode === '2'">
+            <td class="align-middle" v-show="mode === 'fill-in'">
               <input type="text" v-model="inputs[2]" />
             </td>
-            <td class="align-middle" v-show="mode === '2'">
+            <td class="align-middle" v-show="mode === 'fill-in'">
               <button
                 class="btn btn-warning"
                 @click.prevent.stop="toggleHintStatus(2)"
@@ -135,23 +135,23 @@
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">nosotros</th>
-            <td class="align-middle h5" v-show="mode === '0'">
+            <td class="align-middle h5" v-show="mode === 'view'">
               {{ verbData.conjugations[3] }}
             </td>
-            <td class="align-middle h5" v-show="mode === '1'">
+            <td class="align-middle h5" v-show="mode === 'memory'">
               {{
                 displayToggle ? verbData.conjugations[3] : "&iquest; &quest;"
               }}
             </td>
             <td
               class="align-middle"
-              v-show="mode === '2' && verbData.conjugations[3]"
+              v-show="mode === 'fill-in' && verbData.conjugations[3]"
             >
               <input type="text" v-model="inputs[3]" />
             </td>
             <td
               class="align-middle"
-              v-show="mode === '2' && verbData.conjugations[3]"
+              v-show="mode === 'fill-in' && verbData.conjugations[3]"
             >
               <button
                 class="btn btn-warning"
@@ -166,18 +166,18 @@
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">vosotros</th>
-            <td class="align-middle h5" v-show="mode === '0'">
+            <td class="align-middle h5" v-show="mode === 'view'">
               {{ verbData.conjugations[4] }}
             </td>
-            <td class="align-middle h5" v-show="mode === '1'">
+            <td class="align-middle h5" v-show="mode === 'memory'">
               {{
                 displayToggle ? verbData.conjugations[4] : "&iquest; &quest;"
               }}
             </td>
-            <td class="align-middle" v-show="mode === '2'">
+            <td class="align-middle" v-show="mode === 'fill-in'">
               <input type="text" v-model="inputs[4]" />
             </td>
-            <td class="align-middle" v-show="mode === '2'">
+            <td class="align-middle" v-show="mode === 'fill-in'">
               <button
                 class="btn btn-warning"
                 @click.prevent.stop="toggleHintStatus(4)"
@@ -195,18 +195,18 @@
               ellas <br />
               ustedes
             </th>
-            <td class="align-middle h5" v-show="mode === '0'">
+            <td class="align-middle h5" v-show="mode === 'view'">
               {{ verbData.conjugations[5] }}
             </td>
-            <td class="align-middle h5" v-show="mode === '1'">
+            <td class="align-middle h5" v-show="mode === 'memory'">
               {{
                 displayToggle ? verbData.conjugations[5] : "&iquest; &quest;"
               }}
             </td>
-            <td class="align-middle" v-show="mode === '2'">
+            <td class="align-middle" v-show="mode === 'fill-in'">
               <input type="text" v-model="inputs[5]" />
             </td>
-            <td class="align-middle" v-show="mode === '2'">
+            <td class="align-middle" v-show="mode === 'fill-in'">
               <button
                 class="btn btn-warning"
                 @click.prevent.stop="toggleHintStatus(5)"
@@ -222,7 +222,7 @@
       </table>
     </div>
 
-    <div class="row" v-show="mode === '2'">
+    <div class="row" v-show="mode === 'fill-in'">
       <div class="col-6 mx-auto" id="lower-display">
         <div
           id="stressed-letters"
@@ -418,7 +418,7 @@ export default {
   },
   watch: {
     mode: function (newMode) {
-      if (newMode === "1") this.displayToggle = false;
+      if (newMode === "memory") this.displayToggle = false;
     },
     conjugationSet: function (newConjugations) {
       if (newConjugations.length > 0) {

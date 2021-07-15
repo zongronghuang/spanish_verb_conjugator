@@ -23,9 +23,11 @@
           v-model="mode"
           @change.prevent.stop="$emit('change-mode', mode)"
         >
-          <option value="0" :selected="mode === '1'">查詢</option>
-          <option value="1" :selected="mode === '2'">記憶</option>
-          <option value="2" :selected="mode === '3'">填空</option>
+          <option value="view" :selected="mode === 'view'">View</option>
+          <option value="memory" :selected="mode === 'memory'">Memory</option>
+          <option value="fill-in" :selected="mode === 'fill-in'">
+            Fill-in
+          </option>
         </select>
       </div>
     </nav>
@@ -39,7 +41,7 @@ export default {
   name: "control-panel",
   data() {
     return {
-      mode: 0,
+      mode: "view",
       theme: 0,
     };
   },

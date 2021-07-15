@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NotFound from '../views/NotFound.vue'
-import Search from '../views/Search.vue'
-import ConjugationCard from '../views/Card.vue'
+import Search from '../views/SearchPage.vue'
+import ConjugationCard from '../views/MainPage.vue'
 
 Vue.use(VueRouter)
 

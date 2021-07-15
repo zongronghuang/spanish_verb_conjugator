@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      mode: "0",
+      mode: "view",
       theme: "0",
       conjugationSet: [],
     };
