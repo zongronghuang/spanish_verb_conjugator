@@ -69,7 +69,8 @@ export default {
   },
   addSubjunctiveImperfect2(conjugations) {
     // 從 preterite_3P 分析出 subjunctive imperfect 2 字根 
-    const preteriteEndingLength_3P = 4 // "aron" 或 "eron"
+    // ending 是 "aron" 或 "eron"
+    const preteriteEndingLength_3P = 4
     const preterite_3P = conjugations
       .find(conjugation => conjugation.tense_english === 'Preterite')
       .form_3p
@@ -91,9 +92,6 @@ export default {
       tense_english: `${subjunctiveImperfect.tense_english} 2`
     }
 
-    // subjunctiveImperfect2.tense = `${subjunctiveImperfect.tense} 2`
-    // subjunctiveImperfect2.tense_english = `${subjunctiveImperfect.tense_english} 2`
-
     if (ending === 'aron') {
       subjunctiveImperfect2 = {
         ...subjunctiveImperfect2,
@@ -104,13 +102,6 @@ export default {
         form_2p: root + 'aseis',
         form_3p: root + 'asen'
       }
-
-      // subjunctiveImperfect2.form_1s = root + 'ase'
-      // subjunctiveImperfect2.form_2s = root + 'ases'
-      // subjunctiveImperfect2.form_3s = root + 'ase'
-      // subjunctiveImperfect2.form_1p = root + 'ásemos'
-      // subjunctiveImperfect2.form_2p = root + 'aseis'
-      // subjunctiveImperfect2.form_3p = root + 'asen'
     }
 
     if (ending === 'eron') {
@@ -124,15 +115,6 @@ export default {
         form_3p: root + 'esen'
       }
     }
-
-    // else {
-    //   subjunctiveImperfect2.form_1s = root + 'ese'
-    //   subjunctiveImperfect2.form_2s = root + 'eses'
-    //   subjunctiveImperfect2.form_3s = root + 'ese'
-    //   subjunctiveImperfect2.form_1p = root + 'ésemos'
-    //   subjunctiveImperfect2.form_2p = root + 'eseis'
-    //   subjunctiveImperfect2.form_3p = root + 'esen'
-    // }
 
     conjugations.push(subjunctiveImperfect2)
 

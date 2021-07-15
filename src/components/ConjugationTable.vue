@@ -10,25 +10,25 @@
         <button
           class="btn btn-warning mt-3 font-weight-bold"
           id="peek"
-          v-show="chosenMode === '1'"
+          v-show="mode === '1'"
           @click.stop.prevent="togglePeekStatus"
         >
-          {{ displayToggle ? "Hide" : "Peek" }}
+          <!-- 顯示動詞變化按鍵 -->
+          <font-awesome-icon
+            v-show="displayToggle"
+            :icon="['fas', 'eye-slash']"
+            size="1x"
+          />
 
-          <!-- 
-            hide: <i class="fas fa-eye-slash"></i>
-            peek: <i class="fas fa-eye"></i>
-           -->
+          <!-- 隱藏動詞變化按鍵 -->
+          <font-awesome-icon
+            v-show="!displayToggle"
+            :icon="['fas', 'eye']"
+            size="1x"
+          />
         </button>
       </div>
     </div>
-
-    <!-- <div class="row mb-4">
-      <div class="text-center col-6 mx-auto h5 font-weight-bold text-primary">
-        <span class="float-left">Gerund: {{ verb.gerund }} </span>
-        <span class="float-right">Participle: {{ verb.pastParticiple }}</span>
-      </div>
-    </div> -->
 
     <div class="row">
       <div class="text-center col-6 mx-auto">
@@ -46,12 +46,12 @@
             <th scope="row" class="w-25 align-middle">yo</th>
 
             <!-- mode 0 -->
-            <td class="align-middle h5" v-show="chosenMode === '0'">
+            <td class="align-middle h5" v-show="mode === '0'">
               {{ verbData.conjugations[0] }}
             </td>
 
             <!-- mode 1 -->
-            <td class="align-middle h5" v-show="chosenMode === '1'">
+            <td class="align-middle h5" v-show="mode === '1'">
               {{
                 displayToggle ? verbData.conjugations[0] : "&iquest; &quest;"
               }}
@@ -60,13 +60,13 @@
             <!-- mode 2 -->
             <td
               class="align-middle"
-              v-show="chosenMode === '2' && verbData.conjugations[0]"
+              v-show="mode === '2' && verbData.conjugations[0]"
             >
               <input type="text" v-model="inputs[0]" />
             </td>
             <td
               class="align-middle"
-              v-show="chosenMode === '2' && verbData.conjugations[0]"
+              v-show="mode === '2' && verbData.conjugations[0]"
             >
               <button
                 class="btn btn-warning"
@@ -83,18 +83,18 @@
           <!-- //////////////////////////////////////////////////////// -->
           <tr class="border">
             <th scope="row" class="w-25 align-middle">tú</th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
+            <td class="align-middle h5" v-show="mode === '0'">
               {{ verbData.conjugations[1] }}
             </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
+            <td class="align-middle h5" v-show="mode === '1'">
               {{
                 displayToggle ? verbData.conjugations[1] : "&iquest; &quest;"
               }}
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td class="align-middle" v-show="mode === '2'">
               <input type="text" v-model="inputs[1]" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td class="align-middle" v-show="mode === '2'">
               <button
                 class="btn btn-warning"
                 @click.prevent.stop="toggleHintStatus(1)"
@@ -110,18 +110,18 @@
             <th scope="row" class="w-25 align-middle">
               él <br />ella <br />usted
             </th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
+            <td class="align-middle h5" v-show="mode === '0'">
               {{ verbData.conjugations[2] }}
             </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
+            <td class="align-middle h5" v-show="mode === '1'">
               {{
                 displayToggle ? verbData.conjugations[2] : "&iquest; &quest;"
               }}
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td class="align-middle" v-show="mode === '2'">
               <input type="text" v-model="inputs[2]" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td class="align-middle" v-show="mode === '2'">
               <button
                 class="btn btn-warning"
                 @click.prevent.stop="toggleHintStatus(2)"
@@ -135,23 +135,23 @@
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">nosotros</th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
+            <td class="align-middle h5" v-show="mode === '0'">
               {{ verbData.conjugations[3] }}
             </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
+            <td class="align-middle h5" v-show="mode === '1'">
               {{
                 displayToggle ? verbData.conjugations[3] : "&iquest; &quest;"
               }}
             </td>
             <td
               class="align-middle"
-              v-show="chosenMode === '2' && verbData.conjugations[3]"
+              v-show="mode === '2' && verbData.conjugations[3]"
             >
               <input type="text" v-model="inputs[3]" />
             </td>
             <td
               class="align-middle"
-              v-show="chosenMode === '2' && verbData.conjugations[3]"
+              v-show="mode === '2' && verbData.conjugations[3]"
             >
               <button
                 class="btn btn-warning"
@@ -166,18 +166,18 @@
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">vosotros</th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
+            <td class="align-middle h5" v-show="mode === '0'">
               {{ verbData.conjugations[4] }}
             </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
+            <td class="align-middle h5" v-show="mode === '1'">
               {{
                 displayToggle ? verbData.conjugations[4] : "&iquest; &quest;"
               }}
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td class="align-middle" v-show="mode === '2'">
               <input type="text" v-model="inputs[4]" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td class="align-middle" v-show="mode === '2'">
               <button
                 class="btn btn-warning"
                 @click.prevent.stop="toggleHintStatus(4)"
@@ -195,18 +195,18 @@
               ellas <br />
               ustedes
             </th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
+            <td class="align-middle h5" v-show="mode === '0'">
               {{ verbData.conjugations[5] }}
             </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
+            <td class="align-middle h5" v-show="mode === '1'">
               {{
                 displayToggle ? verbData.conjugations[5] : "&iquest; &quest;"
               }}
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td class="align-middle" v-show="mode === '2'">
               <input type="text" v-model="inputs[5]" />
             </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
+            <td class="align-middle" v-show="mode === '2'">
               <button
                 class="btn btn-warning"
                 @click.prevent.stop="toggleHintStatus(5)"
@@ -222,7 +222,7 @@
       </table>
     </div>
 
-    <div class="row" v-show="chosenMode === '2'">
+    <div class="row" v-show="mode === '2'">
       <div class="col-6 mx-auto" id="lower-display">
         <div
           id="stressed-letters"
@@ -257,7 +257,7 @@ import { mapState } from "vuex";
 export default {
   name: "conjugation-table",
   props: {
-    chosenMode: {
+    mode: {
       type: String,
       required: true,
     },
@@ -417,7 +417,7 @@ export default {
     },
   },
   watch: {
-    chosenMode: function (newMode) {
+    mode: function (newMode) {
       if (newMode === "1") this.displayToggle = false;
     },
     conjugationSet: function (newConjugations) {
