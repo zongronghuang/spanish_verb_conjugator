@@ -11,18 +11,18 @@
           class="btn btn-warning mt-3 font-weight-bold"
           id="peek"
           v-show="mode === 'memory'"
-          @click.stop.prevent="togglePeekStatus"
+          @click.stop.prevent="togglePeekButtonVisibility"
         >
           <!-- 顯示動詞變化按鍵 -->
           <font-awesome-icon
-            v-show="displayToggle"
+            v-show="isPeekButtonVisible"
             :icon="['fas', 'eye-slash']"
             size="1x"
           />
 
           <!-- 隱藏動詞變化按鍵 -->
           <font-awesome-icon
-            v-show="!displayToggle"
+            v-show="!isPeekButtonVisible"
             :icon="['fas', 'eye']"
             size="1x"
           />
@@ -45,38 +45,34 @@
           <tr class="border">
             <th scope="row" class="w-25 align-middle">yo</th>
 
-            <!-- mode 0 -->
+            <!-- view mode -->
             <td class="align-middle h5" v-show="mode === 'view'">
-              {{ verbData.conjugations[0] }}
+              {{ conjugations[0] }}
             </td>
 
-            <!-- mode 1 -->
+            <!-- memory mode -->
             <td class="align-middle h5" v-show="mode === 'memory'">
-              {{
-                displayToggle ? verbData.conjugations[0] : "&iquest; &quest;"
-              }}
+              {{ isPeekButtonVisible ? conjugations[0] : "&iquest; &quest;" }}
             </td>
 
-            <!-- mode 2 -->
+            <!-- fill-in mode -->
             <td
               class="align-middle"
-              v-show="mode === 'fill-in' && verbData.conjugations[0]"
+              v-show="mode === 'fill-in' && conjugations[0]"
             >
               <input type="text" v-model="inputs[0]" />
             </td>
             <td
               class="align-middle"
-              v-show="mode === 'fill-in' && verbData.conjugations[0]"
+              v-show="mode === 'fill-in' && conjugations[0]"
             >
               <button
                 class="btn btn-warning"
                 data-id="0"
-                @click.prevent.stop="toggleHintStatus(0)"
-                v-show="results[0] === false"
+                @click.prevent.stop="toggleAnswerVisibilityByIndex(0)"
+                v-show="areInputsCorrect[0] === false"
               >
-                {{
-                  displayHints[0] ? verbData.conjugations[0] : "&iexcl; &excl;"
-                }}
+                {{ areAnswersVisible[0] ? conjugations[0] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -84,12 +80,10 @@
           <tr class="border">
             <th scope="row" class="w-25 align-middle">tú</th>
             <td class="align-middle h5" v-show="mode === 'view'">
-              {{ verbData.conjugations[1] }}
+              {{ conjugations[1] }}
             </td>
             <td class="align-middle h5" v-show="mode === 'memory'">
-              {{
-                displayToggle ? verbData.conjugations[1] : "&iquest; &quest;"
-              }}
+              {{ isPeekButtonVisible ? conjugations[1] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="mode === 'fill-in'">
               <input type="text" v-model="inputs[1]" />
@@ -97,12 +91,10 @@
             <td class="align-middle" v-show="mode === 'fill-in'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="toggleHintStatus(1)"
-                v-show="results[1] === false"
+                @click.prevent.stop="toggleAnswerVisibilityByIndex(1)"
+                v-show="areInputsCorrect[1] === false"
               >
-                {{
-                  displayHints[1] ? verbData.conjugations[1] : "&iexcl; &excl;"
-                }}
+                {{ areAnswersVisible[1] ? conjugations[1] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -111,12 +103,10 @@
               él <br />ella <br />usted
             </th>
             <td class="align-middle h5" v-show="mode === 'view'">
-              {{ verbData.conjugations[2] }}
+              {{ conjugations[2] }}
             </td>
             <td class="align-middle h5" v-show="mode === 'memory'">
-              {{
-                displayToggle ? verbData.conjugations[2] : "&iquest; &quest;"
-              }}
+              {{ isPeekButtonVisible ? conjugations[2] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="mode === 'fill-in'">
               <input type="text" v-model="inputs[2]" />
@@ -124,55 +114,47 @@
             <td class="align-middle" v-show="mode === 'fill-in'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="toggleHintStatus(2)"
-                v-show="results[2] === false"
+                @click.prevent.stop="toggleAnswerVisibilityByIndex(2)"
+                v-show="areInputsCorrect[2] === false"
               >
-                {{
-                  displayHints[2] ? verbData.conjugations[2] : "&iexcl; &excl;"
-                }}
+                {{ areAnswersVisible[2] ? conjugations[2] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">nosotros</th>
             <td class="align-middle h5" v-show="mode === 'view'">
-              {{ verbData.conjugations[3] }}
+              {{ conjugations[3] }}
             </td>
             <td class="align-middle h5" v-show="mode === 'memory'">
-              {{
-                displayToggle ? verbData.conjugations[3] : "&iquest; &quest;"
-              }}
+              {{ isPeekButtonVisible ? conjugations[3] : "&iquest; &quest;" }}
             </td>
             <td
               class="align-middle"
-              v-show="mode === 'fill-in' && verbData.conjugations[3]"
+              v-show="mode === 'fill-in' && conjugations[3]"
             >
               <input type="text" v-model="inputs[3]" />
             </td>
             <td
               class="align-middle"
-              v-show="mode === 'fill-in' && verbData.conjugations[3]"
+              v-show="mode === 'fill-in' && conjugations[3]"
             >
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="toggleHintStatus(3)"
-                v-show="results[3] === false"
+                @click.prevent.stop="toggleAnswerVisibilityByIndex(3)"
+                v-show="areInputsCorrect[3] === false"
               >
-                {{
-                  displayHints[3] ? verbData.conjugations[3] : "&iexcl; &excl;"
-                }}
+                {{ areAnswersVisible[3] ? conjugations[3] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
           <tr class="border">
             <th scope="row" class="w-25 align-middle">vosotros</th>
             <td class="align-middle h5" v-show="mode === 'view'">
-              {{ verbData.conjugations[4] }}
+              {{ conjugations[4] }}
             </td>
             <td class="align-middle h5" v-show="mode === 'memory'">
-              {{
-                displayToggle ? verbData.conjugations[4] : "&iquest; &quest;"
-              }}
+              {{ isPeekButtonVisible ? conjugations[4] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="mode === 'fill-in'">
               <input type="text" v-model="inputs[4]" />
@@ -180,12 +162,10 @@
             <td class="align-middle" v-show="mode === 'fill-in'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="toggleHintStatus(4)"
-                v-show="results[4] === false"
+                @click.prevent.stop="toggleAnswerVisibilityByIndex(4)"
+                v-show="areInputsCorrect[4] === false"
               >
-                {{
-                  displayHints[4] ? verbData.conjugations[4] : "&iexcl; &excl;"
-                }}
+                {{ areAnswersVisible[4] ? conjugations[4] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -196,12 +176,10 @@
               ustedes
             </th>
             <td class="align-middle h5" v-show="mode === 'view'">
-              {{ verbData.conjugations[5] }}
+              {{ conjugations[5] }}
             </td>
             <td class="align-middle h5" v-show="mode === 'memory'">
-              {{
-                displayToggle ? verbData.conjugations[5] : "&iquest; &quest;"
-              }}
+              {{ isPeekButtonVisible ? conjugations[5] : "&iquest; &quest;" }}
             </td>
             <td class="align-middle" v-show="mode === 'fill-in'">
               <input type="text" v-model="inputs[5]" />
@@ -209,12 +187,10 @@
             <td class="align-middle" v-show="mode === 'fill-in'">
               <button
                 class="btn btn-warning"
-                @click.prevent.stop="toggleHintStatus(5)"
-                v-show="results[5] === false"
+                @click.prevent.stop="toggleAnswerVisibilityByIndex(5)"
+                v-show="areInputsCorrect[5] === false"
               >
-                {{
-                  displayHints[5] ? verbData.conjugations[5] : "&iexcl; &excl;"
-                }}
+                {{ areAnswersVisible[5] ? conjugations[5] : "&iexcl; &excl;" }}
               </button>
             </td>
           </tr>
@@ -261,25 +237,19 @@ export default {
       type: String,
       required: true,
     },
+    // [{...}]
+    // [TODO] 改名字，這是指從 tenseCategory 選出的時態，然後傳出來的動詞變化
     conjugationSet: {
       type: Array,
     },
   },
   data() {
     return {
-      verbData: {
-        infinitive: "",
-        infinitive_english: "",
-        mood: "",
-        mood_english: "",
-        tense: "",
-        tense_english: "",
-        conjugations: [],
-      },
-      inputs: Array(6),
-      results: Array(6),
-      displayToggle: false,
-      displayHints: Array(6).fill(false),
+      conjugations: [],
+      inputs: Array(6).fill(""),
+      areInputsCorrect: Array(6).fill(undefined),
+      isPeekButtonVisible: false,
+      areAnswersVisible: Array(6).fill(false),
     };
   },
   filters: {
@@ -288,73 +258,40 @@ export default {
     },
   },
   created() {
-    // const savedVerbConjugations = JSON.parse(
-    //   localStorage.getItem("verb_conjugations")
-    // );
-    // console.log("saved verb conjugations", savedVerbConjugations);
-
-    // if (!this.verb.infinitive && savedVerbConjugations) {
-    //   this.$store.commit("setVerb", [...savedVerbConjugations]);
-    // }
-
     this.getVerb();
   },
   methods: {
     getVerb() {
-      const {
-        infinitive,
-        infinitive_english,
-        mood,
-        mood_english,
-        tense,
-        tense_english,
-      } = this.verb;
+      const { mood_english, tense_english } = this.verb;
 
-      const conjugationSet = this.verb.allConjugations.filter(
+      // console.log("this.verb.allConjugations", this.verb.allConjugations);
+      const conjugationGroup = this.verb.allConjugations.filter(
         (conjugation) =>
           conjugation.mood_english === mood_english &&
           conjugation.tense_english === tense_english
       )[0];
 
-      let conjugations = [];
+      // console.log("conjugations in ConjugationTable", conjugationGroup);
 
-      if (mood_english.split(" ")[0] === "Imperative") {
-        conjugations = [
-          "",
-          conjugationSet.form_2s,
-          conjugationSet.form_3s,
-          "",
-          conjugationSet.form_2p,
-          conjugationSet.form_3p,
-        ];
-      } else {
-        conjugations = [
-          conjugationSet.form_1s,
-          conjugationSet.form_2s,
-          conjugationSet.form_3s,
-          conjugationSet.form_1p,
-          conjugationSet.form_2p,
-          conjugationSet.form_3p,
-        ];
-      }
+      const { form_1s, form_2s, form_3s, form_1p, form_2p, form_3p } =
+        conjugationGroup;
 
-      this.verbData = {
-        infinitive,
-        infinitive_english,
-        mood,
-        mood_english,
-        tense,
-        tense_english,
-        conjugations,
-      };
+      this.conjugations = [
+        form_1s,
+        form_2s,
+        form_3s,
+        form_1p,
+        form_2p,
+        form_3p,
+      ];
     },
-    togglePeekStatus() {
-      this.displayToggle = !this.displayToggle;
+    togglePeekButtonVisibility() {
+      this.isPeekButtonVisible = !this.isPeekButtonVisible;
     },
-    toggleHintStatus(index) {
-      // 開關個別 tooltip
-      const status = !this.displayHints[index];
-      this.displayHints.splice(index, 1, status);
+    toggleAnswerVisibilityByIndex(index) {
+      // 動詞變化答案按鍵各自獨立，不會一起打開
+      const visibility = !this.areAnswersVisible[index];
+      this.areAnswersVisible.splice(index, 1, visibility);
     },
     markAsActiveInput(event) {
       const currentInput = event.target;
@@ -393,54 +330,36 @@ export default {
       }
     },
     checkInputs() {
-      // 人稱 * 單複數 = 6
-      const numberOfConjugations = 6;
-
       // 強制將輸入文字轉為小寫 + 去除兩旁空格
-      this.inputs = this.inputs.map((input) => {
-        if (input) {
-          return input.trim().toLowerCase();
-        } else {
-          return undefined;
-        }
-      });
+      this.inputs = this.inputs.map((input) =>
+        input ? input.trim().toLowerCase() : ""
+      );
 
       // 比對結果 + 計算正確答案數量
-      this.results = [];
-      for (let i = 0; i < numberOfConjugations; i++) {
-        if (this.inputs[i] === this.verbData.conjugations[i]) {
-          this.results.push(true);
-        } else {
-          this.results.push(false);
-        }
-      }
+      this.areInputsCorrect = this.areInputsCorrect.map(
+        (result, i) => this.inputs[i] === this.conjugations[i]
+      );
     },
   },
   watch: {
     mode: function (newMode) {
-      if (newMode === "memory") this.displayToggle = false;
+      if (newMode === "memory") this.isPeekButtonVisible = false;
     },
     conjugationSet: function (newConjugations) {
-      if (newConjugations.length > 0) {
-        this.verbData.conjugations = [
-          newConjugations[0].form_1s,
-          newConjugations[0].form_2s,
-          newConjugations[0].form_3s,
-          newConjugations[0].form_1p,
-          newConjugations[0].form_2p,
-          newConjugations[0].form_3p,
-        ];
-      }
-    },
-    verbData: {
-      handler: function (newValues) {
-        if (newValues) {
-          this.inputs = Array(6);
-          this.results = Array(6);
-          this.displayHints = Array(6).fill(false);
-        }
-      },
-      deep: true,
+      // 選取新的動詞變化，重設每個人稱的動詞變化
+      this.conjugations = [
+        newConjugations[0].form_1s,
+        newConjugations[0].form_2s,
+        newConjugations[0].form_3s,
+        newConjugations[0].form_1p,
+        newConjugations[0].form_2p,
+        newConjugations[0].form_3p,
+      ];
+
+      // 清除之前輸入內容、清除答案比對結果、隱藏答案提示按鍵
+      this.inputs = Array(6).fill("");
+      this.areInputsCorrect = Array(6).fill(undefined);
+      this.areAnswersVisible = Array(6).fill(false);
     },
   },
   computed: {

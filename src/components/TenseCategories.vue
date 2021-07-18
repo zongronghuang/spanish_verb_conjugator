@@ -161,6 +161,8 @@ export default {
           tense_english,
         });
 
+        console.log("conjugationSet in TenseCategories", conjugationSet);
+
         this.$emit("fetch-conjugation-set", conjugationSet);
       }
     },

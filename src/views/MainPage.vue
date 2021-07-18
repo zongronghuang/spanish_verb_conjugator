@@ -47,6 +47,7 @@ export default {
       this.theme = option;
     },
     fetchConjugationSet(conjugationSet) {
+      console.log("conjugationSet in MainPage", conjugationSet);
       if (conjugationSet.length > 0) this.conjugationSet = conjugationSet;
     },
   },
