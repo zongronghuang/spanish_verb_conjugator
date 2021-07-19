@@ -4,12 +4,15 @@
 
     <div class="d-flex justify-content-between">
       <LeftPanel />
-      <ConjugationTable :mode="mode" :conjugation-set="conjugationSet" />
+      <ConjugationTable
+        :mode="mode"
+        :selectedConjugations="selectedConjugations"
+      />
       <RightPanel />
     </div>
     <BottomPanel />
 
-    <TenseCategories @fetch-conjugation-set="fetchConjugationSet" />
+    <TenseCategories @fetch-selected-conjugations="fetchSelectedConjugations" />
   </div>
 </template>
 
@@ -35,7 +38,7 @@ export default {
     return {
       mode: "view",
       theme: "0",
-      conjugationSet: [],
+      selectedConjugations: [],
     };
   },
   created() {},
@@ -46,9 +49,10 @@ export default {
     changeTheme(option) {
       this.theme = option;
     },
-    fetchConjugationSet(conjugationSet) {
-      console.log("conjugationSet in MainPage", conjugationSet);
-      if (conjugationSet.length > 0) this.conjugationSet = conjugationSet;
+    fetchSelectedConjugations(selectedConjugations) {
+      console.log("selected conjugations in MainPage", selectedConjugations);
+      if (selectedConjugations.length > 0)
+        this.selectedConjugations = selectedConjugations;
     },
   },
 };

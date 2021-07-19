@@ -144,15 +144,15 @@ export default {
         }
 
         // 找到符合 mood 和 tense 的動詞變化
-        const conjugationSet = this.verb.allConjugations.filter(
+        const selectedConjugations = this.verb.allConjugations.filter(
           (conjugation) =>
             conjugation.mood_english === mood_english &&
             conjugation.tense_english === tense_english
         );
 
         // 取得 mood 和 tense 的西班牙文名稱
-        const mood = conjugationSet[0].mood;
-        const tense = conjugationSet[0].tense;
+        const mood = selectedConjugations[0].mood;
+        const tense = selectedConjugations[0].tense;
 
         this.$store.commit("setMoodAndTense", {
           mood,
@@ -161,9 +161,12 @@ export default {
           tense_english,
         });
 
-        console.log("conjugationSet in TenseCategories", conjugationSet);
+        console.log(
+          "selected conjugations in TenseCategories",
+          selectedConjugations
+        );
 
-        this.$emit("fetch-conjugation-set", conjugationSet);
+        this.$emit("fetch-selected-conjugations", selectedConjugations);
       }
     },
   },

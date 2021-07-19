@@ -239,7 +239,7 @@ export default {
     },
     // [{...}]
     // [TODO] 改名字，這是指從 tenseCategory 選出的時態，然後傳出來的動詞變化
-    conjugationSet: {
+    selectedConjugations: {
       type: Array,
     },
   },
@@ -345,15 +345,15 @@ export default {
     mode: function (newMode) {
       if (newMode === "memory") this.isPeekButtonVisible = false;
     },
-    conjugationSet: function (newConjugations) {
+    selectedConjugations: function (newSelectedConjugations) {
       // 選取新的動詞變化，重設每個人稱的動詞變化
       this.conjugations = [
-        newConjugations[0].form_1s,
-        newConjugations[0].form_2s,
-        newConjugations[0].form_3s,
-        newConjugations[0].form_1p,
-        newConjugations[0].form_2p,
-        newConjugations[0].form_3p,
+        newSelectedConjugations[0].form_1s,
+        newSelectedConjugations[0].form_2s,
+        newSelectedConjugations[0].form_3s,
+        newSelectedConjugations[0].form_1p,
+        newSelectedConjugations[0].form_2p,
+        newSelectedConjugations[0].form_3p,
       ];
 
       // 清除之前輸入內容、清除答案比對結果、隱藏答案提示按鍵
