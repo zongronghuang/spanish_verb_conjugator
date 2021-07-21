@@ -41,21 +41,59 @@
     <div class="row mt-3 mb-1">
       <table class="table mx-auto col-6 text-center shadow">
         <tbody @click.prevent.stop="markAsActiveInput">
-          <!-- //////////////////////////////////////////////////// -->
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">yo</th>
+          <!-- /////////Trial ///////////////// -->
+          <tr class="border" v-for="(person, id) in persons" :key="id">
+            <th scope="row" class="w-25 align-middle">{{ persons[id] }}</th>
 
             <!-- view mode -->
             <td class="align-middle h5" v-show="mode === 'view'">
-              {{ conjugations[0] }}
+              {{ conjugations[id] }}
             </td>
 
             <!-- memory mode -->
             <td class="align-middle h5" v-show="mode === 'memory'">
-              {{ isPeekButtonVisible ? conjugations[0] : "&iquest; &quest;" }}
+              {{ isPeekButtonVisible ? conjugations[id] : "&iquest; &quest;" }}
             </td>
 
             <!-- fill-in mode -->
+            <td
+              class="align-middle"
+              v-show="mode === 'fill-in' && conjugations[id]"
+            >
+              <input type="text" v-model="inputs[id]" />
+            </td>
+            <td
+              class="align-middle"
+              v-show="mode === 'fill-in' && conjugations[id]"
+            >
+              <button
+                class="btn btn-warning"
+                data-id="0"
+                @click.prevent.stop="toggleAnswerVisibilityByIndex(id)"
+                v-show="areInputsCorrect[id] === false"
+              >
+                {{
+                  areAnswersVisible[id] ? conjugations[id] : "&iexcl; &excl;"
+                }}
+              </button>
+            </td>
+          </tr>
+          <!-- /////////////Trial /////////////////// -->
+
+          <!-- <tr class="border">
+            <th scope="row" class="w-25 align-middle">yo</th>
+
+           
+            <td class="align-middle h5" v-show="mode === 'view'">
+              {{ conjugations[0] }}
+            </td>
+
+            
+            <td class="align-middle h5" v-show="mode === 'memory'">
+              {{ isPeekButtonVisible ? conjugations[0] : "&iquest; &quest;" }}
+            </td>
+
+          
             <td
               class="align-middle"
               v-show="mode === 'fill-in' && conjugations[0]"
@@ -76,7 +114,7 @@
               </button>
             </td>
           </tr>
-          <!-- //////////////////////////////////////////////////////// -->
+
           <tr class="border">
             <th scope="row" class="w-25 align-middle">tú</th>
             <td class="align-middle h5" v-show="mode === 'view'">
@@ -193,7 +231,7 @@
                 {{ areAnswersVisible[5] ? conjugations[5] : "&iexcl; &excl;" }}
               </button>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -245,6 +283,14 @@ export default {
   },
   data() {
     return {
+      persons: [
+        "yo",
+        "tú",
+        "él/ella/usted",
+        "nosotros",
+        "vosotros",
+        "ellos/ellas/ustedes",
+      ],
       conjugations: [],
       inputs: Array(6).fill(""),
       areInputsCorrect: Array(6).fill(undefined),
@@ -312,7 +358,9 @@ export default {
       const target = event.target;
       const character = target.innerText;
       const activeInput = document.querySelector(".activeInput");
-      const inputs = document.querySelectorAll("input");
+
+      // td > input 避免選到最上方的搜尋 input 元素
+      const inputs = document.querySelectorAll("td > input");
       const activeInputId = [...inputs].findIndex(
         (input) => input === activeInput
       );
