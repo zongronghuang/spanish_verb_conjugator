@@ -4,25 +4,24 @@
       <div class="col-6 mx-auto position-relative" id="upper-display">
         <div class="d-flex flex-column text-center mb-3 mx-1">
           <h1>{{ verb.infinitive | capitalize }}</h1>
-          <span class="h4 mt-2">{{ verb.infinitive_english }}</span>
+          <h5 class="mt-2">{{ verb.infinitive_english }}</h5>
         </div>
 
+        <!-- Peek 按鍵 -->
         <button
           class="btn btn-warning mt-3 font-weight-bold"
           id="peek"
           v-show="mode === 'memory'"
-          @click.stop.prevent="togglePeekButtonVisibility"
+          @click.stop.prevent="toggleMemoryButtonVisibility"
         >
-          <!-- 顯示動詞變化按鍵 -->
           <font-awesome-icon
-            v-show="isPeekButtonVisible"
+            v-show="canPeekAtAnswers"
             :icon="['fas', 'eye-slash']"
             size="1x"
           />
 
-          <!-- 隱藏動詞變化按鍵 -->
           <font-awesome-icon
-            v-show="!isPeekButtonVisible"
+            v-show="!canPeekAtAnswers"
             :icon="['fas', 'eye']"
             size="1x"
           />
@@ -30,20 +29,21 @@
       </div>
     </div>
 
+    <!-- 動詞基本資料 -->
     <div class="row">
       <div class="text-center col-6 mx-auto">
-        <span class="h4 my-4"
-          >{{ verb.mood_english }} {{ verb.tense_english }}</span
-        >
+        <h5 class="my-2">{{ verb.mood_english }} {{ verb.tense_english }}</h5>
       </div>
     </div>
 
+    <!-- 動詞變化表格 -->
     <div class="row mt-3 mb-1">
       <table class="table mx-auto col-6 text-center shadow">
-        <tbody @click.prevent.stop="markAsActiveInput">
-          <!-- /////////Trial ///////////////// -->
+        <tbody @click.prevent.stop="markActiveInput">
           <tr class="border" v-for="(person, id) in persons" :key="id">
-            <th scope="row" class="w-25 align-middle">{{ persons[id] }}</th>
+            <th scope="row" class="w-25 align-middle">
+              {{ persons[id] | breakIntoLines }}
+            </th>
 
             <!-- view mode -->
             <td class="align-middle h5" v-show="mode === 'view'">
@@ -52,7 +52,7 @@
 
             <!-- memory mode -->
             <td class="align-middle h5" v-show="mode === 'memory'">
-              {{ isPeekButtonVisible ? conjugations[id] : "&iquest; &quest;" }}
+              {{ canPeekAtAnswers ? conjugations[id] : "&iquest; &quest;" }}
             </td>
 
             <!-- fill-in mode -->
@@ -78,164 +78,11 @@
               </button>
             </td>
           </tr>
-          <!-- /////////////Trial /////////////////// -->
-
-          <!-- <tr class="border">
-            <th scope="row" class="w-25 align-middle">yo</th>
-
-           
-            <td class="align-middle h5" v-show="mode === 'view'">
-              {{ conjugations[0] }}
-            </td>
-
-            
-            <td class="align-middle h5" v-show="mode === 'memory'">
-              {{ isPeekButtonVisible ? conjugations[0] : "&iquest; &quest;" }}
-            </td>
-
-          
-            <td
-              class="align-middle"
-              v-show="mode === 'fill-in' && conjugations[0]"
-            >
-              <input type="text" v-model="inputs[0]" />
-            </td>
-            <td
-              class="align-middle"
-              v-show="mode === 'fill-in' && conjugations[0]"
-            >
-              <button
-                class="btn btn-warning"
-                data-id="0"
-                @click.prevent.stop="toggleAnswerVisibilityByIndex(0)"
-                v-show="areInputsCorrect[0] === false"
-              >
-                {{ areAnswersVisible[0] ? conjugations[0] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">tú</th>
-            <td class="align-middle h5" v-show="mode === 'view'">
-              {{ conjugations[1] }}
-            </td>
-            <td class="align-middle h5" v-show="mode === 'memory'">
-              {{ isPeekButtonVisible ? conjugations[1] : "&iquest; &quest;" }}
-            </td>
-            <td class="align-middle" v-show="mode === 'fill-in'">
-              <input type="text" v-model="inputs[1]" />
-            </td>
-            <td class="align-middle" v-show="mode === 'fill-in'">
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="toggleAnswerVisibilityByIndex(1)"
-                v-show="areInputsCorrect[1] === false"
-              >
-                {{ areAnswersVisible[1] ? conjugations[1] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">
-              él <br />ella <br />usted
-            </th>
-            <td class="align-middle h5" v-show="mode === 'view'">
-              {{ conjugations[2] }}
-            </td>
-            <td class="align-middle h5" v-show="mode === 'memory'">
-              {{ isPeekButtonVisible ? conjugations[2] : "&iquest; &quest;" }}
-            </td>
-            <td class="align-middle" v-show="mode === 'fill-in'">
-              <input type="text" v-model="inputs[2]" />
-            </td>
-            <td class="align-middle" v-show="mode === 'fill-in'">
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="toggleAnswerVisibilityByIndex(2)"
-                v-show="areInputsCorrect[2] === false"
-              >
-                {{ areAnswersVisible[2] ? conjugations[2] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">nosotros</th>
-            <td class="align-middle h5" v-show="mode === 'view'">
-              {{ conjugations[3] }}
-            </td>
-            <td class="align-middle h5" v-show="mode === 'memory'">
-              {{ isPeekButtonVisible ? conjugations[3] : "&iquest; &quest;" }}
-            </td>
-            <td
-              class="align-middle"
-              v-show="mode === 'fill-in' && conjugations[3]"
-            >
-              <input type="text" v-model="inputs[3]" />
-            </td>
-            <td
-              class="align-middle"
-              v-show="mode === 'fill-in' && conjugations[3]"
-            >
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="toggleAnswerVisibilityByIndex(3)"
-                v-show="areInputsCorrect[3] === false"
-              >
-                {{ areAnswersVisible[3] ? conjugations[3] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">vosotros</th>
-            <td class="align-middle h5" v-show="mode === 'view'">
-              {{ conjugations[4] }}
-            </td>
-            <td class="align-middle h5" v-show="mode === 'memory'">
-              {{ isPeekButtonVisible ? conjugations[4] : "&iquest; &quest;" }}
-            </td>
-            <td class="align-middle" v-show="mode === 'fill-in'">
-              <input type="text" v-model="inputs[4]" />
-            </td>
-            <td class="align-middle" v-show="mode === 'fill-in'">
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="toggleAnswerVisibilityByIndex(4)"
-                v-show="areInputsCorrect[4] === false"
-              >
-                {{ areAnswersVisible[4] ? conjugations[4] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">
-              ellos <br />
-              ellas <br />
-              ustedes
-            </th>
-            <td class="align-middle h5" v-show="mode === 'view'">
-              {{ conjugations[5] }}
-            </td>
-            <td class="align-middle h5" v-show="mode === 'memory'">
-              {{ isPeekButtonVisible ? conjugations[5] : "&iquest; &quest;" }}
-            </td>
-            <td class="align-middle" v-show="mode === 'fill-in'">
-              <input type="text" v-model="inputs[5]" />
-            </td>
-            <td class="align-middle" v-show="mode === 'fill-in'">
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="toggleAnswerVisibilityByIndex(5)"
-                v-show="areInputsCorrect[5] === false"
-              >
-                {{ areAnswersVisible[5] ? conjugations[5] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr> -->
         </tbody>
       </table>
     </div>
 
+    <!-- 特殊字元輸入鍵盤 & 確認按鍵 -->
     <div class="row" v-show="mode === 'fill-in'">
       <div class="col-6 mx-auto" id="lower-display">
         <div
@@ -286,21 +133,34 @@ export default {
       persons: [
         "yo",
         "tú",
-        "él/ella/usted",
+        "él ella usted",
         "nosotros",
         "vosotros",
-        "ellos/ellas/ustedes",
+        "ellos ellas ustedes",
       ],
       conjugations: [],
       inputs: Array(6).fill(""),
       areInputsCorrect: Array(6).fill(undefined),
-      isPeekButtonVisible: false,
+      canPeekAtAnswers: false,
       areAnswersVisible: Array(6).fill(false),
     };
   },
   filters: {
     capitalize(text) {
       return text.toUpperCase();
+    },
+    // 搭配 white-space: pre-wrap
+    breakIntoLines(text) {
+      if (!text.includes(" ")) return text;
+
+      const words = text.split(" ");
+
+      const brokenText = words.reduce((base, word, index) => {
+        if (index === words.length - 1) return base + word;
+        return base + word + "\n";
+      }, ``);
+
+      return brokenText;
     },
   },
   created() {
@@ -331,17 +191,17 @@ export default {
         form_3p,
       ];
     },
-    togglePeekButtonVisibility() {
-      this.isPeekButtonVisible = !this.isPeekButtonVisible;
+    toggleMemoryButtonVisibility() {
+      this.canPeekAtAnswers = !this.canPeekAtAnswers;
     },
     toggleAnswerVisibilityByIndex(index) {
       // 動詞變化答案按鍵各自獨立，不會一起打開
       const visibility = !this.areAnswersVisible[index];
       this.areAnswersVisible.splice(index, 1, visibility);
     },
-    markAsActiveInput(event) {
+    markActiveInput(event) {
       const currentInput = event.target;
-      const inputs = document.querySelectorAll("input");
+      const inputs = document.querySelectorAll("td > input");
 
       // 清除所有 input 的 activeInput class
       inputs.forEach((input) => {
@@ -391,7 +251,7 @@ export default {
   },
   watch: {
     mode: function (newMode) {
-      if (newMode === "memory") this.isPeekButtonVisible = false;
+      if (newMode === "memory") this.canPeekAtAnswers = false;
     },
     selectedConjugations: function (newSelectedConjugations) {
       // 選取新的動詞變化，重設每個人稱的動詞變化
@@ -465,5 +325,9 @@ table {
 
 .activeInput {
   font-weight: bold;
+}
+
+th {
+  white-space: pre-wrap;
 }
 </style>
