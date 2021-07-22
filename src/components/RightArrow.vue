@@ -1,42 +1,42 @@
 <template>
   <div
     class="d-flex align-items-center w-25 justify-content-center"
-    id="left-panel"
+    id="right-panel"
   >
     <router-link
       class="d-inline-block text-decoration-none w-100 h-100 position-relative"
-      id="left-arrow"
+      id="right-arrow"
       to=""
-      title="Back"
+      title="Next"
     ></router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: "left-panel",
+  name: "right-arrow",
 };
 </script>
 
 <style scoped>
-#left-panel {
+#right-panel {
   width: 10%;
 }
 
-#left-panel a {
+#right-panel a {
   visibility: hidden;
 }
 
-#left-panel:hover a {
+#right-panel:hover a {
   visibility: visible;
 }
 
-#left-arrow::after {
-  content: "\21E6";
+#right-arrow::before {
+  content: "\21E8";
   display: inline-block;
   position: absolute;
   top: 45%;
-  right: 0%;
+  left: 0%;
   height: 100%;
   font-size: 3rem;
 }

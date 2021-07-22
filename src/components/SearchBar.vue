@@ -115,7 +115,7 @@ import datasetAPIs from "../apis/dataset.js";
 import { mapState } from "vuex";
 
 export default {
-  name: "search",
+  name: "search-bar",
   data() {
     return {
       input: "",

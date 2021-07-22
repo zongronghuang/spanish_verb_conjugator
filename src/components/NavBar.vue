@@ -38,7 +38,7 @@
 import SearchBar from "./SearchBar.vue";
 
 export default {
-  name: "control-panel",
+  name: "nav-bar",
   data() {
     return {
       mode: "view",

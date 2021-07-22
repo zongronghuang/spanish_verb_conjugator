@@ -1,37 +1,37 @@
 <template>
   <div id="conjugation-page">
-    <ControlPanel @change-mode="changeMode" @change-theme="changeTheme" />
+    <NavBar @change-mode="changeMode" @change-theme="changeTheme" />
 
     <div class="d-flex justify-content-between">
-      <LeftPanel />
+      <LeftArrow />
       <ConjugationTable
         :mode="mode"
         :selectedConjugations="selectedConjugations"
       />
-      <RightPanel />
+      <RightArrow />
     </div>
     <BottomPanel />
 
-    <TenseCategories @fetch-selected-conjugations="fetchSelectedConjugations" />
+    <TenseMenu @fetch-selected-conjugations="fetchSelectedConjugations" />
   </div>
 </template>
 
 <script>
-import TenseCategories from "../components/TenseCategories.vue";
-import ControlPanel from "../components/ControlPanel.vue";
+import TenseMenu from "../components/TenseMenu.vue";
+import NavBar from "../components/NavBar.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
-import LeftPanel from "../components/LeftPanel.vue";
-import RightPanel from "../components/RightPanel.vue";
+import LeftArrow from "../components/LeftArrow.vue";
+import RightArrow from "../components/RightArrow.vue";
 import BottomPanel from "../components/BottomPanel.vue";
 
 export default {
-  name: "conjugation-card",
+  name: "main-page",
   components: {
-    TenseCategories,
-    ControlPanel,
+    TenseMenu,
+    NavBar,
     ConjugationTable,
-    LeftPanel,
-    RightPanel,
+    LeftArrow,
+    RightArrow,
     BottomPanel,
   },
   data() {

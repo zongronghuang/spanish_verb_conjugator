@@ -87,7 +87,7 @@
 import { mapState } from "vuex";
 
 export default {
-  name: "tense-categories",
+  name: "tense-menu",
   filters: {
     removeMood(tense) {
       const newTense = tense.split(" ");

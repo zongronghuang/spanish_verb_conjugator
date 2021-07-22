@@ -26,7 +26,7 @@
 import SearchBar from "../components/SearchBar.vue";
 
 export default {
-  name: "search",
+  name: "search-page",
   components: {
     SearchBar,
   },

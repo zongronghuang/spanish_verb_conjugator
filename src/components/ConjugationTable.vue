@@ -123,7 +123,6 @@ export default {
       required: true,
     },
     // [{...}]
-    // [TODO] 改名字，這是指從 tenseCategory 選出的時態，然後傳出來的動詞變化
     selectedConjugations: {
       type: Array,
     },
@@ -231,8 +230,7 @@ export default {
 
         activeInput.value = activeInput.value + character;
         updatedInputs[activeInputId] = activeInput.value;
-        this.inputs = [];
-        updatedInputs.forEach((update) => this.inputs.push(update));
+        this.inputs = [...updatedInputs];
 
         activeInput.focus();
       }
