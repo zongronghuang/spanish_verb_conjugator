@@ -5,12 +5,12 @@ import store from './store'
 import 'normalize.css/normalize.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 // 匯入 fontawesome 圖示
-import { faKeyboard, faSearch, faUserNinja, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { faKeyboard, faSearch, faClipboardList, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 // 加入所需要的 fontawesome 圖示
 // fa-book => faBook
-library.add(faKeyboard, faSearch, faUserNinja, faEye, faEyeSlash)
+library.add(faKeyboard, faSearch, faClipboardList, faEye, faEyeSlash)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

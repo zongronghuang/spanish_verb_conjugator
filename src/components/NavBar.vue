@@ -3,15 +3,17 @@
     <nav class="nav py-2 bg-primary d-flex justify-content-between">
       <!-- Logo -->
       <div
-        class="ml-2 text-white d-flex justify-content-center"
+        class="ml-2 text-white d-flex align-items-center justify-content-center"
         id="logo"
-        title="動詞詳細資料"
+        title="Top 20 irregular verbs"
+        @click.prevent.stop=""
       >
-        <font-awesome-icon :icon="['fas', 'user-ninja']" size="3x" />
+        <font-awesome-icon :icon="['fas', 'clipboard-list']" size="2x" />
+        <span class="ml-2">Top 20 verbs</span>
       </div>
-      <!-- 
-         用 modal 顯示附加資料：英文翻譯、gerund、participle 和 API 例句
-      -->
+
+      <!-- 最常見的 20 個不規則動詞列表 -->
+      <IrregularVerbList />
 
       <!-- 搜尋欄 -->
       <SearchBar />
@@ -36,6 +38,7 @@
 
 <script>
 import SearchBar from "./SearchBar.vue";
+import IrregularVerbList from "./IrregularVerbList.vue";
 
 export default {
   name: "nav-bar",
@@ -47,6 +50,7 @@ export default {
   },
   components: {
     SearchBar,
+    IrregularVerbList,
   },
 };
 </script>
@@ -58,3 +62,4 @@ export default {
   min-width: 10%;
 }
 </style>
+
