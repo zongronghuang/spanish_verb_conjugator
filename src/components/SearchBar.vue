@@ -175,7 +175,7 @@ export default {
       }
 
       // 轉址到 conjugation card 頁面
-      this.$router.push("/conjugation_card");
+      this.$router.push("/spanish-conjugator");
     },
     collapseAlert() {
       this.alert = "";

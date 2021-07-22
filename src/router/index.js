@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import NotFound from '../views/NotFound.vue'
-import Search from '../views/SearchPage.vue'
-import ConjugationCard from '../views/MainPage.vue'
+import SearchPage from '../views/SearchPage.vue'
+import MainPage from '../views/MainPage.vue'
 
 Vue.use(VueRouter)
 
@@ -13,18 +12,18 @@ const routes = [
   },
   {
     path: '/search',
-    name: 'search',
-    component: Search
+    name: 'search-page',
+    component: SearchPage
   },
   {
-    path: '/conjugation_card',
-    name: 'conjugation-card',
-    component: ConjugationCard
+    path: '/spanish-conjugator',
+    name: 'main-page',
+    component: MainPage
   },
   {
     path: '*',
     name: 'not-found',
-    component: NotFound
+    redirect: '/search',
   }
 ]
 
