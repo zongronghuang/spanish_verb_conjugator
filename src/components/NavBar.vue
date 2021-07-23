@@ -1,19 +1,19 @@
 <template>
   <div>
     <nav class="nav py-2 bg-primary d-flex justify-content-between">
-      <!-- Logo -->
+      <!-- 常見不規則動詞列表 -->
       <div
-        class="ml-2 text-white d-flex align-items-center justify-content-center"
-        id="logo"
-        title="Top 20 irregular verbs"
-        @click.prevent.stop=""
+        class="w-25 text-white d-flex align-items-center justify-content-center"
+        id="irregular-infinitive-list"
+        title="Top irregular verbs"
+        @click.prevent.stop="toggleIrregularInfinitiveListVisibility"
       >
         <font-awesome-icon :icon="['fas', 'clipboard-list']" size="2x" />
-        <span class="ml-2">Top 20 verbs</span>
+        <span class="ml-2">Top irregular verbs</span>
       </div>
 
       <!-- 最常見的 20 個不規則動詞列表 -->
-      <IrregularVerbList />
+      <IrregularInfinitiveList v-show="isIrregularInfinitiveListVisible" />
 
       <!-- 搜尋欄 -->
       <SearchBar />
@@ -38,28 +38,38 @@
 
 <script>
 import SearchBar from "./SearchBar.vue";
-import IrregularVerbList from "./IrregularVerbList.vue";
+import IrregularInfinitiveList from "./IrregularInfinitiveList.vue";
 
 export default {
   name: "nav-bar",
+  components: {
+    SearchBar,
+    IrregularInfinitiveList,
+  },
   data() {
     return {
       mode: "view",
-      theme: 0,
+      isIrregularInfinitiveListVisible: false,
     };
   },
-  components: {
-    SearchBar,
-    IrregularVerbList,
+  methods: {
+    toggleIrregularInfinitiveListVisibility() {
+      this.isIrregularInfinitiveListVisible =
+        !this.isIrregularInfinitiveListVisible;
+    },
   },
 };
 </script>
 
 <style scoped>
 #mode-menu,
-#logo {
+#irregular-infinitive-list {
   width: 15%;
   min-width: 10%;
+}
+
+#irregular-infinitive-list {
+  cursor: pointer;
 }
 </style>
 

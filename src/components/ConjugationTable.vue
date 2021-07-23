@@ -169,7 +169,7 @@ export default {
     getVerb() {
       const { mood_english, tense_english } = this.verb;
 
-      // console.log("this.verb.allConjugations", this.verb.allConjugations);
+      console.log("this.verb.allConjugations", this.verb.allConjugations);
       const conjugationGroup = this.verb.allConjugations.filter(
         (conjugation) =>
           conjugation.mood_english === mood_english &&
@@ -251,6 +251,26 @@ export default {
     mode: function (newMode) {
       if (newMode === "memory") this.canPeekAtAnswers = false;
     },
+    // 關注 vuex 中的 verb 物件是否改變 (處理 IrregularInfinitiveList 所選的特殊動詞)
+    verb: function (newVerb) {
+      const { allConjugations, tense_english, mood_english } = newVerb;
+
+      const conjugations = allConjugations.filter(
+        (conjugations) =>
+          conjugations.tense_english === tense_english &&
+          conjugations.mood_english === mood_english
+      );
+
+      this.conjugations = [
+        conjugations[0].form_1s,
+        conjugations[0].form_2s,
+        conjugations[0].form_3s,
+        conjugations[0].form_1p,
+        conjugations[0].form_2p,
+        conjugations[0].form_3p,
+      ];
+    },
+    // 處理 TenseMenu 傳入的動態變化
     selectedConjugations: function (newSelectedConjugations) {
       // 選取新的動詞變化，重設每個人稱的動詞變化
       this.conjugations = [
@@ -270,8 +290,11 @@ export default {
   },
   computed: {
     ...mapState({
-      verb: (state) => state.verb,
-      verbAlias: "verb",
+      verb: (state) => {
+        console.log("computed verb from CT");
+        return state.verb;
+      },
+      infinitives: (state) => state.infinitives,
     }),
   },
 };

@@ -16,7 +16,7 @@ const routes = [
     component: SearchPage
   },
   {
-    path: "/spanish-conjugator",
+    path: "/spanish-conjugator/:infinitive",
     name: 'main-page',
     component: MainPage
   },

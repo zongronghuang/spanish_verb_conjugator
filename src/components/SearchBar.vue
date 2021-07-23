@@ -175,7 +175,7 @@ export default {
       }
 
       // 轉址到 conjugation card 頁面
-      this.$router.push("/spanish-conjugator");
+      this.$router.push(`/spanish-conjugator/${infinitive}`);
     },
     collapseAlert() {
       this.alert = "";

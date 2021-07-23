@@ -1,15 +1,17 @@
 <template>
-  <section class="border border-danger">
-    <ul class="w-100 d-flex flex-column px-0">
+  <section class="py-0 border bg-light shadow">
+    <ul class="w-100 d-flex flex-column px-0 my-0">
       <li
-        class="text-center border border-primary"
-        v-for="(verb, index) in irregularVerbs"
+        class="h5 text-dark text-center my-0"
+        v-for="(infinitive, index) in irregularInfinitives"
         :key="index"
-        :title="verb"
+        :title="infinitive"
       >
-        <router-link :to="{ path: 'search', query: { verb } }">{{
-          irregularVerbs[index]
-        }}</router-link>
+        <router-link
+          class="my-0 text-decoration-none"
+          :to="{ name: 'main-page', params: { infinitive } }"
+          >{{ irregularInfinitives[index] }}</router-link
+        >
       </li>
     </ul>
   </section>
@@ -17,10 +19,10 @@
 
 <script>
 export default {
-  name: "irregular-verb-list",
+  name: "irregular-infinitive-list",
   data() {
     return {
-      irregularVerbs: [
+      irregularInfinitives: [
         "ser",
         "estar",
         "haber",
@@ -52,7 +54,15 @@ export default {
 section {
   position: absolute;
   top: 60px;
-  left: 20px;
+  left: 7%;
+  z-index: 99;
+
+  width: 150px;
+
+  /* border-right: 2px solid blue;
+  border-left: 2px solid blue;
+  border-bottom: 2px solid blue; */
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -63,6 +73,11 @@ li {
 
 li:hover {
   background-color: lightgray;
+}
+
+a {
+  height: 100%;
+  line-height: 2rem;
 }
 </style>
 

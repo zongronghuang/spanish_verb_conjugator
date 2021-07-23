@@ -1,6 +1,6 @@
 <template>
   <div id="conjugation-page">
-    <NavBar @change-mode="changeMode" @change-theme="changeTheme" />
+    <NavBar @change-mode="changeMode" />
 
     <div class="d-flex justify-content-between">
       <LeftArrow />
@@ -24,6 +24,9 @@ import LeftArrow from "../components/LeftArrow.vue";
 import RightArrow from "../components/RightArrow.vue";
 import BottomPanel from "../components/BottomPanel.vue";
 
+import { mapState } from "vuex";
+import datasetAPIs from "../apis/dataset.js";
+
 export default {
   name: "main-page",
   components: {
@@ -37,23 +40,46 @@ export default {
   data() {
     return {
       mode: "view",
-      theme: "0",
       selectedConjugations: [],
     };
   },
   created() {},
+  beforeRouteUpdate(to, from, next) {
+    console.log("to", to, "from", from);
+
+    const { infinitive } = to.params;
+    console.log("to infinitive", infinitive);
+
+    // 取得 infinitive 的所有動詞變化
+    const conjugations = datasetAPIs.getAllConjugationsByVerb(
+      infinitive,
+      this.infinitives
+    );
+
+    console.log("conjugations in MainPage", conjugations);
+
+    if (conjugations.length > 0) {
+      this.$store.commit("setVerb", conjugations);
+      localStorage.setItem("verb_conjugations", JSON.stringify(conjugations));
+    } else {
+      return;
+    }
+    // 放到 vuex 中
+
+    next();
+  },
   methods: {
     changeMode(option) {
       this.mode = option;
-    },
-    changeTheme(option) {
-      this.theme = option;
     },
     fetchSelectedConjugations(selectedConjugations) {
       console.log("selected conjugations in MainPage", selectedConjugations);
       if (selectedConjugations.length > 0)
         this.selectedConjugations = selectedConjugations;
     },
+  },
+  computed: {
+    ...mapState(["infinitives"]),
   },
 };
 </script>
