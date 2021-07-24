@@ -1,20 +1,31 @@
 <template>
   <div
-    class="d-flex align-items-center w-25 justify-content-center"
+    class="d-flex align-items-center justify-content-center"
     id="right-panel"
   >
-    <router-link
-      class="d-inline-block text-decoration-none w-100 h-100 position-relative"
-      id="right-arrow"
-      to=""
-      title="Next"
-    ></router-link>
+    <div @click.prevent.stop="blurAndUnblurConjugationTable">
+      <router-link
+        class="
+          d-inline-block
+          text-decoration-none
+          w-100
+          h-100
+          position-relative
+        "
+        id="right-arrow"
+        to=""
+        title="Next"
+      ></router-link>
+    </div>
   </div>
 </template>
 
 <script>
+import { blurAndUnblurConjugationTable } from "../utils/mixins.js";
+
 export default {
   name: "right-arrow",
+  mixins: [blurAndUnblurConjugationTable],
 };
 </script>
 

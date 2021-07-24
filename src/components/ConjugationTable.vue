@@ -1,5 +1,5 @@
 <template>
-  <div class="container pt-2">
+  <div class="pt-2 px-0 mx-0" id="conjugation-table">
     <div class="row mb-1">
       <div class="col-6 mx-auto position-relative" id="upper-display">
         <div class="d-flex flex-column text-center mb-3 mx-1">
@@ -301,10 +301,15 @@ export default {
 </script>
 
 <style scoped>
+#conjugation-table {
+  min-width: 400px;
+}
+
 #upper-display,
 #lower-display,
 table {
-  min-width: 400px;
+  max-width: 400px;
+  min-width: 300px;
 }
 
 #peek {
@@ -340,12 +345,12 @@ table {
   margin-bottom: 60px;
 }
 
-#xxx {
-  filter: blur(5px);
-}
-
 .activeInput {
   font-weight: bold;
+}
+
+.blurry-table {
+  filter: blur(5px);
 }
 
 th {

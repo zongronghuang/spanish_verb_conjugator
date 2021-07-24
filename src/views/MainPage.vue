@@ -1,8 +1,8 @@
 <template>
-  <div id="conjugation-page">
+  <div id="main-page">
     <NavBar @change-mode="changeMode" />
 
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-center">
       <LeftArrow />
       <ConjugationTable
         :mode="mode"
@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style scoped>
-#conjugation-page {
+#main-page {
   height: 100vh;
 }
 </style>
