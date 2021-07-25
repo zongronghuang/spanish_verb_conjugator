@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex align-items-center justify-content-center" id="left-panel">
-    <div @click.prevent.stop="blurAndUnblurConjugationTable">
+    <div @click.prevent.stop="switchToNewConjugationGroup('back')">
       <router-link
         class="
           d-inline-block
@@ -18,11 +18,17 @@
 </template>
 
 <script>
-import { blurAndUnblurConjugationTable } from "../utils/mixins.js";
+import { switchToNewConjugationGroup } from "../utils/mixins.js";
+import { mapState } from "vuex";
 
 export default {
   name: "left-arrow",
-  mixins: [blurAndUnblurConjugationTable],
+  mixins: [switchToNewConjugationGroup],
+  computed: {
+    ...mapState({
+      verb: (state) => state.verb,
+    }),
+  },
 };
 </script>
 

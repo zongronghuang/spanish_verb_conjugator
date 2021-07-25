@@ -8,7 +8,7 @@
         :mode="mode"
         :selectedConjugations="selectedConjugations"
       />
-      <RightArrow />
+      <RightArrow @fetch-selected-conjugations="fetchSelectedConjugations" />
     </div>
     <BottomPanel />
 
@@ -73,6 +73,7 @@ export default {
       this.mode = option;
     },
     fetchSelectedConjugations(selectedConjugations) {
+      // [{...}]
       console.log("selected conjugations in MainPage", selectedConjugations);
       if (selectedConjugations.length > 0)
         this.selectedConjugations = selectedConjugations;
