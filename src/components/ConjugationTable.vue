@@ -3,8 +3,8 @@
     <div class="row mb-1">
       <div class="col-6 mx-auto position-relative" id="upper-display">
         <div class="d-flex flex-column text-center mb-3 mx-1">
-          <h1>{{ verb.infinitive | capitalize }}</h1>
-          <h5 class="mt-2">{{ verb.infinitive_english }}</h5>
+          <h2 class="mt-1">{{ verb.infinitive | capitalize }}</h2>
+          <h6 class="mt-1">{{ verb.infinitive_english }}</h6>
         </div>
 
         <!-- Peek 按鍵 -->
@@ -32,7 +32,7 @@
     <!-- 動詞基本資料 -->
     <div class="row">
       <div class="text-center col-6 mx-auto">
-        <h5 class="my-2">{{ verb.mood_english }} {{ verb.tense_english }}</h5>
+        <h5>{{ verb.mood_english }} {{ verb.tense_english }}</h5>
       </div>
     </div>
 

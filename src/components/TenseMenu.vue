@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex" @click="selectTense">
+  <div class="d-flex" @click="selectTense" id="tense-menu">
     <div
       class="btn-group dropup flex-grow-1"
       role="group"
