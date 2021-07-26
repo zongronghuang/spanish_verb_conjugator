@@ -22,7 +22,7 @@
     </div>
 
     <!-- 搜尋欄 -->
-    <div class="input-group pb-1" id="search-bar">
+    <div class="input-group" id="search-bar">
       <input
         type="text"
         class="form-control shadow font-weight-bold"

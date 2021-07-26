@@ -9,13 +9,15 @@
           d-inline-block
           text-decoration-none
           w-100
-          h-100
           position-relative
+          text-info
         "
         id="right-arrow"
         to=""
         title="Next"
-      ></router-link>
+      >
+        <font-awesome-icon :icon="['fas', 'chevron-circle-right']" size="3x" />
+      </router-link>
     </div>
   </div>
 </template>
@@ -37,7 +39,7 @@ export default {
 
 <style scoped>
 #right-panel {
-  width: 10%;
+  width: 100px;
 }
 
 #right-panel a {
@@ -46,15 +48,5 @@ export default {
 
 #right-panel:hover a {
   visibility: visible;
-}
-
-#right-arrow::before {
-  content: "\21E8";
-  display: inline-block;
-  position: absolute;
-  top: 45%;
-  left: 0%;
-  height: 100%;
-  font-size: 3rem;
 }
 </style>

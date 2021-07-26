@@ -19,7 +19,7 @@
       <SearchBar />
 
       <!-- 使用模式選單 -->
-      <div id="mode-menu" class="mt-1 mr-2">
+      <div id="mode-menu" class="mr-2">
         <select
           class="custom-select text-white bg-primary"
           v-model="mode"

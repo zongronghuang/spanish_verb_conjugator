@@ -6,13 +6,15 @@
           d-inline-block
           text-decoration-none
           w-100
-          h-100
           position-relative
+          text-info
         "
         id="left-arrow"
         to=""
         title="Back"
-      ></router-link>
+      >
+        <font-awesome-icon :icon="['fas', 'chevron-circle-left']" size="3x" />
+      </router-link>
     </div>
   </div>
 </template>
@@ -34,7 +36,7 @@ export default {
 
 <style scoped>
 #left-panel {
-  width: 10%;
+  width: 100px;
 }
 
 #left-panel a {
@@ -43,15 +45,5 @@ export default {
 
 #left-panel:hover a {
   visibility: visible;
-}
-
-#left-arrow::after {
-  content: "\21E6";
-  display: inline-block;
-  position: absolute;
-  top: 45%;
-  right: 0%;
-  height: 100%;
-  font-size: 3rem;
 }
 </style>

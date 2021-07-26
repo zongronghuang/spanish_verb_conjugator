@@ -1,5 +1,5 @@
 <template>
-  <section class="py-0 border bg-light shadow">
+  <section class="py-0 border shadow">
     <ul class="w-100 d-flex flex-column px-0 my-0">
       <li
         class="h5 text-dark text-center my-0"
@@ -59,11 +59,11 @@ section {
 
   width: 150px;
 
+  background-color: #93aa92;
   /* border-right: 2px solid blue;
   border-left: 2px solid blue;
   border-bottom: 2px solid blue; */
   border-radius: 5px;
-  cursor: pointer;
 }
 
 li {

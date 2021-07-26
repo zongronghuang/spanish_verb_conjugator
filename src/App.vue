@@ -30,6 +30,10 @@ body {
   width: 100%;
   border: none;
 }
+
+#verb-conjugator {
+  background-color: #93aa92;
+}
 </style>
 
 

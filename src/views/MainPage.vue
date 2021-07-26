@@ -10,7 +10,6 @@
       />
       <RightArrow @fetch-selected-conjugations="fetchSelectedConjugations" />
     </div>
-    <BottomPanel />
 
     <TenseMenu @fetch-selected-conjugations="fetchSelectedConjugations" />
   </div>
@@ -22,7 +21,6 @@ import NavBar from "../components/NavBar.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
 import LeftArrow from "../components/LeftArrow.vue";
 import RightArrow from "../components/RightArrow.vue";
-import BottomPanel from "../components/BottomPanel.vue";
 
 import { mapState } from "vuex";
 import datasetAPIs from "../apis/dataset.js";
@@ -35,7 +33,6 @@ export default {
     ConjugationTable,
     LeftArrow,
     RightArrow,
-    BottomPanel,
   },
   data() {
     return {
