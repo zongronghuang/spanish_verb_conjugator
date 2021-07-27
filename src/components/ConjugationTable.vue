@@ -2,9 +2,19 @@
   <div class="pt-2 px-0 mx-0" id="conjugation-table">
     <div class="row mb-1">
       <div class="col-6 mx-auto position-relative" id="upper-display">
-        <div class="d-flex flex-column text-center mb-3 mx-1">
+        <div
+          class="d-flex flex-column text-center mb-3 mx-1"
+          @mouseover.prevent.stop="toggleParticipleTagVisibility"
+          @mouseout.prevent.stop="toggleParticipleTagVisibility"
+        >
           <h2 class="mt-1">{{ verb.infinitive | capitalize }}</h2>
           <h6 class="mt-1">{{ verb.infinitive_english }}</h6>
+
+          <ParticipleTag
+            :gerund="verb.gerund"
+            :pastParticiple="verb.pastParticiple"
+            v-if="isParticipleTagVisible"
+          />
         </div>
 
         <!-- Peek 按鍵 -->
@@ -114,9 +124,13 @@
 
 <script>
 import { mapState } from "vuex";
+import ParticipleTag from "./ParticipleTag.vue";
 
 export default {
   name: "conjugation-table",
+  components: {
+    ParticipleTag,
+  },
   props: {
     mode: {
       type: String,
@@ -142,6 +156,7 @@ export default {
       areInputsCorrect: Array(6).fill(undefined),
       canPeekAtAnswers: false,
       areAnswersVisible: Array(6).fill(false),
+      isParticipleTagVisible: false,
     };
   },
   filters: {
@@ -197,6 +212,17 @@ export default {
       // 動詞變化答案按鍵各自獨立，不會一起打開
       const visibility = !this.areAnswersVisible[index];
       this.areAnswersVisible.splice(index, 1, visibility);
+    },
+    toggleParticipleTagVisibility(event) {
+      if (event.type === "mouseover") {
+        console.log({ type: event.type });
+        this.isParticipleTagVisible = true;
+      }
+
+      if (event.type === "mouseout") {
+        console.log({ type: event.type });
+        this.isParticipleTagVisible = false;
+      }
     },
     markActiveInput(event) {
       const currentInput = event.target;
@@ -318,18 +344,6 @@ table {
   top: 0%;
 }
 
-#add-to-list {
-  position: absolute;
-  left: 0%;
-  top: -5%;
-}
-
-#hits {
-  position: absolute;
-  top: 0%;
-  right: 0%;
-}
-
 #stressed-letters {
   position: absolute;
   left: 0%;
@@ -343,6 +357,12 @@ table {
 
 #lower-display {
   margin-bottom: 60px;
+}
+
+#participle-tag {
+  left: 200px;
+  z-index: 50;
+  background-color: yellow;
 }
 
 .activeInput {
