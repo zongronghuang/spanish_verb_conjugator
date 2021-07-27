@@ -4,18 +4,18 @@
       <div class="col-6 mx-auto position-relative" id="upper-display">
         <div
           class="d-flex flex-column text-center mb-3 mx-1"
-          @mouseover.prevent.stop="toggleParticipleTagVisibility"
-          @mouseout.prevent.stop="toggleParticipleTagVisibility"
+          @mouseenter.prevent.stop="toggleParticipleTagVisibility"
+          @mouseleave.prevent.stop="toggleParticipleTagVisibility"
         >
           <h2 class="mt-1">{{ verb.infinitive | capitalize }}</h2>
           <h6 class="mt-1">{{ verb.infinitive_english }}</h6>
-
-          <ParticipleTag
-            :gerund="verb.gerund"
-            :pastParticiple="verb.pastParticiple"
-            v-if="isParticipleTagVisible"
-          />
         </div>
+
+        <ParticipleTag
+          v-if="isParticipleTagVisible"
+          :gerund="verb.gerund"
+          :pastParticiple="verb.pastParticiple"
+        />
 
         <!-- Peek 按鍵 -->
         <button
@@ -214,13 +214,11 @@ export default {
       this.areAnswersVisible.splice(index, 1, visibility);
     },
     toggleParticipleTagVisibility(event) {
-      if (event.type === "mouseover") {
-        console.log({ type: event.type });
+      if (event.type === "mouseenter") {
         this.isParticipleTagVisible = true;
       }
 
-      if (event.type === "mouseout") {
-        console.log({ type: event.type });
+      if (event.type === "mouseleave") {
         this.isParticipleTagVisible = false;
       }
     },
@@ -357,12 +355,6 @@ table {
 
 #lower-display {
   margin-bottom: 60px;
-}
-
-#participle-tag {
-  left: 200px;
-  z-index: 50;
-  background-color: yellow;
 }
 
 .activeInput {
