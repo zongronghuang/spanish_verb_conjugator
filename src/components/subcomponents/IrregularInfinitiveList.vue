@@ -1,14 +1,15 @@
 <template>
   <section class="py-0 border shadow">
-    <ul class="w-100 d-flex flex-column px-0 my-0">
+    <div id="tooltip-arrow"></div>
+    <ul class="w-100 d-flex flex-column my-0 px-0">
       <li
-        class="h5 text-dark text-center my-0"
+        class="h5 text-left my-0 mx-0 px-0"
         v-for="(infinitive, index) in irregularInfinitives"
         :key="index"
         :title="infinitive"
       >
         <router-link
-          class="my-0 text-decoration-none"
+          class="my-0 text-decoration-none pl-1"
           :to="{ name: 'main-page', params: { infinitive } }"
           >{{ irregularInfinitives[index] }}</router-link
         >
@@ -46,7 +47,6 @@ export default {
       ],
     };
   },
-  methods: {},
 };
 </script>
 
@@ -57,13 +57,22 @@ section {
   left: 7%;
   z-index: 99;
 
-  width: 150px;
+  width: 100px;
 
   background-color: #93aa92;
-  /* border-right: 2px solid blue;
-  border-left: 2px solid blue;
-  border-bottom: 2px solid blue; */
   border-radius: 5px;
+}
+
+#tooltip-arrow {
+  position: absolute;
+  top: -30px;
+  left: 37px;
+
+  width: 15px;
+  height: 15px;
+
+  border: 15px solid transparent;
+  border-bottom: 15px solid white;
 }
 
 li {
