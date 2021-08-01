@@ -3,7 +3,7 @@
     <div id="tooltip-arrow"></div>
     <ul class="w-100 d-flex flex-column my-0 px-0">
       <li
-        class="h5 text-left my-0 mx-0 px-0"
+        class="h5 my-0 mx-0 px-0"
         v-for="(infinitive, index) in irregularInfinitives"
         :key="index"
         :title="infinitive"

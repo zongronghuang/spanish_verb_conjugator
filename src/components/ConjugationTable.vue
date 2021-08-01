@@ -4,6 +4,7 @@
       <div class="col-6 mx-auto position-relative" id="upper-display">
         <div
           class="d-flex flex-column text-center mb-3 mx-1"
+          id="infinitive-profile"
           @mouseenter.prevent.stop="toggleParticipleTagVisibility"
           @mouseleave.prevent.stop="toggleParticipleTagVisibility"
         >
@@ -48,20 +49,20 @@
 
     <!-- 動詞變化表格 -->
     <div class="row mt-3 mb-1">
-      <table class="table mx-auto col-6 text-center shadow">
+      <table class="table mx-auto col-6 shadow">
         <tbody @click.prevent.stop="markActiveInput">
           <tr class="border" v-for="(person, id) in persons" :key="id">
-            <th scope="row" class="w-25">
+            <th scope="row" class="w-25 align-middle">
               {{ persons[id] | breakIntoLines }}
             </th>
 
             <!-- view mode -->
-            <td class="align-middle h5" v-show="mode === 'view'">
+            <td class="align-middle h5 pl-5" v-show="mode === 'view'">
               {{ conjugations[id] }}
             </td>
 
             <!-- memory mode -->
-            <td class="align-middle h5" v-show="mode === 'memory'">
+            <td class="align-middle h5 pl-5" v-show="mode === 'memory'">
               {{ canPeekAtAnswers ? conjugations[id] : "&iquest; &quest;" }}
             </td>
 
@@ -78,7 +79,6 @@
             >
               <button
                 class="btn btn-warning"
-                data-id="0"
                 @click.prevent.stop="toggleAnswerVisibilityByIndex(id)"
                 v-show="areInputsCorrect[id] === false"
               >
@@ -171,10 +171,8 @@ export default {
 
       const brokenText = words.reduce((base, word, index) => {
         if (index === words.length - 1) return base + word;
-        return base + word + "\n";
+        return base + word + "\n ";
       }, ``);
-
-      console.log({ brokenText });
 
       return brokenText;
     },
@@ -357,6 +355,10 @@ table {
 
 #lower-display {
   margin-bottom: 60px;
+}
+
+#infinitive-profile {
+  cursor: help;
 }
 
 .activeInput {
