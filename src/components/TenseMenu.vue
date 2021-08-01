@@ -1,7 +1,8 @@
 <template>
   <div class="d-flex" @click="selectTense" id="tense-menu">
+    <!-- Indicative 語氣時態選項 -->
     <div
-      class="btn-group dropup flex-grow-1"
+      class="btn-group dropup flex-grow-1 px-0"
       role="group"
       aria-label="Basic example"
     >
@@ -14,19 +15,21 @@
       >
         Indicative
       </button>
-      <div class="dropdown-menu w-100 text-center">
-        <!-- Dropdown menu links -->
-        <a
-          class="dropdown-item h5"
-          href="#"
+
+      <!-- 時態選項 -->
+      <div class="dropdown-menu w-100 text-center py-0">
+        <router-link
+          class="dropdown-item bg-light"
           :id="tense"
+          :to="`/spanish-conjugator/${verb.infinitive}`"
           v-for="tense in indicativeTenses"
           :key="tense.id"
-          >{{ tense | removeMood }}</a
+          >{{ tense | removeMood }}</router-link
         >
       </div>
     </div>
 
+    <!-- Imperative 語氣時態選項 -->
     <div
       class="btn-group dropup flex-grow-1"
       role="group"
@@ -41,19 +44,21 @@
       >
         Imperative
       </button>
-      <div class="dropdown-menu w-100 text-center">
-        <!-- Dropdown menu links -->
-        <a
-          class="dropdown-item h5"
-          href="#"
+
+      <!-- 時態選項 -->
+      <div class="dropdown-menu w-100 text-center py-0">
+        <router-link
+          class="dropdown-item"
           :id="tense"
+          :to="`/spanish-conjugator/${verb.infinitive}`"
           v-for="tense in imperativeTenses"
           :key="tense.id"
-          >{{ tense | removeMood }}</a
+          >{{ tense | removeMood }}</router-link
         >
       </div>
     </div>
 
+    <!-- Subjunctive 語氣時態選項 -->
     <div
       class="btn-group dropup flex-grow-1"
       role="group"
@@ -68,15 +73,16 @@
       >
         Subjunctive
       </button>
-      <div class="dropdown-menu w-100 text-center">
-        <!-- Dropdown menu links -->
-        <a
-          class="dropdown-item h5"
-          href="#"
+
+      <!-- 時態選項 -->
+      <div class="dropdown-menu w-100 text-center py-0">
+        <router-link
+          class="dropdown-item"
           :id="tense"
+          :to="`/spanish-conjugator/${verb.infinitive}`"
           v-for="tense in subjunctiveTenses"
           :key="tense.id"
-          >{{ tense | removeMood }}</a
+          >{{ tense | removeMood }}</router-link
         >
       </div>
     </div>

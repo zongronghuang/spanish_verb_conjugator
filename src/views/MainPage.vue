@@ -40,7 +40,6 @@ export default {
       selectedConjugations: [],
     };
   },
-  created() {},
   beforeRouteUpdate(to, from, next) {
     console.log("to", to, "from", from);
 
@@ -55,13 +54,14 @@ export default {
 
     console.log("conjugations in MainPage", conjugations);
 
+    // 如果存在指定的 infinitive，把動詞變化放到 vuex 中
+    // 如果不存在指定的 infinitive，不處理
     if (conjugations.length > 0) {
       this.$store.commit("setVerb", conjugations);
       localStorage.setItem("verb_conjugations", JSON.stringify(conjugations));
     } else {
       return;
     }
-    // 放到 vuex 中
 
     next();
   },
