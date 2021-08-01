@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { switchToNewConjugationGroup } from "../utils/mixins.js";
+import { switchToNewConjugationGroup } from "../../utils/mixins.js";
 import { mapState } from "vuex";
 
 export default {

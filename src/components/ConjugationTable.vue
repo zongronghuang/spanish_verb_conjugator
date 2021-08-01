@@ -124,7 +124,7 @@
 
 <script>
 import { mapState } from "vuex";
-import ParticipleTag from "./ParticipleTag.vue";
+import ParticipleTag from "./subcomponents/ParticipleTag.vue";
 
 export default {
   name: "conjugation-table",

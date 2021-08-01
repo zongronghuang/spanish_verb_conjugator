@@ -19,8 +19,8 @@
 import TenseMenu from "../components/TenseMenu.vue";
 import NavBar from "../components/NavBar.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
-import LeftArrow from "../components/LeftArrow.vue";
-import RightArrow from "../components/RightArrow.vue";
+import LeftArrow from "../components/subcomponents/LeftArrow.vue";
+import RightArrow from "../components/subcomponents/RightArrow.vue";
 
 import { mapState } from "vuex";
 import datasetAPIs from "../apis/dataset.js";

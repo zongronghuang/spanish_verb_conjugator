@@ -38,7 +38,7 @@
 
 <script>
 import SearchBar from "./SearchBar.vue";
-import IrregularInfinitiveList from "./IrregularInfinitiveList.vue";
+import IrregularInfinitiveList from "./subcomponents/IrregularInfinitiveList.vue";
 
 export default {
   name: "nav-bar",
