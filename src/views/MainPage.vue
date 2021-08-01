@@ -40,11 +40,27 @@ export default {
       selectedConjugations: [],
     };
   },
-  beforeRouteUpdate(to, from, next) {
-    console.log("to", to, "from", from);
+  // 未進入 app，直接輸入帶有 infinitive param 的 URL 的處理方法
+  created() {
+    const { infinitive } = this.$route.params;
 
+    const conjugations = datasetAPIs.getAllConjugationsByVerb(
+      infinitive,
+      this.infinitives
+    );
+
+    // 如果 infinitive 存在 => 取出動詞變化放到 vuex 中，顯示 indicative present
+    // 如果 infinitive 不存在 => 重新導向至 search page
+    if (conjugations.length > 0) {
+      this.$store.commit("setVerb", conjugations);
+      localStorage.setItem("verb_conjugations", JSON.stringify(conjugations));
+    } else {
+      this.$router.push("/search");
+    }
+  },
+  // 進入 app 後，直接修改 URL 的 verb param 的處理方法
+  beforeRouteUpdate(to, from, next) {
     const { infinitive } = to.params;
-    console.log("to infinitive", infinitive);
 
     // 取得 infinitive 的所有動詞變化
     const conjugations = datasetAPIs.getAllConjugationsByVerb(
@@ -52,15 +68,13 @@ export default {
       this.infinitives
     );
 
-    console.log("conjugations in MainPage", conjugations);
-
-    // 如果存在指定的 infinitive，把動詞變化放到 vuex 中
-    // 如果不存在指定的 infinitive，不處理
+    // 如果存在指定的 infinitive => 取出動詞變化放到 vuex 中，顯示 indicative present
+    // 如果 infinitive 不存在 => 重新導向至 search page
     if (conjugations.length > 0) {
       this.$store.commit("setVerb", conjugations);
       localStorage.setItem("verb_conjugations", JSON.stringify(conjugations));
     } else {
-      return;
+      this.$router.push("/search");
     }
 
     next();
