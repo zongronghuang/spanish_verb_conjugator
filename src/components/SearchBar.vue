@@ -26,7 +26,7 @@
       <input
         type="text"
         class="form-control shadow font-weight-bold"
-        placeholder="Infinitive (-ar, -er, -ir)"
+        placeholder="Infinitive (-ar, -er, -ir, -se)"
         aria-label="Feed an infinitive Spanish verb"
         aria-describedby="button-addon2"
         v-model.trim="input"

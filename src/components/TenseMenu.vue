@@ -2,7 +2,7 @@
   <div class="d-flex" @click="selectTense" id="tense-menu">
     <!-- Indicative 語氣時態選項 -->
     <div
-      class="btn-group dropup flex-grow-1 px-0"
+      class="btn-group dropup flex-grow-1 ml-1"
       role="group"
       aria-label="Basic example"
     >
@@ -31,7 +31,7 @@
 
     <!-- Imperative 語氣時態選項 -->
     <div
-      class="btn-group dropup flex-grow-1"
+      class="btn-group dropup flex-grow-1 mx-1"
       role="group"
       aria-label="Basic example"
     >
@@ -60,7 +60,7 @@
 
     <!-- Subjunctive 語氣時態選項 -->
     <div
-      class="btn-group dropup flex-grow-1"
+      class="btn-group dropup flex-grow-1 mr-1"
       role="group"
       aria-label="Basic example"
     >

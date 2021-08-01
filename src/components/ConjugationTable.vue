@@ -51,7 +51,7 @@
       <table class="table mx-auto col-6 text-center shadow">
         <tbody @click.prevent.stop="markActiveInput">
           <tr class="border" v-for="(person, id) in persons" :key="id">
-            <th scope="row" class="w-25 align-middle">
+            <th scope="row" class="w-25">
               {{ persons[id] | breakIntoLines }}
             </th>
 
@@ -163,7 +163,7 @@ export default {
     capitalize(text) {
       return text.toUpperCase();
     },
-    // 搭配 white-space: pre-wrap
+    // 搭配 white-space: pre 置中
     breakIntoLines(text) {
       if (!text.includes(" ")) return text;
 
@@ -173,6 +173,8 @@ export default {
         if (index === words.length - 1) return base + word;
         return base + word + "\n";
       }, ``);
+
+      console.log({ brokenText });
 
       return brokenText;
     },
@@ -366,6 +368,6 @@ table {
 }
 
 th {
-  white-space: pre-wrap;
+  white-space: pre;
 }
 </style>
