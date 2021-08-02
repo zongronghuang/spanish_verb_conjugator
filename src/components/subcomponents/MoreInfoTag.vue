@@ -1,30 +1,33 @@
 <template>
   <!-- 分詞小卡 -->
   <div
-    id="participle-tag"
+    id="more-info-tag"
     class="
       rounded-lg
       d-flex
       flex-column
-      px-1
+      px-2
+      py-1
       text-white
       bg-primary
       border border-white
     "
   >
-    <header class="text-center w-100">Participles</header>
-    <span class="text-left">
-      Present: <strong>{{ gerund }}</strong>
+    <span>
+      Definition — <strong>{{ definition }}</strong>
     </span>
-    <span class="text-left">
-      Past: <strong>{{ pastParticiple }}</strong>
+    <span class="text-start">
+      Gerund — <strong>{{ gerund }}</strong>
+    </span>
+    <span class="text-start">
+      Past participle — <strong>{{ pastParticiple }}</strong>
     </span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "participle-tag",
+  name: "more-info-tag",
   props: {
     gerund: {
       type: String,
@@ -34,19 +37,24 @@ export default {
       type: String,
       required: true,
     },
+    definition: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>
 
 <style scoped>
-#participle-tag {
+#more-info-tag {
   position: absolute;
   left: 100%;
   top: 0%;
   z-index: 10;
 
-  width: 200px;
-
+  width: 250px;
+  min-width: 200px;
+  max-width: 300px;
   background-color: lightblue;
 }
 </style>

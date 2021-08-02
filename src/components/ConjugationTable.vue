@@ -1,54 +1,34 @@
 <template>
   <div class="pt-2 px-0 mx-0" id="conjugation-table">
-    <div class="row mb-1">
+    <div class="row">
       <div class="col-6 mx-auto position-relative" id="upper-display">
         <div
-          class="d-flex flex-column text-center mb-3 mx-1"
+          class="d-flex flex-column text-center mb-3"
           id="infinitive-profile"
-          @mouseenter.prevent.stop="toggleParticipleTagVisibility"
-          @mouseleave.prevent.stop="toggleParticipleTagVisibility"
+          @mouseenter.prevent.stop="toggleMoreInfoTagVisibility"
+          @mouseleave.prevent.stop="toggleMoreInfoTagVisibility"
         >
           <h2 class="mt-1">{{ verb.infinitive | capitalize }}</h2>
-          <h6 class="mt-1">{{ verb.infinitive_english }}</h6>
+          <h6 class="mt-3">{{ verb.mood_english }} {{ verb.tense_english }}</h6>
         </div>
 
-        <ParticipleTag
-          v-if="isParticipleTagVisible"
+        <MoreInfoTag
+          v-if="isMoreInfoTagVisible"
           :gerund="verb.gerund"
           :pastParticiple="verb.pastParticiple"
+          :definition="verb.infinitive_english"
         />
 
-        <!-- Peek 按鍵 -->
-        <button
-          class="btn btn-warning mt-3 font-weight-bold"
-          id="peek"
+        <PeekButton
+          :canPeekAtAnswers="canPeekAtAnswers"
           v-show="mode === 'memory'"
-          @click.stop.prevent="toggleMemoryButtonVisibility"
-        >
-          <font-awesome-icon
-            v-show="canPeekAtAnswers"
-            :icon="['fas', 'eye-slash']"
-            size="1x"
-          />
-
-          <font-awesome-icon
-            v-show="!canPeekAtAnswers"
-            :icon="['fas', 'eye']"
-            size="1x"
-          />
-        </button>
-      </div>
-    </div>
-
-    <!-- 動詞基本資料 -->
-    <div class="row">
-      <div class="text-center col-6 mx-auto">
-        <h5>{{ verb.mood_english }} {{ verb.tense_english }}</h5>
+          @update-can-peek-at-answers="updateCanPeekAtAnswers"
+        />
       </div>
     </div>
 
     <!-- 動詞變化表格 -->
-    <div class="row mt-3 mb-1">
+    <div class="row mb-1">
       <table class="table mx-auto col-6 shadow">
         <tbody @click.prevent.stop="markActiveInput">
           <tr class="border" v-for="(person, id) in persons" :key="id">
@@ -124,12 +104,14 @@
 
 <script>
 import { mapState } from "vuex";
-import ParticipleTag from "./subcomponents/ParticipleTag.vue";
+import MoreInfoTag from "./subcomponents/MoreInfoTag.vue";
+import PeekButton from "./subcomponents/PeekButton.vue";
 
 export default {
   name: "conjugation-table",
   components: {
-    ParticipleTag,
+    MoreInfoTag,
+    PeekButton,
   },
   props: {
     mode: {
@@ -156,7 +138,7 @@ export default {
       areInputsCorrect: Array(6).fill(undefined),
       canPeekAtAnswers: false,
       areAnswersVisible: Array(6).fill(false),
-      isParticipleTagVisible: false,
+      isMoreInfoTagVisible: false,
     };
   },
   filters: {
@@ -205,21 +187,21 @@ export default {
         form_3p,
       ];
     },
-    toggleMemoryButtonVisibility() {
-      this.canPeekAtAnswers = !this.canPeekAtAnswers;
+    updateCanPeekAtAnswers(isPeekable) {
+      this.canPeekAtAnswers = isPeekable;
     },
     toggleAnswerVisibilityByIndex(index) {
       // 動詞變化答案按鍵各自獨立，不會一起打開
       const visibility = !this.areAnswersVisible[index];
       this.areAnswersVisible.splice(index, 1, visibility);
     },
-    toggleParticipleTagVisibility(event) {
+    toggleMoreInfoTagVisibility(event) {
       if (event.type === "mouseenter") {
-        this.isParticipleTagVisible = true;
+        this.isMoreInfoTagVisible = true;
       }
 
       if (event.type === "mouseleave") {
-        this.isParticipleTagVisible = false;
+        this.isMoreInfoTagVisible = false;
       }
     },
     markActiveInput(event) {
@@ -336,12 +318,6 @@ table {
   min-width: 300px;
 }
 
-#peek {
-  position: absolute;
-  right: 0%;
-  top: 0%;
-}
-
 #stressed-letters {
   position: absolute;
   left: 0%;
@@ -363,10 +339,6 @@ table {
 
 .activeInput {
   font-weight: bold;
-}
-
-.blurry-table {
-  filter: blur(5px);
 }
 
 th {
