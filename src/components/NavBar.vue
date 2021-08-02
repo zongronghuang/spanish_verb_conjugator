@@ -2,17 +2,6 @@
   <div>
     <nav class="nav py-2 bg-primary d-flex justify-content-between">
       <!-- 常見不規則動詞列表 -->
-      <div
-        class="w-25 text-white d-flex align-items-center justify-content-center"
-        id="irregular-infinitive-list"
-        title="Top irregular verbs"
-        @click.prevent.stop="toggleIrregularInfinitiveListVisibility"
-      >
-        <font-awesome-icon :icon="['fas', 'clipboard-list']" size="2x" />
-        <span class="ml-2">Top irregular verbs</span>
-      </div>
-
-      <!-- 最常見的 20 個不規則動詞列表 -->
       <IrregularInfinitiveList v-show="isIrregularInfinitiveListVisible" />
 
       <!-- 搜尋欄 -->
@@ -49,27 +38,15 @@ export default {
   data() {
     return {
       mode: "view",
-      isIrregularInfinitiveListVisible: false,
     };
-  },
-  methods: {
-    toggleIrregularInfinitiveListVisibility() {
-      this.isIrregularInfinitiveListVisible =
-        !this.isIrregularInfinitiveListVisible;
-    },
   },
 };
 </script>
 
 <style scoped>
-#mode-menu,
-#irregular-infinitive-list {
+#mode-menu {
   width: 15%;
   min-width: 10%;
-}
-
-#irregular-infinitive-list {
-  cursor: pointer;
 }
 </style>
 

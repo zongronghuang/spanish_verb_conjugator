@@ -1,22 +1,43 @@
 <template>
-  <section class="py-0 border shadow">
-    <div id="tooltip-arrow"></div>
-    <ul class="w-100 d-flex flex-wrap justify-content-between my-0 px-0">
-      <li
-        class="my-0 mx-0 px-0 w-50"
-        v-for="(infinitive, index) in irregularInfinitives"
-        :key="index"
-        :title="infinitive"
-      >
-        <router-link
-          class="my-0 text-decoration-none pl-1"
-          :to="{ name: 'main-page', params: { infinitive } }"
+  <!-- 常見不規則動詞列表 -->
+  <div
+    class="w-25 text-white d-flex align-items-center justify-content-center"
+    id="irregular-infinitive-list"
+    title="Top irregular verbs"
+    @click.prevent.stop="toggleIrregularInfinitiveListVisibility"
+  >
+    <span class="ml-2 py-0 my-0 d-flex align-items-center">
+      <font-awesome-icon
+        class="mr-1"
+        :icon="['fas', 'clipboard-list']"
+        size="2x"
+      />
+      Top irregular verbs
+    </span>
+
+    <!-- toggle 動詞選單 -->
+    <section
+      class="ml-2 py-0 border shadow"
+      v-if="isIrregularInfinitiveListVisible"
+    >
+      <div id="tooltip-arrow"></div>
+      <ul class="w-100 d-flex flex-wrap justify-content-between my-0 px-0 mx-0">
+        <li
+          class="my-0 mx-0 w-50"
+          v-for="(infinitive, index) in irregularInfinitives"
+          :key="index"
+          :title="infinitive"
         >
-          <strong>{{ irregularInfinitives[index] }}</strong>
-        </router-link>
-      </li>
-    </ul>
-  </section>
+          <router-link
+            class="my-0 text-decoration-none pl-4"
+            :to="{ name: 'main-page', params: { infinitive } }"
+          >
+            <strong>{{ irregularInfinitives[index] }}</strong>
+          </router-link>
+        </li>
+      </ul>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -58,19 +79,27 @@ export default {
         "ver",
         "volver",
       ],
+      isIrregularInfinitiveListVisible: false,
     };
+  },
+  methods: {
+    toggleIrregularInfinitiveListVisibility() {
+      this.isIrregularInfinitiveListVisible =
+        !this.isIrregularInfinitiveListVisible;
+    },
   },
 };
 </script>
 
 <style scoped>
+#irregular-infinitive-list {
+  cursor: pointer;
+}
+
 section {
   position: absolute;
   top: 60px;
-  left: 7%;
   z-index: 99;
-
-  width: 200px;
 
   background-color: #93aa92;
   border-radius: 5px;
@@ -79,7 +108,7 @@ section {
 #tooltip-arrow {
   position: absolute;
   top: -30px;
-  left: 37px;
+  left: 44%;
 
   width: 15px;
   height: 15px;
