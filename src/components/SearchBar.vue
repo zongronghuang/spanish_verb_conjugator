@@ -1,7 +1,7 @@
 <template>
   <div
     id="search-area"
-    class="d-flex align-items-around position-relative"
+    class="w-25 d-flex align-items-around position-relative"
     @keyup.enter="isInputValid() && getConjugationsByVerb()"
   >
     <!-- 錯誤訊息 -->

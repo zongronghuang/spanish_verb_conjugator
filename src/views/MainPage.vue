@@ -1,6 +1,6 @@
 <template>
   <div id="main-page">
-    <NavBar @change-mode="changeMode" />
+    <NavBar @update-use-mode="updateUseMode" />
 
     <div class="d-flex justify-content-center">
       <LeftArrow />
@@ -80,8 +80,8 @@ export default {
     next();
   },
   methods: {
-    changeMode(option) {
-      this.mode = option;
+    updateUseMode(mode) {
+      this.mode = mode;
     },
     fetchSelectedConjugations(selectedConjugations) {
       // [{...}]

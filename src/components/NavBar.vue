@@ -1,52 +1,39 @@
 <template>
-  <div>
-    <nav class="nav py-2 bg-primary d-flex justify-content-between">
-      <!-- 常見不規則動詞列表 -->
-      <IrregularInfinitiveList v-show="isIrregularInfinitiveListVisible" />
+  <nav class="nav py-2 bg-primary d-flex justify-content-around">
+    <!-- 常見不規則動詞列表 -->
+    <IrregularInfinitiveList v-show="isIrregularInfinitiveListVisible" />
 
-      <!-- 搜尋欄 -->
-      <SearchBar />
+    <!-- 搜尋欄 -->
+    <SearchBar />
 
-      <!-- 使用模式選單 -->
-      <div id="mode-menu" class="mr-2">
-        <select
-          class="custom-select text-white bg-primary"
-          v-model="mode"
-          @change.prevent.stop="$emit('change-mode', mode)"
-        >
-          <option value="view" :selected="mode === 'view'">View</option>
-          <option value="memory" :selected="mode === 'memory'">Memory</option>
-          <option value="fill-in" :selected="mode === 'fill-in'">
-            Fill-in
-          </option>
-        </select>
-      </div>
-    </nav>
-  </div>
+    <!-- 使用模式選單 -->
+    <UseModeMenu @update-use-mode="updateUseMode" />
+  </nav>
 </template>
 
 <script>
 import SearchBar from "./SearchBar.vue";
 import IrregularInfinitiveList from "./subcomponents/IrregularInfinitiveList.vue";
+import UseModeMenu from "./subcomponents/UseModeMenu.vue";
 
 export default {
   name: "nav-bar",
   components: {
     SearchBar,
     IrregularInfinitiveList,
+    UseModeMenu,
   },
-  data() {
-    return {
-      mode: "view",
-    };
+  methods: {
+    updateUseMode(mode) {
+      this.$emit("update-use-mode", mode);
+    },
   },
 };
 </script>
 
 <style scoped>
-#mode-menu {
-  width: 15%;
-  min-width: 10%;
+nav {
+  min-width: 800px;
 }
 </style>
 

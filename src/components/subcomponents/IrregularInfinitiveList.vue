@@ -93,6 +93,8 @@ export default {
 
 <style scoped>
 #irregular-infinitive-list {
+  max-width: 200px;
+
   cursor: pointer;
 }
 
