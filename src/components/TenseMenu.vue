@@ -8,7 +8,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary rounded-0 border border-white"
+        class="btn btn-primary border border-white"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -37,7 +37,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary rounded-0 border border-white"
+        class="btn btn-primary border border-white"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -66,7 +66,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary rounded-0 border border-white"
+        class="btn btn-primary border border-white"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"

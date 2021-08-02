@@ -1,9 +1,9 @@
 <template>
   <section class="py-0 border shadow">
     <div id="tooltip-arrow"></div>
-    <ul class="w-100 d-flex flex-column my-0 px-0">
+    <ul class="w-100 d-flex flex-wrap justify-content-between my-0 px-0">
       <li
-        class="h5 my-0 mx-0 px-0"
+        class="my-0 mx-0 px-0 w-50"
         v-for="(infinitive, index) in irregularInfinitives"
         :key="index"
         :title="infinitive"
@@ -11,8 +11,9 @@
         <router-link
           class="my-0 text-decoration-none pl-1"
           :to="{ name: 'main-page', params: { infinitive } }"
-          >{{ irregularInfinitives[index] }}</router-link
         >
+          <strong>{{ irregularInfinitives[index] }}</strong>
+        </router-link>
       </li>
     </ul>
   </section>
@@ -24,26 +25,38 @@ export default {
   data() {
     return {
       irregularInfinitives: [
-        "ser",
-        "estar",
-        "haber",
-        "tener",
-        "poder",
-        "hacer",
-        "decir",
-        "ir",
-        "ver",
-        "parecer",
-        "dar",
-        "saber",
-        "querer",
-        "seguir",
-        "jugar",
-        "encontrar",
-        "salir",
+        "andar",
         "conocer",
+        "coger",
+        "dar",
+        "decir",
+        "dormir",
+        "encontrar",
+        "estar",
+        "haber", // 沒動詞變化
+        "hacer",
+        "ir",
+        "jugar",
+        "morir",
+        "oír",
+        "parecer",
         "pensar",
+        "poder",
         "poner",
+        "preferir",
+        "querer",
+        "referir", // 沒動詞變化
+        "saber",
+        "salir",
+        "seguir",
+        "sentir",
+        "ser",
+        "servir",
+        "tener",
+        "traer",
+        "venir",
+        "ver",
+        "volver",
       ],
     };
   },
@@ -57,7 +70,7 @@ section {
   left: 7%;
   z-index: 99;
 
-  width: 100px;
+  width: 200px;
 
   background-color: #93aa92;
   border-radius: 5px;
