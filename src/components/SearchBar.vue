@@ -31,15 +31,18 @@
         aria-describedby="button-addon2"
         v-model.trim="input"
       />
+
+      <!-- 虛擬鍵盤呼叫和搜尋鍵 -->
       <div class="input-group-append shadow">
         <button
-          class="btn btn-info font-weight-bold border border-white"
+          class="btn btn-info btn-outline-light"
           @click.stop.prevent="toggleKeyboard"
         >
           <font-awesome-icon :icon="['fas', 'keyboard']" size="1x" />
         </button>
+
         <button
-          class="btn btn-primary font-weight-bold border border-white"
+          class="btn btn-primary btn-outline-light"
           type="button"
           id="button-addon2"
           @click.prevent.stop="isInputValid() && getConjugationsByVerb()"
@@ -53,24 +56,23 @@
     <div
       class="
         w-25
-        mx-auto
-        mb-2
+        py-2
         d-flex
-        justify-content-center
-        rounded-pill
-        mt-1
+        justify-content-around
+        bg-primary
+        rounded-lg
         shadow
       "
       id="keyboard"
       v-if="keyboard"
       @click.stop.prevent="inputSpecialCharacter"
     >
-      <button class="btn btn-info font-weight-bold mr-2">á</button>
-      <button class="btn btn-info font-weight-bold mr-2">é</button>
-      <button class="btn btn-info font-weight-bold mr-2">í</button>
-      <button class="btn btn-info font-weight-bold mr-2">ó</button>
-      <button class="btn btn-info font-weight-bold mr-2">ú</button>
-      <button class="btn btn-info font-weight-bold mr-2">ü</button>
+      <button class="btn btn-info font-weight-bold">á</button>
+      <button class="btn btn-info font-weight-bold">é</button>
+      <button class="btn btn-info font-weight-bold">í</button>
+      <button class="btn btn-info font-weight-bold">ó</button>
+      <button class="btn btn-info font-weight-bold">ú</button>
+      <button class="btn btn-info font-weight-bold">ü</button>
       <button class="btn btn-info font-weight-bold">ñ</button>
     </div>
   </div>
@@ -86,8 +88,8 @@
 
 #keyboard {
   position: absolute;
+  top: 100%;
   z-index: 10;
-  backdrop-filter: blur(5px);
 }
 
 #alert {

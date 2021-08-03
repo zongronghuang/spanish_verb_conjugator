@@ -17,7 +17,7 @@
 
     <!-- toggle 動詞選單 -->
     <section
-      class="ml-2 py-0 border shadow"
+      class="ml-2 py-1 border shadow"
       v-if="isIrregularInfinitiveListVisible"
     >
       <div id="tooltip-arrow"></div>
