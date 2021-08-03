@@ -1,7 +1,10 @@
 <template>
-  <div class="pt-2 px-0 mx-0" id="conjugation-table">
-    <div class="row">
-      <div class="col-6 mx-auto position-relative" id="upper-display">
+  <div
+    class="w-100 pt-2 px-0 mx-0 border border-warning"
+    id="conjugation-table"
+  >
+    <div class="w-100 row">
+      <div class="col-10 mx-auto position-relative" id="upper-display">
         <div
           class="d-flex flex-column text-center mb-3"
           id="infinitive-profile"
@@ -28,12 +31,13 @@
     </div>
 
     <!-- 動詞變化表格 -->
-    <div class="row mb-1">
-      <table class="table mx-auto col-6 shadow">
+
+    <div class="w-75 mx-auto">
+      <table class="w-100 col-10 table mx-auto shadow">
         <tbody @click.prevent.stop="markActiveInput">
           <tr class="border" v-for="(person, id) in persons" :key="id">
             <th scope="row" class="w-25 align-middle">
-              {{ persons[id] | breakIntoLines }}
+              {{ persons[id] }}
             </th>
 
             <!-- view mode -->
@@ -51,14 +55,14 @@
               class="align-middle"
               v-show="mode === 'fill-in' && conjugations[id]"
             >
-              <input type="text" v-model="inputs[id]" />
+              <input type="text" class="w-75" v-model="inputs[id]" />
             </td>
             <td
               class="align-middle"
               v-show="mode === 'fill-in' && conjugations[id]"
             >
               <button
-                class="btn btn-warning"
+                class="btn btn-warning w-100"
                 @click.prevent.stop="toggleAnswerVisibilityByIndex(id)"
                 v-show="areInputsCorrect[id] === false"
               >
@@ -128,10 +132,10 @@ export default {
       persons: [
         "yo",
         "tú",
-        "él ella usted",
+        "él/ella/usted",
         "nosotros",
         "vosotros",
-        "ellos ellas ustedes",
+        "ellos/ellas/ustedes",
       ],
       conjugations: [],
       inputs: Array(6).fill(""),
@@ -314,7 +318,6 @@ export default {
 #upper-display,
 #lower-display,
 table {
-  max-width: 400px;
   min-width: 300px;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed-top nav py-2 bg-primary d-flex justify-content-around">
+  <nav class="nav py-2 bg-primary d-flex justify-content-around">
     <!-- 常見不規則動詞列表 -->
     <IrregularInfinitiveList v-show="isIrregularInfinitiveListVisible" />
 

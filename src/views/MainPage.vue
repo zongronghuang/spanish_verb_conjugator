@@ -2,13 +2,13 @@
   <div id="main-page">
     <NavBar @update-use-mode="updateUseMode" />
 
-    <div class="d-flex justify-content-center">
+    <div class="w-100 d-flex justify-content-center mx-auto">
       <LeftArrow />
       <ConjugationTable
         :mode="mode"
         :selectedConjugations="selectedConjugations"
       />
-      <RightArrow @fetch-selected-conjugations="fetchSelectedConjugations" />
+      <RightArrow />
     </div>
 
     <TenseMenu @fetch-selected-conjugations="fetchSelectedConjugations" />

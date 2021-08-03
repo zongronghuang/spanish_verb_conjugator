@@ -1,5 +1,9 @@
 <template>
-  <div class="d-flex fixed-bottom mb-1" @click="selectTense" id="tense-menu">
+  <div
+    class="fixed-bottom d-flex w-100 mb-1"
+    @click="selectTense"
+    id="tense-menu"
+  >
     <!-- Indicative 語氣時態選項 -->
     <div
       class="btn-group dropup flex-grow-1 ml-1"
