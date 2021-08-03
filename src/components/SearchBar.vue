@@ -6,18 +6,18 @@
   >
     <!-- 錯誤訊息 -->
     <div
-      class="alert alert-warning w-25 text-center mx-auto rounded-pill shadow"
+      class="alert alert-warning w-100 mt-1 mx-auto rounded-lg shadow"
       role="alert"
       id="alert"
       v-show="alert"
     >
-      <span>{{ alert }}</span>
+      <span class="text-start">{{ alert }}</span>
       <span
         class="float-right font-weight-bold mr-2"
         id="cross"
         @click.stop.prevent="collapseAlert"
       >
-        X
+        <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
       </span>
     </div>
 
@@ -56,6 +56,7 @@
     <div
       class="
         w-25
+        mt-1
         py-2
         d-flex
         justify-content-around
@@ -94,6 +95,7 @@
 
 #alert {
   position: absolute;
+  top: 110%;
   z-index: 20;
 }
 
@@ -132,14 +134,14 @@ export default {
 
       // 不可為空字串
       if (!input) {
-        this.alert = "未輸入動詞，無法搜尋";
+        this.alert = "The input cannot be blank";
         return false;
       }
 
       // 只接受西班牙文字母 (不可有數字、特殊符號或空白)
       const regex = /[^a-záéíóúüñ]/;
       if (input.search(regex) !== -1) {
-        this.alert = "不可輸入數字、空白或特殊符號";
+        this.alert = "You can only enter Spanish characters";
         return false;
       }
 
@@ -152,7 +154,7 @@ export default {
         ending !== "ír" &&
         ending !== "se"
       ) {
-        this.alert = "請輸入原形動詞";
+        this.alert = "Enter an infinitive verb";
         return false;
       }
 
@@ -172,7 +174,7 @@ export default {
         this.$store.commit("setVerb", conjugations);
         localStorage.setItem("verb_conjugations", JSON.stringify(conjugations));
       } else {
-        this.alert = "資料庫內找不到這個動詞";
+        this.alert = "Oops, it's not in the database";
         return;
       }
 
