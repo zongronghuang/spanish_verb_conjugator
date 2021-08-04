@@ -1,5 +1,8 @@
 <template>
-  <div class="d-flex align-items-center justify-content-center" id="left-panel">
+  <div
+    class="d-flex w-25 align-items-center justify-content-end"
+    id="left-panel"
+  >
     <div @click.prevent.stop="switchToNewConjugationGroup('back')">
       <router-link
         class="
@@ -9,8 +12,8 @@
           position-relative
           text-info
         "
-        id="left-arrow"
         to=""
+        id="left-arrow"
         title="Back"
       >
         <font-awesome-icon :icon="['fas', 'chevron-circle-left']" size="3x" />

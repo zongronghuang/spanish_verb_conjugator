@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="w-100 pt-2 px-0 mx-0 border border-warning"
-    id="conjugation-table"
-  >
+  <div class="w-50 px-0 mx-0" id="conjugation-table">
     <div class="w-100 row">
       <div class="col-10 mx-auto position-relative" id="upper-display">
         <div
@@ -32,7 +29,7 @@
 
     <!-- 動詞變化表格 -->
 
-    <div class="w-75 mx-auto">
+    <div class="w-100 mx-auto border border-primary">
       <table class="w-100 col-10 table mx-auto shadow">
         <tbody @click.prevent.stop="markActiveInput">
           <tr class="border" v-for="(person, id) in persons" :key="id">
@@ -47,28 +44,26 @@
 
             <!-- memory mode -->
             <td class="align-middle h5 pl-5" v-show="mode === 'memory'">
-              {{ canPeekAtAnswers ? conjugations[id] : "&iquest; &quest;" }}
+              {{ canPeekAtAnswers ? conjugations[id] : "&iquest;&quest;" }}
             </td>
 
             <!-- fill-in mode -->
             <td
-              class="align-middle"
+              class="align-middle w-25"
               v-show="mode === 'fill-in' && conjugations[id]"
             >
-              <input type="text" class="w-75" v-model="inputs[id]" />
+              <input type="text" v-model="inputs[id]" />
             </td>
             <td
-              class="align-middle"
+              class="align-middle w-25"
               v-show="mode === 'fill-in' && conjugations[id]"
             >
               <button
-                class="btn btn-warning w-100"
+                class="btn btn-warning"
                 @click.prevent.stop="toggleAnswerVisibilityByIndex(id)"
                 v-show="areInputsCorrect[id] === false"
               >
-                {{
-                  areAnswersVisible[id] ? conjugations[id] : "&iexcl; &excl;"
-                }}
+                {{ areAnswersVisible[id] ? conjugations[id] : "&iexcl;&excl;" }}
               </button>
             </td>
           </tr>
@@ -77,31 +72,53 @@
     </div>
 
     <!-- 特殊字元輸入鍵盤 & 確認按鍵 -->
-    <div class="row" v-show="mode === 'fill-in'">
-      <div class="col-6 mx-auto" id="lower-display">
-        <div
-          id="stressed-letters"
-          class="mr-2"
-          @click.prevent.stop="typeCharacter"
-        >
-          <button class="btn btn-info font-weight-bold mr-2">á</button>
-          <button class="btn btn-info font-weight-bold mr-2">é</button>
-          <button class="btn btn-info font-weight-bold mr-2">í</button>
-          <button class="btn btn-info font-weight-bold mr-2">ó</button>
-          <button class="btn btn-info font-weight-bold mr-2">ú</button>
-          <button class="btn btn-info font-weight-bold mr-2">ü</button>
-          <button class="btn btn-info font-weight-bold">ñ</button>
-        </div>
-
-        <div id="check">
-          <button
-            class="btn btn-warning font-weight-bold"
-            @click.stop.prevent="checkInputs"
-          >
-            Check
-          </button>
-        </div>
+    <div
+      class="
+        mx-auto
+        w-100
+        col-10
+        border border-warning
+        px-0
+        d-flex
+        justify-content-between
+        flex-row
+      "
+      v-if="mode === 'fill-in'"
+    >
+      <div
+        class="d-flex flex-row flex-nowrap justify-content-between w-75"
+        id="stressed-letters"
+        @click.prevent.stop="typeCharacter"
+      >
+        <button class="btn btn-info font-weight-bold btn-outline-light">
+          á
+        </button>
+        <button class="btn btn-info font-weight-bold btn-outline-light">
+          é
+        </button>
+        <button class="btn btn-info font-weight-bold btn-outline-light">
+          í
+        </button>
+        <button class="btn btn-info font-weight-bold btn-outline-light">
+          ó
+        </button>
+        <button class="btn btn-info font-weight-bold btn-outline-light">
+          ú
+        </button>
+        <button class="btn btn-info font-weight-bold btn-outline-light">
+          ü
+        </button>
+        <button class="btn btn-info font-weight-bold btn-outline-light">
+          ñ
+        </button>
       </div>
+
+      <button
+        class="btn btn-warning ml-1 mr-0 font-weight-bold w-25"
+        @click.stop.prevent="checkInputs"
+      >
+        Check
+      </button>
     </div>
   </div>
 </template>
@@ -315,25 +332,8 @@ export default {
   min-width: 400px;
 }
 
-#upper-display,
-#lower-display,
-table {
+#upper-display {
   min-width: 300px;
-}
-
-#stressed-letters {
-  position: absolute;
-  left: 0%;
-  margin-bottom: 15px;
-}
-
-#check {
-  position: absolute;
-  right: 0%;
-}
-
-#lower-display {
-  margin-bottom: 60px;
 }
 
 #infinitive-profile {

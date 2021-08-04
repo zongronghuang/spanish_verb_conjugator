@@ -1,12 +1,6 @@
 <template>
   <div
-    class="
-      d-flex
-      w-25
-      align-items-center
-      justify-content-center
-      border border-light
-    "
+    class="d-flex w-25 align-items-center justify-content-start"
     id="right-panel"
   >
     <div @click.prevent.stop="switchToNewConjugationGroup('next')">

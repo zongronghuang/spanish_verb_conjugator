@@ -2,14 +2,25 @@
   <div id="main-page">
     <NavBar @update-use-mode="updateUseMode" />
 
-    <div class="w-100 d-flex justify-content-center mx-auto">
+    <main
+      class="
+        w-100
+        mt-5
+        d-flex
+        justify-content-center
+        align-items-center
+        mx-auto
+        h-75
+        border border-warning
+      "
+    >
       <LeftArrow />
       <ConjugationTable
         :mode="mode"
         :selectedConjugations="selectedConjugations"
       />
       <RightArrow />
-    </div>
+    </main>
 
     <TenseMenu @fetch-selected-conjugations="fetchSelectedConjugations" />
   </div>
@@ -99,5 +110,9 @@ export default {
 <style scoped>
 #main-page {
   height: 100vh;
+}
+
+main {
+  min-width: 600px;
 }
 </style>
