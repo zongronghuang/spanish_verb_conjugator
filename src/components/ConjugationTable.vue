@@ -28,7 +28,6 @@
     </div>
 
     <!-- 動詞變化表格 -->
-
     <div class="w-100 mx-auto py-0">
       <table class="w-100 col-10 table mb-1 mx-auto shadow">
         <tbody class="py-0 my-0" @click.prevent.stop="markActiveInput">
@@ -87,10 +86,20 @@
             >
               <input type="text" v-model="inputs[id]" class="px-0 w-100" />
             </td>
+
             <td
               class="align-middle mx-1 px-0 d-flex justify-content-center"
               v-if="mode === 'fill-in' && conjugations[id]"
             >
+              <!-- 答案正確圖示 -->
+              <button
+                class="btn btn-warning my-0 py-1 px-3 d-flex flex-row"
+                v-if="areInputsCorrect[id] === true"
+              >
+                <font-awesome-icon :icon="['fas', 'check']" size="1x" />
+              </button>
+
+              <!-- 答案錯誤圖示 -->
               <button
                 class="btn btn-warning my-0 py-1 px-3 d-flex flex-row"
                 :title="conjugations[id]"
@@ -128,17 +137,38 @@
         id="stressed-letters"
         @click.prevent.stop="typeCharacter"
       >
-        <button class="btn btn-info border border-light mr-1">á</button>
-        <button class="btn btn-info border border-light mr-1">é</button>
-        <button class="btn btn-info border border-light mr-1">í</button>
-        <button class="btn btn-info border border-light mr-1">ó</button>
-        <button class="btn btn-info border border-light mr-1">ú</button>
-        <button class="btn btn-info border border-light mr-1">ü</button>
-        <button class="btn btn-info border border-light">ñ</button>
+        <button class="btn btn-info border font-weight-bold border-light mr-1">
+          á
+        </button>
+        <button class="btn btn-info border font-weight-bold border-light mr-1">
+          é
+        </button>
+        <button class="btn btn-info border font-weight-bold border-light mr-1">
+          í
+        </button>
+        <button class="btn btn-info border font-weight-bold border-light mr-1">
+          ó
+        </button>
+        <button class="btn btn-info border font-weight-bold border-light mr-1">
+          ú
+        </button>
+        <button class="btn btn-info border font-weight-bold border-light mr-1">
+          ü
+        </button>
+        <button class="btn btn-info border font-weight-bold border-light">
+          ñ
+        </button>
       </div>
 
       <button
-        class="btn btn-warning ml-1 mr-0 border border-light"
+        class="
+          btn btn-warning
+          py-0
+          ml-1
+          mr-0
+          border border-light
+          font-weight-bold
+        "
         @click.stop.prevent="checkInputs"
       >
         Check
@@ -182,7 +212,6 @@ export default {
       inputs: Array(6).fill(""),
       areInputsCorrect: Array(6).fill(undefined),
       canPeekAtAnswers: false,
-      areAnswersVisible: Array(6).fill(false),
       isMoreInfoTagVisible: false,
     };
   },
@@ -234,11 +263,6 @@ export default {
     },
     updateCanPeekAtAnswers(isPeekable) {
       this.canPeekAtAnswers = isPeekable;
-    },
-    toggleAnswerVisibilityByIndex(index) {
-      // 動詞變化答案按鍵各自獨立，不會一起打開
-      const visibility = !this.areAnswersVisible[index];
-      this.areAnswersVisible.splice(index, 1, visibility);
     },
     toggleMoreInfoTagVisibility(event) {
       if (event.type === "mouseenter") {
@@ -320,6 +344,10 @@ export default {
         conjugations[0].form_2p,
         conjugations[0].form_3p,
       ];
+
+      // 清除之前輸入內容、清除答案比對結果、隱藏答案提示按鍵
+      this.inputs = Array(6).fill("");
+      this.areInputsCorrect = Array(6).fill(undefined);
     },
     // 處理 TenseMenu 傳入的動態變化
     selectedConjugations: function (newSelectedConjugations) {
@@ -336,7 +364,6 @@ export default {
       // 清除之前輸入內容、清除答案比對結果、隱藏答案提示按鍵
       this.inputs = Array(6).fill("");
       this.areInputsCorrect = Array(6).fill(undefined);
-      this.areAnswersVisible = Array(6).fill(false);
     },
   },
   computed: {

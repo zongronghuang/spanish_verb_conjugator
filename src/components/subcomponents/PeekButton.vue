@@ -40,7 +40,7 @@ export default {
 <style scoped>
 #peek {
   position: absolute;
-  right: 0%;
+  left: 90%;
   top: 40%;
 }
 </style>

@@ -48,8 +48,8 @@ export default {
 <style scoped>
 #more-info-tag {
   position: absolute;
-  left: 100%;
-  top: 0%;
+  left: 105%;
+  top: 20%;
   z-index: 10;
 
   width: 250px;

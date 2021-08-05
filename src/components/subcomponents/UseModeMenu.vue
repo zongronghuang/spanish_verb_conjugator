@@ -13,14 +13,14 @@
         value="memory"
         :selected="mode === 'memory'"
       >
-        Memory test
+        Memory quiz
       </option>
       <option
         class="font-weight-bold"
         value="fill-in"
         :selected="mode === 'fill-in'"
       >
-        Fill-in test
+        Fill-in quiz
       </option>
     </select>
   </div>
