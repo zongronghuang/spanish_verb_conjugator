@@ -11,7 +11,6 @@
         align-items-center
         mx-auto
         h-75
-        border border-warning
       "
     >
       <LeftArrow />

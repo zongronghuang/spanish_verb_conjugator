@@ -22,7 +22,8 @@ export default {
 
 <style>
 html,
-body {
+body,
+#verb-conjugator {
   margin: 0;
   padding: 0;
   height: 100vh;

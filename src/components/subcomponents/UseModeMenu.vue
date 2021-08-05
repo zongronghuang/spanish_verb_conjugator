@@ -1,13 +1,27 @@
 <template>
   <div id="mode-menu" class="w-25 mx-1">
     <select
-      class="custom-select text-white bg-primary"
+      class="custom-select text-white bg-primary font-weight-bold"
       v-model="mode"
       @change.prevent.stop="updateUseMode"
     >
-      <option value="view" :selected="mode === 'view'">View</option>
-      <option value="memory" :selected="mode === 'memory'">Memory</option>
-      <option value="fill-in" :selected="mode === 'fill-in'">Fill-in</option>
+      <option class="font-weight-bold" value="view" :selected="mode === 'view'">
+        View
+      </option>
+      <option
+        class="font-weight-bold"
+        value="memory"
+        :selected="mode === 'memory'"
+      >
+        Memory test
+      </option>
+      <option
+        class="font-weight-bold"
+        value="fill-in"
+        :selected="mode === 'fill-in'"
+      >
+        Fill-in test
+      </option>
     </select>
   </div>
 </template>

@@ -1,15 +1,15 @@
 <template>
-  <div class="w-50 px-0 mx-0" id="conjugation-table">
+  <div class="w-50 px-0 mx-0 py-0" id="conjugation-table">
     <div class="w-100 row">
       <div class="col-10 mx-auto position-relative" id="upper-display">
         <div
-          class="d-flex flex-column text-center mb-3"
+          class="d-flex flex-column text-center mb-2"
           id="infinitive-profile"
           @mouseenter.prevent.stop="toggleMoreInfoTagVisibility"
           @mouseleave.prevent.stop="toggleMoreInfoTagVisibility"
         >
-          <h2 class="mt-1">{{ verb.infinitive | capitalize }}</h2>
-          <h6 class="mt-3">{{ verb.mood_english }} {{ verb.tense_english }}</h6>
+          <h4 class="mt-5">{{ verb.infinitive | capitalize }}</h4>
+          <h6 class="">{{ verb.mood_english }} {{ verb.tense_english }}</h6>
         </div>
 
         <MoreInfoTag
@@ -21,7 +21,7 @@
 
         <PeekButton
           :canPeekAtAnswers="canPeekAtAnswers"
-          v-show="mode === 'memory'"
+          v-if="mode === 'memory'"
           @update-can-peek-at-answers="updateCanPeekAtAnswers"
         />
       </div>
@@ -29,41 +29,78 @@
 
     <!-- 動詞變化表格 -->
 
-    <div class="w-100 mx-auto border border-primary">
-      <table class="w-100 col-10 table mx-auto shadow">
-        <tbody @click.prevent.stop="markActiveInput">
-          <tr class="border" v-for="(person, id) in persons" :key="id">
-            <th scope="row" class="w-25 align-middle">
+    <div class="w-100 mx-auto py-0">
+      <table class="w-100 col-10 table mb-1 mx-auto shadow">
+        <tbody class="py-0 my-0" @click.prevent.stop="markActiveInput">
+          <tr
+            class="border py-0 my-0"
+            v-for="(person, id) in persons"
+            :key="id"
+          >
+            <th scope="row" class="w-25 align-middle py-0 my-0">
               {{ persons[id] }}
             </th>
 
             <!-- view mode -->
-            <td class="align-middle h5 pl-5" v-show="mode === 'view'">
+            <td class="align-middle h5 pl-5 text-center" v-if="mode === 'view'">
               {{ conjugations[id] }}
             </td>
 
             <!-- memory mode -->
-            <td class="align-middle h5 pl-5" v-show="mode === 'memory'">
-              {{ canPeekAtAnswers ? conjugations[id] : "&iquest;&quest;" }}
+            <td
+              class="align-middle h5 pl-5 text-center"
+              v-if="mode === 'memory' && canPeekAtAnswers === true"
+            >
+              {{ conjugations[id] }}
+            </td>
+
+            <td
+              class="
+                align-middle
+                h5
+                bg-info
+                border border-light
+                mb-0
+                d-flex
+                flex-row
+                justify-content-center
+              "
+              v-if="mode === 'memory' && canPeekAtAnswers === false"
+            >
+              <font-awesome-icon
+                :icon="['fas', 'question']"
+                flip="both"
+                size="1x"
+                class="my-0 py-0"
+              />
+              <font-awesome-icon
+                :icon="['fas', 'question']"
+                size="1x"
+                class="my-0 py-0"
+              />
             </td>
 
             <!-- fill-in mode -->
             <td
-              class="align-middle w-25"
-              v-show="mode === 'fill-in' && conjugations[id]"
+              class="align-middle w-50 px-1 mx-1"
+              v-if="mode === 'fill-in' && conjugations[id]"
             >
-              <input type="text" v-model="inputs[id]" />
+              <input type="text" v-model="inputs[id]" class="px-0 w-100" />
             </td>
             <td
-              class="align-middle w-25"
-              v-show="mode === 'fill-in' && conjugations[id]"
+              class="align-middle mx-1 px-0 d-flex justify-content-center"
+              v-if="mode === 'fill-in' && conjugations[id]"
             >
               <button
-                class="btn btn-warning"
-                @click.prevent.stop="toggleAnswerVisibilityByIndex(id)"
-                v-show="areInputsCorrect[id] === false"
+                class="btn btn-warning my-0 py-1 px-3 d-flex flex-row"
+                :title="conjugations[id]"
+                v-if="areInputsCorrect[id] === false"
               >
-                {{ areAnswersVisible[id] ? conjugations[id] : "&iexcl;&excl;" }}
+                <font-awesome-icon
+                  :icon="['fas', 'exclamation']"
+                  flip="both"
+                  size="1x"
+                /><font-awesome-icon :icon="['fas', 'exclamation']" size="1x" />
               </button>
             </td>
           </tr>
@@ -77,8 +114,9 @@
         mx-auto
         w-100
         col-10
-        border border-warning
         px-0
+        py-0
+        my-0
         d-flex
         justify-content-between
         flex-row
@@ -86,35 +124,21 @@
       v-if="mode === 'fill-in'"
     >
       <div
-        class="d-flex flex-row flex-nowrap justify-content-between w-75"
+        class="d-flex flex-row flex-nowrap justify-content-start w-75"
         id="stressed-letters"
         @click.prevent.stop="typeCharacter"
       >
-        <button class="btn btn-info font-weight-bold btn-outline-light">
-          á
-        </button>
-        <button class="btn btn-info font-weight-bold btn-outline-light">
-          é
-        </button>
-        <button class="btn btn-info font-weight-bold btn-outline-light">
-          í
-        </button>
-        <button class="btn btn-info font-weight-bold btn-outline-light">
-          ó
-        </button>
-        <button class="btn btn-info font-weight-bold btn-outline-light">
-          ú
-        </button>
-        <button class="btn btn-info font-weight-bold btn-outline-light">
-          ü
-        </button>
-        <button class="btn btn-info font-weight-bold btn-outline-light">
-          ñ
-        </button>
+        <button class="btn btn-info border border-light mr-1">á</button>
+        <button class="btn btn-info border border-light mr-1">é</button>
+        <button class="btn btn-info border border-light mr-1">í</button>
+        <button class="btn btn-info border border-light mr-1">ó</button>
+        <button class="btn btn-info border border-light mr-1">ú</button>
+        <button class="btn btn-info border border-light mr-1">ü</button>
+        <button class="btn btn-info border border-light">ñ</button>
       </div>
 
       <button
-        class="btn btn-warning ml-1 mr-0 font-weight-bold w-25"
+        class="btn btn-warning ml-1 mr-0 border border-light"
         @click.stop.prevent="checkInputs"
       >
         Check

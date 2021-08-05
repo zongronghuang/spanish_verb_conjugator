@@ -1,6 +1,6 @@
 <template>
   <button
-    class="btn btn-warning mt-3 font-weight-bold"
+    class="btn btn-info mt-3 font-weight-bold text-dark border border-light"
     id="peek"
     @click.stop.prevent="toggleIsPeekable"
   >
@@ -41,6 +41,6 @@ export default {
 #peek {
   position: absolute;
   right: 0%;
-  top: 0%;
+  top: 40%;
 }
 </style>

@@ -12,7 +12,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary border border-white"
+        class="btn btn-primary border border-white font-weight-bold"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -21,9 +21,9 @@
       </button>
 
       <!-- 時態選項 -->
-      <div class="dropdown-menu w-100 text-center py-0">
+      <div class="dropdown-menu w-100 text-center py-0 bg-info">
         <router-link
-          class="dropdown-item bg-light"
+          class="dropdown-item border border-light font-weight-bold"
           :id="tense"
           :to="`/spanish-conjugator/${verb.infinitive}`"
           v-for="tense in indicativeTenses"
@@ -41,7 +41,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary border border-white"
+        class="btn btn-primary border border-white font-weight-bold"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -50,9 +50,9 @@
       </button>
 
       <!-- 時態選項 -->
-      <div class="dropdown-menu w-100 text-center py-0">
+      <div class="dropdown-menu w-100 text-center py-0 bg-info">
         <router-link
-          class="dropdown-item"
+          class="dropdown-item border border-light font-weight-bold"
           :id="tense"
           :to="`/spanish-conjugator/${verb.infinitive}`"
           v-for="tense in imperativeTenses"
@@ -70,7 +70,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary border border-white"
+        class="btn btn-primary border border-white font-weight-bold"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -79,9 +79,9 @@
       </button>
 
       <!-- 時態選項 -->
-      <div class="dropdown-menu w-100 text-center py-0">
+      <div class="dropdown-menu w-100 text-center py-0 bg-info">
         <router-link
-          class="dropdown-item"
+          class="dropdown-item border border-light font-weight-bold"
           :id="tense"
           :to="`/spanish-conjugator/${verb.infinitive}`"
           v-for="tense in subjunctiveTenses"

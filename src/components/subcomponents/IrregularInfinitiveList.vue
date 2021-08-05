@@ -4,11 +4,13 @@
     class="w-25 text-white d-flex align-items-center justify-content-center"
     id="irregular-infinitive-list"
     title="Top irregular verbs"
-    @click.prevent.stop="toggleIrregularInfinitiveListVisibility"
   >
-    <span class="ml-2 py-0 my-0 d-flex align-items-center">
+    <span
+      class="ml-2 py-0 my-0 d-flex align-items-center font-weight-bold"
+      @click.prevent.stop="toggleIrregularInfinitiveListVisibility"
+    >
       <font-awesome-icon
-        class="mr-1"
+        class="mr-2"
         :icon="['fas', 'clipboard-list']"
         size="2x"
       />
@@ -21,21 +23,23 @@
       v-if="isIrregularInfinitiveListVisible"
     >
       <div id="tooltip-arrow"></div>
-      <ul class="w-100 d-flex flex-wrap justify-content-between my-0 px-0 mx-0">
-        <li
-          class="my-0 mx-0 w-50"
+      <div
+        class="w-100 d-flex flex-wrap justify-content-between my-0 px-1 mx-0"
+      >
+        <button
+          class="btn btn-info border my-1 mx-0 py-0 px-1"
           v-for="(infinitive, index) in irregularInfinitives"
           :key="index"
           :title="infinitive"
         >
           <router-link
-            class="my-0 text-decoration-none pl-4"
+            class="my-0 mx-0 px-0 py-0 text-decoration-none text-white"
             :to="{ name: 'main-page', params: { infinitive } }"
           >
-            <strong>{{ irregularInfinitives[index] }}</strong>
+            {{ irregularInfinitives[index] }}
           </router-link>
-        </li>
-      </ul>
+        </button>
+      </div>
     </section>
   </div>
 </template>
@@ -47,26 +51,40 @@ export default {
     return {
       irregularInfinitives: [
         "andar",
-        "conocer",
+        "aparecer",
+        "caer",
         "coger",
+        "contar",
+        "conocer",
+        "convertir",
+        "costar",
         "dar",
         "decir",
         "dormir",
+        "elegir",
+        "empezar",
         "encontrar",
+        "entender",
         "estar",
-        "haber", // 沒動詞變化
+        "haber", //
         "hacer",
         "ir",
         "jugar",
         "morir",
+        "negar",
+        "ofrecer",
         "oír",
         "parecer",
-        "pensar",
+        "pedir",
         "poder",
         "poner",
         "preferir",
+        "producir",
         "querer",
-        "referir", // 沒動詞變化
+        "recordar",
+        "referir", //
+        "repetir",
+        "resolver",
         "saber",
         "salir",
         "seguir",
@@ -94,7 +112,9 @@ export default {
 <style scoped>
 #irregular-infinitive-list {
   max-width: 200px;
+}
 
+#irregular-infinitive-list > span {
   cursor: pointer;
 }
 
