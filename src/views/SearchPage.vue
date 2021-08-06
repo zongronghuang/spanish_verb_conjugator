@@ -5,9 +5,29 @@
   >
     <!-- 搜尋區域 -->
     <div class="" id="frame">
-      <h3 class="w-100 mb-3 text-center" id="title">Feed a Spanish Verb</h3>
+      <h3 class="w-100 mb-3 text-center" id="title">Spanish Verb Conjugator</h3>
       <SearchBar class="mt-5 mx-auto" />
     </div>
+
+    <small
+      class="fixed-bottom w-100 text-center mb-4 font-weight-bold text-light"
+    >
+      Made with
+      <font-awesome-icon
+        id="heart-icon"
+        :icon="['fas', 'heart']"
+        size="1x"
+        class="mx-1"
+      />
+      by
+      <a
+        class="text-decoration-none"
+        href="https://github.com/zongronghuang/spanish_verb_conjugator"
+        target="_blank"
+      >
+        Zong-Rong
+      </a>
+    </small>
   </div>
 </template>
 
@@ -39,5 +59,15 @@ export default {
 
 #frame:hover {
   transform: skewY(0deg) scaleX(2) scaleY(2);
+}
+
+#heart-icon {
+  color: #f1bf00;
+  transform: scaleX(1) scaleY(1);
+  transition: transform 1.5s;
+}
+
+#heart-icon:hover {
+  transform: scaleX(2.5) scaleY(2.5);
 }
 </style>
