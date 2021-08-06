@@ -27,7 +27,7 @@
         class="w-100 d-flex flex-wrap justify-content-between my-0 px-1 mx-0"
       >
         <button
-          class="btn btn-info border my-1 mx-0 py-0 px-1"
+          class="btn btn-info border my-1 py-0 px-1"
           v-for="(infinitive, index) in irregularInfinitives"
           :key="index"
           :title="infinitive"

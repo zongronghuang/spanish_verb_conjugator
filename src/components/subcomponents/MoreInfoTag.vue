@@ -49,7 +49,7 @@ export default {
 #more-info-tag {
   position: absolute;
   left: 105%;
-  top: 20%;
+  top: 25%;
   z-index: 10;
 
   width: 250px;

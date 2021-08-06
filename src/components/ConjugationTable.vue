@@ -41,13 +41,16 @@
             </th>
 
             <!-- view mode -->
-            <td class="align-middle h5 pl-5 text-center" v-if="mode === 'view'">
+            <td
+              class="align-middle h5 pl-5 border-left text-center"
+              v-if="mode === 'view'"
+            >
               {{ conjugations[id] }}
             </td>
 
             <!-- memory mode -->
             <td
-              class="align-middle h5 pl-5 text-center"
+              class="align-middle h5 pl-5 border-left text-center"
               v-if="mode === 'memory' && canPeekAtAnswers === true"
             >
               {{ conjugations[id] }}
@@ -58,7 +61,7 @@
                 align-middle
                 h5
                 bg-info
-                border border-light
+                border-left
                 mb-0
                 d-flex
                 flex-row
@@ -81,14 +84,21 @@
 
             <!-- fill-in mode -->
             <td
-              class="align-middle w-50 px-1 mx-1"
+              class="align-middle w-50 px-1 mx-1 border-left"
               v-if="mode === 'fill-in' && conjugations[id]"
             >
               <input type="text" v-model="inputs[id]" class="px-0 w-100" />
             </td>
 
             <td
-              class="align-middle mx-1 px-0 d-flex justify-content-center"
+              class="
+                align-middle
+                border-0
+                mx-1
+                px-0
+                d-flex
+                justify-content-center
+              "
               v-if="mode === 'fill-in' && conjugations[id]"
             >
               <!-- 答案正確圖示 -->
@@ -395,7 +405,7 @@ export default {
   font-weight: bold;
 }
 
-th {
-  white-space: pre;
+tr:nth-child(odd) {
+  background-color: lightseagreen;
 }
 </style>

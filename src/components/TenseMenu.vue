@@ -12,7 +12,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary border border-white font-weight-bold"
+        class="btn btn-primary border font-weight-bold"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -23,7 +23,7 @@
       <!-- 時態選項 -->
       <div class="dropdown-menu w-100 text-center py-0 bg-info">
         <router-link
-          class="dropdown-item border border-light font-weight-bold"
+          class="dropdown-item border font-weight-bold"
           :id="tense"
           :to="`/spanish-conjugator/${verb.infinitive}`"
           v-for="tense in indicativeTenses"
@@ -41,7 +41,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary border border-white font-weight-bold"
+        class="btn btn-primary border font-weight-bold"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -52,7 +52,7 @@
       <!-- 時態選項 -->
       <div class="dropdown-menu w-100 text-center py-0 bg-info">
         <router-link
-          class="dropdown-item border border-light font-weight-bold"
+          class="dropdown-item border font-weight-bold"
           :id="tense"
           :to="`/spanish-conjugator/${verb.infinitive}`"
           v-for="tense in imperativeTenses"
@@ -70,7 +70,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary border border-white font-weight-bold"
+        class="btn btn-primary border font-weight-bold"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -81,7 +81,7 @@
       <!-- 時態選項 -->
       <div class="dropdown-menu w-100 text-center py-0 bg-info">
         <router-link
-          class="dropdown-item border border-light font-weight-bold"
+          class="dropdown-item border font-weight-bold"
           :id="tense"
           :to="`/spanish-conjugator/${verb.infinitive}`"
           v-for="tense in subjunctiveTenses"

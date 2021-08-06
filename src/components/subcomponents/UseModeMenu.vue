@@ -5,18 +5,22 @@
       v-model="mode"
       @change.prevent.stop="updateUseMode"
     >
-      <option class="font-weight-bold" value="view" :selected="mode === 'view'">
+      <option
+        class="font-weight-bold bg-info"
+        value="view"
+        :selected="mode === 'view'"
+      >
         View
       </option>
       <option
-        class="font-weight-bold"
+        class="font-weight-bold bg-info"
         value="memory"
         :selected="mode === 'memory'"
       >
         Memory quiz
       </option>
       <option
-        class="font-weight-bold"
+        class="font-weight-bold bg-info"
         value="fill-in"
         :selected="mode === 'fill-in'"
       >
