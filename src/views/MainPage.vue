@@ -109,9 +109,11 @@ export default {
 <style scoped>
 #main-page {
   height: 100vh;
+  min-height: 100%;
 }
 
 main {
   min-width: 600px;
+  height: 100%;
 }
 </style>

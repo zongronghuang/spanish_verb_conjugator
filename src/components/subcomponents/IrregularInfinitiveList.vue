@@ -1,7 +1,14 @@
 <template>
   <!-- 常見不規則動詞列表 -->
   <div
-    class="w-25 text-white d-flex align-items-center justify-content-center"
+    class="
+      d-sm-none d-lg-block
+      w-25
+      text-white
+      d-flex
+      align-items-center
+      justify-content-center
+    "
     id="irregular-infinitive-list"
     title="Top irregular verbs"
   >
@@ -110,9 +117,9 @@ export default {
 </script>
 
 <style scoped>
-#irregular-infinitive-list {
+/* #irregular-infinitive-list {
   max-width: 200px;
-}
+} */
 
 #irregular-infinitive-list > span {
   cursor: pointer;

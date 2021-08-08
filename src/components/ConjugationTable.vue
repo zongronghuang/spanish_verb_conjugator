@@ -1,5 +1,5 @@
 <template>
-  <div class="w-50 px-0 mx-0 py-0 border border-warning" id="conjugation-table">
+  <div class="px-0 mx-0 py-0 border border-warning" id="conjugation-table">
     <div class="w-100 row">
       <div class="col-10 mx-auto position-relative" id="upper-display">
         <div
@@ -393,6 +393,7 @@ export default {
 <style scoped>
 #conjugation-table {
   min-width: 400px;
+  width: 80%;
 }
 
 #upper-display {

@@ -32,8 +32,8 @@ export default {
 </script>
 
 <style scoped>
-nav {
+/* nav {
   min-width: 800px;
-}
+} */
 </style>
 

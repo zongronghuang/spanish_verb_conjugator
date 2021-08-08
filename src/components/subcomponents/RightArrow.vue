@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="d-flex w-25 align-items-center justify-content-start"
-    id="right-panel"
-  >
+  <div class="d-flex align-items-center justify-content-start" id="right-panel">
     <div @click.prevent.stop="switchToNewConjugationGroup('next')">
       <router-link
         class="
@@ -39,7 +36,7 @@ export default {
 
 <style scoped>
 #right-panel {
-  width: 100px;
+  width: 10%;
 }
 
 #right-panel a {
