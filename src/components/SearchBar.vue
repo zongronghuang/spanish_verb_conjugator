@@ -195,8 +195,19 @@ export default {
 
       // 將字母加到輸入框中 + focus 輸入框
       if (target.tagName === "BUTTON") {
-        inputField.value = inputField.value + character;
-        this.input = inputField.value;
+        const value = inputField.value;
+        const start = inputField.selectionStart; // 取得游標插入點開頭位置
+        const end = inputField.selectionEnd; // 取得游標插入點結尾位置
+
+        // 如果 start 和 end 一樣，代表只移動滑鼠游標 => 直接插入特殊字元
+        // 如果 start 和 end 不一樣，代表選取一段文字 => 文字區塊替換成特殊字元
+        const newValue = value.slice(0, start) + character + value.slice(end);
+
+        inputField.value = newValue;
+        this.input = newValue;
+
+        // 重新設定游標插入點 (新輸入的字元位置)
+        inputField.setSelectionRange(start + 1, start + 1);
         inputField.focus();
       }
     },
