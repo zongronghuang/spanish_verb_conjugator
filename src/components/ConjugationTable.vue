@@ -92,26 +92,28 @@
 
             <td
               class="
-                align-middle
                 border-0
                 mx-1
                 px-0
                 d-flex
                 justify-content-center
+                align-items-center
               "
               v-if="mode === 'fill-in' && conjugations[id]"
             >
               <!-- 答案正確圖示 -->
-              <button
-                class="btn btn-warning my-0 py-1 px-3 d-flex flex-row"
+
+              <div
+                class="badge badge-warning my-0 py-3 px-3 d-flex flex-row"
                 v-if="areInputsCorrect[id] === true"
               >
                 <font-awesome-icon :icon="['fas', 'check']" size="1x" />
-              </button>
+              </div>
 
               <!-- 答案錯誤圖示 -->
-              <button
-                class="btn btn-warning my-0 py-1 px-3 d-flex flex-row"
+
+              <div
+                class="badge badge-warning my-0 py-3 px-3 d-flex flex-row"
                 :title="conjugations[id]"
                 v-if="areInputsCorrect[id] === false"
               >
@@ -120,7 +122,7 @@
                   flip="both"
                   size="1x"
                 /><font-awesome-icon :icon="['fas', 'exclamation']" size="1x" />
-              </button>
+              </div>
             </td>
           </tr>
         </tbody>
