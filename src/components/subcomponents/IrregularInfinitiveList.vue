@@ -6,7 +6,15 @@
     title="Top irregular verbs"
   >
     <span
-      class="ml-2 py-0 my-0 d-flex align-items-center font-weight-bold"
+      class="
+        ml-2
+        py-0
+        my-0
+        d-flex
+        align-items-center
+        font-weight-bold
+        overflow-hidden
+      "
       @click.prevent.stop="toggleIrregularInfinitiveListVisibility"
     >
       <font-awesome-icon
@@ -27,7 +35,7 @@
         class="w-100 d-flex flex-wrap justify-content-between my-0 px-1 mx-0"
       >
         <button
-          class="btn btn-info border my-1 py-0 px-1"
+          class="btn btn-info border my-1 mr-1 py-0 px-1"
           v-for="(infinitive, index) in irregularInfinitives"
           :key="index"
           :title="infinitive"

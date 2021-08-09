@@ -1,23 +1,30 @@
 <template>
-  <div class="px-0 mx-0 py-0 border border-warning" id="conjugation-table">
+  <div class="px-0 mx-0 py-0 mb-0" id="conjugation-table">
     <div class="w-100 row">
       <div class="col-10 mx-auto position-relative" id="upper-display">
         <div
-          class="d-flex flex-column text-center mb-2"
+          class="d-flex flex-row justify-content-start text-start mb-1"
           id="infinitive-profile"
           @mouseenter.prevent.stop="toggleMoreInfoTagVisibility"
           @mouseleave.prevent.stop="toggleMoreInfoTagVisibility"
         >
-          <h4 class="mt-5">{{ verb.infinitive | capitalize }}</h4>
-          <h6 class="">{{ verb.mood_english }} {{ verb.tense_english }}</h6>
+          <span class="h3 w-25 font-weight-bold">{{
+            verb.infinitive | capitalize
+          }}</span>
+          <span
+            class="
+              w-75
+              ml-3
+              text-center
+              font-weight-bold font-italic
+              py-1
+              mb-0
+              h4
+              align-middle
+            "
+            >{{ verb.mood_english }} {{ verb.tense_english }}</span
+          >
         </div>
-
-        <MoreInfoTag
-          v-if="isMoreInfoTagVisible"
-          :gerund="verb.gerund"
-          :pastParticiple="verb.pastParticiple"
-          :definition="verb.infinitive_english"
-        />
 
         <PeekButton
           :canPeekAtAnswers="canPeekAtAnswers"
@@ -26,6 +33,13 @@
         />
       </div>
     </div>
+
+    <MoreInfoTag
+      v-if="isMoreInfoTagVisible"
+      :gerund="verb.gerund"
+      :pastParticiple="verb.pastParticiple"
+      :definition="verb.infinitive_english"
+    />
 
     <!-- 動詞變化表格 -->
     <div class="w-100 mx-auto py-0">
@@ -84,10 +98,14 @@
 
             <!-- fill-in mode -->
             <td
-              class="align-middle w-50 px-1 mx-1 border-left"
+              class="align-middle w-50 px-1 py-0 border-left"
               v-if="mode === 'fill-in' && conjugations[id]"
             >
-              <input type="text" v-model="inputs[id]" class="px-0 w-100" />
+              <input
+                type="text"
+                v-model="inputs[id]"
+                class="my-0 px-0 w-100 mx-auto"
+              />
             </td>
 
             <td
@@ -103,18 +121,35 @@
             >
               <!-- 答案正確圖示 -->
 
-              <div
-                class="badge badge-warning my-0 py-3 px-3 d-flex flex-row"
+              <span
+                class="
+                  badge badge-warning
+                  align-middle
+                  my-0
+                  py-1
+                  px-3
+                  d-flex
+                  flex-row
+                "
+                title="Correct!"
                 v-if="areInputsCorrect[id] === true"
               >
                 <font-awesome-icon :icon="['fas', 'check']" size="1x" />
-              </div>
+              </span>
 
               <!-- 答案錯誤圖示 -->
 
-              <div
-                class="badge badge-warning my-0 py-3 px-3 d-flex flex-row"
-                :title="conjugations[id]"
+              <span
+                class="
+                  badge badge-warning
+                  my-0
+                  py-1
+                  px-3
+                  d-flex
+                  flex-row
+                  align-middle
+                "
+                :title="`Answer: ${conjugations[id]}`"
                 v-if="areInputsCorrect[id] === false"
               >
                 <font-awesome-icon
@@ -122,7 +157,7 @@
                   flip="both"
                   size="1x"
                 /><font-awesome-icon :icon="['fas', 'exclamation']" size="1x" />
-              </div>
+              </span>
             </td>
           </tr>
         </tbody>
@@ -137,7 +172,8 @@
         col-10
         px-0
         py-0
-        my-0
+        mt-2
+        mb-0
         d-flex
         justify-content-between
         flex-row

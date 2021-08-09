@@ -13,6 +13,10 @@
       border border-white
     "
   >
+    <header class="text-center my-0 h6 align-middle h-100 py-2">
+      More Info
+    </header>
+    <hr class="font-weight-bolder bg-light w-100 mt-0 mb-2" />
     <span>
       Definition — <strong>{{ definition }}</strong>
     </span>
@@ -48,13 +52,17 @@ export default {
 <style scoped>
 #more-info-tag {
   position: absolute;
-  left: 105%;
-  top: 25%;
+  left: 40%;
+  top: 40%;
+
   z-index: 10;
 
-  width: 250px;
   min-width: 200px;
-  max-width: 300px;
+  max-width: 50%;
   background-color: lightblue;
+}
+
+hr {
+  height: 1px;
 }
 </style>

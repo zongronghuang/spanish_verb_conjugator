@@ -1,7 +1,17 @@
 <template>
-  <nav class="fixed-top nav py-2 bg-primary d-flex justify-content-around">
+  <nav
+    class="
+      fixed-top
+      nav
+      py-2
+      bg-primary
+      d-flex
+      flex-row flex-nowrap
+      justify-content-around
+    "
+  >
     <!-- 常見不規則動詞列表 -->
-    <IrregularInfinitiveList v-show="isIrregularInfinitiveListVisible" />
+    <IrregularInfinitiveList />
 
     <!-- 搜尋欄 -->
     <SearchBar />
@@ -32,8 +42,8 @@ export default {
 </script>
 
 <style scoped>
-/* nav {
-  min-width: 800px;
-} */
+nav {
+  min-width: 750px;
+}
 </style>
 

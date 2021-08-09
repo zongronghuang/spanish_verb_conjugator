@@ -34,6 +34,8 @@ body,
 
 #verb-conjugator {
   background-color: #93aa92;
+  min-width: 700px;
+  min-height: 600px;
 }
 </style>
 

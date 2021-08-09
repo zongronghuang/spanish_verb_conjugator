@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed-bottom d-flex w-100 mb-1"
+    class="fixed-bottom d-flex w-100 mb-0"
     @click="selectTense"
     id="tense-menu"
   >
@@ -12,7 +12,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary border font-weight-bold"
+        class="btn btn-primary border rounded-lg font-weight-bold"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -41,7 +41,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary border font-weight-bold"
+        class="btn btn-primary border rounded-lg font-weight-bold"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
@@ -70,7 +70,7 @@
     >
       <button
         type="button"
-        class="btn btn-primary border font-weight-bold"
+        class="btn btn-primary border rounded-lg font-weight-bold"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"

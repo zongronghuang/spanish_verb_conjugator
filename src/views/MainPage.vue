@@ -1,15 +1,17 @@
 <template>
-  <div id="main-page">
+  <div id="main-page" class="border mt-3">
     <NavBar @update-use-mode="updateUseMode" />
 
     <main
       class="
         w-100
-        mt-5
         d-flex
         justify-content-center
         align-items-center
         mx-auto
+        mb-0
+        pb-0
+        mt-5
         h-75
       "
     >
@@ -115,5 +117,6 @@ export default {
 main {
   min-width: 600px;
   height: 100%;
+  margin-top: 50px;
 }
 </style>
