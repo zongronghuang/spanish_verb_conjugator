@@ -147,7 +147,7 @@
       <div
         class="d-flex flex-row flex-nowrap justify-content-start w-75"
         id="stressed-letters"
-        @click.prevent.stop="typeCharacter"
+        @click.prevent.stop="inputSpecialCharacter"
       >
         <button class="btn btn-info border font-weight-bold border-light mr-1">
           á
@@ -300,7 +300,7 @@ export default {
         currentInput.classList.add("activeInput");
       }
     },
-    typeCharacter(event) {
+    inputSpecialCharacter(event) {
       const target = event.target;
       const character = target.innerText;
       const activeInput = document.querySelector(".activeInput");
@@ -313,12 +313,21 @@ export default {
 
       // 將字母加到輸入框中 + focus 輸入框
       if (target.tagName === "BUTTON" && activeInput) {
-        const updatedInputs = [...this.inputs];
+        const value = activeInput.value;
+        const start = activeInput.selectionStart;
+        const end = activeInput.selectionEnd;
 
-        activeInput.value = activeInput.value + character;
-        updatedInputs[activeInputId] = activeInput.value;
-        this.inputs = [...updatedInputs];
+        // 如果 start 和 end 一樣，代表只移動滑鼠游標 => 直接插入特殊字元
+        // 如果 start 和 end 不一樣，代表選取一段文字 => 文字區塊替換成特殊字
+        const newValue = value.slice(0, start) + character + value.slice(end);
 
+        activeInput.value = newValue;
+
+        this.inputs[activeInputId] = newValue;
+        this.inputs = [...this.inputs];
+
+        // 重新設定游標插入點 (新輸入的字元位置)
+        activeInput.setSelectionRange(start + 1, start + 1);
         activeInput.focus();
       }
     },
