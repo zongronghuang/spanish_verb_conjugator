@@ -16,22 +16,22 @@
     <!-- 搜尋欄 -->
     <SearchBar />
 
-    <!-- 使用模式選單 -->
-    <UseModeMenu @update-use-mode="updateUseMode" />
+    <!-- App 設定按鍵 -->
+    <SettingsButton />
   </nav>
 </template>
 
 <script>
 import SearchBar from "./SearchBar.vue";
 import IrregularInfinitiveList from "./subcomponents/IrregularInfinitiveList.vue";
-import UseModeMenu from "./subcomponents/UseModeMenu.vue";
+import SettingsButton from "./SettingsButton.vue";
 
 export default {
   name: "nav-bar",
   components: {
     SearchBar,
     IrregularInfinitiveList,
-    UseModeMenu,
+    SettingsButton,
   },
   methods: {
     updateUseMode(mode) {

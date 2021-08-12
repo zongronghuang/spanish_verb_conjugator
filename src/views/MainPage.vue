@@ -1,7 +1,6 @@
 <template>
   <div id="main-page" class="border mt-3">
     <NavBar @update-use-mode="updateUseMode" />
-
     <main
       class="
         w-100
@@ -23,12 +22,12 @@
       <RightArrow />
     </main>
 
-    <TenseMenu @fetch-selected-conjugations="fetchSelectedConjugations" />
+    <!-- <TenseMenu @fetch-selected-conjugations="fetchSelectedConjugations" /> -->
   </div>
 </template>
 
 <script>
-import TenseMenu from "../components/TenseMenu.vue";
+// import TenseMenu from "../components/TenseMenu.vue";
 import NavBar from "../components/NavBar.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
 import LeftArrow from "../components/subcomponents/LeftArrow.vue";
@@ -40,7 +39,7 @@ import datasetAPIs from "../apis/dataset.js";
 export default {
   name: "main-page",
   components: {
-    TenseMenu,
+    // TenseMenu,
     NavBar,
     ConjugationTable,
     LeftArrow,
