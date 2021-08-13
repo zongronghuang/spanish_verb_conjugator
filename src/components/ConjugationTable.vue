@@ -1,5 +1,45 @@
 <template>
-  <div class="px-0 mx-0 py-0 mb-0" id="conjugation-table">
+  <div class="card text-center">
+    <div class="card-header bg-primary d-flex flex-row justify-content-between">
+      <h5>verb</h5>
+      <span>tense</span>
+      <a href="">
+        <font-awesome-icon
+          :icon="['fas', 'info']"
+          size="2x"
+          :style="{ color: 'white' }"
+        />
+      </a>
+    </div>
+    <div class="card-body">
+      <div class="container">
+        <div class="row" v-for="(person, id) in persons" :key="id">
+          <span class="col-4 border" :title="person">{{ person }}</span>
+          <span class="col-6 border" :title="conjugations[id]">
+            {{ conjugations[id] }}
+          </span>
+          <div class="col-2 border">check</div>
+        </div>
+      </div>
+
+      <div class="card-footer d-flex flex-row justify-content-between">
+        <div class="d-flex flex-row">
+          <button
+            class="btn btn-primary mr-1"
+            v-for="(character, id) in specialCharacters"
+            :key="id"
+            :title="character"
+          >
+            {{ character }}
+          </button>
+        </div>
+
+        <button class="btn btn-primary" title="check">check</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="px-0 mx-0 py-0 mb-0" id="conjugation-table">
     <div class="w-100 row">
       <div class="col-10 mx-auto position-relative" id="upper-display">
         <div
@@ -41,7 +81,7 @@
       :definition="verb.infinitive_english"
     />
 
-    <!-- 動詞變化表格 -->
+   
     <div class="w-100 mx-auto py-0">
       <table class="w-100 col-10 table mb-1 mx-auto shadow">
         <tbody class="py-0 my-0" @click.prevent.stop="markActiveInput">
@@ -54,7 +94,7 @@
               {{ persons[id] }}
             </th>
 
-            <!-- view mode -->
+       
             <td
               class="align-middle h5 pl-5 border-left text-center"
               v-if="mode === 'view'"
@@ -62,7 +102,7 @@
               {{ conjugations[id] }}
             </td>
 
-            <!-- memory mode -->
+          
             <td
               class="align-middle h5 pl-5 border-left text-center"
               v-if="mode === 'memory' && canPeekAtAnswers === true"
@@ -96,7 +136,7 @@
               />
             </td>
 
-            <!-- fill-in mode -->
+         
             <td
               class="align-middle w-50 px-1 py-0 border-left"
               v-if="mode === 'fill-in' && conjugations[id]"
@@ -119,8 +159,7 @@
               "
               v-if="mode === 'fill-in' && conjugations[id]"
             >
-              <!-- 答案正確圖示 -->
-
+             
               <span
                 class="
                   badge badge-warning
@@ -137,7 +176,7 @@
                 <font-awesome-icon :icon="['fas', 'check']" size="1x" />
               </span>
 
-              <!-- 答案錯誤圖示 -->
+         
 
               <span
                 class="
@@ -164,7 +203,6 @@
       </table>
     </div>
 
-    <!-- 特殊字元輸入鍵盤 & 確認按鍵 -->
     <div
       class="
         mx-auto
@@ -222,19 +260,19 @@
         Check
       </button>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
 import { mapState } from "vuex";
-import MoreInfoTag from "./subcomponents/MoreInfoTag.vue";
-import PeekButton from "./subcomponents/PeekButton.vue";
+// import MoreInfoTag from "./subcomponents/MoreInfoTag.vue";
+// import PeekButton from "./subcomponents/PeekButton.vue";
 
 export default {
   name: "conjugation-table",
   components: {
-    MoreInfoTag,
-    PeekButton,
+    // MoreInfoTag,
+    // PeekButton,
   },
   props: {
     mode: {
@@ -256,6 +294,7 @@ export default {
         "vosotros",
         "ellos/ellas/ustedes",
       ],
+      specialCharacters: ["á", "é", "í", "ó", "ú", "ü", "ñ"],
       conjugations: [],
       inputs: Array(6).fill(""),
       areInputsCorrect: Array(6).fill(undefined),
