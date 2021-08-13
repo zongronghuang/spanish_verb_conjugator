@@ -11,7 +11,7 @@
     "
   >
     <!-- 常見不規則動詞列表 -->
-    <IrregularInfinitiveList />
+    <IrregularVerbsButton />
 
     <!-- 搜尋欄 -->
     <SearchBar />
@@ -23,14 +23,14 @@
 
 <script>
 import SearchBar from "./SearchBar.vue";
-import IrregularInfinitiveList from "./subcomponents/IrregularInfinitiveList.vue";
+import IrregularVerbsButton from "./subcomponents/IrregularVerbsButton.vue";
 import SettingsButton from "./SettingsButton.vue";
 
 export default {
   name: "nav-bar",
   components: {
     SearchBar,
-    IrregularInfinitiveList,
+    IrregularVerbsButton,
     SettingsButton,
   },
   methods: {
