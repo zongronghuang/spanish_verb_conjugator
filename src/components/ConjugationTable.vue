@@ -1,5 +1,6 @@
 <template>
-  <div class="card text-center">
+  <div class="card w-75">
+    <!-- 動詞 + 時態 -->
     <div class="card-header bg-primary d-flex flex-row justify-content-between">
       <h5>verb</h5>
       <span>tense</span>
@@ -8,20 +9,75 @@
           :icon="['fas', 'info']"
           size="2x"
           :style="{ color: 'white' }"
+          @click.stop.prevent="showInfoDialog"
         />
       </a>
     </div>
-    <div class="card-body">
-      <div class="container">
-        <div class="row" v-for="(person, id) in persons" :key="id">
-          <span class="col-4 border" :title="person">{{ person }}</span>
-          <span class="col-6 border" :title="conjugations[id]">
-            {{ conjugations[id] }}
-          </span>
-          <div class="col-2 border">check</div>
-        </div>
-      </div>
 
+    <!-- 動詞變化卡片 -->
+    <div class="card-body">
+      <table class="table table-striped table-borderless my-0">
+        <tbody class="container-fluid">
+          <tr v-for="(person, id) in persons" :key="id">
+            <th scope="row" class="col-4 text-left">
+              {{ person }}
+            </th>
+
+            <!-- view 和 memory 模式 -->
+            <td v-if="mode !== 'fill-in'" class="col-6 h4 align-middle">
+              {{ conjugations[id] }}
+            </td>
+            <!-- fill-in 模式 -->
+            <td v-else class="col-6">
+              <input type="text" class="form-control input-field" />
+            </td>
+
+            <!-- fill-in 模式的答對/答錯提示 -->
+            <td
+              v-if="mode !== 'fill-in'"
+              class="col-2 d-flex justify-content-center align-items-center"
+            >
+              <!-- 答案正確 -->
+              <span
+                class="
+                  badge badge-warning
+                  align-middle
+                  p-2
+                  d-flex
+                  flex-row
+                  justify-content-center
+                "
+                title="Correct!"
+                v-if="areInputsCorrect[id] === true"
+              >
+                <font-awesome-icon :icon="['fas', 'check']" size="2x" />
+              </span>
+
+              <!-- 答案錯誤 -->
+              <span
+                class="
+                  badge badge-warning
+                  align-middle
+                  p-2
+                  d-flex
+                  flex-row
+                  justify-content-center
+                "
+                :title="`Answer: ${conjugations[id]}`"
+                v-if="areInputsCorrect[id] === false"
+              >
+                <font-awesome-icon
+                  :icon="['fas', 'exclamation']"
+                  flip="both"
+                  size="2x"
+                /><font-awesome-icon :icon="['fas', 'exclamation']" size="2x" />
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 特殊字元鍵盤 -->
       <div class="card-footer d-flex flex-row justify-content-between">
         <div class="d-flex flex-row">
           <button
@@ -37,6 +93,43 @@
         <button class="btn btn-primary" title="check">check</button>
       </div>
     </div>
+
+    <!-- info 對話框  -->
+    <dialog ref="infoDialog" class="bg-info">
+      <header>
+        <span>Word Info</span>
+        <a href="" class="text-decoration-none">
+          <font-awesome-icon
+            :icon="['fas', 'window-close']"
+            size="2x"
+            :style="{ color: 'white' }"
+            class="float-right"
+            @click.prevent.stop="closeInfoDialog"
+          />
+        </a>
+      </header>
+      <hr />
+      <section>
+        <p>
+          <span>Definition: </span>
+          <span>
+            <mark>{{ verb.infinitive_english }}</mark>
+          </span>
+        </p>
+        <p>
+          <span>Gerund: </span>
+          <span>
+            <mark>{{ verb.gerund }}</mark>
+          </span>
+        </p>
+        <p>
+          <span>Past participle: </span>
+          <span>
+            <mark> {{ verb.pastParticiple }}</mark>
+          </span>
+        </p>
+      </section>
+    </dialog>
   </div>
 
   <!-- <div class="px-0 mx-0 py-0 mb-0" id="conjugation-table">
@@ -416,6 +509,12 @@ export default {
       this.areInputsCorrect = this.areInputsCorrect.map(
         (result, i) => this.inputs[i] === this.conjugations[i]
       );
+    },
+    showInfoDialog() {
+      this.$refs.infoDialog.showModal();
+    },
+    closeInfoDialog() {
+      this.$refs.infoDialog.close();
     },
   },
   watch: {
