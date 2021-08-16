@@ -75,11 +75,11 @@
         <!-- indicative tenses -->
         <div
           id="indicative-tenses"
-          class="d-flex justify-content-between flex-wrap flex-row w-100"
-          v-if="false"
+          class="d-flex justify-content-between flex-wrap flex-row"
+          v-if="configs.mood === 'indicative'"
         >
           <button
-            class="mx-1 my-2 btn btn-primary font-weight-bold"
+            class="mx-2 my-2 btn btn-primary font-weight-bold"
             v-for="tense in indicativeTenses"
             :key="tense"
             :value="tense"
@@ -93,10 +93,10 @@
         <div
           id="imperative-tenses"
           class="d-flex justify-content-between flex-wrap flex-row w-100"
-          v-if="false"
+          v-if="configs.mood === 'imperative'"
         >
           <button
-            class="mx-1 my-2 btn btn-primary font-weight-bold"
+            class="mx-2 my-2 btn btn-primary font-weight-bold"
             v-for="tense in imperativeTenses"
             :key="tense"
             :value="tense"
@@ -110,9 +110,10 @@
         <div
           id="subjunctive-tenses"
           class="d-flex justify-content-between flex-wrap flex-row w-100"
+          v-if="configs.mood === 'subjunctive'"
         >
           <button
-            class="mx-1 my-2 btn btn-primary font-weight-bold"
+            class="mx-2 my-2 btn btn-primary font-weight-bold"
             v-for="tense in subjunctiveTenses"
             :key="tense"
             :value="tense"
@@ -127,6 +128,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "settings-buttons",
   filters: {
@@ -197,7 +200,12 @@ export default {
       this.$store.commit("setTense", tense);
     },
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      verb: (state) => state.verb,
+      configs: (state) => state.configs,
+    }),
+  },
 };
 </script>
 
