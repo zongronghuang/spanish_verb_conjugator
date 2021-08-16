@@ -11,53 +11,116 @@
     </a>
 
     <!-- 設定對話框 -->
-    <dialog ref="settingsDialog">
+    <dialog ref="settingsDialog" class="container font-weight-bold">
       <header>
-        <span>Settings</span>
+        <span class="h4">Settings</span>
         <a href="" class="text-decoration-none">
           <font-awesome-icon
             :icon="['fas', 'window-close']"
-            size="2x"
+            size="1x"
             :style="{ color: 'white' }"
             class="float-right"
             @click.prevent.stop="closeSettingsDialog"
           />
         </a>
       </header>
+
       <hr />
-      <section class="d-flex flex-row" @click.stop.prevent="setUseMode">
-        <span class="">Use mode</span>
-        <button value="view">View</button>
-        <button value="memory">Flash card</button>
-        <button value="fill-in">Fill-in</button>
+      <!-- use mode 選單 -->
+      <section class="d-flex flex-row border align-items-center">
+        <span class="w-25 text-left pl-1">Use mode</span>
+        <div
+          class="w-75 btn-group d-flex justify-content-between float-right"
+          role="group"
+          @click.stop.prevent="setUseMode"
+        >
+          <button class="btn btn-primary font-weight-bold" value="view">
+            View
+          </button>
+          <button class="btn btn-primary font-weight-bold" value="memory">
+            Flash card
+          </button>
+          <button class="btn btn-primary font-weight-bold" value="fill-in">
+            Fill-in
+          </button>
+        </div>
       </section>
-      <section class="d-flex flex-row" @click.stop.prevent="setMood">
-        <span>Mood</span>
-        <button value="indicative">Indicative</button>
-        <button value="imperative">Imperative</button>
-        <button value="subjunctive">Subjunctive</button>
+
+      <!-- mood 選單 -->
+      <section class="d-flex flex-row border align-items-center">
+        <span class="w-25 text-left pl-1">Mood</span>
+        <div
+          class="btn-group d-flex w-75 justify-content-between float-right"
+          role="group"
+          @click.stop.prevent="setMood"
+        >
+          <button class="btn btn-primary font-weight-bold" value="indicative">
+            Indicative
+          </button>
+          <button class="btn btn-primary font-weight-bold" value="imperative">
+            Imperative
+          </button>
+          <button class="btn btn-primary font-weight-bold" value="subjunctive">
+            Subjunctive
+          </button>
+        </div>
       </section>
+
+      <!-- tense 選單-->
       <section
-        class="
-          border
-          d-flex
-          flex-wrap
-          justify-content-around
-          align-items-center
-        "
+        class="border btn-group w-100"
+        role="group"
         @click.stop.prevent="setTense"
       >
-        <!-- 顯示 tense buttons -->
-        <button>tense</button>
-        <button>tense</button>
-        <button>tense</button>
-        <button>tense</button>
-        <button>tense</button>
-        <button>tense</button>
-        <button>tense</button>
-        <button>tense</button>
-        <button>tense</button>
-        <button>tense</button>
+        <!-- indicative tenses -->
+        <div
+          id="indicative-tenses"
+          class="d-flex justify-content-between flex-wrap flex-row w-100"
+          v-if="false"
+        >
+          <button
+            class="mx-1 my-2 btn btn-primary font-weight-bold"
+            v-for="tense in indicativeTenses"
+            :key="tense"
+            :value="tense"
+            :title="tense"
+          >
+            {{ tense | removeMood }}
+          </button>
+        </div>
+
+        <!-- imperative tenses -->
+        <div
+          id="imperative-tenses"
+          class="d-flex justify-content-between flex-wrap flex-row w-100"
+          v-if="false"
+        >
+          <button
+            class="mx-1 my-2 btn btn-primary font-weight-bold"
+            v-for="tense in imperativeTenses"
+            :key="tense"
+            :value="tense"
+            :title="tense"
+          >
+            {{ tense | removeMood }}
+          </button>
+        </div>
+
+        <!-- subjunctive tensess -->
+        <div
+          id="subjunctive-tenses"
+          class="d-flex justify-content-between flex-wrap flex-row w-100"
+        >
+          <button
+            class="mx-1 my-2 btn btn-primary font-weight-bold"
+            v-for="tense in subjunctiveTenses"
+            :key="tense"
+            :value="tense"
+            :title="tense"
+          >
+            {{ tense | removeMood }}
+          </button>
+        </div>
       </section>
     </dialog>
   </div>
@@ -66,6 +129,14 @@
 <script>
 export default {
   name: "settings-buttons",
+  filters: {
+    removeMood(tense) {
+      const newTense = tense.split(" ");
+      newTense.shift();
+      const name = newTense.join(" ");
+      return name;
+    },
+  },
   data() {
     return {
       indicativeTenses: [

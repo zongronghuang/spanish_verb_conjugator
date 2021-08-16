@@ -1,5 +1,5 @@
 <template>
-  <div id="main-page" class="border mt-3">
+  <div id="main-page" class="">
     <NavBar />
     <main
       class="
