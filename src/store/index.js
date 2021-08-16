@@ -17,6 +17,11 @@ export default new Vuex.Store({
       allConjugations: []
     },
     infinitives: [],
+    configs: {
+      useMode: 'view',
+      mood: 'indicative',
+      tense: 'present'
+    }
   },
   mutations: {
     setInfinitives(state, infinitives) {
@@ -38,7 +43,17 @@ export default new Vuex.Store({
         ...state.verb,
         ...moodAndTense
       }
+    },
+    setUseMode(state, useMode) {
+      state.configs.useMode = useMode
+    },
+    setMood(state, mood) {
+      state.configs.mood = mood
+    },
+    setTense(state, tense) {
+      state.configs.tense = tense
     }
+
   },
   actions: {
   },

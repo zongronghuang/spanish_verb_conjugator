@@ -33,11 +33,7 @@ export default {
     IrregularVerbsButton,
     SettingsButton,
   },
-  methods: {
-    updateUseMode(mode) {
-      this.$emit("update-use-mode", mode);
-    },
-  },
+  methods: {},
 };
 </script>
 

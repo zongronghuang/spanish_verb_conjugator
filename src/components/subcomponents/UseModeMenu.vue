@@ -3,7 +3,6 @@
     <select
       class="custom-select text-white bg-primary font-weight-bold"
       v-model="mode"
-      @change.prevent.stop="updateUseMode"
     >
       <option
         class="font-weight-bold bg-info"
@@ -38,11 +37,7 @@ export default {
       mode: "view",
     };
   },
-  methods: {
-    updateUseMode() {
-      this.$emit("update-use-mode", this.mode);
-    },
-  },
+  methods: {},
 };
 </script>
 

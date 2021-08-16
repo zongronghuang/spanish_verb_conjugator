@@ -1,9 +1,23 @@
 <template>
   <div class="card w-75">
     <!-- 動詞 + 時態 -->
-    <div class="card-header bg-primary d-flex flex-row justify-content-between">
-      <h5>verb</h5>
-      <span>tense</span>
+    <div
+      class="
+        card-header
+        bg-primary
+        d-flex
+        flex-row
+        justify-content-between
+        align-items-center
+        py-1
+      "
+    >
+      <span class="h3 font-weight-bold align-middle font-italic">
+        {{ verb.infinitive | capitalize }}
+      </span>
+      <span class="h4 align-middle font-italic">
+        {{ verb.mood_english }} {{ verb.tense_english }}
+      </span>
       <a href="">
         <font-awesome-icon
           :icon="['fas', 'info']"
@@ -19,22 +33,25 @@
       <table class="table table-striped table-borderless my-0">
         <tbody class="container-fluid">
           <tr v-for="(person, id) in persons" :key="id">
-            <th scope="row" class="col-4 text-left">
+            <th scope="row" class="col-4 text-left align-middle">
               {{ person }}
             </th>
 
             <!-- view 和 memory 模式 -->
-            <td v-if="mode !== 'fill-in'" class="col-6 h4 align-middle">
+            <td
+              v-if="configs.useMode !== 'fill-in'"
+              class="col-6 h5 align-middle"
+            >
               {{ conjugations[id] }}
             </td>
             <!-- fill-in 模式 -->
-            <td v-else class="col-6">
+            <td v-else class="col-6 py-0 align-middle">
               <input type="text" class="form-control input-field" />
             </td>
 
             <!-- fill-in 模式的答對/答錯提示 -->
             <td
-              v-if="mode !== 'fill-in'"
+              v-if="configs.useMode !== 'fill-in'"
               class="col-2 d-flex justify-content-center align-items-center"
             >
               <!-- 答案正確 -->
@@ -95,15 +112,14 @@
     </div>
 
     <!-- info 對話框  -->
-    <dialog ref="infoDialog" class="bg-info">
-      <header>
-        <span>Word Info</span>
-        <a href="" class="text-decoration-none">
+    <dialog ref="infoDialog" class="w-25 bg-info rounded-lg">
+      <header class="text-center">
+        <span class="h5 align-middle">Word Info</span>
+        <a href="" class="text-decoration-none float-right">
           <font-awesome-icon
             :icon="['fas', 'window-close']"
-            size="2x"
+            size="1x"
             :style="{ color: 'white' }"
-            class="float-right"
             @click.prevent.stop="closeInfoDialog"
           />
         </a>
@@ -131,247 +147,15 @@
       </section>
     </dialog>
   </div>
-
-  <!-- <div class="px-0 mx-0 py-0 mb-0" id="conjugation-table">
-    <div class="w-100 row">
-      <div class="col-10 mx-auto position-relative" id="upper-display">
-        <div
-          class="d-flex flex-row justify-content-start text-start mb-1"
-          id="infinitive-profile"
-          @mouseenter.prevent.stop="toggleMoreInfoTagVisibility"
-          @mouseleave.prevent.stop="toggleMoreInfoTagVisibility"
-        >
-          <span class="h3 w-25 font-weight-bold">{{
-            verb.infinitive | capitalize
-          }}</span>
-          <span
-            class="
-              w-75
-              ml-3
-              text-center
-              font-weight-bold font-italic
-              py-1
-              mb-0
-              h4
-              align-middle
-            "
-            >{{ verb.mood_english }} {{ verb.tense_english }}</span
-          >
-        </div>
-
-        <PeekButton
-          :canPeekAtAnswers="canPeekAtAnswers"
-          v-if="mode === 'memory'"
-          @update-can-peek-at-answers="updateCanPeekAtAnswers"
-        />
-      </div>
-    </div>
-
-    <MoreInfoTag
-      v-if="isMoreInfoTagVisible"
-      :gerund="verb.gerund"
-      :pastParticiple="verb.pastParticiple"
-      :definition="verb.infinitive_english"
-    />
-
-   
-    <div class="w-100 mx-auto py-0">
-      <table class="w-100 col-10 table mb-1 mx-auto shadow">
-        <tbody class="py-0 my-0" @click.prevent.stop="markActiveInput">
-          <tr
-            class="border py-0 my-0"
-            v-for="(person, id) in persons"
-            :key="id"
-          >
-            <th scope="row" class="w-25 align-middle py-0 my-0">
-              {{ persons[id] }}
-            </th>
-
-       
-            <td
-              class="align-middle h5 pl-5 border-left text-center"
-              v-if="mode === 'view'"
-            >
-              {{ conjugations[id] }}
-            </td>
-
-          
-            <td
-              class="align-middle h5 pl-5 border-left text-center"
-              v-if="mode === 'memory' && canPeekAtAnswers === true"
-            >
-              {{ conjugations[id] }}
-            </td>
-
-            <td
-              class="
-                align-middle
-                h5
-                bg-info
-                border-left
-                mb-0
-                d-flex
-                flex-row
-                justify-content-center
-              "
-              v-if="mode === 'memory' && canPeekAtAnswers === false"
-            >
-              <font-awesome-icon
-                :icon="['fas', 'question']"
-                flip="both"
-                size="1x"
-                class="my-0 py-0"
-              />
-              <font-awesome-icon
-                :icon="['fas', 'question']"
-                size="1x"
-                class="my-0 py-0"
-              />
-            </td>
-
-         
-            <td
-              class="align-middle w-50 px-1 py-0 border-left"
-              v-if="mode === 'fill-in' && conjugations[id]"
-            >
-              <input
-                type="text"
-                v-model="inputs[id]"
-                class="my-0 px-0 w-100 mx-auto"
-              />
-            </td>
-
-            <td
-              class="
-                border-0
-                mx-1
-                px-0
-                d-flex
-                justify-content-center
-                align-items-center
-              "
-              v-if="mode === 'fill-in' && conjugations[id]"
-            >
-             
-              <span
-                class="
-                  badge badge-warning
-                  align-middle
-                  my-0
-                  py-1
-                  px-3
-                  d-flex
-                  flex-row
-                "
-                title="Correct!"
-                v-if="areInputsCorrect[id] === true"
-              >
-                <font-awesome-icon :icon="['fas', 'check']" size="1x" />
-              </span>
-
-         
-
-              <span
-                class="
-                  badge badge-warning
-                  my-0
-                  py-1
-                  px-3
-                  d-flex
-                  flex-row
-                  align-middle
-                "
-                :title="`Answer: ${conjugations[id]}`"
-                v-if="areInputsCorrect[id] === false"
-              >
-                <font-awesome-icon
-                  :icon="['fas', 'exclamation']"
-                  flip="both"
-                  size="1x"
-                /><font-awesome-icon :icon="['fas', 'exclamation']" size="1x" />
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div
-      class="
-        mx-auto
-        w-100
-        col-10
-        px-0
-        py-0
-        mt-2
-        mb-0
-        d-flex
-        justify-content-between
-        flex-row
-      "
-      v-if="mode === 'fill-in'"
-    >
-      <div
-        class="d-flex flex-row flex-nowrap justify-content-start w-75"
-        id="stressed-letters"
-        @click.prevent.stop="inputSpecialCharacter"
-      >
-        <button class="btn btn-info border font-weight-bold border-light mr-1">
-          á
-        </button>
-        <button class="btn btn-info border font-weight-bold border-light mr-1">
-          é
-        </button>
-        <button class="btn btn-info border font-weight-bold border-light mr-1">
-          í
-        </button>
-        <button class="btn btn-info border font-weight-bold border-light mr-1">
-          ó
-        </button>
-        <button class="btn btn-info border font-weight-bold border-light mr-1">
-          ú
-        </button>
-        <button class="btn btn-info border font-weight-bold border-light mr-1">
-          ü
-        </button>
-        <button class="btn btn-info border font-weight-bold border-light">
-          ñ
-        </button>
-      </div>
-
-      <button
-        class="
-          btn btn-warning
-          py-0
-          ml-1
-          mr-0
-          border border-light
-          font-weight-bold
-        "
-        @click.stop.prevent="checkInputs"
-      >
-        Check
-      </button>
-    </div>
-  </div> -->
 </template>
 
 <script>
 import { mapState } from "vuex";
-// import MoreInfoTag from "./subcomponents/MoreInfoTag.vue";
-// import PeekButton from "./subcomponents/PeekButton.vue";
 
 export default {
   name: "conjugation-table",
-  components: {
-    // MoreInfoTag,
-    // PeekButton,
-  },
+  components: {},
   props: {
-    mode: {
-      type: String,
-      required: true,
-    },
     // [{...}]
     selectedConjugations: {
       type: Array,
@@ -400,18 +184,18 @@ export default {
       return text.toUpperCase();
     },
     // 搭配 white-space: pre 置中
-    breakIntoLines(text) {
-      if (!text.includes(" ")) return text;
+    // breakIntoLines(text) {
+    //   if (!text.includes(" ")) return text;
 
-      const words = text.split(" ");
+    //   const words = text.split(" ");
 
-      const brokenText = words.reduce((base, word, index) => {
-        if (index === words.length - 1) return base + word;
-        return base + word + "\n ";
-      }, ``);
+    //   const brokenText = words.reduce((base, word, index) => {
+    //     if (index === words.length - 1) return base + word;
+    //     return base + word + "\n ";
+    //   }, ``);
 
-      return brokenText;
-    },
+    //   return brokenText;
+    // },
   },
   created() {
     this.getVerb();
@@ -441,18 +225,18 @@ export default {
         form_3p,
       ];
     },
-    updateCanPeekAtAnswers(isPeekable) {
-      this.canPeekAtAnswers = isPeekable;
-    },
-    toggleMoreInfoTagVisibility(event) {
-      if (event.type === "mouseenter") {
-        this.isMoreInfoTagVisible = true;
-      }
+    // updateCanPeekAtAnswers(isPeekable) {
+    //   this.canPeekAtAnswers = isPeekable;
+    // },
+    // toggleMoreInfoTagVisibility(event) {
+    //   if (event.type === "mouseenter") {
+    //     this.isMoreInfoTagVisible = true;
+    //   }
 
-      if (event.type === "mouseleave") {
-        this.isMoreInfoTagVisible = false;
-      }
-    },
+    //   if (event.type === "mouseleave") {
+    //     this.isMoreInfoTagVisible = false;
+    //   }
+    // },
     markActiveInput(event) {
       const currentInput = event.target;
       const inputs = document.querySelectorAll("td > input");
@@ -518,9 +302,6 @@ export default {
     },
   },
   watch: {
-    mode: function (newMode) {
-      if (newMode === "memory") this.canPeekAtAnswers = false;
-    },
     // 關注 vuex 中的 verb 物件是否改變 (處理 IrregularInfinitiveList 所選的特殊動詞)
     verb: function (newVerb) {
       const { allConjugations, tense_english, mood_english } = newVerb;
@@ -568,6 +349,7 @@ export default {
         return state.verb;
       },
       infinitives: (state) => state.infinitives,
+      configs: (state) => state.configs,
     }),
   },
 };
@@ -589,13 +371,5 @@ export default {
 
 .activeInput {
   font-weight: bold;
-}
-
-tr:nth-child(odd) {
-  background-color: lightseagreen;
-}
-
-tr {
-  line-height: 3rem;
 }
 </style>

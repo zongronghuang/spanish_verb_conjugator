@@ -1,6 +1,6 @@
 <template>
   <div id="main-page" class="border mt-3">
-    <NavBar @update-use-mode="updateUseMode" />
+    <NavBar />
     <main
       class="
         w-100
@@ -91,9 +91,6 @@ export default {
     next();
   },
   methods: {
-    updateUseMode(mode) {
-      this.mode = mode;
-    },
     fetchSelectedConjugations(selectedConjugations) {
       // [{...}]
       console.log("selected conjugations in MainPage", selectedConjugations);
@@ -108,14 +105,14 @@ export default {
 </script>
 
 <style scoped>
-#main-page {
+/* #main-page {
   height: 100vh;
   min-height: 100%;
-}
+} */
 
-main {
+/* main {
   min-width: 600px;
   height: 100%;
   margin-top: 50px;
-}
+} */
 </style>
