@@ -34,15 +34,7 @@ export const switchToNewConjugationGroup = {
 
       newGroupIDPolicies[order]();
 
-      const { mood, tense, mood_english, tense_english } =
-        conjugationGroups[newGroupID];
-
-      this.$store.commit("setMoodAndTense", {
-        mood,
-        tense,
-        mood_english,
-        tense_english,
-      });
+      this.$store.commit('setVerbData', conjugationGroups[newGroupID])
 
       // [{...}]
       this.$emit("fetch-selected-conjugations", [

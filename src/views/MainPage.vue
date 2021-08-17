@@ -63,8 +63,10 @@ export default {
     // 如果 infinitive 存在 => 取出動詞變化放到 vuex 中，顯示 indicative present
     // 如果 infinitive 不存在 => 重新導向至 search page
     if (conjugations.length > 0) {
-      this.$store.commit("setVerb", conjugations);
-      localStorage.setItem("verb_conjugations", JSON.stringify(conjugations));
+      this.$store.commit("setVerbData", {
+        ...conjugations[0],
+        allConjugations: conjugations,
+      });
     } else {
       this.$router.push("/search");
     }
@@ -82,8 +84,10 @@ export default {
     // 如果存在指定的 infinitive => 取出動詞變化放到 vuex 中，顯示 indicative present
     // 如果 infinitive 不存在 => 重新導向至 search page
     if (conjugations.length > 0) {
-      this.$store.commit("setVerb", conjugations);
-      localStorage.setItem("verb_conjugations", JSON.stringify(conjugations));
+      this.$store.commit("setVerbData", {
+        ...conjugations[0],
+        allConjugations: conjugations,
+      });
     } else {
       this.$router.push("/search");
     }

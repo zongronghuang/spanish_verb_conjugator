@@ -171,8 +171,10 @@ export default {
       );
 
       if (conjugations.length > 0) {
-        this.$store.commit("setVerb", conjugations);
-        localStorage.setItem("verb_conjugations", JSON.stringify(conjugations));
+        this.$store.commit("setVerbData", {
+          ...conjugations[0],
+          allConjugations: conjugations,
+        });
       } else {
         this.alert = "Oops, it's not in the database";
         return;

@@ -216,13 +216,7 @@ export default {
           group.tense_english === tense_english
       );
 
-      this.$store.commit("setVerbData", {
-        mood: currentConjugations.mood,
-        tense: currentConjugations.tense,
-        mood_english,
-        tense_english,
-        currentConjugations,
-      });
+      this.$store.commit("setVerbData", currentConjugations);
     },
   },
   computed: {

@@ -12,9 +12,17 @@ export default new Vuex.Store({
       mood_english: '',
       tense: '',
       tense_english: '',
+      verb_english: '',
+      form_1s: '',
+      form_2s: '',
+      form_3s: '',
+      form_1p: '',
+      form_2p: '',
+      form_3p: '',
       gerund: '',
-      pastParticiple: '',
-      currentConjugations: {},
+      gerund_english: '',
+      pastparticiple: '',
+      pastarticiple_english: '',
       allConjugations: []
     },
     infinitives: [],
@@ -28,38 +36,17 @@ export default new Vuex.Store({
     setInfinitives(state, infinitives) {
       state.infinitives = [...infinitives]
     },
-    setVerb(state, allConjugations) {
-      // 動詞 metadata
-      // 時態和語氣預設為 indicative present
-
-      state.verb = { ...allConjugations[0] }
-      state.verb.pastParticiple = state.verb.pastparticiple
-      state.verb.allConjugations = [...allConjugations]
-      delete state.verb.pastparticiple
-      // 要拿掉 1s_form 1p_form 之類的東西
-
-
-      console.log('state verb', state.verb)
-      return state.verb
-    },
-    setMoodAndTense(state, moodAndTense) {
-      state.verb = {
-        ...state.verb,
-        ...moodAndTense
-      }
-    },
-    /////// new ones vvvvvvv
     setConfigs(state, configsObj) {
       state.configs = {
         ...state.configs,
         ...configsObj
       }
     },
-    // 待測試 (整合所有 verb{} 內資料修改)
-    setVerbData(state, verbObj) {
+    // 放入 verb 某時態的整組 conjugations
+    setVerbData(state, verbConjugations) {
       state.verb = {
         ...state.verb,
-        ...verbObj
+        ...verbConjugations
       }
     }
 
