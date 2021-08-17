@@ -184,7 +184,7 @@ export default {
       if (event.target.value === this.$store.state.configs.useMode) return;
 
       const useMode = event.target.value;
-      this.$store.commit("setUseMode", useMode);
+      this.$store.commit("setConfigs", { useMode });
     },
     fetchMood(event) {
       if (event.target.tagName !== "BUTTON") return;
@@ -204,8 +204,7 @@ export default {
 
       const tense_english = value.substring(mood_english.length).trim();
 
-      this.$store.commit("setMood", mood_english);
-      this.$store.commit("setTense", tense_english);
+      this.$store.commit("setConfigs", { mood_english, tense_english });
     },
     updateCurrentConjugations() {
       const { mood_english, tense_english } = this.$store.state.configs;

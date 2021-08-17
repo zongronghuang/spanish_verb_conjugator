@@ -49,20 +49,17 @@ export default new Vuex.Store({
       }
     },
     /////// new ones vvvvvvv
-    setUseMode(state, useMode) {
-      state.configs.useMode = useMode
+    setConfigs(state, configsObj) {
+      state.configs = {
+        ...state.configs,
+        ...configsObj
+      }
     },
-    setMood(state, mood_english) {
-      state.configs.mood_english = mood_english
-    },
-    setTense(state, tense_english) {
-      state.configs.tense_english = tense_english
-    },
-    // 待測試
-    setVerbData(state, verbObject) {
+    // 待測試 (整合所有 verb{} 內資料修改)
+    setVerbData(state, verbObj) {
       state.verb = {
         ...state.verb,
-        ...verbObject
+        ...verbObj
       }
     }
 
