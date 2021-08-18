@@ -173,7 +173,7 @@
         <p>
           <span>Past participle: </span>
           <span>
-            <mark> {{ verb.pastParticiple }}</mark>
+            <mark> {{ verb.pastparticiple }}</mark>
           </span>
         </p>
       </section>
