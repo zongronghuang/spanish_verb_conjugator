@@ -30,7 +30,10 @@
 
     <!-- 動詞變化卡片 -->
     <div class="card-body">
-      <table class="table table-striped table-borderless my-0">
+      <table
+        class="table table-striped table-borderless my-0"
+        @input.prevent.stop="markActiveInput"
+      >
         <tbody class="container-fluid">
           <tr v-for="(person, id) in persons" :key="id">
             <th scope="row" class="col-4 text-left align-middle">
@@ -44,9 +47,15 @@
             >
               {{ conjugations[id] }}
             </td>
+
             <!-- fill-in 模式 -->
             <td v-else class="col-6 py-0 align-middle">
-              <input type="text" class="form-control input-field" />
+              <input
+                type="text"
+                class="form-control table-input"
+                :data-id="id"
+                v-model="inputs[id]"
+              />
             </td>
 
             <!-- fill-in 模式的答對/答錯提示 -->
@@ -96,12 +105,16 @@
 
       <!-- 特殊字元鍵盤 -->
       <div class="card-footer d-flex flex-row justify-content-between">
-        <div class="d-flex flex-row">
+        <div
+          class="d-flex flex-row"
+          @click.stop.prevent="inputSpecialCharacter"
+        >
           <button
-            class="btn btn-primary mr-1"
+            class="btn btn-primary mr-1 special-character"
             v-for="(character, id) in specialCharacters"
             :key="id"
             :title="character"
+            :value="character"
           >
             {{ character }}
           </button>
@@ -175,27 +188,12 @@ export default {
       conjugations: [],
       inputs: Array(6).fill(""),
       areInputsCorrect: Array(6).fill(undefined),
-      canPeekAtAnswers: false,
-      isMoreInfoTagVisible: false,
     };
   },
   filters: {
     capitalize(text) {
       return text.toUpperCase();
     },
-    // 搭配 white-space: pre 置中
-    // breakIntoLines(text) {
-    //   if (!text.includes(" ")) return text;
-
-    //   const words = text.split(" ");
-
-    //   const brokenText = words.reduce((base, word, index) => {
-    //     if (index === words.length - 1) return base + word;
-    //     return base + word + "\n ";
-    //   }, ``);
-
-    //   return brokenText;
-    // },
   },
   created() {
     this.getVerb();
@@ -225,63 +223,53 @@ export default {
         form_3p,
       ];
     },
-    // updateCanPeekAtAnswers(isPeekable) {
-    //   this.canPeekAtAnswers = isPeekable;
-    // },
-    // toggleMoreInfoTagVisibility(event) {
-    //   if (event.type === "mouseenter") {
-    //     this.isMoreInfoTagVisible = true;
-    //   }
-
-    //   if (event.type === "mouseleave") {
-    //     this.isMoreInfoTagVisible = false;
-    //   }
-    // },
     markActiveInput(event) {
-      const currentInput = event.target;
-      const inputs = document.querySelectorAll("td > input");
+      if (!event.target.classList.contains("table-input")) return;
 
-      // 清除所有 input 的 activeInput class
-      inputs.forEach((input) => {
-        if (input.classList.contains("activeInput"))
-          input.classList.remove("activeInput");
+      const focusedInput = event.target;
+      const tableInputs = document.querySelectorAll(".table-input");
+      console.log({ tableInputs });
+
+      tableInputs.forEach((input) => {
+        if (input.classList.contains("active")) {
+          input.classList.remove("active");
+        }
       });
 
-      // 把按到的 input 加上 activeInput class
-      if (currentInput.tagName === "INPUT") {
-        currentInput.classList.add("activeInput");
-      }
+      focusedInput.classList.add("active");
+
+      console.log({ focusedInput });
     },
     inputSpecialCharacter(event) {
-      const target = event.target;
-      const character = target.innerText;
-      const activeInput = document.querySelector(".activeInput");
+      if (!event.target.classList.contains("special-character")) return;
 
-      // td > input 避免選到最上方的搜尋 input 元素
-      const inputs = document.querySelectorAll("td > input");
-      const activeInputId = [...inputs].findIndex(
-        (input) => input === activeInput
-      );
+      const specialCharacter = event.target.value;
+      const activeInput = document.querySelector(".table-input.active");
+      const dataId = Number(activeInput.dataset.id);
 
-      // 將字母加到輸入框中 + focus 輸入框
-      if (target.tagName === "BUTTON" && activeInput) {
-        const value = activeInput.value;
-        const start = activeInput.selectionStart;
-        const end = activeInput.selectionEnd;
+      this.inputs[dataId] = this.inputs[dataId] + specialCharacter;
+      activeInput.value = this.inputs[dataId];
+      console.log("this.inputs [id]", this.inputs[dataId]);
 
-        // 如果 start 和 end 一樣，代表只移動滑鼠游標 => 直接插入特殊字元
-        // 如果 start 和 end 不一樣，代表選取一段文字 => 文字區塊替換成特殊字
-        const newValue = value.slice(0, start) + character + value.slice(end);
+      // // 將字母加到輸入框中 + focus 輸入框
+      // if (target.tagName === "BUTTON" && activeInput) {
+      //   const value = activeInput.value;
+      //   const start = activeInput.selectionStart;
+      //   const end = activeInput.selectionEnd;
 
-        activeInput.value = newValue;
+      //   // 如果 start 和 end 一樣，代表只移動滑鼠游標 => 直接插入特殊字元
+      //   // 如果 start 和 end 不一樣，代表選取一段文字 => 文字區塊替換成特殊字
+      //   const newValue = value.slice(0, start) + character + value.slice(end);
 
-        this.inputs[activeInputId] = newValue;
-        this.inputs = [...this.inputs];
+      //   activeInput.value = newValue;
 
-        // 重新設定游標插入點 (新輸入的字元位置)
-        activeInput.setSelectionRange(start + 1, start + 1);
-        activeInput.focus();
-      }
+      //   this.inputs[activeInputId] = newValue;
+      //   this.inputs = [...this.inputs];
+
+      //   // 重新設定游標插入點 (新輸入的字元位置)
+      //   activeInput.setSelectionRange(start + 1, start + 1);
+      //   activeInput.focus();
+      // }
     },
     checkInputs() {
       // 強制將輸入文字轉為小寫 + 去除兩旁空格
@@ -369,7 +357,12 @@ export default {
   cursor: help;
 }
 
-.activeInput {
+/* .activeInput {
+  font-weight: bold;
+} */
+
+.active {
+  color: blue;
   font-weight: bold;
 }
 </style>

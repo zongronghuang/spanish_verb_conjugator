@@ -54,13 +54,25 @@
           role="group"
           @click.stop.prevent="fetchMood"
         >
-          <button class="btn btn-primary font-weight-bold" value="Indicative">
+          <button
+            class="btn btn-primary font-weight-bold"
+            type="button"
+            value="Indicative"
+          >
             Indicative
           </button>
-          <button class="btn btn-primary font-weight-bold" value="Imperative">
+          <button
+            class="btn btn-primary font-weight-bold"
+            type="button"
+            value="Imperative"
+          >
             Imperative
           </button>
-          <button class="btn btn-primary font-weight-bold" value="Subjunctive">
+          <button
+            class="btn btn-primary font-weight-bold"
+            type="button"
+            value="Subjunctive"
+          >
             Subjunctive
           </button>
         </div>
@@ -77,7 +89,7 @@
         <!-- indicative tenses -->
         <div
           id="indicative-tenses"
-          class="d-flex justify-content-between flex-wrap flex-row"
+          class="d-flex justify-content-between flex-wrap flex-row w-100"
           v-if="mood_english === 'Indicative'"
         >
           <button
