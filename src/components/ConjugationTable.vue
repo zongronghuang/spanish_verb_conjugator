@@ -1,6 +1,6 @@
 <template>
   <div class="card w-75">
-    <!-- 動詞 + 時態 -->
+    <!-- 動詞名稱 + 時態名稱 -->
     <div
       class="
         card-header
@@ -60,15 +60,20 @@
 
             <!-- fill-in 模式的答對/答錯提示 -->
             <td
-              v-if="configs.useMode !== 'fill-in'"
+              v-if="configs.useMode === 'fill-in'"
               class="col-2 d-flex justify-content-center align-items-center"
             >
               <!-- 答案正確 -->
+
               <span
                 class="
+                  position-absolute
+                  float-right
                   badge badge-warning
                   align-middle
                   p-2
+                  ml-5
+                  mt-4
                   d-flex
                   flex-row
                   justify-content-center
@@ -82,10 +87,14 @@
               <!-- 答案錯誤 -->
               <span
                 class="
+                  position-absolute
+                  float-right
                   badge badge-warning
                   align-middle
-                  p-2
                   d-flex
+                  p-2
+                  ml-5
+                  mt-4
                   flex-row
                   justify-content-center
                 "
@@ -96,7 +105,8 @@
                   :icon="['fas', 'exclamation']"
                   flip="both"
                   size="2x"
-                /><font-awesome-icon :icon="['fas', 'exclamation']" size="2x" />
+                />
+                <font-awesome-icon :icon="['fas', 'exclamation']" size="2x" />
               </span>
             </td>
           </tr>
@@ -104,7 +114,10 @@
       </table>
 
       <!-- 特殊字元鍵盤 -->
-      <div class="card-footer d-flex flex-row justify-content-between">
+      <div
+        class="card-footer d-flex flex-row justify-content-between"
+        v-if="configs.useMode === 'fill-in'"
+      >
         <div
           class="d-flex flex-row"
           @click.stop.prevent="inputSpecialCharacter"
@@ -120,7 +133,13 @@
           </button>
         </div>
 
-        <button class="btn btn-primary" title="check">check</button>
+        <button
+          class="btn btn-primary"
+          title="check"
+          @click.stop.prevent="checkInputs"
+        >
+          check
+        </button>
       </div>
     </div>
 
@@ -228,58 +247,54 @@ export default {
 
       const focusedInput = event.target;
       const tableInputs = document.querySelectorAll(".table-input");
-      console.log({ tableInputs });
 
+      // 移除所有 tableInputs 的 active class
       tableInputs.forEach((input) => {
         if (input.classList.contains("active")) {
           input.classList.remove("active");
         }
       });
 
+      // 有 focus 的 input 加上 active class
       focusedInput.classList.add("active");
-
-      console.log({ focusedInput });
     },
     inputSpecialCharacter(event) {
       if (!event.target.classList.contains("special-character")) return;
 
       const specialCharacter = event.target.value;
+
+      // 找到目前正在填寫的 iput 並取出資料
       const activeInput = document.querySelector(".table-input.active");
-      const dataId = Number(activeInput.dataset.id);
+      const {
+        value,
+        selectionStart: start,
+        selectionEnd: end,
+        dataset: { id: dataId },
+      } = activeInput;
 
-      this.inputs[dataId] = this.inputs[dataId] + specialCharacter;
-      activeInput.value = this.inputs[dataId];
-      console.log("this.inputs [id]", this.inputs[dataId]);
+      // 如果 start 和 end 一樣，代表只移動滑鼠游標 => 直接插入特殊字元
+      // 如果 start 和 end 不一樣，代表選取一段文字 => 文字區塊替換成特殊字
+      const newValue =
+        value.slice(0, start) + specialCharacter + value.slice(end);
 
-      // // 將字母加到輸入框中 + focus 輸入框
-      // if (target.tagName === "BUTTON" && activeInput) {
-      //   const value = activeInput.value;
-      //   const start = activeInput.selectionStart;
-      //   const end = activeInput.selectionEnd;
+      // 更新畫面上 input 欄位的值和元件 data
+      activeInput.value = newValue;
+      this.inputs[dataId] = newValue;
+      this.inputs = [...this.inputs];
 
-      //   // 如果 start 和 end 一樣，代表只移動滑鼠游標 => 直接插入特殊字元
-      //   // 如果 start 和 end 不一樣，代表選取一段文字 => 文字區塊替換成特殊字
-      //   const newValue = value.slice(0, start) + character + value.slice(end);
-
-      //   activeInput.value = newValue;
-
-      //   this.inputs[activeInputId] = newValue;
-      //   this.inputs = [...this.inputs];
-
-      //   // 重新設定游標插入點 (新輸入的字元位置)
-      //   activeInput.setSelectionRange(start + 1, start + 1);
-      //   activeInput.focus();
-      // }
+      // 重新設定游標插入點 (新輸入的字元位置)
+      activeInput.setSelectionRange(start + 1, start + 1);
+      activeInput.focus();
     },
     checkInputs() {
       // 強制將輸入文字轉為小寫 + 去除兩旁空格
-      this.inputs = this.inputs.map((input) =>
+      const userInputs = this.inputs.map((input) =>
         input ? input.trim().toLowerCase() : ""
       );
 
-      // 比對結果 + 計算正確答案數量
+      // 比對結果 + 計算正確答案
       this.areInputsCorrect = this.areInputsCorrect.map(
-        (result, i) => this.inputs[i] === this.conjugations[i]
+        (result, index) => userInputs[index] === this.conjugations[index]
       );
     },
     showInfoDialog() {
@@ -356,10 +371,6 @@ export default {
 #infinitive-profile {
   cursor: help;
 }
-
-/* .activeInput {
-  font-weight: bold;
-} */
 
 .active {
   color: blue;
