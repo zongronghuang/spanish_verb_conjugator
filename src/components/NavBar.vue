@@ -10,7 +10,7 @@
       justify-content-around
     "
   >
-    <div class="d-flex flex-row w-25 border">
+    <div class="d-flex justify-content-around flex-row w-25 border">
       <!-- 常見不規則動詞列表 -->
       <IrregularVerbsButton />
 
@@ -34,8 +34,11 @@
     <!-- 搜尋欄 -->
     <SearchBar />
 
-    <!-- App 設定按鍵 -->
-    <SettingsButton />
+    <div class="d-flex justify-content-around flex-row w-25 border">
+      <DiagnosisButton />
+      <!-- App 設定按鍵 -->
+      <SettingsButton />
+    </div>
   </nav>
 </template>
 
@@ -43,6 +46,7 @@
 import SearchBar from "./SearchBar.vue";
 import IrregularVerbsButton from "./subcomponents/IrregularVerbsButton.vue";
 import SettingsButton from "./SettingsButton.vue";
+import DiagnosisButton from "./DiagnosisButton.vue";
 
 export default {
   name: "nav-bar",
@@ -50,6 +54,7 @@ export default {
     SearchBar,
     IrregularVerbsButton,
     SettingsButton,
+    DiagnosisButton,
   },
   methods: {
     pickRandomVerb() {

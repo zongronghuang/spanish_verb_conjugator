@@ -1,13 +1,19 @@
 <template>
-  <div class="w-25 text-center">
+  <div class="text-center">
     <!-- 設定按鈕 -->
     <a
       href=""
       title="Change the app settings"
-      class="text-decoration-none text-white"
+      class="
+        text-decoration-none text-white
+        d-flex
+        align-items-center
+        justify-content-center
+        border
+      "
     >
       <font-awesome-icon
-        class="align-middle"
+        class="mr-1 align-middle"
         :icon="['fas', 'cog']"
         size="2x"
         :style="{ color: 'white' }"
@@ -151,7 +157,7 @@
 import { mapState } from "vuex";
 
 export default {
-  name: "settings-buttons",
+  name: "settings-button",
   filters: {
     removeMood(tense) {
       const newTense = tense.split(" ");
