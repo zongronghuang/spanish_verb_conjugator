@@ -1,13 +1,19 @@
 <template>
-  <div class="flex-grow-1 text-center">
+  <div class="w-25 text-center">
     <!-- 設定按鈕 -->
-    <a href="" class="text-decoration-none">
+    <a
+      href=""
+      title="Change the app settings"
+      class="text-decoration-none text-white"
+    >
       <font-awesome-icon
+        class="align-middle"
         :icon="['fas', 'cog']"
         size="2x"
         :style="{ color: 'white' }"
         @click.prevent.stop="showSettingsDialog"
       />
+      Settings
     </a>
 
     <!-- 設定對話框 -->

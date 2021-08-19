@@ -10,8 +10,26 @@
       justify-content-around
     "
   >
-    <!-- 常見不規則動詞列表 -->
-    <IrregularVerbsButton />
+    <div class="d-flex flex-row w-25 border">
+      <!-- 常見不規則動詞列表 -->
+      <IrregularVerbsButton />
+
+      <!-- 隨選動詞按鈕 -->
+      <a
+        href=""
+        title="Get your lucky verb!"
+        class="text-decoration-none text-white mx-2"
+        @click.prevent.stop="pickRandomVerb"
+      >
+        <font-awesome-icon
+          class="mr-1 align-middle"
+          :icon="['fas', 'dice']"
+          size="2x"
+          :style="{ color: 'white' }"
+        />
+        Lucky verb
+      </a>
+    </div>
 
     <!-- 搜尋欄 -->
     <SearchBar />
@@ -33,7 +51,15 @@ export default {
     IrregularVerbsButton,
     SettingsButton,
   },
-  methods: {},
+  methods: {
+    pickRandomVerb() {
+      const infinitives = this.$store.state.infinitives;
+      const randomId = Math.floor(Math.random() * infinitives.length);
+      const pickedInfinitive = infinitives[randomId];
+
+      this.$router.push(`/spanish-conjugator/${pickedInfinitive}`);
+    },
+  },
 };
 </script>
 

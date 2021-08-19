@@ -1,23 +1,24 @@
 <template>
   <!-- 常見不規則動詞列表 -->
   <div
-    class="flex-grow-1 d-flex align-items-center justify-content-center border"
+    class="d-flex align-items-center justify-content-center"
     id="irregular-infinitive-list"
     title="Top irregular verbs"
   >
     <!-- 不規則動詞清單按鈕 -->
     <a
       href=""
+      title="Check essential irregular verbs"
       class="text-decoration-none text-white"
       @click.prevent.stop="showIrregularVerbsDialog"
     >
       <font-awesome-icon
-        class="mr-2 align-middle"
+        class="mr-1 align-middle"
         :icon="['fas', 'clipboard-list']"
         :style="{ color: 'white' }"
         size="2x"
       />
-      Top irregular verbs
+      Irregular verbs
     </a>
 
     <!-- 不規則動詞清單對話框 -->
