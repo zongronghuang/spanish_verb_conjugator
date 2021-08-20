@@ -2,7 +2,7 @@
   <div
     id="search-area"
     class="w-25 d-flex align-items-around position-relative"
-    @keyup.enter="isInputValid() && getConjugationsByVerb()"
+    @keyup.enter="isInputValid() && checkInfinitiveExistence()"
   >
     <!-- 錯誤訊息 -->
     <div
@@ -45,7 +45,7 @@
           class="btn btn-primary btn-outline-light"
           type="button"
           id="button-addon2"
-          @click.prevent.stop="isInputValid() && getConjugationsByVerb()"
+          @click.prevent.stop="isInputValid() && checkInfinitiveExistence()"
         >
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
         </button>
@@ -115,7 +115,6 @@ input::placeholder {
 </style>
 
 <script>
-import datasetAPIs from "../apis/dataset.js";
 import { mapState } from "vuex";
 
 export default {
@@ -160,28 +159,16 @@ export default {
 
       return true;
     },
-    getConjugationsByVerb() {
+    checkInfinitiveExistence() {
       const infinitive = this.input.toLowerCase();
 
-      // 動詞存在 => 將動詞的所有變化和 metadata 放到 vuex
-      // conjugations [{...}, {...}, ...]
-      const conjugations = datasetAPIs.getAllConjugationsByVerb(
-        infinitive,
-        this.infinitives
-      );
-
-      if (conjugations.length > 0) {
-        this.$store.commit("setVerbData", {
-          ...conjugations[0],
-          allConjugations: conjugations,
-        });
+      // infinitives 中找得到 infinitive，轉址 (再取得動詞變化)
+      // 找不到 infinitive，不轉址並提供錯誤訊息
+      if (this.infinitives.includes(infinitive)) {
+        this.$router.push(`/spanish-conjugator/${infinitive}`);
       } else {
         this.alert = "Oops, it's not in the database";
-        return;
       }
-
-      // 轉址到 conjugation card 頁面
-      this.$router.push(`/spanish-conjugator/${infinitive}`);
     },
     collapseAlert() {
       this.alert = "";

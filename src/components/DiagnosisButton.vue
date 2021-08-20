@@ -57,6 +57,7 @@ export default {
     closeDiagnosisDialog() {
       this.$refs.diagnosisDialog.close();
     },
+    getSearchCounts() {},
   },
 };
 </script>
