@@ -21,38 +21,38 @@
       />
       <RightArrow />
     </main>
-
-    <!-- <TenseMenu @fetch-selected-conjugations="fetchSelectedConjugations" /> -->
   </div>
 </template>
 
 <script>
-// import TenseMenu from "../components/TenseMenu.vue";
 import NavBar from "../components/NavBar.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
 import LeftArrow from "../components/subcomponents/LeftArrow.vue";
 import RightArrow from "../components/subcomponents/RightArrow.vue";
 
+import { collectSearchedVerbToLocalStorage } from "../utils/mixins.js";
 import { mapState } from "vuex";
 import datasetAPIs from "../apis/dataset.js";
 
 export default {
   name: "main-page",
   components: {
-    // TenseMenu,
     NavBar,
     ConjugationTable,
     LeftArrow,
     RightArrow,
   },
+  mixins: [collectSearchedVerbToLocalStorage],
   data() {
     return {
       mode: "view",
       selectedConjugations: [],
+      history: [],
     };
   },
   // 未進入 app，直接輸入帶有 infinitive param 的 URL 的處理方法
   created() {
+    console.log("[created] MainPage");
     const { infinitive } = this.$route.params;
 
     const conjugations = datasetAPIs.getAllConjugationsByVerb(
@@ -67,12 +67,14 @@ export default {
         ...conjugations[0],
         allConjugations: conjugations,
       });
+      this.collectSearchedVerbToLocalStorage(infinitive);
     } else {
       this.$router.push("/search");
     }
   },
   // 進入 app 後，直接修改 URL 的 verb param 的處理方法
   beforeRouteUpdate(to, from, next) {
+    console.log("[beforeRouteUpdate] MainPage");
     const { infinitive } = to.params;
 
     // 取得 infinitive 的所有動詞變化
@@ -88,6 +90,7 @@ export default {
         ...conjugations[0],
         allConjugations: conjugations,
       });
+      this.collectSearchedVerbToLocalStorage(infinitive);
     } else {
       this.$router.push("/search");
     }

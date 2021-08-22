@@ -11,13 +11,13 @@
         justify-content-center
         border
       "
+      @click.prevent.stop="showSettingsDialog"
     >
       <font-awesome-icon
         class="mr-1 align-middle"
         :icon="['fas', 'cog']"
         size="2x"
         :style="{ color: 'white' }"
-        @click.prevent.stop="showSettingsDialog"
       />
       Settings
     </a>

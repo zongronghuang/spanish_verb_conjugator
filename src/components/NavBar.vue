@@ -56,6 +56,12 @@ export default {
     SettingsButton,
     DiagnosisButton,
   },
+  // props: {
+  //   history: {
+  //     type: Array,
+  //     required: true,
+  //   },
+  // },
   methods: {
     pickRandomVerb() {
       const infinitives = this.$store.state.infinitives;
