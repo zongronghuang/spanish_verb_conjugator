@@ -116,7 +116,7 @@ main {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1.1);
   min-width: 600px;
 
   margin-top: 50px;
