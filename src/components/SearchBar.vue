@@ -52,6 +52,20 @@
       </div>
     </div>
 
+    <!-- autocomplete 搜尋提示 -->
+    <div
+      class="position-absolute w-100 bg-info"
+      v-if="matchedInfinitives.length"
+    >
+      <router-link
+        class="form-control w-100 text-decoration-none"
+        v-for="entry in matchedInfinitives"
+        :key="entry"
+        :to="`/spanish-conjugator/${entry}`"
+        >{{ entry }}</router-link
+      >
+    </div>
+
     <!-- 輸入輔助鍵 -->
     <div
       class="
@@ -79,40 +93,6 @@
   </div>
 </template>
 
-<style scoped>
-#search-area,
-#alert,
-#keyboard {
-  max-width: 450px;
-  min-width: 350px;
-}
-
-#keyboard {
-  position: absolute;
-  top: 100%;
-  z-index: 10;
-}
-
-#alert {
-  position: absolute;
-  top: 110%;
-  z-index: 20;
-}
-
-#search-bar {
-  position: absolute;
-  bottom: 0px;
-}
-
-#cross:hover {
-  cursor: pointer;
-}
-
-input::placeholder {
-  color: gray;
-  opacity: 70%;
-}
-</style>
 
 <script>
 import { mapState } from "vuex";
@@ -149,13 +129,13 @@ export default {
 
       // 非原形動詞結尾非 -ar, -er, -ir
       const ending = input.substring(input.length - 2);
-      if (
-        ending !== "ar" &&
-        ending !== "er" &&
-        ending !== "ir" &&
-        ending !== "ír" &&
-        ending !== "se"
-      ) {
+      const validEndingCondition =
+        ending === "ar" ||
+        ending === "er" ||
+        ending === "ir" ||
+        ending === "ír" ||
+        ending === "se";
+      if (validEndingCondition) {
         this.alert = "Enter an infinitive verb";
         return false;
       }
@@ -206,6 +186,59 @@ export default {
   },
   computed: {
     ...mapState(["infinitives"]),
+    matchedInfinitives() {
+      if (!this.input) return [];
+
+      // 把 this.input 的即時字串作為篩選條件
+      const regex = new RegExp(`^${this.input}`);
+      const matchedEntries = this.infinitives.filter((entry) =>
+        entry.match(regex)
+      );
+
+      // 最多列出 5 個符合項目
+      const maxEntries = 5;
+      if (matchedEntries.length > maxEntries) {
+        const slicedMatchedEntries = matchedEntries.slice(0, maxEntries);
+        return slicedMatchedEntries;
+      }
+
+      return matchedEntries;
+    },
   },
 };
 </script>
+
+<style scoped>
+#search-area,
+#alert,
+#keyboard {
+  max-width: 450px;
+  min-width: 350px;
+}
+
+#keyboard {
+  position: absolute;
+  top: 100%;
+  z-index: 10;
+}
+
+#alert {
+  position: absolute;
+  top: 110%;
+  z-index: 20;
+}
+
+#search-bar {
+  position: absolute;
+  bottom: 0px;
+}
+
+#cross:hover {
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: gray;
+  opacity: 70%;
+}
+</style>

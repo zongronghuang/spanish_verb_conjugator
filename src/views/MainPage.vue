@@ -2,7 +2,7 @@
   <div id="main-page" class="">
     <NavBar :lastSearchTime="lastSearchTime" />
     <main
-      class="w-100 d-flex justify-content-center align-items-center mx-auto"
+      class="w-100 d-flex justify-content-center align-items-center mx-autos"
     >
       <LeftArrow />
       <ConjugationTable
@@ -44,6 +44,8 @@ export default {
   // 未進入 app，直接輸入帶有 infinitive param 的 URL 的處理方法
   created() {
     console.log("[created] MainPage");
+
+    // 取得搜尋的 infinitive 所有動詞變化
     const { infinitive } = this.$route.params;
 
     const conjugations = datasetAPIs.getAllConjugationsByVerb(

@@ -360,10 +360,10 @@ export default {
 </script>
 
 <style scoped>
-#conjugation-table {
+/* #conjugation-table {
   min-width: 400px;
   width: 80%;
-}
+} */
 
 #upper-display {
   min-width: 300px;
