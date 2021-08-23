@@ -35,7 +35,7 @@
     <SearchBar />
 
     <div class="d-flex justify-content-around flex-row w-25 border">
-      <DiagnosisButton />
+      <DiagnosisButton :lastSearchTime="lastSearchTime" />
       <!-- App 設定按鍵 -->
       <SettingsButton />
     </div>
@@ -56,12 +56,15 @@ export default {
     SettingsButton,
     DiagnosisButton,
   },
-  // props: {
-  //   history: {
-  //     type: Array,
-  //     required: true,
-  //   },
-  // },
+  props: {
+    lastSearchTime: {
+      type: Number,
+      required: true,
+    },
+  },
+  created() {
+    console.log("[created] NavBar");
+  },
   methods: {
     pickRandomVerb() {
       const infinitives = this.$store.state.infinitives;

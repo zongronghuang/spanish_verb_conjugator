@@ -37,6 +37,9 @@ export default {
       mode: "view",
     };
   },
+  created() {
+    console.log("[created] UseModeMenu");
+  },
   methods: {},
 };
 </script>

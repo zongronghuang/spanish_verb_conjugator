@@ -39,6 +39,9 @@ export default {
   components: {
     SearchBar,
   },
+  created() {
+    console.log("[created] SearchPage");
+  },
 };
 </script>
 

@@ -215,6 +215,7 @@ export default {
     },
   },
   created() {
+    console.log("[created] ConjugationTable");
     this.getVerb();
   },
   methods: {

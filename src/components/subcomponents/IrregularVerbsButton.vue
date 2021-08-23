@@ -106,6 +106,9 @@ export default {
       ],
     };
   },
+  created() {
+    console.log("[created] IrregularVerbsButton");
+  },
   methods: {
     showIrregularVerbsDialog() {
       this.$refs.irregularVerbsDialog.showModal();

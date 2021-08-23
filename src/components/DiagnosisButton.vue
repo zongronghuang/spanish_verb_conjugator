@@ -35,10 +35,7 @@
       <hr />
       <p>Find the 10 most searched verbs in the last 7 days of use.</p>
       <section>
-        <div
-          class="d-flex justify-content-start flex-wrap"
-          @click.prevent.stop="updateBtnAndLocalStorageCounts"
-        >
+        <div class="d-flex justify-content-start flex-wrap">
           <router-link
             class="btn btn-primary mx-1 my-1"
             v-for="verbEntry in mostSearchedVerbs"
@@ -58,15 +55,22 @@
 <script>
 export default {
   name: "diagnosis-button",
+  props: {
+    lastSearchTime: {
+      type: Number,
+      required: true,
+    },
+  },
   data() {
     return {
       mostSearchedVerbs: [],
-      verbParam: "",
+      currentVerbParam: "",
     };
   },
   created() {
+    console.log("[created] DiagnosisButton");
     this.getVerbCounts();
-    this.verbParam = this.$route.params.infinitive;
+    this.currentVerbParam = this.$route.params.infinitive;
   },
   methods: {
     showDiagnosisDialog() {
@@ -102,23 +106,16 @@ export default {
 
       this.mostSearchedVerbs = [...mostSearchedVerbs];
     },
-    updateBtnAndLocalStorageCounts(event) {
-      if (!event.target.classList.contains("btn")) return;
-
-      const verb = event.target.dataset.verb;
-
-      // 動詞和目前路徑的動詞 param 不一樣才可以更新次數
-      // 因為 param 和動詞一樣時，beforeRouteUpdate 不會作用 => 畫面更新但 localStorage 不更新
-      const updatedmostSearchedVerbs = this.mostSearchedVerbs.map((entry) => {
-        const updateCondition = entry[0] === verb && verb !== this.verbParam;
-        if (updateCondition) {
-          entry[1] = entry[1] + 1;
+  },
+  watch: {
+    lastSearchTime: {
+      immediate: true,
+      handler(newValue, oldValue) {
+        if (newValue > oldValue) {
+          console.log("[watch] DiagnosisButton");
+          this.getVerbCounts();
         }
-        return entry;
-      });
-
-      this.verbParam = this.$route.params.infinitive;
-      this.mostSearchedVerbs = [...updatedmostSearchedVerbs];
+      },
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div id="main-page" class="">
-    <NavBar />
+    <NavBar :lastSearchTime="lastSearchTime" />
     <main
       class="
         w-100
@@ -48,6 +48,7 @@ export default {
       mode: "view",
       selectedConjugations: [],
       history: [],
+      lastSearchTime: "",
     };
   },
   // 未進入 app，直接輸入帶有 infinitive param 的 URL 的處理方法
@@ -68,6 +69,7 @@ export default {
         allConjugations: conjugations,
       });
       this.collectSearchedVerbToLocalStorage(infinitive);
+      this.lastSearchTime = Date.now();
     } else {
       this.$router.push("/search");
     }
@@ -91,6 +93,7 @@ export default {
         allConjugations: conjugations,
       });
       this.collectSearchedVerbToLocalStorage(infinitive);
+      this.lastSearchTime = Date.now();
     } else {
       this.$router.push("/search");
     }

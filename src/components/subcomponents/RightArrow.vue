@@ -26,6 +26,9 @@ import { mapState } from "vuex";
 export default {
   name: "right-arrow",
   mixins: [switchToNewConjugationGroup],
+  created() {
+    console.log("[created] RightArrow");
+  },
   computed: {
     ...mapState({
       verb: (state) => state.verb,

@@ -196,6 +196,9 @@ export default {
       ],
     };
   },
+  created() {
+    console.log("[created] SettingsButton");
+  },
   methods: {
     showSettingsDialog() {
       this.$refs.settingsDialog.showModal();

@@ -126,6 +126,9 @@ export default {
       keyboard: false,
     };
   },
+  created() {
+    console.log("[created] SearchBar");
+  },
   methods: {
     isInputValid() {
       const input = this.input.toLowerCase();
