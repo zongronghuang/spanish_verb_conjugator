@@ -9,7 +9,12 @@
     <a
       href=""
       title="Check essential irregular verbs"
-      class="text-decoration-none text-white"
+      class="
+        text-decoration-none text-white
+        d-flex
+        align-items-center
+        justify-content-center
+      "
       @click.prevent.stop="showIrregularVerbsDialog"
     >
       <font-awesome-icon
@@ -22,13 +27,16 @@
     </a>
 
     <!-- 不規則動詞清單對話框 -->
-    <dialog ref="irregularVerbsDialog">
-      <header>
-        <span>Irregular Verbs</span>
+    <dialog
+      ref="irregularVerbsDialog"
+      class="container font-weight-bold w-50 rounded-lg"
+    >
+      <header class="text-center">
+        <span class="h5">Irregular verbs</span>
         <a href="" class="text-decoration-none">
           <font-awesome-icon
             :icon="['fas', 'window-close']"
-            size="2x"
+            size="1x"
             :style="{ color: 'white' }"
             class="float-right"
             @click.prevent.stop="closeIrregularVerbsDialog"
@@ -36,9 +44,9 @@
         </a>
       </header>
       <hr />
-      <section class="border">
+      <section class="border d-flex justify-content-between flex-wrap">
         <router-link
-          class="btn rounded-lg text-decoration-none border"
+          class="btn btn-primary mx-1 my-1 text-decoration-none"
           v-for="(infinitive, id) in irregularInfinitives"
           :key="id"
           :title="infinitive"

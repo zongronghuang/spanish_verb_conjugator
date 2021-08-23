@@ -2,17 +2,7 @@
   <div id="main-page" class="">
     <NavBar :lastSearchTime="lastSearchTime" />
     <main
-      class="
-        w-100
-        d-flex
-        justify-content-center
-        align-items-center
-        mx-auto
-        mb-0
-        pb-0
-        mt-5
-        h-75
-      "
+      class="w-100 d-flex justify-content-center align-items-center mx-auto"
     >
       <LeftArrow />
       <ConjugationTable
@@ -120,9 +110,13 @@ export default {
   min-height: 100%;
 } */
 
-/* main {
+main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   min-width: 600px;
-  height: 100%;
+
   margin-top: 50px;
-} */
+}
 </style>

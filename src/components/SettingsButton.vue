@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div>
     <!-- 設定按鈕 -->
     <a
       href=""
@@ -9,7 +9,6 @@
         d-flex
         align-items-center
         justify-content-center
-        border
       "
       @click.prevent.stop="showSettingsDialog"
     >
@@ -23,9 +22,12 @@
     </a>
 
     <!-- 設定對話框 -->
-    <dialog ref="settingsDialog" class="container font-weight-bold rounded-lg">
-      <header>
-        <span class="h4">Settings</span>
+    <dialog
+      ref="settingsDialog"
+      class="container font-weight-bold rounded-lg w-50"
+    >
+      <header class="text-center">
+        <span class="h5">Settings</span>
         <a href="" class="text-decoration-none">
           <font-awesome-icon
             :icon="['fas', 'window-close']"
@@ -46,15 +48,9 @@
           role="group"
           @click.stop.prevent="fetchUseMode"
         >
-          <button class="btn btn-primary font-weight-bold" value="view">
-            View
-          </button>
-          <button class="btn btn-primary font-weight-bold" value="memory">
-            Flash card
-          </button>
-          <button class="btn btn-primary font-weight-bold" value="fill-in">
-            Fill-in
-          </button>
+          <button class="btn btn-primary" value="view">View</button>
+          <button class="btn btn-primary" value="memory">Flash card</button>
+          <button class="btn btn-primary" value="fill-in">Fill-in</button>
         </div>
       </section>
 
@@ -66,25 +62,13 @@
           role="group"
           @click.stop.prevent="fetchMood"
         >
-          <button
-            class="btn btn-primary font-weight-bold"
-            type="button"
-            value="Indicative"
-          >
+          <button class="btn btn-primary" type="button" value="Indicative">
             Indicative
           </button>
-          <button
-            class="btn btn-primary font-weight-bold"
-            type="button"
-            value="Imperative"
-          >
+          <button class="btn btn-primary" type="button" value="Imperative">
             Imperative
           </button>
-          <button
-            class="btn btn-primary font-weight-bold"
-            type="button"
-            value="Subjunctive"
-          >
+          <button class="btn btn-primary" type="button" value="Subjunctive">
             Subjunctive
           </button>
         </div>
@@ -105,7 +89,7 @@
           v-if="mood_english === 'Indicative'"
         >
           <button
-            class="mx-2 my-2 btn btn-primary font-weight-bold"
+            class="mx-1 my-1 btn btn-primary"
             v-for="tense in indicativeTenses"
             :key="tense"
             :value="tense"
@@ -122,7 +106,7 @@
           v-if="mood_english === 'Imperative'"
         >
           <button
-            class="mx-2 my-2 btn btn-primary font-weight-bold"
+            class="mx-1 my-1 btn btn-primary"
             v-for="tense in imperativeTenses"
             :key="tense"
             :value="tense"
@@ -139,7 +123,7 @@
           v-if="mood_english === 'Subjunctive'"
         >
           <button
-            class="mx-2 my-2 btn btn-primary font-weight-bold"
+            class="mx-1 my-1 btn btn-primary"
             v-for="tense in subjunctiveTenses"
             :key="tense"
             :value="tense"

@@ -1,5 +1,8 @@
 <template>
-  <div class="d-flex align-items-center justify-content-start" id="right-panel">
+  <div
+    class="d-flex align-items-center justify-content-start ml-2"
+    id="right-panel"
+  >
     <div @click.prevent.stop="switchToNewConjugationGroup('next')">
       <router-link
         class="

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <a
       href=""
       class="
@@ -9,7 +9,7 @@
         justify-content-center
         border
       "
-      @click.prevent.stop="showDiagnosisDialog"
+      @click.prevent.stop="showReportDialog"
     >
       <font-awesome-icon
         class="mr-1 align-middle"
@@ -19,21 +19,23 @@
       />
       Report
     </a>
-    <dialog ref="diagnosisDialog" class="w-50">
-      <header>
-        <span>Diagnosis</span>
+    <dialog ref="reportDialog" class="w-50">
+      <header class="text-center">
+        <span class="h5">Report</span>
         <a href="" class="text-decoration-none">
           <font-awesome-icon
             :icon="['fas', 'window-close']"
             size="1x"
             :style="{ color: 'white' }"
             class="float-right"
-            @click.prevent.stop="closeDiagnosisDialog"
+            @click.prevent.stop="closeReportDialog"
           />
         </a>
       </header>
       <hr />
-      <p>Find the 10 most searched verbs in the last 7 days of use.</p>
+      <p class="text-start">
+        Find the 10 most searched verbs in the last 7 days of use.
+      </p>
       <section>
         <div class="d-flex justify-content-start flex-wrap">
           <router-link
@@ -54,7 +56,7 @@
 
 <script>
 export default {
-  name: "diagnosis-button",
+  name: "report-button",
   props: {
     lastSearchTime: {
       type: Number,
@@ -68,16 +70,16 @@ export default {
     };
   },
   created() {
-    console.log("[created] DiagnosisButton");
+    console.log("[created] ReportButton");
     this.getVerbCounts();
     this.currentVerbParam = this.$route.params.infinitive;
   },
   methods: {
-    showDiagnosisDialog() {
-      this.$refs.diagnosisDialog.showModal();
+    showReportDialog() {
+      this.$refs.reportDialog.showModal();
     },
-    closeDiagnosisDialog() {
-      this.$refs.diagnosisDialog.close();
+    closeReportDialog() {
+      this.$refs.reportDialog.close();
     },
     getVerbCounts() {
       // 計算所有天數的動詞查詢總數
@@ -112,7 +114,7 @@ export default {
       immediate: true,
       handler(newValue, oldValue) {
         if (newValue > oldValue) {
-          console.log("[watch] DiagnosisButton");
+          console.log("[watch] ReportButton");
           this.getVerbCounts();
         }
       },

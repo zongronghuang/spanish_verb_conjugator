@@ -35,7 +35,7 @@
     <SearchBar />
 
     <div class="d-flex justify-content-around flex-row w-25 border">
-      <DiagnosisButton :lastSearchTime="lastSearchTime" />
+      <ReportButton :lastSearchTime="lastSearchTime" />
       <!-- App 設定按鍵 -->
       <SettingsButton />
     </div>
@@ -46,7 +46,7 @@
 import SearchBar from "./SearchBar.vue";
 import IrregularVerbsButton from "./subcomponents/IrregularVerbsButton.vue";
 import SettingsButton from "./SettingsButton.vue";
-import DiagnosisButton from "./DiagnosisButton.vue";
+import ReportButton from "./ReportButton.vue";
 
 export default {
   name: "nav-bar",
@@ -54,7 +54,7 @@ export default {
     SearchBar,
     IrregularVerbsButton,
     SettingsButton,
-    DiagnosisButton,
+    ReportButton,
   },
   props: {
     lastSearchTime: {
