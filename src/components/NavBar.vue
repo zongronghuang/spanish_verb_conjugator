@@ -15,20 +15,7 @@
       <IrregularVerbsButton />
 
       <!-- 隨選動詞按鈕 -->
-      <a
-        href=""
-        title="Get your lucky verb!"
-        class="text-decoration-none text-white mx-2"
-        @click.prevent.stop="pickRandomVerb"
-      >
-        <font-awesome-icon
-          class="mr-1 align-middle"
-          :icon="['fas', 'dice']"
-          size="2x"
-          :style="{ color: 'white' }"
-        />
-        Lucky verb
-      </a>
+      <RandomVerbButton />
     </div>
 
     <!-- 搜尋欄 -->
@@ -44,9 +31,10 @@
 
 <script>
 import SearchBar from "./SearchBar.vue";
-import IrregularVerbsButton from "./subcomponents/IrregularVerbsButton.vue";
+import IrregularVerbsButton from "./IrregularVerbsButton.vue";
 import SettingsButton from "./SettingsButton.vue";
 import ReportButton from "./ReportButton.vue";
+import RandomVerbButton from "./RandomVerbButton.vue";
 
 export default {
   name: "nav-bar",
@@ -55,6 +43,7 @@ export default {
     IrregularVerbsButton,
     SettingsButton,
     ReportButton,
+    RandomVerbButton,
   },
   props: {
     lastSearchTime: {
@@ -64,15 +53,6 @@ export default {
   },
   created() {
     console.log("[created] NavBar");
-  },
-  methods: {
-    pickRandomVerb() {
-      const infinitives = this.$store.state.infinitives;
-      const randomId = Math.floor(Math.random() * infinitives.length);
-      const pickedInfinitive = infinitives[randomId];
-
-      this.$router.push(`/spanish-conjugator/${pickedInfinitive}`);
-    },
   },
 };
 </script>
