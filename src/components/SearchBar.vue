@@ -25,13 +25,13 @@
     <div class="input-group" id="search-bar">
       <input
         type="text"
-        class="form-control shadow font-weight-bolda"
+        class="form-control font-weight-bold"
         placeholder="Infinitive (-ar, -er, -ir, -se)"
         aria-label="Feed an infinitive Spanish verb"
         aria-describedby="button-addon2"
         v-model.trim="input"
-        @focus.prevent.stop="addRoundedBordersOnFocus"
-        @blur.prevent.stop="removeRoundedBordersOnBlur"
+        @blur.prevent.stop="addRoundedBorders"
+        @focus.prevent.stop="removeRoundedBorders"
       />
 
       <!-- 虛擬鍵盤呼叫和搜尋鍵 -->
@@ -186,17 +186,40 @@ export default {
         inputField.focus();
       }
     },
-    addRoundedBordersOnFocus(event) {
-      event.target.style.color = "red";
-      // focus 時
-      // searchbar input 左下角 0px
-      // #search-btn 右下角 0px
+    removeRoundedBorders(event) {
+      const searchInput = event.target;
+      const searchBtn = document.querySelector("#search-btn");
+
+      // 輸入搜尋關鍵字時，讓 searchInput 左下變直角，searchBtn 右下變直角
+      // autocomplete suggestion 可以順利相接
+      // 用 important 蓋掉 Bootstrap 的設定
+      searchInput.style.setProperty(
+        "border-radius",
+        "5px 0px 0px 0px",
+        "important"
+      );
+      searchBtn.style.setProperty(
+        "border-radius",
+        "0px 5px 0px 0px",
+        "important"
+      );
     },
-    removeRoundedBordersOnBlur(event) {
-      event.target.style.color = "yellow";
-      // blur 時
-      // searchbar input 左下角 5px
-      // #search-btn 右下角 5px
+    addRoundedBorders(event) {
+      const searchInput = event.target;
+      const searchBtn = document.querySelector("#search-btn");
+
+      // 輸入框 blur 時，searchInput 和 searchBtn 變回圓角
+      // 用 important 蓋掉 Bootstrap 的設定
+      searchInput.style.setProperty(
+        "border-radius",
+        "5px 0px 0px 5px",
+        "important"
+      );
+      searchBtn.style.setProperty(
+        "border-radius",
+        "0px 5px 5px 0px",
+        "important"
+      );
     },
   },
   computed: {
