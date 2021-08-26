@@ -56,12 +56,12 @@ export default {
 }
 
 #frame {
-  transform: skewY(30deg) scaleX(2);
+  transform: skewY(30deg) scaleX(1.5);
   transition: transform 2s;
 }
 
 #frame:hover {
-  transform: skewY(0deg) scaleX(2) scaleY(2);
+  transform: skewY(0deg) scaleX(1.5) scaleY(1.5);
 }
 
 #heart-icon {

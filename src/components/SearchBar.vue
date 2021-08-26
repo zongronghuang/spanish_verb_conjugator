@@ -25,11 +25,13 @@
     <div class="input-group" id="search-bar">
       <input
         type="text"
-        class="form-control shadow font-weight-bold"
+        class="form-control shadow font-weight-bolda"
         placeholder="Infinitive (-ar, -er, -ir, -se)"
         aria-label="Feed an infinitive Spanish verb"
         aria-describedby="button-addon2"
         v-model.trim="input"
+        @focus.prevent.stop="addRoundedBordersOnFocus"
+        @blur.prevent.stop="removeRoundedBordersOnBlur"
       />
 
       <!-- 虛擬鍵盤呼叫和搜尋鍵 -->
@@ -44,7 +46,7 @@
         <button
           class="btn btn-primary btn-outline-light"
           type="button"
-          id="button-addon2"
+          id="search-btn"
           @click.prevent.stop="isInputValid() && checkInfinitiveExistence()"
         >
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
@@ -54,16 +56,17 @@
 
     <!-- autocomplete 搜尋提示 -->
     <div
-      class="position-absolute w-100 bg-info"
-      v-if="matchedInfinitives.length"
+      id="autocomplete-pane"
+      class="position-absolute w-100"
+      v-show="matchedInfinitives.length"
     >
-      <router-link
-        class="form-control w-100 text-decoration-none"
-        v-for="entry in matchedInfinitives"
-        :key="entry"
-        :to="`/spanish-conjugator/${entry}`"
-        >{{ entry }}</router-link
-      >
+      <div v-for="entry in matchedInfinitives" :key="entry" class="bg-light">
+        <router-link
+          class="text-decoration-none ml-3 text-muted"
+          :to="`/spanish-conjugator/${entry}`"
+          >{{ entry }}</router-link
+        >
+      </div>
     </div>
 
     <!-- 輸入輔助鍵 -->
@@ -183,20 +186,32 @@ export default {
         inputField.focus();
       }
     },
+    addRoundedBordersOnFocus(event) {
+      event.target.style.color = "red";
+      // focus 時
+      // searchbar input 左下角 0px
+      // #search-btn 右下角 0px
+    },
+    removeRoundedBordersOnBlur(event) {
+      event.target.style.color = "yellow";
+      // blur 時
+      // searchbar input 左下角 5px
+      // #search-btn 右下角 5px
+    },
   },
   computed: {
     ...mapState(["infinitives"]),
     matchedInfinitives() {
       if (!this.input) return [];
 
-      // 把 this.input 的即時字串作為篩選條件
-      const regex = new RegExp(`^${this.input}`);
+      // 把 this.input 的即時小寫字串作為篩選條件
+      const regex = new RegExp(`^${this.input.toLowerCase()}`);
       const matchedEntries = this.infinitives.filter((entry) =>
         entry.match(regex)
       );
 
-      // 最多列出 5 個符合項目
-      const maxEntries = 5;
+      // 最多列出 3 個符合項目
+      const maxEntries = 3;
       if (matchedEntries.length > maxEntries) {
         const slicedMatchedEntries = matchedEntries.slice(0, maxEntries);
         return slicedMatchedEntries;
@@ -237,8 +252,16 @@ export default {
   cursor: pointer;
 }
 
+input {
+  border-radius: 5px 0px 0px 5px !important;
+}
+
 input::placeholder {
   color: gray;
   opacity: 70%;
+}
+
+#autocomplete-pane > div:last-child {
+  border-radius: 0px 0px 5px 5px !important;
 }
 </style>
