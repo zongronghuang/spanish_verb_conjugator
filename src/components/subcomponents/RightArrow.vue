@@ -16,7 +16,12 @@
         to=""
         title="Next"
       >
-        <font-awesome-icon :icon="['fas', 'chevron-circle-right']" size="3x" />
+        <font-awesome-icon
+          class="ml-5"
+          :icon="['fas', 'chevron-circle-right']"
+          :style="{ color: 'white' }"
+          size="3x"
+        />
       </router-link>
     </div>
   </div>

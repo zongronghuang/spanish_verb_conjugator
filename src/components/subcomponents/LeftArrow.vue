@@ -16,7 +16,12 @@
         id="left-arrow"
         title="Back"
       >
-        <font-awesome-icon :icon="['fas', 'chevron-circle-left']" size="3x" />
+        <font-awesome-icon
+          class="mr-5"
+          :icon="['fas', 'chevron-circle-left']"
+          size="3x"
+          :style="{ color: 'white' }"
+        />
       </router-link>
     </div>
   </div>

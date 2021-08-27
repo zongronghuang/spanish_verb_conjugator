@@ -3,7 +3,13 @@
     <a
       href=""
       title="Get your lucky verb!"
-      class="text-decoration-none text-white mx-2"
+      class="
+        text-decoration-none text-white
+        mx-2
+        d-flex
+        flex-row
+        align-items-center
+      "
       @click.prevent.stop="showAndCloseRandomVerbDialog"
     >
       <font-awesome-icon
@@ -12,7 +18,7 @@
         size="2x"
         :style="{ color: 'white' }"
       />
-      Lucky verb
+      <span>Try Luck</span>
     </a>
 
     <!-- 旋轉圖示對話框 -->

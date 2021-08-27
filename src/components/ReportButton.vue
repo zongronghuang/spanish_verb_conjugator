@@ -7,7 +7,6 @@
         d-flex
         align-items-center
         justify-content-center
-        border
       "
       @click.prevent.stop="showReportDialog"
     >
@@ -17,7 +16,7 @@
         size="2x"
         :style="{ color: 'white' }"
       />
-      Report
+      <span>Report</span>
     </a>
     <dialog ref="reportDialog" class="w-50">
       <header class="text-center">

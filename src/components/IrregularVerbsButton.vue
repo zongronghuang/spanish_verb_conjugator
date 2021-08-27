@@ -23,7 +23,7 @@
         :style="{ color: 'white' }"
         size="2x"
       />
-      Irregular verbs
+      <span>Irregular verbs</span>
     </a>
 
     <!-- 不規則動詞清單對話框 -->

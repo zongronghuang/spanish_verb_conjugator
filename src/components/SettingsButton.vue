@@ -18,7 +18,7 @@
         size="2x"
         :style="{ color: 'white' }"
       />
-      Settings
+      <span>Settings</span>
     </a>
 
     <!-- 設定對話框 -->
