@@ -30,8 +30,7 @@
         aria-label="Feed an infinitive Spanish verb"
         aria-describedby="button-addon2"
         v-model.trim="input"
-        @blur.prevent.stop="addRoundedBorders"
-        @focus.prevent.stop="removeRoundedBorders"
+        @input.prevent.stop="changeBorderCorners"
       />
 
       <!-- 虛擬鍵盤呼叫和搜尋鍵 -->
@@ -186,40 +185,37 @@ export default {
         inputField.focus();
       }
     },
-    removeRoundedBorders(event) {
+    changeBorderCorners(event) {
       const searchInput = event.target;
       const searchBtn = document.querySelector("#search-btn");
 
-      // 輸入搜尋關鍵字時，讓 searchInput 左下變直角，searchBtn 右下變直角
-      // autocomplete suggestion 可以順利相接
-      // 用 important 蓋掉 Bootstrap 的設定
-      searchInput.style.setProperty(
-        "border-radius",
-        "5px 0px 0px 0px",
-        "important"
-      );
-      searchBtn.style.setProperty(
-        "border-radius",
-        "0px 5px 0px 0px",
-        "important"
-      );
-    },
-    addRoundedBorders(event) {
-      const searchInput = event.target;
-      const searchBtn = document.querySelector("#search-btn");
+      // 沒有 autocomplete suggestion，搜尋欄下方顯示圓角
+      if (this.matchedInfinitives.length === 0) {
+        searchInput.style.setProperty(
+          "border-radius",
+          "5px 0px 0px 5px",
+          "important"
+        );
+        searchBtn.style.setProperty(
+          "border-radius",
+          "0px 5px 5px 0px",
+          "important"
+        );
+      }
 
-      // 輸入框 blur 時，searchInput 和 searchBtn 變回圓角
-      // 用 important 蓋掉 Bootstrap 的設定
-      searchInput.style.setProperty(
-        "border-radius",
-        "5px 0px 0px 5px",
-        "important"
-      );
-      searchBtn.style.setProperty(
-        "border-radius",
-        "0px 5px 5px 0px",
-        "important"
-      );
+      // 有 autocomplete suggestion，搜尋欄下方顯示直角
+      if (this.matchedInfinitives.length !== 0) {
+        searchInput.style.setProperty(
+          "border-radius",
+          "5px 0px 0px 0px",
+          "important"
+        );
+        searchBtn.style.setProperty(
+          "border-radius",
+          "0px 5px 0px 0px",
+          "important"
+        );
+      }
     },
   },
   computed: {

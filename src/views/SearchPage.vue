@@ -4,7 +4,7 @@
     id="search-page"
   >
     <!-- 搜尋區域 -->
-    <div class="" id="frame">
+    <div id="frame">
       <h3 class="w-100 mb-3 text-center" id="title">Spanish Verb Conjugator</h3>
       <SearchBar class="mt-5 mx-auto" />
     </div>
@@ -47,7 +47,12 @@ export default {
 
 <style scoped>
 #search-page {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   height: 100vh;
+  width: 100vw;
   background-color: #aa151b;
 }
 
