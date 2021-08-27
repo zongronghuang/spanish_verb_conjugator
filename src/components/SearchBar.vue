@@ -137,7 +137,7 @@ export default {
         ending === "ir" ||
         ending === "ír" ||
         ending === "se";
-      if (validEndingCondition) {
+      if (!validEndingCondition) {
         this.alert = "Enter an infinitive verb";
         return false;
       }

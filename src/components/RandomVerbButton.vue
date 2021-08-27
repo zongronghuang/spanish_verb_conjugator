@@ -31,19 +31,19 @@
         rounded-lg
         text-center
         border-0
-        bg-light
         w-25
         h-25
       "
     >
-      <font-awesome-icon
-        id="spinner"
-        class="mr-1"
-        :icon="['fas', 'spinner']"
-        size="7x"
-        :style="{ color: 'black' }"
-        pulse
-      />
+      <div id="spinner">
+        <font-awesome-icon
+          class="mr-1"
+          :icon="['fas', 'spinner']"
+          size="5x"
+          :style="{ color: 'black' }"
+          pulse
+        />
+      </div>
     </dialog>
   </div>
 </template>
@@ -70,7 +70,7 @@ export default {
 
       setTimeout(() => {
         this.closeRandomVerbDialog();
-        this.pickRandomVerb();
+        //  this.pickRandomVerb();
       }, 1700);
     },
   },
@@ -78,9 +78,13 @@ export default {
 </script>
 
 <style scoped>
+dialog {
+  background-color: rgba(255, 255, 255, 0.5);
+}
 #spinner {
   position: absolute;
-  top: 30%;
-  left: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
