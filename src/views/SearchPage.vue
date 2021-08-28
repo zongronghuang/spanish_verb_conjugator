@@ -49,10 +49,6 @@ export default {
 
 <style scoped>
 #search-page {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   height: 100%;
   width: 100%;
   background-color: #aa151b;
@@ -63,12 +59,15 @@ export default {
 }
 
 #frame {
-  transform: skewY(30deg) scaleX(1.7);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) skewY(30deg) scaleX(1.5);
   transition: transform 2s;
 }
 
 #frame:hover {
-  transform: skewY(0deg) scale(1.7);
+  transform: translate(-50%, -50%) skewY(0deg) scale(1.5);
 }
 
 #heart-icon {
@@ -94,9 +93,5 @@ export default {
   100% {
     transform: scale(1);
   }
-}
-
-#heart-icon:hover {
-  transform: scaleX(2.5) scaleY(2.5);
 }
 </style>

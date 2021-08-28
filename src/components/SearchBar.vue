@@ -1,26 +1,9 @@
 <template>
   <div
     id="search-area"
-    class="w-25 d-flex align-items-around position-relative"
+    class="w-25 d-flex flex-column justify-content-between position-relative"
     @keyup.enter="isInputValid() && checkInfinitiveExistence()"
   >
-    <!-- 錯誤訊息 -->
-    <div
-      class="alert alert-warning w-100 mt-1 mx-auto rounded-lg shadow"
-      role="alert"
-      id="alert"
-      v-show="alert"
-    >
-      <span class="text-start">{{ alert }}</span>
-      <span
-        class="float-right font-weight-bold mr-2"
-        id="cross"
-        @click.stop.prevent="collapseAlert"
-      >
-        <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
-      </span>
-    </div>
-
     <!-- 搜尋欄 -->
     <div class="input-group" id="search-bar">
       <input
@@ -37,6 +20,7 @@
       <div class="input-group-append shadow">
         <button
           class="btn btn-info btn-outline-light"
+          type="button"
           @click.stop.prevent="toggleKeyboard"
         >
           <font-awesome-icon :icon="['fas', 'keyboard']" size="1x" />
@@ -51,20 +35,20 @@
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
         </button>
       </div>
-    </div>
 
-    <!-- autocomplete 搜尋提示 -->
-    <div
-      id="autocomplete-pane"
-      class="position-absolute mt-2 w-100"
-      v-show="matchedInfinitives.length"
-    >
-      <div v-for="entry in matchedInfinitives" :key="entry" class="bg-light">
-        <router-link
-          class="text-decoration-none ml-3 text-muted"
-          :to="`/spanish-conjugator/${entry}`"
-          >{{ entry }}</router-link
-        >
+      <!-- autocomplete 搜尋提示 -->
+      <div
+        id="autocomplete-pane"
+        class="position-absolute w-100"
+        v-show="matchedInfinitives.length"
+      >
+        <div v-for="entry in matchedInfinitives" :key="entry" class="bg-light">
+          <router-link
+            class="text-decoration-none ml-3 text-muted"
+            :to="`/spanish-conjugator/${entry}`"
+            >{{ entry }}</router-link
+          >
+        </div>
       </div>
     </div>
 
@@ -91,6 +75,23 @@
       <button class="btn btn-info font-weight-bold">ú</button>
       <button class="btn btn-info font-weight-bold">ü</button>
       <button class="btn btn-info font-weight-bold">ñ</button>
+    </div>
+
+    <!-- 錯誤訊息 -->
+    <div
+      class="alert alert-warning w-100 mt-1 mx-auto rounded-lg shadow"
+      role="alert"
+      id="alert"
+      v-show="alert"
+    >
+      <span class="text-start">{{ alert }}</span>
+      <span
+        class="float-right font-weight-bold mr-2"
+        id="cross"
+        @click.stop.prevent="collapseAlert"
+      >
+        <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
+      </span>
     </div>
   </div>
 </template>
@@ -253,18 +254,22 @@ export default {
 #keyboard {
   position: absolute;
   top: 100%;
+  transform: translateY(50%);
   z-index: 10;
 }
 
 #alert {
   position: absolute;
-  top: 110%;
+  top: 100%;
+  transform: translateY(50%);
   z-index: 20;
 }
 
 #search-bar {
   position: absolute;
-  bottom: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #cross:hover {
@@ -278,6 +283,10 @@ input {
 input::placeholder {
   color: gray;
   opacity: 70%;
+}
+
+#autocomplete-pane {
+  top: 100%;
 }
 
 #autocomplete-pane > div:last-child {

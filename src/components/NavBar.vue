@@ -2,15 +2,15 @@
   <nav
     class="
       fixed-top
-      nav
       py-2
       bg-primary
       d-flex
       flex-row flex-nowrap
       justify-content-around
+      align-items-center
     "
   >
-    <div class="d-flex justify-content-around flex-row w-25 border">
+    <div class="d-flex justify-content-around flex-row w-25">
       <!-- 常見不規則動詞列表 -->
       <IrregularVerbsButton />
 
@@ -21,7 +21,7 @@
     <!-- 搜尋欄 -->
     <SearchBar />
 
-    <div class="d-flex justify-content-around flex-row w-25 border">
+    <div class="d-flex justify-content-around flex-row w-25">
       <ReportButton :lastSearchTime="lastSearchTime" />
       <!-- App 設定按鍵 -->
       <SettingsButton />
@@ -58,8 +58,8 @@ export default {
 </script>
 
 <style scoped>
-nav {
+/* nav {
   min-width: 750px;
-}
+} */
 </style>
 
