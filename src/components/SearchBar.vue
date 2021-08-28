@@ -56,7 +56,7 @@
     <!-- autocomplete 搜尋提示 -->
     <div
       id="autocomplete-pane"
-      class="position-absolute w-100"
+      class="position-absolute mt-2 w-100"
       v-show="matchedInfinitives.length"
     >
       <div v-for="entry in matchedInfinitives" :key="entry" class="bg-light">

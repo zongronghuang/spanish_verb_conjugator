@@ -5,8 +5,10 @@
   >
     <!-- 搜尋區域 -->
     <div id="frame">
-      <h3 class="w-100 mb-3 text-center" id="title">Spanish Verb Conjugator</h3>
-      <SearchBar class="mt-5 mx-auto" />
+      <h3 class="w-100 mb-3 py-1 text-center" id="title">
+        Spanish Verb Conjugator
+      </h3>
+      <SearchBar class="py-2 mt-5 mx-auto" />
     </div>
 
     <small
@@ -51,8 +53,8 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: #aa151b;
 }
 
@@ -61,18 +63,37 @@ export default {
 }
 
 #frame {
-  transform: skewY(30deg) scaleX(1.5);
+  transform: skewY(30deg) scaleX(1.7);
   transition: transform 2s;
 }
 
 #frame:hover {
-  transform: skewY(0deg) scaleX(1.5) scaleY(1.5);
+  transform: skewY(0deg) scale(1.7);
 }
 
 #heart-icon {
   color: #f1bf00;
-  transform: scaleX(1) scaleY(1);
-  transition: transform 1.5s;
+}
+
+#heart-icon:hover {
+  transform: scale(1);
+  animation-name: beating-heart;
+  animation-duration: 0.9s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes beating-heart {
+  0% {
+    transform: scale(0.9);
+    color: yellow;
+  }
+  65% {
+    transform: scale(2);
+    color: red;
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 #heart-icon:hover {
