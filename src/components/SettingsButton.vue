@@ -13,12 +13,12 @@
       @click.prevent.stop="showSettingsDialog"
     >
       <font-awesome-icon
-        class="mr-1 align-middle"
+        class="mr-3 align-middle"
         :icon="['fas', 'cog']"
-        size="2x"
+        size="3x"
         :style="{ color: 'white' }"
       />
-      <span>Settings</span>
+      <span class="h5 font-weight-bold">Settings</span>
     </a>
 
     <!-- 設定對話框 -->

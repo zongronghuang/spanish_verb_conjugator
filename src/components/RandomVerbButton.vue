@@ -13,12 +13,12 @@
       @click.prevent.stop="showAndCloseRandomVerbDialog"
     >
       <font-awesome-icon
-        class="mr-1 align-middle"
+        class="mr-3 align-middle"
         :icon="['fas', 'dice']"
-        size="2x"
+        size="3x"
         :style="{ color: 'white' }"
       />
-      <span>Try Luck</span>
+      <span class="h5 font-weight-bold">Try Luck</span>
     </a>
 
     <!-- 旋轉圖示對話框 -->

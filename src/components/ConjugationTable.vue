@@ -9,13 +9,13 @@
         flex-row
         justify-content-between
         align-items-center
-        py-1
+        py-3
       "
     >
-      <span class="h3 font-weight-bold align-middle font-italic">
+      <span class="h2 font-weight-bold align-middle font-italic mr-3">
         {{ verb.infinitive | capitalize }}
       </span>
-      <span class="h4 align-middle font-italic">
+      <span class="h4 align-middle font-italic mr-1">
         {{ verb.mood_english }} {{ verb.tense_english }}
       </span>
       <a href="">
@@ -144,7 +144,7 @@
     </div>
 
     <!-- info 對話框  -->
-    <dialog ref="infoDialog" class="w-25 bg-info rounded-lg">
+    <dialog ref="infoDialog" class="w-50 bg-info rounded-lg">
       <header class="text-center">
         <span class="h5 align-middle">Word Info</span>
         <a href="" class="text-decoration-none float-right">

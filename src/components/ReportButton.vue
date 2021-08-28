@@ -7,17 +7,20 @@
         d-flex
         align-items-center
         justify-content-center
+        mr-3
       "
       @click.prevent.stop="showReportDialog"
     >
       <font-awesome-icon
-        class="mr-1 align-middle"
+        class="mr-3 align-middle"
         :icon="['fas', 'notes-medical']"
-        size="2x"
+        size="3x"
         :style="{ color: 'white' }"
       />
-      <span>Report</span>
+      <span class="h5 font-weight-bold">Report</span>
     </a>
+
+    <!-- 統計次數對話框 -->
     <dialog ref="reportDialog" class="w-50">
       <header class="text-center">
         <span class="h5">Report</span>

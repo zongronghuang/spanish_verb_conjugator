@@ -14,16 +14,17 @@
         d-flex
         align-items-center
         justify-content-center
+        mr-3
       "
       @click.prevent.stop="showIrregularVerbsDialog"
     >
       <font-awesome-icon
-        class="mr-1 align-middle"
+        class="mr-3 align-middle"
         :icon="['fas', 'clipboard-list']"
         :style="{ color: 'white' }"
-        size="2x"
+        size="3x"
       />
-      <span>Irregular verbs</span>
+      <span class="h5 font-weight-bold">Irregular verbs</span>
     </a>
 
     <!-- 不規則動詞清單對話框 -->

@@ -1,9 +1,7 @@
 <template>
-  <div id="main-page" class="">
+  <div id="main-page">
     <NavBar :lastSearchTime="lastSearchTime" />
-    <main
-      class="w-75 d-flex justify-content-center align-items-center mx-autos"
-    >
+    <main class="w-75 d-flex justify-content-center align-items-center mx-auto">
       <LeftArrow />
       <ConjugationTable
         :mode="mode"
@@ -111,9 +109,7 @@ main {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: translate(-50%, -50%);
   min-width: 600px;
-
-  margin-top: 50px;
 }
 </style>

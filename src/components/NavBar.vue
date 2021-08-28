@@ -3,27 +3,27 @@
     class="
       fixed-top
       py-2
-      bg-primary
       d-flex
       flex-row flex-nowrap
       justify-content-around
       align-items-center
+      bg-primary
     "
   >
-    <div class="d-flex justify-content-around flex-row w-25">
-      <!-- 常見不規則動詞列表 -->
+    <div id="left-buttons" class="d-flex justify-content-around flex-row w-25">
       <IrregularVerbsButton />
 
-      <!-- 隨選動詞按鈕 -->
       <RandomVerbButton />
     </div>
 
-    <!-- 搜尋欄 -->
-    <SearchBar />
+    <SearchBar class="search-bar" />
 
-    <div class="d-flex justify-content-around flex-row w-25">
+    <div
+      id="right-buttons"
+      class="d-flex justify-content-around flex-row w-25 d-none"
+    >
       <ReportButton :lastSearchTime="lastSearchTime" />
-      <!-- App 設定按鍵 -->
+
       <SettingsButton />
     </div>
   </nav>
@@ -58,8 +58,14 @@ export default {
 </script>
 
 <style scoped>
-/* nav {
-  min-width: 750px;
-} */
+.search-bar {
+  transform: scale(1.1);
+}
+@media only screen and (max-width: 800px) {
+  #left-buttons,
+  #right-buttons {
+    visibility: hidden;
+  }
+}
 </style>
 
