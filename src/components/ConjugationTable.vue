@@ -1,183 +1,199 @@
 <template>
-  <div class="card w-75">
-    <!-- 動詞名稱 + 時態名稱 -->
-    <div
-      class="
-        card-header
-        bg-primary
-        d-flex
-        flex-row
-        justify-content-between
-        align-items-center
-        py-3
-      "
-    >
-      <span class="h2 font-weight-bold align-middle font-italic mr-3">
-        {{ verb.infinitive | capitalize }}
-      </span>
-      <span class="h4 align-middle font-italic mr-1">
-        {{ verb.mood_english }} {{ verb.tense_english }}
-      </span>
-      <a href="">
-        <font-awesome-icon
-          :icon="['fas', 'info']"
-          size="2x"
-          :style="{ color: 'white' }"
-          @click.stop.prevent="showInfoDialog"
-        />
-      </a>
-    </div>
-
-    <!-- 動詞變化卡片 -->
-    <div class="card-body">
-      <table
-        class="table table-striped table-borderless my-0"
-        @input.prevent.stop="markActiveInput"
-      >
-        <tbody class="container-fluid">
-          <tr v-for="(person, id) in persons" :key="id">
-            <th scope="row" class="col-4 text-left align-middle">
-              {{ person }}
-            </th>
-
-            <!-- view 和 memory 模式 -->
-            <td
-              v-if="configs.useMode !== 'fill-in'"
-              class="col-6 h5 align-middle"
-            >
-              {{ conjugations[id] }}
-            </td>
-
-            <!-- fill-in 模式 -->
-            <td v-else class="col-6 py-0 align-middle">
-              <input
-                type="text"
-                class="form-control table-input"
-                :data-id="id"
-                v-model="inputs[id]"
-              />
-            </td>
-
-            <!-- fill-in 模式的答對/答錯提示 -->
-            <td
-              v-if="configs.useMode === 'fill-in'"
-              class="col-2 d-flex justify-content-center align-items-center"
-            >
-              <!-- 答案正確 -->
-
-              <span
-                class="
-                  position-absolute
-                  float-right
-                  badge badge-warning
-                  align-middle
-                  p-2
-                  ml-5
-                  mt-4
-                  d-flex
-                  flex-row
-                  justify-content-center
-                "
-                title="Correct!"
-                v-if="areInputsCorrect[id] === true"
-              >
-                <font-awesome-icon :icon="['fas', 'check']" size="2x" />
-              </span>
-
-              <!-- 答案錯誤 -->
-              <span
-                class="
-                  position-absolute
-                  float-right
-                  badge badge-warning
-                  align-middle
-                  d-flex
-                  p-2
-                  ml-5
-                  mt-4
-                  flex-row
-                  justify-content-center
-                "
-                :title="`Answer: ${conjugations[id]}`"
-                v-if="areInputsCorrect[id] === false"
-              >
-                <font-awesome-icon
-                  :icon="['fas', 'exclamation']"
-                  flip="both"
-                  size="2x"
-                />
-                <font-awesome-icon :icon="['fas', 'exclamation']" size="2x" />
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- 特殊字元鍵盤 -->
-      <div
-        class="card-footer d-flex flex-row justify-content-between"
-        v-if="configs.useMode === 'fill-in'"
-      >
+  <div class="card-frame w-75">
+    <div class="card-front" @mouseenter.prevent.stop="getCardFrontSize">
+      <div class="card w-100">
+        <!-- 動詞名稱 + 時態名稱 -->
         <div
-          class="d-flex flex-row"
-          @click.stop.prevent="inputSpecialCharacter"
+          class="
+            card-header
+            bg-primary
+            d-flex
+            flex-row
+            justify-content-between
+            align-items-center
+            py-3
+          "
         >
-          <button
-            class="btn btn-primary mr-1 special-character"
-            v-for="(character, id) in specialCharacters"
-            :key="id"
-            :title="character"
-            :value="character"
-          >
-            {{ character }}
-          </button>
+          <span class="h2 font-weight-bold align-middle font-italic mr-3">
+            {{ verb.infinitive | capitalize }}
+          </span>
+          <span class="h4 align-middle font-italic mr-1">
+            {{ verb.mood_english }} {{ verb.tense_english }}
+          </span>
+          <a href="">
+            <font-awesome-icon
+              :icon="['fas', 'info']"
+              size="2x"
+              :style="{ color: 'white' }"
+              @click.stop.prevent="showInfoDialog"
+            />
+          </a>
         </div>
 
-        <button
-          class="btn btn-primary"
-          title="check"
-          @click.stop.prevent="checkInputs"
-        >
-          check
-        </button>
+        <!-- 動詞變化卡片 -->
+        <div class="card-body">
+          <table
+            class="table table-striped table-borderless my-0"
+            @input.prevent.stop="markActiveInput"
+          >
+            <tbody class="container-fluid">
+              <tr v-for="(person, id) in persons" :key="id">
+                <th scope="row" class="col-4 text-left align-middle">
+                  {{ person }}
+                </th>
+
+                <!-- view 和 memory 模式 -->
+                <td
+                  v-if="configs.useMode !== 'fill-in'"
+                  class="col-6 h5 align-middle"
+                >
+                  {{ conjugations[id] }}
+                </td>
+
+                <!-- fill-in 模式 -->
+                <td v-else class="col-6 py-0 align-middle">
+                  <input
+                    type="text"
+                    class="form-control table-input"
+                    :data-id="id"
+                    v-model="inputs[id]"
+                  />
+                </td>
+
+                <!-- fill-in 模式的答對/答錯提示 -->
+                <td
+                  v-if="configs.useMode === 'fill-in'"
+                  class="col-2 d-flex justify-content-center align-items-center"
+                >
+                  <!-- 答案正確 -->
+
+                  <span
+                    class="
+                      position-absolute
+                      float-right
+                      badge badge-warning
+                      align-middle
+                      p-2
+                      ml-5
+                      mt-4
+                      d-flex
+                      flex-row
+                      justify-content-center
+                    "
+                    title="Correct!"
+                    v-if="areInputsCorrect[id] === true"
+                  >
+                    <font-awesome-icon :icon="['fas', 'check']" size="2x" />
+                  </span>
+
+                  <!-- 答案錯誤 -->
+                  <span
+                    class="
+                      position-absolute
+                      float-right
+                      badge badge-warning
+                      align-middle
+                      d-flex
+                      p-2
+                      ml-5
+                      mt-4
+                      flex-row
+                      justify-content-center
+                    "
+                    :title="`Answer: ${conjugations[id]}`"
+                    v-if="areInputsCorrect[id] === false"
+                  >
+                    <font-awesome-icon
+                      :icon="['fas', 'exclamation']"
+                      flip="both"
+                      size="2x"
+                    />
+                    <font-awesome-icon
+                      :icon="['fas', 'exclamation']"
+                      size="2x"
+                    />
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 特殊字元鍵盤 -->
+          <div
+            class="card-footer d-flex flex-row justify-content-between"
+            v-if="configs.useMode === 'fill-in'"
+          >
+            <div
+              class="d-flex flex-row"
+              @click.stop.prevent="inputSpecialCharacter"
+            >
+              <button
+                class="btn btn-primary mr-1 special-character"
+                v-for="(character, id) in specialCharacters"
+                :key="id"
+                :title="character"
+                :value="character"
+              >
+                {{ character }}
+              </button>
+            </div>
+
+            <button
+              class="btn btn-primary"
+              title="check"
+              @click.stop.prevent="checkInputs"
+            >
+              check
+            </button>
+          </div>
+        </div>
+
+        <!-- info 對話框  -->
+        <dialog ref="infoDialog" class="w-50 bg-info rounded-lg">
+          <header class="text-center">
+            <span class="h5 align-middle">Word Info</span>
+            <a href="" class="text-decoration-none float-right">
+              <font-awesome-icon
+                :icon="['fas', 'window-close']"
+                size="1x"
+                :style="{ color: 'white' }"
+                @click.prevent.stop="closeInfoDialog"
+              />
+            </a>
+          </header>
+          <hr />
+          <section>
+            <p>
+              <span>Definition: </span>
+              <span>
+                <mark>{{ verb.infinitive_english }}</mark>
+              </span>
+            </p>
+            <p>
+              <span>Gerund: </span>
+              <span>
+                <mark>{{ verb.gerund }}</mark>
+              </span>
+            </p>
+            <p>
+              <span>Past participle: </span>
+              <span>
+                <mark> {{ verb.pastparticiple }}</mark>
+              </span>
+            </p>
+          </section>
+        </dialog>
       </div>
     </div>
-
-    <!-- info 對話框  -->
-    <dialog ref="infoDialog" class="w-50 bg-info rounded-lg">
-      <header class="text-center">
-        <span class="h5 align-middle">Word Info</span>
-        <a href="" class="text-decoration-none float-right">
-          <font-awesome-icon
-            :icon="['fas', 'window-close']"
-            size="1x"
-            :style="{ color: 'white' }"
-            @click.prevent.stop="closeInfoDialog"
-          />
-        </a>
-      </header>
-      <hr />
-      <section>
-        <p>
-          <span>Definition: </span>
-          <span>
-            <mark>{{ verb.infinitive_english }}</mark>
-          </span>
-        </p>
-        <p>
-          <span>Gerund: </span>
-          <span>
-            <mark>{{ verb.gerund }}</mark>
-          </span>
-        </p>
-        <p>
-          <span>Past participle: </span>
-          <span>
-            <mark> {{ verb.pastparticiple }}</mark>
-          </span>
-        </p>
-      </section>
-    </dialog>
+    <div class="card-back border h-100">
+      <h1>hahahahha</h1>
+    </div>
+    <!-- <img
+      src="https://preview.ibb.co/bF05wV/danask.png"
+      :style="cardBackImgStyle"
+      class="card-back"
+      alt=""
+    /> -->
   </div>
 </template>
 
@@ -207,6 +223,11 @@ export default {
       conjugations: [],
       inputs: Array(6).fill(""),
       areInputsCorrect: Array(6).fill(undefined),
+      cardBackImgStyle: {
+        width: "100%",
+        height: "100%",
+        overFlow: "hidden",
+      },
     };
   },
   filters: {
@@ -304,6 +325,17 @@ export default {
     closeInfoDialog() {
       this.$refs.infoDialog.close();
     },
+    getCardFrontSize() {
+      // 用 clientwidth clientheight 試試看?
+      // const cardFront = document.querySelector(".card-front");
+      // const cardFrontStyles = getComputedStyle(cardFront);
+      // const cardFrontWidth = cardFrontStyles.getPropertyValue("width");
+      // const cardFrontHeight = cardFrontStyles.getPropertyValue("height");
+      // console.log({ cardFrontWidth, cardFrontHeight });
+      // const cardBack = document.querySelector(".card-back");
+      // cardBack.style.setProperty("width", cardFrontWidth);
+      // cardBack.style.setProperty("height", cardFrontHeight);
+    },
   },
   watch: {
     // 關注 vuex 中的 verb 物件是否改變 (處理 IrregularInfinitiveList 所選的特殊動詞)
@@ -360,9 +392,84 @@ export default {
 </script>
 
 <style scoped>
-/* #conjugation-table {
-  min-width: 400px;
-  width: 80%;
+.card-frame {
+  position: relative;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition-duration: 700ms;
+}
+
+.card-front {
+  transform: none;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  border: 1px solid red;
+  background-color: yellow;
+}
+
+.card-frame:hover .card-front {
+  transform: rotateY(180deg);
+}
+
+.card-frame:hover .card-back {
+  transform: none;
+}
+
+/* .card-frame {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 0.5s all ease;
+}
+
+.card-frame:hover {
+  transform: rotateY(180deg);
+} */
+
+/* .card-front,
+.card-back {
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.card-back {
+  background: url("https://preview.ibb.co/bF05wV/danask.png") center top repeat;
+}
+
+.card-frame:hover .card-front {
+  transform: rotateY(180deg);
+}
+
+.card-frame:hover .card-back {
+  transform: rotateY(180deg);
+} */
+
+/* .card-front {
+  backface-visibility: hidden;
+}
+
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  backface-visibility: hidden;
+  background: url("https://preview.ibb.co/bF05wV/danask.png") center top repeat;
+  transform: rotateY(180deg);
+  opacity: 0.5;
 } */
 
 #upper-display {
