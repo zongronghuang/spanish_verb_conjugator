@@ -17,7 +17,7 @@
         title="Next"
       >
         <font-awesome-icon
-          class="ml-5"
+          class="ml-1"
           :icon="['fas', 'chevron-circle-right']"
           :style="{ color: 'white' }"
           size="3x"

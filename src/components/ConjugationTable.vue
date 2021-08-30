@@ -388,7 +388,9 @@ export default {
 .card-frame {
   transform-style: preserve-3d;
   position: absolute;
-  bottom: 500%;
+  top: -300%;
+  left: 12.5%;
+  height: 100%;
 }
 
 .card-front,

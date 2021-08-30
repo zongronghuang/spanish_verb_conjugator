@@ -17,7 +17,7 @@
         title="Back"
       >
         <font-awesome-icon
-          class="mr-5"
+          class="mr-1"
           :icon="['fas', 'chevron-circle-left']"
           size="3x"
           :style="{ color: 'white' }"
