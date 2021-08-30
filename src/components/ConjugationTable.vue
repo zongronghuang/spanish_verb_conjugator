@@ -185,15 +185,9 @@
         </dialog>
       </div>
     </div>
-    <div class="card-back border h-100">
-      <h1>hahahahha</h1>
+    <div class="card-back" :style="cardBackImgStyle">
+      <img src="../assets/danask.jpg" :style="cardBackImgStyle" alt="" />
     </div>
-    <!-- <img
-      src="https://preview.ibb.co/bF05wV/danask.png"
-      :style="cardBackImgStyle"
-      class="card-back"
-      alt=""
-    /> -->
   </div>
 </template>
 
@@ -224,9 +218,8 @@ export default {
       inputs: Array(6).fill(""),
       areInputsCorrect: Array(6).fill(undefined),
       cardBackImgStyle: {
-        width: "100%",
-        height: "100%",
-        overFlow: "hidden",
+        width: "",
+        height: "",
       },
     };
   },
@@ -327,14 +320,14 @@ export default {
     },
     getCardFrontSize() {
       // 用 clientwidth clientheight 試試看?
-      // const cardFront = document.querySelector(".card-front");
-      // const cardFrontStyles = getComputedStyle(cardFront);
-      // const cardFrontWidth = cardFrontStyles.getPropertyValue("width");
-      // const cardFrontHeight = cardFrontStyles.getPropertyValue("height");
-      // console.log({ cardFrontWidth, cardFrontHeight });
-      // const cardBack = document.querySelector(".card-back");
-      // cardBack.style.setProperty("width", cardFrontWidth);
-      // cardBack.style.setProperty("height", cardFrontHeight);
+      const cardFront = document.querySelector(".card-front");
+      const { scrollHeight, scrollWidth } = cardFront;
+
+      this.cardBackImgStyle = {
+        ...this.cardBackImgStyle,
+        height: scrollHeight + "px",
+        width: scrollWidth + "px",
+      };
     },
   },
   watch: {
@@ -393,7 +386,9 @@ export default {
 
 <style scoped>
 .card-frame {
-  position: relative;
+  transform-style: preserve-3d;
+  position: absolute;
+  bottom: 500%;
 }
 
 .card-front,
@@ -411,11 +406,9 @@ export default {
 
 .card-back {
   transform: rotateY(180deg);
-  height: 100%;
   top: 0%;
   left: 0%;
-  border: 1px solid red;
-  background-color: yellow;
+  overflow: hidden;
 }
 
 .card-frame:hover .card-front {
