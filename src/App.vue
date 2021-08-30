@@ -33,7 +33,7 @@ body,
 }
 
 #verb-conjugator {
-  background-image: url("./assets/sebastian-yepes-OdwjaP3GpqQ-unsplash.jpg");
+  background-image: url("./assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg");
   background-size: cover;
   min-width: 700px;
   min-height: 600px;

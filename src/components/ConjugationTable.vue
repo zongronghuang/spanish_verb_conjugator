@@ -186,7 +186,12 @@
       </div>
     </div>
     <div class="card-back" :style="cardBackImgStyle">
-      <img src="../assets/danask.jpg" :style="cardBackImgStyle" alt="" />
+      <img
+        src="../assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg"
+        :style="cardBackImgStyle"
+        class="rounded-lg"
+        alt=""
+      />
     </div>
   </div>
 </template>
@@ -421,51 +426,10 @@ export default {
   transform: none;
 }
 
-/* .card-frame {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: 0.5s all ease;
+img {
+  object-fit: cover;
+  filter: saturate(150%);
 }
-
-.card-frame:hover {
-  transform: rotateY(180deg);
-} */
-
-/* .card-front,
-.card-back {
-  position: absolute;
-  backface-visibility: hidden;
-  width: 100%;
-  height: 100%;
-}
-
-.card-back {
-  background: url("https://preview.ibb.co/bF05wV/danask.png") center top repeat;
-}
-
-.card-frame:hover .card-front {
-  transform: rotateY(180deg);
-}
-
-.card-frame:hover .card-back {
-  transform: rotateY(180deg);
-} */
-
-/* .card-front {
-  backface-visibility: hidden;
-}
-
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0%;
-  top: 0%;
-  backface-visibility: hidden;
-  background: url("https://preview.ibb.co/bF05wV/danask.png") center top repeat;
-  transform: rotateY(180deg);
-  opacity: 0.5;
-} */
 
 #upper-display {
   min-width: 300px;
