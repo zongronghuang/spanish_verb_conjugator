@@ -11,6 +11,43 @@
       />
       <RightArrow />
     </main>
+
+    <div
+      class="
+        fixed-bottom
+        d-flex
+        justify-content-end
+        align-items-center
+        mr-2
+        mb-2
+        bg-transparent
+        font-weight-bold font-italic
+      "
+    >
+      <font-awesome-icon
+        class="mr-1 align-middle"
+        :icon="['fas', 'camera']"
+        size="1x"
+        :style="{ color: 'white' }"
+      />
+      <small class="text-light">
+        <a
+          class="text-decoration-none text-warning"
+          href="https://unsplash.com/@rotivartic"
+          target="_blank"
+        >
+          Rotiv Artic
+        </a>
+        @
+        <a
+          class="text-decoration-none text-warning"
+          href="https://unsplash.com/"
+          target="_blank"
+        >
+          Unsplash
+        </a>
+      </small>
+    </div>
   </div>
 </template>
 
@@ -91,14 +128,6 @@ export default {
     }
 
     next();
-  },
-  methods: {
-    fetchSelectedConjugations(selectedConjugations) {
-      // [{...}]
-      console.log("selected conjugations in MainPage", selectedConjugations);
-      if (selectedConjugations.length > 0)
-        this.selectedConjugations = selectedConjugations;
-    },
   },
   computed: {
     ...mapState(["infinitives"]),

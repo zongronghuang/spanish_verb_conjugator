@@ -22,9 +22,9 @@
         class="mr-3 align-middle"
         :icon="['fas', 'clipboard-list']"
         :style="{ color: 'white' }"
-        size="3x"
+        size="2x"
       />
-      <span class="h5 font-weight-bold">Irregular verbs</span>
+      <span class="h5">Irregular verbs</span>
     </a>
 
     <!-- 不規則動詞清單對話框 -->

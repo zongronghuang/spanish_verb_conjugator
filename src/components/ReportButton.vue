@@ -14,10 +14,10 @@
       <font-awesome-icon
         class="mr-3 align-middle"
         :icon="['fas', 'notes-medical']"
-        size="3x"
+        size="2x"
         :style="{ color: 'white' }"
       />
-      <span class="h5 font-weight-bold">Report</span>
+      <span class="h5">Report</span>
     </a>
 
     <!-- 統計次數對話框 -->

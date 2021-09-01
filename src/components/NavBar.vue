@@ -2,7 +2,7 @@
   <nav
     class="
       fixed-top
-      py-2
+      py-1
       d-flex
       flex-row flex-nowrap
       justify-content-around

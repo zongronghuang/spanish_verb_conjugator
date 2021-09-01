@@ -15,10 +15,10 @@
       <font-awesome-icon
         class="mr-3 align-middle"
         :icon="['fas', 'dice']"
-        size="3x"
+        size="2x"
         :style="{ color: 'white' }"
       />
-      <span class="h5 font-weight-bold">Try Luck</span>
+      <span class="h5">Try Luck</span>
     </a>
 
     <!-- 旋轉圖示對話框 -->

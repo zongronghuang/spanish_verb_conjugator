@@ -1,6 +1,10 @@
 <template>
   <div class="card-frame w-75">
-    <div class="card-front" @mouseenter.prevent.stop="getCardFrontSize">
+    <div
+      ref="cardFront"
+      class="card-front"
+      @mouseenter.prevent.stop="getCardFrontSize"
+    >
       <div class="card w-100">
         <!-- 動詞名稱 + 時態名稱 -->
         <div
@@ -147,45 +151,11 @@
             </button>
           </div>
         </div>
-
-        <!-- info 對話框  -->
-        <dialog ref="infoDialog" class="w-50 bg-info rounded-lg">
-          <header class="text-center">
-            <span class="h5 align-middle">Word Info</span>
-            <a href="" class="text-decoration-none float-right">
-              <font-awesome-icon
-                :icon="['fas', 'window-close']"
-                size="1x"
-                :style="{ color: 'white' }"
-                @click.prevent.stop="closeInfoDialog"
-              />
-            </a>
-          </header>
-          <hr />
-          <section>
-            <p>
-              <span>Definition: </span>
-              <span>
-                <mark>{{ verb.infinitive_english }}</mark>
-              </span>
-            </p>
-            <p>
-              <span>Gerund: </span>
-              <span>
-                <mark>{{ verb.gerund }}</mark>
-              </span>
-            </p>
-            <p>
-              <span>Past participle: </span>
-              <span>
-                <mark> {{ verb.pastparticiple }}</mark>
-              </span>
-            </p>
-          </section>
-        </dialog>
       </div>
     </div>
-    <div class="card-back" :style="cardBackImgStyle">
+
+    <!-- 卡片背面 -->
+    <div ref="cardBack" class="card-back" :style="cardBackImgStyle">
       <img
         src="../assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg"
         :style="cardBackImgStyle"
@@ -193,6 +163,42 @@
         alt=""
       />
     </div>
+
+    <!-- info 對話框  -->
+    <dialog ref="infoDialog" class="w-50 bg-info rounded-lg">
+      <header class="text-center">
+        <span class="h5 align-middle">Word Info</span>
+        <a href="" class="text-decoration-none float-right">
+          <font-awesome-icon
+            :icon="['fas', 'window-close']"
+            size="1x"
+            :style="{ color: 'white' }"
+            @click.prevent.stop="closeInfoDialog"
+          />
+        </a>
+      </header>
+      <hr />
+      <section>
+        <p>
+          <span>Definition: </span>
+          <span>
+            <mark>{{ verb.infinitive_english }}</mark>
+          </span>
+        </p>
+        <p>
+          <span>Gerund: </span>
+          <span>
+            <mark>{{ verb.gerund }}</mark>
+          </span>
+        </p>
+        <p>
+          <span>Past participle: </span>
+          <span>
+            <mark> {{ verb.pastparticiple }}</mark>
+          </span>
+        </p>
+      </section>
+    </dialog>
   </div>
 </template>
 
@@ -334,6 +340,16 @@ export default {
         width: scrollWidth + "px",
       };
     },
+    addCardFlippingEffect() {
+      this.$refs.cardFront.classList.add();
+
+      this.$refs.cardBack.classList.add();
+    },
+    removeCardFlippingEffect() {
+      this.$refs.cardFront.classList.remove();
+
+      this.$refs.cardBack.classList.remove();
+    },
   },
   watch: {
     // 關注 vuex 中的 verb 物件是否改變 (處理 IrregularInfinitiveList 所選的特殊動詞)
@@ -416,6 +432,8 @@ export default {
   top: 0%;
   left: 0%;
   overflow: hidden;
+  border-radius: 5px;
+  border: 3px solid lightgray;
 }
 
 .card-frame:hover .card-front {
