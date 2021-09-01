@@ -79,7 +79,7 @@ export default {
 
 <style scoped>
 dialog {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(241, 191, 0, 0.5);
 }
 #spinner {
   position: absolute;

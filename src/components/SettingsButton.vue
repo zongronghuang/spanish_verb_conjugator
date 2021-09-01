@@ -24,24 +24,25 @@
     <!-- 設定對話框 -->
     <dialog
       ref="settingsDialog"
-      class="container font-weight-bold rounded-lg w-50"
+      class="container font-weight-bold rounded-lg w-50 px-0 py-0"
     >
-      <header class="text-center">
-        <span class="h5">Settings</span>
-        <a href="" class="text-decoration-none">
+      <header class="text-center py-2 px-1 w-100">
+        <span class="h5 align-middle">Settings</span>
+        <a
+          href=""
+          class="text-decoration-none float-right"
+          @click.prevent.stop="closeSettingsDialog"
+        >
           <font-awesome-icon
             :icon="['fas', 'window-close']"
             size="1x"
             :style="{ color: 'white' }"
-            class="float-right"
-            @click.prevent.stop="closeSettingsDialog"
           />
         </a>
       </header>
 
-      <hr />
       <!-- use mode 選單 -->
-      <section class="d-flex flex-row border align-items-center">
+      <section class="bg-light px-3 mt-2 d-flex flex-row align-items-center">
         <span class="w-25 text-left pl-1">Use mode</span>
         <div
           class="w-75 btn-group d-flex justify-content-between float-right"
@@ -55,7 +56,7 @@
       </section>
 
       <!-- mood 選單 -->
-      <section class="d-flex flex-row border align-items-center">
+      <section class="bg-light px-3 mt-2 d-flex flex-row align-items-center">
         <span class="w-25 text-left pl-1">Mood</span>
         <div
           class="btn-group d-flex w-75 justify-content-between float-right"
@@ -74,9 +75,10 @@
         </div>
       </section>
 
+      <hr />
       <!-- tense 選單-->
       <section
-        class="border btn-group w-100"
+        class="px-3 pb-2 btn-group w-100"
         role="group"
         @click.stop.prevent="
           (e) => fetchTense(e) || updateCurrentConjugations(e)
@@ -102,7 +104,7 @@
         <!-- imperative tenses -->
         <div
           id="imperative-tenses"
-          class="d-flex justify-content-between flex-wrap flex-row w-100"
+          class="d-flex justify-content-start flex-wrap flex-row w-100"
           v-if="mood_english === 'Imperative'"
         >
           <button
@@ -240,7 +242,20 @@ export default {
 </script>
 
 <style scoped>
-dialog {
-  background-color: red;
+dialog > header {
+  background-color: #f1bf00;
 }
+
+dialog {
+  border-width: 0px;
+}
+
+/* dialog button {
+  background-color: #aa151b !important;
+  color: white;
+}
+
+.btn-group {
+  border-width: 1px solid transparent !important;
+} */
 </style>

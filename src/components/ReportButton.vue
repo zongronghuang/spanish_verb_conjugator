@@ -7,7 +7,6 @@
         d-flex
         align-items-center
         justify-content-center
-        mr-3
       "
       @click.prevent.stop="showReportDialog"
     >
@@ -21,25 +20,28 @@
     </a>
 
     <!-- 統計次數對話框 -->
-    <dialog ref="reportDialog" class="w-50">
-      <header class="text-center">
-        <span class="h5">Report</span>
-        <a href="" class="text-decoration-none">
+    <dialog ref="reportDialog" class="w-50 rounded-lg px-0 py-0">
+      <header class="text-center py-2 px-1 w-100">
+        <span class="h5 align-middle font-weight-bold">Report</span>
+        <a
+          href=""
+          class="text-decoration-none float-right"
+          @click.prevent.stop="closeReportDialog"
+        >
           <font-awesome-icon
             :icon="['fas', 'window-close']"
             size="1x"
             :style="{ color: 'white' }"
-            class="float-right"
-            @click.prevent.stop="closeReportDialog"
           />
         </a>
       </header>
-      <hr />
-      <p class="text-start">
-        Find the 10 most searched verbs in the last 7 days of use.
-      </p>
-      <section>
-        <div class="d-flex justify-content-start flex-wrap">
+
+      <!-- 最常搜尋動詞選單 -->
+      <section class="bg-light px-3 mt-2 pb-2">
+        <p class="text-start">
+          Find the 10 most searched verbs in the last 7 days of use.
+        </p>
+        <div class="d-flex justify-content-between flex-wrap flex-row w-100">
           <router-link
             class="btn btn-primary mx-1 my-1"
             v-for="verbEntry in mostSearchedVerbs"
@@ -126,7 +128,11 @@ export default {
 </script>
 
 <style scoped>
+dialog > header {
+  background-color: #f1bf00;
+}
+
 dialog {
-  background-color: lightgray;
+  border-width: 0px;
 }
 </style>

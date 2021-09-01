@@ -1,10 +1,6 @@
 <template>
   <!-- 常見不規則動詞列表 -->
-  <div
-    class="d-flex align-items-center justify-content-center"
-    id="irregular-infinitive-list"
-    title="Top irregular verbs"
-  >
+  <div id="irregular-infinitive-list" title="Top irregular verbs">
     <!-- 不規則動詞清單按鈕 -->
     <a
       href=""
@@ -29,24 +25,38 @@
     <!-- 不規則動詞清單對話框 -->
     <dialog
       ref="irregularVerbsDialog"
-      class="container font-weight-bold w-50 rounded-lg"
+      class="container w-50 rounded-lg px-0 py-0"
     >
-      <header class="text-center">
-        <span class="h5">Irregular verbs</span>
-        <a href="" class="text-decoration-none">
+      <header class="text-center py-2 px-1 w-100">
+        <span class="h5 align-middle font-weight-bold">Irregular verbs</span>
+        <a
+          href=""
+          class="text-decoration-none float-right"
+          @click.prevent.stop="closeIrregularVerbsDialog"
+        >
           <font-awesome-icon
             :icon="['fas', 'window-close']"
             size="1x"
             :style="{ color: 'white' }"
-            class="float-right"
-            @click.prevent.stop="closeIrregularVerbsDialog"
           />
         </a>
       </header>
-      <hr />
-      <section class="border d-flex justify-content-between flex-wrap">
+
+      <!-- 不規則動詞選單 -->
+      <section
+        class="
+          bg-light
+          px-3
+          mt-2
+          pb-2
+          d-flex
+          justify-content-between
+          flex-wrap flex-row
+          w-100
+        "
+      >
         <router-link
-          class="btn btn-primary mx-1 my-1 text-decoration-none"
+          class="btn btn-primary mx-1 my-1"
           v-for="(infinitive, id) in irregularInfinitives"
           :key="id"
           :title="infinitive"
@@ -129,8 +139,12 @@ export default {
 </script>
 
 <style scoped>
+dialog > header {
+  background-color: #f1bf00;
+}
+
 dialog {
-  background-color: green;
+  border-width: 0px;
 }
 </style>
 

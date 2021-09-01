@@ -21,12 +21,12 @@
         mr-2
         mb-2
         bg-transparent
-        font-weight-bold font-italic
+        font-italic
       "
     >
       <small class="text-light d-flex align-items-center">
         <a
-          class="text-decoration-none text-warning"
+          class="text-decoration-none font-weight-light"
           href="https://unsplash.com/@rotivartic"
           target="_blank"
         >
@@ -133,5 +133,9 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
   min-width: 600px;
+}
+
+small > a {
+  color: #f1bf00;
 }
 </style>

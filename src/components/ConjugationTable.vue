@@ -10,7 +10,6 @@
         <div
           class="
             card-header
-            bg-primary
             d-flex
             flex-row
             justify-content-between
@@ -36,7 +35,7 @@
               <font-awesome-icon
                 :icon="['fas', 'eye-slash']"
                 size="2x"
-                :style="{ color: 'white' }"
+                :style="{ color: '#aa151b' }"
               />
             </a>
             <a
@@ -47,7 +46,7 @@
               <font-awesome-icon
                 :icon="['fas', 'info']"
                 size="2x"
-                :style="{ color: 'white' }"
+                :style="{ color: '#aa151b' }"
               />
             </a>
           </div>
@@ -191,36 +190,48 @@
     </div>
 
     <!-- info 對話框  -->
-    <dialog ref="infoDialog" class="w-50 bg-info rounded-lg">
-      <header class="text-center">
+    <dialog ref="infoDialog" class="w-50 rounded-lg px-0 py-0">
+      <header class="text-center py-2 px-1 w-100">
         <span class="h5 align-middle">Word Info</span>
         <a href="" class="text-decoration-none float-right">
           <font-awesome-icon
             :icon="['fas', 'window-close']"
             size="1x"
-            :style="{ color: 'white' }"
+            :style="{ color: '#aa151b' }"
             @click.prevent.stop="closeInfoDialog"
           />
         </a>
       </header>
-      <hr />
-      <section>
+
+      <section class="bg-light px-3 mt-2">
         <p>
           <span>Definition: </span>
           <span>
-            <mark>{{ verb.infinitive_english }}</mark>
+            <strong>
+              <i>
+                {{ verb.infinitive_english }}
+              </i>
+            </strong>
           </span>
         </p>
         <p>
           <span>Gerund: </span>
           <span>
-            <mark>{{ verb.gerund }}</mark>
+            <strong>
+              <i>
+                {{ verb.gerund }}
+              </i>
+            </strong>
           </span>
         </p>
         <p>
           <span>Past participle: </span>
           <span>
-            <mark> {{ verb.pastparticiple }}</mark>
+            <strong>
+              <i>
+                {{ verb.pastparticiple }}
+              </i>
+            </strong>
           </span>
         </p>
       </section>
@@ -492,12 +503,13 @@ img {
 }
 /* <<< card flipping effect <<< */
 
-#upper-display {
-  min-width: 300px;
+.card-header,
+dialog > header {
+  background-color: #f1bf00;
 }
 
-#infinitive-profile {
-  cursor: help;
+dialog {
+  border-width: 0px;
 }
 
 .active {

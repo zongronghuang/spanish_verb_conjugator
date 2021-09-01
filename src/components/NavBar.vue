@@ -7,7 +7,6 @@
       flex-row flex-nowrap
       justify-content-around
       align-items-center
-      bg-primary
     "
   >
     <div id="left-buttons" class="d-flex justify-content-around flex-row w-25">
@@ -58,9 +57,15 @@ export default {
 </script>
 
 <style scoped>
+nav {
+  background-color: #aa151b;
+  max-height: 60px;
+}
+
 .search-bar {
   transform: scale(1.1);
 }
+
 @media only screen and (max-width: 800px) {
   #left-buttons,
   #right-buttons {
