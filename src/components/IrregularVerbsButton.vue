@@ -14,7 +14,6 @@
         d-flex
         align-items-center
         justify-content-center
-        mr-3
       "
       @click.prevent.stop="showIrregularVerbsDialog"
     >

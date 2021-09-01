@@ -24,27 +24,18 @@
         font-weight-bold font-italic
       "
     >
-      <font-awesome-icon
-        class="mr-1 align-middle"
-        :icon="['fas', 'camera']"
-        size="1x"
-        :style="{ color: 'white' }"
-      />
-      <small class="text-light">
+      <small class="text-light d-flex align-items-center">
         <a
           class="text-decoration-none text-warning"
           href="https://unsplash.com/@rotivartic"
           target="_blank"
         >
+          <font-awesome-icon
+            :icon="['fas', 'camera']"
+            size="1x"
+            :style="{ color: 'white' }"
+          />
           Rotiv Artic
-        </a>
-        @
-        <a
-          class="text-decoration-none text-warning"
-          href="https://unsplash.com/"
-          target="_blank"
-        >
-          Unsplash
         </a>
       </small>
     </div>
@@ -138,7 +129,7 @@ export default {
 <style scoped>
 main {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   min-width: 600px;

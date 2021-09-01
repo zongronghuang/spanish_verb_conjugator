@@ -5,7 +5,7 @@
       class="card-front"
       @mouseenter.prevent.stop="getCardFrontSize"
     >
-      <div class="card w-100">
+      <div class="card border border-warning w-100">
         <!-- 動詞名稱 + 時態名稱 -->
         <div
           class="
@@ -15,7 +15,7 @@
             flex-row
             justify-content-between
             align-items-center
-            py-3
+            py-2
           "
         >
           <span class="h2 font-weight-bold align-middle font-italic mr-3">
@@ -24,14 +24,33 @@
           <span class="h4 align-middle font-italic mr-1">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
-          <a href="">
-            <font-awesome-icon
-              :icon="['fas', 'info']"
-              size="2x"
-              :style="{ color: 'white' }"
+
+          <div>
+            <a
+              href=""
+              class="mr-3"
+              title="Flip the card"
+              v-if="configs.useMode === 'memory'"
+              @click.prevent.stop="addCardFlippingEffect"
+            >
+              <font-awesome-icon
+                :icon="['fas', 'eye-slash']"
+                size="2x"
+                :style="{ color: 'white' }"
+              />
+            </a>
+            <a
+              href=""
+              title="Show word information"
               @click.stop.prevent="showInfoDialog"
-            />
-          </a>
+            >
+              <font-awesome-icon
+                :icon="['fas', 'info']"
+                size="2x"
+                :style="{ color: 'white' }"
+              />
+            </a>
+          </div>
         </div>
 
         <!-- 動詞變化卡片 -->
@@ -155,7 +174,14 @@
     </div>
 
     <!-- 卡片背面 -->
-    <div ref="cardBack" class="card-back" :style="cardBackImgStyle">
+    <div
+      ref="cardBack"
+      class="card-back"
+      :style="cardBackImgStyle"
+      title="Flip the card"
+      @click.prevent.stop="removeCardFlippingEffect"
+    >
+      <font-awesome-icon id="open-icon" :icon="['fas', 'eye']" size="2x" />
       <img
         src="../assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg"
         :style="cardBackImgStyle"
@@ -341,14 +367,12 @@ export default {
       };
     },
     addCardFlippingEffect() {
-      this.$refs.cardFront.classList.add();
-
-      this.$refs.cardBack.classList.add();
+      this.$refs.cardFront.classList.add("flipping-card-front");
+      this.$refs.cardBack.classList.add("flipping-card-back");
     },
     removeCardFlippingEffect() {
-      this.$refs.cardFront.classList.remove();
-
-      this.$refs.cardBack.classList.remove();
+      this.$refs.cardFront.classList.remove("flipping-card-front");
+      this.$refs.cardBack.classList.remove("flipping-card-back");
     },
   },
   watch: {
@@ -406,12 +430,13 @@ export default {
 </script>
 
 <style scoped>
+/* >>> card flipping effect >>> */
 .card-frame {
-  transform-style: preserve-3d;
   position: absolute;
-  top: -300%;
+  top: -350%;
   left: 12.5%;
-  height: 100%;
+  width: 75%;
+  transform-style: preserve-3d;
 }
 
 .card-front,
@@ -428,19 +453,36 @@ export default {
 }
 
 .card-back {
-  transform: rotateY(180deg);
   top: 0%;
   left: 0%;
   overflow: hidden;
   border-radius: 5px;
-  border: 3px solid lightgray;
-}
-
-.card-frame:hover .card-front {
+  border: 2px solid lightgray;
+  cursor: pointer;
   transform: rotateY(180deg);
 }
 
-.card-frame:hover .card-back {
+.card-back:hover #open-icon {
+  visibility: visible;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  height: 25%;
+  z-index: 5;
+  color: rgba(100%, 100%, 100%, 0.5);
+  transform: translate(-50%, -50%);
+}
+
+.card-back:not(:hover) #open-icon {
+  display: none;
+}
+
+.flipping-card-front {
+  transform: rotateY(180deg);
+}
+
+.flipping-card-back {
   transform: none;
 }
 
@@ -448,6 +490,7 @@ img {
   object-fit: cover;
   filter: saturate(150%);
 }
+/* <<< card flipping effect <<< */
 
 #upper-display {
   min-width: 300px;
