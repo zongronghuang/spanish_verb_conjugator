@@ -34,18 +34,13 @@
           class="text-decoration-none float-right"
           @click.prevent.stop="closeIrregularVerbsDialog"
         >
-          <font-awesome-icon
-            :icon="['fas', 'window-close']"
-            size="1x"
-            :style="{ color: 'white' }"
-          />
+          <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
         </a>
       </header>
 
       <!-- 不規則動詞選單 -->
       <section
         class="
-          bg-light
           px-3
           mt-2
           pb-2
@@ -55,15 +50,20 @@
           w-100
         "
       >
-        <router-link
-          class="btn btn-primary mx-1 my-1"
-          v-for="(infinitive, id) in irregularInfinitives"
-          :key="id"
-          :title="infinitive"
-          :to="{ name: 'main-page', params: { infinitive } }"
-        >
-          {{ infinitive }}
-        </router-link>
+        <p class="text-left">
+          Practice and master the most common irregular verbs.
+        </p>
+        <div class="d-flex justify-content-between flex-wrap flex-row w-100">
+          <router-link
+            class="btn btn-primary mx-1 my-1"
+            v-for="(infinitive, id) in irregularInfinitives"
+            :key="id"
+            :title="infinitive"
+            :to="{ name: 'main-page', params: { infinitive } }"
+          >
+            {{ infinitive }}
+          </router-link>
+        </div>
       </section>
     </dialog>
   </div>
@@ -140,11 +140,15 @@ export default {
 
 <style scoped>
 dialog > header {
-  background-color: #f1bf00;
+  background-color: var(--spanish-yellow);
 }
 
 dialog {
   border-width: 0px;
+}
+
+dialog svg {
+  color: var(--spanish-red);
 }
 </style>
 

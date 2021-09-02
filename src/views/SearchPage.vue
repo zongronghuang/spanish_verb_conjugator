@@ -51,11 +51,11 @@ export default {
 #search-page {
   height: 100%;
   width: 100%;
-  background-color: #aa151b;
+  background-color: var(--spanish-red);
 }
 
 #title {
-  color: #f1bf00;
+  color: var(--spanish-yellow);
 }
 
 #frame {
@@ -71,7 +71,7 @@ export default {
 }
 
 #heart-icon {
-  color: #f1bf00;
+  color: var(--spanish-yellow);
 }
 
 #heart-icon:hover {
@@ -84,11 +84,11 @@ export default {
 @keyframes beating-heart {
   0% {
     transform: scale(0.9);
-    color: yellow;
+    color: var(--spanish-yellow);
   }
   65% {
     transform: scale(2);
-    color: red;
+    color: var(--spanish-red);
   }
   100% {
     transform: scale(1);

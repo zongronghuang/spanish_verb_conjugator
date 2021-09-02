@@ -27,7 +27,7 @@
         </button>
 
         <button
-          class="btn btn-primary btn-outline-light"
+          class="btn btn-primary btn-outline-light rounded-right"
           type="button"
           id="search-btn"
           @click.prevent.stop="isInputValid() && checkInfinitiveExistence()"
@@ -84,7 +84,7 @@
       id="alert"
       v-show="alert"
     >
-      <span class="text-start">{{ alert }}</span>
+      <span class="text-left">{{ alert }}</span>
       <span
         class="float-right font-weight-bold mr-2"
         id="cross"

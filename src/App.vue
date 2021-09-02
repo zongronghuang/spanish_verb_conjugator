@@ -8,6 +8,7 @@
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import datasetAPIs from "./apis/dataset.js";
+import "./styles/custom.css";
 
 export default {
   name: "App",

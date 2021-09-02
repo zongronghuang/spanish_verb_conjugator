@@ -28,17 +28,13 @@
           class="text-decoration-none float-right"
           @click.prevent.stop="closeReportDialog"
         >
-          <font-awesome-icon
-            :icon="['fas', 'window-close']"
-            size="1x"
-            :style="{ color: 'white' }"
-          />
+          <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
         </a>
       </header>
 
       <!-- 最常搜尋動詞選單 -->
-      <section class="bg-light px-3 mt-2 pb-2">
-        <p class="text-start">
+      <section class="px-3 mt-2 pb-2">
+        <p class="text-left">
           Find the 10 most searched verbs in the last 7 days of use.
         </p>
         <div class="d-flex justify-content-between flex-wrap flex-row w-100">
@@ -129,10 +125,14 @@ export default {
 
 <style scoped>
 dialog > header {
-  background-color: #f1bf00;
+  background-color: var(--spanish-yellow);
 }
 
 dialog {
   border-width: 0px;
+}
+
+dialog svg {
+  color: var(--spanish-red);
 }
 </style>

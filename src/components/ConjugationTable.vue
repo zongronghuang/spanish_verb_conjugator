@@ -32,28 +32,20 @@
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
             >
-              <font-awesome-icon
-                :icon="['fas', 'eye-slash']"
-                size="2x"
-                :style="{ color: '#aa151b' }"
-              />
+              <font-awesome-icon :icon="['fas', 'eye-slash']" size="2x" />
             </a>
             <a
               href=""
               title="Show word information"
               @click.stop.prevent="showInfoDialog"
             >
-              <font-awesome-icon
-                :icon="['fas', 'info']"
-                size="2x"
-                :style="{ color: '#aa151b' }"
-              />
+              <font-awesome-icon :icon="['fas', 'info']" size="2x" />
             </a>
           </div>
         </div>
 
         <!-- 動詞變化卡片 -->
-        <div class="card-body">
+        <div class="card-body px-0 py-0">
           <table
             class="table table-striped table-borderless my-0"
             @input.prevent.stop="markActiveInput"
@@ -165,7 +157,7 @@
               title="check"
               @click.stop.prevent="checkInputs"
             >
-              check
+              Check
             </button>
           </div>
         </div>
@@ -197,13 +189,12 @@
           <font-awesome-icon
             :icon="['fas', 'window-close']"
             size="1x"
-            :style="{ color: '#aa151b' }"
             @click.prevent.stop="closeInfoDialog"
           />
         </a>
       </header>
 
-      <section class="bg-light px-3 mt-2">
+      <section class="px-3 mt-2">
         <p>
           <span>Definition: </span>
           <span>
@@ -468,7 +459,6 @@ export default {
   left: 0%;
   overflow: hidden;
   border-radius: 5px;
-  border: 2px solid lightgray;
   cursor: pointer;
   transform: rotateY(180deg);
 }
@@ -483,6 +473,7 @@ export default {
   z-index: 5;
   color: rgba(100%, 100%, 100%, 0.5);
   transform: translate(-50%, -50%);
+  transition-delay: 500ms;
 }
 
 .card-back:not(:hover) #open-icon {
@@ -505,11 +496,15 @@ img {
 
 .card-header,
 dialog > header {
-  background-color: #f1bf00;
+  background-color: var(--spanish-yellow);
 }
 
 dialog {
   border-width: 0px;
+}
+
+svg {
+  color: var(--spanish-red);
 }
 
 .active {

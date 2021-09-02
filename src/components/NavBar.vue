@@ -58,7 +58,7 @@ export default {
 
 <style scoped>
 nav {
-  background-color: #aa151b;
+  background-color: var(--spanish-red);
   max-height: 60px;
 }
 

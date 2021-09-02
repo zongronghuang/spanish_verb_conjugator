@@ -136,6 +136,6 @@ main {
 }
 
 small > a {
-  color: #f1bf00;
+  color: var(--spanish-yellow);
 }
 </style>

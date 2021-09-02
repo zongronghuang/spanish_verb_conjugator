@@ -22,63 +22,64 @@
     </a>
 
     <!-- 設定對話框 -->
-    <dialog
-      ref="settingsDialog"
-      class="container font-weight-bold rounded-lg w-50 px-0 py-0"
-    >
+    <dialog ref="settingsDialog" class="container rounded-lg w-50 px-0 py-0">
       <header class="text-center py-2 px-1 w-100">
-        <span class="h5 align-middle">Settings</span>
+        <span class="h5 font-weight-bold align-middle">Settings</span>
         <a
           href=""
           class="text-decoration-none float-right"
           @click.prevent.stop="closeSettingsDialog"
         >
-          <font-awesome-icon
-            :icon="['fas', 'window-close']"
-            size="1x"
-            :style="{ color: 'white' }"
-          />
+          <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
         </a>
       </header>
 
       <!-- use mode 選單 -->
-      <section class="bg-light px-3 mt-2 d-flex flex-row align-items-center">
-        <span class="w-25 text-left pl-1">Use mode</span>
-        <div
-          class="w-75 btn-group d-flex justify-content-between float-right"
-          role="group"
-          @click.stop.prevent="fetchUseMode"
-        >
-          <button class="btn btn-primary" value="view">View</button>
-          <button class="btn btn-primary" value="memory">Flash card</button>
-          <button class="btn btn-primary" value="fill-in">Fill-in</button>
-        </div>
-      </section>
-
-      <!-- mood 選單 -->
-      <section class="bg-light px-3 mt-2 d-flex flex-row align-items-center">
-        <span class="w-25 text-left pl-1">Mood</span>
-        <div
-          class="btn-group d-flex w-75 justify-content-between float-right"
-          role="group"
-          @click.stop.prevent="fetchMood"
-        >
-          <button class="btn btn-primary" type="button" value="Indicative">
-            Indicative
-          </button>
-          <button class="btn btn-primary" type="button" value="Imperative">
-            Imperative
-          </button>
-          <button class="btn btn-primary" type="button" value="Subjunctive">
-            Subjunctive
-          </button>
+      <section class="px-3 mt-2">
+        <p class="text-left">
+          Choose a use mode or a conjugation by mood and tense for practice.
+        </p>
+        <div class="w-100 d-flex flex-row align-items-center">
+          <span class="w-25 text-left font-weight-bold pl-1">Use mode</span>
+          <div
+            class="w-75 btn-group d-flex justify-content-between float-right"
+            role="group"
+            @click.stop.prevent="fetchUseMode"
+          >
+            <button class="btn btn-primary" value="view">View</button>
+            <button class="btn btn-primary" value="memory">Flash card</button>
+            <button class="btn btn-primary" value="fill-in">Fill-in</button>
+          </div>
         </div>
       </section>
 
       <hr />
+
+      <!-- mood 選單 -->
+      <section class="px-3 my-2">
+        <div class="w-100 d-flex flex-row align-items-center">
+          <span class="w-25 text-left font-weight-bold pl-1">Mood & tense</span>
+          <div
+            class="btn-group d-flex w-75 justify-content-between float-right"
+            role="group"
+            @click.stop.prevent="fetchMood"
+          >
+            <button class="btn btn-primary" type="button" value="Indicative">
+              Indicative
+            </button>
+            <button class="btn btn-primary" type="button" value="Imperative">
+              Imperative
+            </button>
+            <button class="btn btn-primary" type="button" value="Subjunctive">
+              Subjunctive
+            </button>
+          </div>
+        </div>
+      </section>
+
       <!-- tense 選單-->
       <section
-        class="px-3 pb-2 btn-group w-100"
+        class="px-3 py-2 btn-group w-100"
         role="group"
         @click.stop.prevent="
           (e) => fetchTense(e) || updateCurrentConjugations(e)
@@ -243,19 +244,14 @@ export default {
 
 <style scoped>
 dialog > header {
-  background-color: #f1bf00;
+  background-color: var(--spanish-yellow);
 }
 
 dialog {
   border-width: 0px;
 }
 
-/* dialog button {
-  background-color: #aa151b !important;
-  color: white;
+dialog svg {
+  color: var(--spanish-red);
 }
-
-.btn-group {
-  border-width: 1px solid transparent !important;
-} */
 </style>
