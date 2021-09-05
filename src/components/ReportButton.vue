@@ -16,7 +16,7 @@
         size="2x"
         :style="{ color: 'white' }"
       />
-      <span class="h5">Report</span>
+      <span class="h5 py-0 my-0">Report</span>
     </a>
 
     <!-- 統計次數對話框 -->
@@ -33,7 +33,7 @@
       </header>
 
       <!-- 最常搜尋動詞選單 -->
-      <section class="px-3 mt-2 pb-2">
+      <section class="px-3 py-2 bg-light">
         <p class="text-left">
           Find the 10 most searched verbs in the last 7 days of use.
         </p>
@@ -125,7 +125,11 @@ export default {
 
 <style scoped>
 dialog > header {
-  background-color: var(--spanish-yellow);
+  background-image: linear-gradient(
+    45deg,
+    var(--spanish-red),
+    var(--spanish-yellow)
+  );
 }
 
 dialog {

@@ -18,7 +18,7 @@
         size="2x"
         :style="{ color: 'white' }"
       />
-      <span class="h5">Try Luck</span>
+      <span class="h5 py-0 my-0">Try Luck</span>
     </a>
 
     <!-- 旋轉圖示對話框 -->
@@ -79,7 +79,11 @@ export default {
 
 <style scoped>
 dialog {
-  background-color: var(--spanish-yellow-semi-transparent);
+  background-image: linear-gradient(
+    45deg,
+    var(--spanish-red),
+    var(--spanish-yellow)
+  );
 }
 #spinner {
   position: absolute;

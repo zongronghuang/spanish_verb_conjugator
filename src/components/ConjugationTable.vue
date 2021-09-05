@@ -17,17 +17,19 @@
             py-2
           "
         >
-          <span class="h2 font-weight-bold align-middle font-italic mr-3">
+          <span
+            class="h2 font-weight-bold align-middle font-italic mr-3 py-0 my-0"
+          >
             {{ verb.infinitive | capitalize }}
           </span>
-          <span class="h4 align-middle font-italic mr-1">
+          <span class="h4 align-middle font-italic mr-1 py-0 my-0">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
 
           <div>
             <a
               href=""
-              class="mr-3"
+              class="mr-3 align-middle"
               title="Flip the card"
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
@@ -37,6 +39,7 @@
             <a
               href=""
               title="Show word information"
+              class="align-middle"
               @click.stop.prevent="showInfoDialog"
             >
               <font-awesome-icon :icon="['fas', 'info']" size="2x" />
@@ -194,7 +197,7 @@
         </a>
       </header>
 
-      <section class="px-3 mt-2">
+      <section class="px-3 py-2 bg-light">
         <p>
           <span>Definition: </span>
           <span>
@@ -494,13 +497,20 @@ img {
 }
 /* <<< card flipping effect <<< */
 
-.card-header,
-dialog > header {
+.card-header {
   background-color: var(--spanish-yellow);
 }
 
 dialog {
   border-width: 0px;
+}
+
+dialog > header {
+  background-image: linear-gradient(
+    45deg,
+    var(--spanish-red),
+    var(--spanish-yellow)
+  );
 }
 
 svg {

@@ -254,8 +254,13 @@ export default {
 #keyboard {
   position: absolute;
   top: 100%;
-  transform: translateY(50%);
   z-index: 10;
+  transform: translateY(50%);
+}
+
+#keyboard button {
+  background-color: var(--spanish-yellow);
+  color: black;
 }
 
 #alert {

@@ -19,7 +19,7 @@
         :style="{ color: 'white' }"
         size="2x"
       />
-      <span class="h5">Irregular verbs</span>
+      <span class="h5 py-0 my-0">Irregular verbs</span>
     </a>
 
     <!-- 不規則動詞清單對話框 -->
@@ -42,12 +42,12 @@
       <section
         class="
           px-3
-          mt-2
-          pb-2
+          py-2
           d-flex
           justify-content-between
           flex-wrap flex-row
           w-100
+          bg-light
         "
       >
         <p class="text-left">
@@ -140,7 +140,11 @@ export default {
 
 <style scoped>
 dialog > header {
-  background-color: var(--spanish-yellow);
+  background-image: linear-gradient(
+    45deg,
+    var(--spanish-red),
+    var(--spanish-yellow)
+  );
 }
 
 dialog {

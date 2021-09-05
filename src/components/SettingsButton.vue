@@ -18,7 +18,7 @@
         size="2x"
         :style="{ color: 'white' }"
       />
-      <span class="h5">Settings</span>
+      <span class="h5 py-0 my-0">Settings</span>
     </a>
 
     <!-- 設定對話框 -->
@@ -35,11 +35,11 @@
       </header>
 
       <!-- use mode 選單 -->
-      <section class="px-3 mt-2">
+      <section class="px-3 pt-2 bg-light">
         <p class="text-left">
           Choose a use mode or a conjugation by mood and tense for practice.
         </p>
-        <div class="w-100 d-flex flex-row align-items-center">
+        <div class="w-100 d-flex flex-row align-items-center pb-2">
           <span class="w-25 text-left font-weight-bold pl-1">Use mode</span>
           <div
             class="w-75 btn-group d-flex justify-content-between float-right"
@@ -53,10 +53,10 @@
         </div>
       </section>
 
-      <hr />
+      <hr class="bg-light my-0" />
 
       <!-- mood 選單 -->
-      <section class="px-3 my-2">
+      <section class="px-3 py-2 bg-light">
         <div class="w-100 d-flex flex-row align-items-center">
           <span class="w-25 text-left font-weight-bold pl-1">Mood & tense</span>
           <div
@@ -77,9 +77,9 @@
         </div>
       </section>
 
-      <!-- tense 選單-->
+      <!-- mood & tense 選單-->
       <section
-        class="px-3 py-2 btn-group w-100"
+        class="px-3 py-2 btn-group w-100 bg-light"
         role="group"
         @click.stop.prevent="
           (e) => fetchTense(e) || updateCurrentConjugations(e)
@@ -244,7 +244,11 @@ export default {
 
 <style scoped>
 dialog > header {
-  background-color: var(--spanish-yellow);
+  background-image: linear-gradient(
+    45deg,
+    var(--spanish-red),
+    var(--spanish-yellow)
+  );
 }
 
 dialog {
