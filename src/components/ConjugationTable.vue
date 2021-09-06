@@ -461,6 +461,7 @@ export default {
   top: 0%;
   left: 0%;
   overflow: hidden;
+  border: 1px dotted var(--spanish-yellow);
   border-radius: 5px;
   cursor: pointer;
   transform: rotateY(180deg);
