@@ -2,9 +2,12 @@
   <div
     id="search-area"
     class="w-25 d-flex flex-column justify-content-between position-relative"
-    @keyup.enter="isInputValid() && checkInfinitiveExistence()"
-  >
-    <!-- 搜尋欄 -->
+    @keyup.enter="searchByInput"
+    @keyup.up="navigateAutocompleteSuggestionsByUpArrow"
+    @keyup.down="navigateAutocompleteSuggestionsByDownArrow"
+>
+
+  
     <div class="input-group" id="search-bar">
       <input
         type="text"
@@ -14,6 +17,7 @@
         aria-describedby="button-addon2"
         v-model.trim="input"
         @input.prevent.stop="changeBorderCorners"
+        ref="searchInput"
       />
 
       <!-- 虛擬鍵盤呼叫和搜尋鍵 -->
@@ -30,7 +34,7 @@
           class="btn btn-primary btn-outline-light rounded-right"
           type="button"
           id="search-btn"
-          @click.prevent.stop="isInputValid() && checkInfinitiveExistence()"
+          @click.prevent.stop="searchByInput"
         >
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
         </button>
@@ -41,8 +45,10 @@
         id="autocomplete-pane"
         class="position-absolute w-100"
         v-show="matchedInfinitives.length"
+        ref="autocompletePane"
+  >
       >
-        <div v-for="entry in matchedInfinitives" :key="entry" class="bg-light">
+        <div v-for="entry in matchedInfinitives" :key="entry" :data-entry="entry" class="bg-light">
           <router-link
             class="text-decoration-none ml-3 text-muted"
             :to="`/spanish-conjugator/${entry}`"
@@ -107,6 +113,8 @@ export default {
       input: "",
       alert: "",
       keyboard: false,
+      currentSuggestionID: -1,
+      isNavigatingByArrowKeys: false,
     };
   },
   created() {
@@ -155,6 +163,12 @@ export default {
       } else {
         this.alert = "Oops, it's not in the database";
       }
+    },
+    searchByInput() {
+      this.input = this.$refs.searchInput.value
+  
+      if (!this.isInputValid()) return
+      this.checkInfinitiveExistence()
     },
     collapseAlert() {
       this.alert = "";
@@ -218,6 +232,39 @@ export default {
         );
       }
     },
+    navigateAutocompleteSuggestionsByUpArrow() {
+      console.log('up up up')
+      const {children} = this.$refs.autocompletePane
+      const suggestionID = this.currentSuggestionID
+
+      if (children.length <= 1) return
+      if (suggestionID === 0) {
+        children[suggestionID].classList.add('nav-location')
+        return
+      }
+
+      children[suggestionID].classList.remove('nav-location')
+      children[suggestionID - 1].classList.add('nav-location')
+
+      this.$refs.searchInput.value = children[suggestionID].dataset.entry
+      this.currentSuggestionID = suggestionID - 1
+    },
+    navigateAutocompleteSuggestionsByDownArrow() {
+      console.log('down down down')
+      const {children} = this.$refs.autocompletePane
+      const suggestionID = this.currentSuggestionID
+
+      if (children.length <= 1) return
+      if (suggestionID === children.length - 1) {
+        return
+      }
+
+      children[suggestionID].classList.remove('nav-location')
+      children[suggestionID + 1].classList.add('nav-location')
+     
+      this.$refs.searchInput.value = children[suggestionID].dataset.entry
+      this.currentSuggestionID = suggestionID + 1
+    }, 
   },
   computed: {
     ...mapState(["infinitives"]),
@@ -297,4 +344,9 @@ input::placeholder {
 #autocomplete-pane > div:last-child {
   border-radius: 0px 0px 5px 5px !important;
 }
+
+.nav-location, .nav-location:hover {
+  background-color: lightgray !important;
+}
+
 </style>
