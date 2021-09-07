@@ -5,9 +5,7 @@
     @keyup.enter="searchByInput"
     @keyup.up="navigateAutocompleteSuggestionsByUpArrow"
     @keyup.down="navigateAutocompleteSuggestionsByDownArrow"
->
-
-  
+  >
     <div class="input-group" id="search-bar">
       <input
         type="text"
@@ -16,7 +14,7 @@
         aria-label="Feed an infinitive Spanish verb"
         aria-describedby="button-addon2"
         v-model.trim="input"
-        @input.prevent.stop="changeBorderCorners"
+        @input.prevent.stop="handleInput"
         ref="searchInput"
       />
 
@@ -46,9 +44,14 @@
         class="position-absolute w-100"
         v-show="matchedInfinitives.length"
         ref="autocompletePane"
-  >
       >
-        <div v-for="entry in matchedInfinitives" :key="entry" :data-entry="entry" class="bg-light">
+        <div
+          v-for="(entry, id) in matchedInfinitives"
+          :key="entry"
+          :data-entry="entry"
+          :data-id="id"
+          class="bg-light"
+        >
           <router-link
             class="text-decoration-none ml-3 text-muted"
             :to="`/spanish-conjugator/${entry}`"
@@ -113,7 +116,7 @@ export default {
       input: "",
       alert: "",
       keyboard: false,
-      currentSuggestionID: -1,
+      currentSuggestionID: 0,
       isNavigatingByArrowKeys: false,
     };
   },
@@ -165,10 +168,10 @@ export default {
       }
     },
     searchByInput() {
-      this.input = this.$refs.searchInput.value
-  
-      if (!this.isInputValid()) return
-      this.checkInfinitiveExistence()
+      this.input = this.$refs.searchInput.value;
+
+      if (!this.isInputValid()) return;
+      this.checkInfinitiveExistence();
     },
     collapseAlert() {
       this.alert = "";
@@ -232,39 +235,62 @@ export default {
         );
       }
     },
+    handleInput(event) {
+      this.changeBorderCorners(event);
+    },
     navigateAutocompleteSuggestionsByUpArrow() {
-      console.log('up up up')
-      const {children} = this.$refs.autocompletePane
-      const suggestionID = this.currentSuggestionID
+      console.log("up up up");
 
-      if (children.length <= 1) return
-      if (suggestionID === 0) {
-        children[suggestionID].classList.add('nav-location')
-        return
+      const { children: suggestions } = this.$refs.autocompletePane;
+      const numOfSuggestions = suggestions.length;
+      const currentID = this.currentSuggestionID;
+      const nextID = currentID - 1;
+
+      // 沒有 suggestion => return
+      if (numOfSuggestions === 0) return;
+
+      if (!this.isNavigatingByArrowKeys) {
+        this.isNavigatingByArrowKeys = true;
+        suggestions[0].classList.add("nav-location");
       }
 
-      children[suggestionID].classList.remove('nav-location')
-      children[suggestionID - 1].classList.add('nav-location')
+      if (currentID === 0) {
+        suggestions[currentID].classList.add("nav-location");
+        this.$refs.searchInput.value = suggestions[currentID].dataset.entry;
+        this.currentSuggestionID = currentID;
+      }
 
-      this.$refs.searchInput.value = children[suggestionID].dataset.entry
-      this.currentSuggestionID = suggestionID - 1
+      if (currentID > 0) {
+        suggestions[currentID].classList.remove("nav-location");
+        suggestions[nextID].classList.add("nav-location");
+        this.$refs.searchInput.value = suggestions[nextID].dataset.entry;
+        this.currentSuggestionID = nextID;
+      }
     },
     navigateAutocompleteSuggestionsByDownArrow() {
-      console.log('down down down')
-      const {children} = this.$refs.autocompletePane
-      const suggestionID = this.currentSuggestionID
+      console.log("down down down");
+      const { children: suggestions } = this.$refs.autocompletePane;
+      const numOfSuggestions = suggestions.length;
+      const currentID = this.currentSuggestionID;
+      const nextID = currentID + 1;
 
-      if (children.length <= 1) return
-      if (suggestionID === children.length - 1) {
-        return
+      if (numOfSuggestions === 0) return;
+      if (nextID === numOfSuggestions) return;
+
+      if (currentID === 0) {
+        suggestions[0].classList.add("nav-location");
+        this.$refs.searchInput.value = suggestions[currentID].dataset.entry;
+        this.currentSuggestionID = nextID;
       }
 
-      children[suggestionID].classList.remove('nav-location')
-      children[suggestionID + 1].classList.add('nav-location')
-     
-      this.$refs.searchInput.value = children[suggestionID].dataset.entry
-      this.currentSuggestionID = suggestionID + 1
-    }, 
+      if (currentID > 0) {
+        suggestions[currentID].classList.remove("nav-location");
+        suggestions[nextID].classList.add("nav-location");
+
+        this.$refs.searchInput.value = suggestions[nextID].dataset.entry;
+        this.currentSuggestionID = nextID;
+      }
+    },
   },
   computed: {
     ...mapState(["infinitives"]),
@@ -345,8 +371,8 @@ input::placeholder {
   border-radius: 0px 0px 5px 5px !important;
 }
 
-.nav-location, .nav-location:hover {
+.nav-location,
+.nav-location:hover {
   background-color: lightgray !important;
 }
-
 </style>
