@@ -3,8 +3,8 @@
     id="search-area"
     class="w-25 d-flex flex-column justify-content-between position-relative"
     @keyup.enter="searchByInput"
-    @keyup.up="navigateAutocompleteSuggestionsByUpArrow"
-    @keyup.down="navigateAutocompleteSuggestionsByDownArrow"
+    @keyup.up="navigateSuggestionsByUpArrow"
+    @keyup.down="navigateSuggestionsByDownArrow"
   >
     <div class="input-group" id="search-bar">
       <input
@@ -117,7 +117,8 @@ export default {
       alert: "",
       keyboard: false,
       currentSuggestionID: 0,
-      isNavigatingByArrowKeys: false,
+      isNavigatingSuggestions: false,
+      keyword: "",
     };
   },
   created() {
@@ -168,10 +169,15 @@ export default {
       }
     },
     searchByInput() {
-      this.input = this.$refs.searchInput.value;
-
-      if (!this.isInputValid()) return;
-      this.checkInfinitiveExistence();
+      // 如果 this.input 和 this.keyword 都有內容
+      // 當 this.input 合格時，優先查詢 this.input
+      // 當 this.input 不合格，改為用 this.keyword 查詢
+      if (this.isInputValid()) {
+        this.checkInfinitiveExistence();
+      } else {
+        this.input = this.keyword;
+        this.checkInfinitiveExistence();
+      }
     },
     collapseAlert() {
       this.alert = "";
@@ -179,7 +185,6 @@ export default {
     toggleKeyboard() {
       this.keyboard = !this.keyboard;
     },
-    // 待簡化
     inputSpecialCharacter(event) {
       const target = event.target;
       const character = target.innerText;
@@ -237,61 +242,94 @@ export default {
     },
     handleInput(event) {
       this.changeBorderCorners(event);
+      this.resetSuggestionNavigation();
     },
-    navigateAutocompleteSuggestionsByUpArrow() {
+    navigateSuggestionsByUpArrow() {
       console.log("up up up");
 
       const { children: suggestions } = this.$refs.autocompletePane;
       const numOfSuggestions = suggestions.length;
       const currentID = this.currentSuggestionID;
       const nextID = currentID - 1;
+      const minID = 0;
 
-      // 沒有 suggestion => return
       if (numOfSuggestions === 0) return;
 
-      if (!this.isNavigatingByArrowKeys) {
-        this.isNavigatingByArrowKeys = true;
+      // 在使用者停止輸入文字後，第一次用按鍵瀏覽，進行初始化
+      // => highlight 第一個選項，搜尋欄位帶入選項文字
+      if (!this.isNavigatingSuggestions) {
+        this.isNavigatingSuggestions = true;
         suggestions[0].classList.add("nav-location");
+        this.$refs.searchInput.value = suggestions[0].dataset.entry;
+        this.keyword = suggestions[0].dataset.entry;
+        this.currentSuggestionID = 0;
       }
 
-      if (currentID === 0) {
-        suggestions[currentID].classList.add("nav-location");
-        this.$refs.searchInput.value = suggestions[currentID].dataset.entry;
-        this.currentSuggestionID = currentID;
-      }
-
-      if (currentID > 0) {
+      // 持續按向上箭頭瀏覽
+      // => 下方選項移除 highlight，上方選項加上 highlight，搜尋欄位帶入上方選項文字
+      if (currentID > minID) {
         suggestions[currentID].classList.remove("nav-location");
         suggestions[nextID].classList.add("nav-location");
         this.$refs.searchInput.value = suggestions[nextID].dataset.entry;
+        this.keyword = suggestions[nextID].dataset.entry;
         this.currentSuggestionID = nextID;
       }
+
+      // 瀏覽到最上方選項
+      // => 無法再往上，搜尋欄位帶入最上方選項文字
+      if (currentID === minID) {
+        suggestions[currentID].classList.add("nav-location");
+        this.$refs.searchInput.value = suggestions[currentID].dataset.entry;
+        this.keyword = suggestions[currentID].dataset.entry;
+        this.currentSuggestionID = currentID;
+      }
     },
-    navigateAutocompleteSuggestionsByDownArrow() {
+    navigateSuggestionsByDownArrow() {
       console.log("down down down");
       const { children: suggestions } = this.$refs.autocompletePane;
       const numOfSuggestions = suggestions.length;
       const currentID = this.currentSuggestionID;
       const nextID = currentID + 1;
+      const maxID = numOfSuggestions - 1;
 
       if (numOfSuggestions === 0) return;
-      if (nextID === numOfSuggestions) return;
 
-      if (currentID === 0) {
+      // 在使用者停止輸入文字後，第一次用按鍵瀏覽，進行初始化
+      // => highlight 第一個選項，搜尋欄位帶入選項文字
+      if (!this.isNavigatingSuggestions) {
+        this.isNavigatingSuggestions = true;
         suggestions[0].classList.add("nav-location");
-        this.$refs.searchInput.value = suggestions[currentID].dataset.entry;
-        this.currentSuggestionID = nextID;
+        this.$refs.searchInput.value = suggestions[0].dataset.entry;
+        this.keyword = suggestions[0].dataset.entry;
+        this.currentSuggestionID = 0;
+        return;
       }
 
-      if (currentID > 0) {
+      // 持續按向下箭頭瀏覽
+      // => 上方選項移除 highlight，下方選項加上 highlight，搜尋欄位帶入下方選項文字
+      if (currentID < maxID) {
         suggestions[currentID].classList.remove("nav-location");
         suggestions[nextID].classList.add("nav-location");
-
         this.$refs.searchInput.value = suggestions[nextID].dataset.entry;
+        this.keyword = suggestions[nextID].dataset.entry;
         this.currentSuggestionID = nextID;
       }
+
+      // 瀏覽到最下方選項
+      // => 無法再往下，搜尋欄位帶入最下方選項文字
+      if (currentID === maxID) {
+        suggestions[currentID].classList.add("nav-location");
+        this.$refs.searchInput.value = suggestions[currentID].dataset.entry;
+        this.keyword = suggestions[currentID].dataset.entry;
+        this.currentSuggestionID = currentID;
+      }
+    },
+    resetSuggestionNavigation() {
+      this.isNavigatingSuggestions = false;
+      this.currentSuggestionID = 0;
     },
   },
+  watch: {},
   computed: {
     ...mapState(["infinitives"]),
     matchedInfinitives() {
