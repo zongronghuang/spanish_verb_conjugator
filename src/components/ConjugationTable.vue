@@ -30,7 +30,7 @@
             <a
               href=""
               class="mr-3 align-middle"
-              title="Flip the card"
+              title="Flip the card to hide the content"
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
             >
@@ -38,7 +38,7 @@
             </a>
             <a
               href=""
-              title="Show word information"
+              title="Check verb definition and more"
               class="align-middle"
               @click.stop.prevent="showInfoDialog"
             >
@@ -157,7 +157,6 @@
 
             <button
               class="btn btn-primary"
-              title="check"
               @click.stop.prevent="checkInputs"
             >
               Check
@@ -172,7 +171,7 @@
       ref="cardBack"
       class="card-back"
       :style="cardBackImgStyle"
-      title="Flip the card"
+      title="Flip the card to show the content"
       @click.prevent.stop="removeCardFlippingEffect"
     >
       <font-awesome-icon id="open-icon" :icon="['fas', 'eye']" size="2x" />

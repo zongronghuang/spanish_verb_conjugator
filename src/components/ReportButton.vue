@@ -8,6 +8,7 @@
         align-items-center
         justify-content-center
       "
+      title="View the Spanish verbs that you've searched most"
       @click.prevent.stop="showReportDialog"
     >
       <font-awesome-icon

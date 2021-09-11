@@ -3,7 +3,7 @@
     <!-- 設定按鈕 -->
     <a
       href=""
-      title="Change the app settings"
+      title="View and change the app's settings"
       class="
         text-decoration-none text-white
         d-flex

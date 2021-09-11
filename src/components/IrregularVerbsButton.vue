@@ -1,10 +1,10 @@
 <template>
   <!-- 常見不規則動詞列表 -->
-  <div id="irregular-infinitive-list" title="Top irregular verbs">
+  <div id="irregular-infinitive-list">
     <!-- 不規則動詞清單按鈕 -->
     <a
       href=""
-      title="Check essential irregular verbs"
+      title="Check out essential Spanish irregular verbs"
       class="
         text-decoration-none text-white
         d-flex

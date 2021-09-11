@@ -2,7 +2,7 @@
   <div>
     <a
       href=""
-      title="Get your lucky verb!"
+      title="Get a random Spanish verb"
       class="
         text-decoration-none text-white
         mx-2

@@ -23,6 +23,7 @@
         <button
           class="btn btn-info btn-outline-light"
           type="button"
+          title="Open the built-in keyboard for easy typing"
           @click.stop.prevent="toggleKeyboard"
         >
           <font-awesome-icon :icon="['fas', 'keyboard']" size="1x" />
@@ -32,6 +33,7 @@
           class="btn btn-primary btn-outline-light rounded-right"
           type="button"
           id="search-btn"
+          title="Click to search the verb's conjugations"
           @click.prevent.stop="searchByInput"
         >
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
@@ -109,6 +111,7 @@
 <script>
 import { mapState } from "vuex";
 
+
 export default {
   name: "search-bar",
   data() {
@@ -118,7 +121,7 @@ export default {
       keyboard: false,
       currentSuggestionID: 0,
       isNavigatingSuggestions: false,
-      keyword: "",
+      selectedSuggestion: "",
     };
   },
   created() {
@@ -142,7 +145,7 @@ export default {
         return false;
       }
 
-      // 非原形動詞結尾非 -ar, -er, -ir
+      // 必須是原形動詞結尾 (-ar, -er, -ir, -se)
       const ending = input.substring(input.length - 2);
       const validEndingCondition =
         ending === "ar" ||
@@ -169,14 +172,14 @@ export default {
       }
     },
     searchByInput() {
-      // 如果 this.input 和 this.keyword 都有內容
-      // 當 this.input 合格時，優先查詢 this.input
-      // 當 this.input 不合格，改為用 this.keyword 查詢
-      if (this.isInputValid()) {
-        this.checkInfinitiveExistence();
+      // 優先搜尋使用者主動選擇的 autocomplete suggestion
+      // 如果沒有選擇 autocomplete suggestion，則以 input 欄位的值進行搜尋  
+      if (this.selectedSuggestion) {
+        this.input = this.selectedSuggestion
+        this.checkInfinitiveExistence()
       } else {
-        this.input = this.keyword;
-        this.checkInfinitiveExistence();
+        this.isInputValid()
+        this.checkInfinitiveExistence()
       }
     },
     collapseAlert() {
@@ -261,7 +264,7 @@ export default {
         this.isNavigatingSuggestions = true;
         suggestions[0].classList.add("nav-location");
         this.$refs.searchInput.value = suggestions[0].dataset.entry;
-        this.keyword = suggestions[0].dataset.entry;
+        this.selectedSuggestion = suggestions[0].dataset.entry;
         this.currentSuggestionID = 0;
       }
 
@@ -271,7 +274,7 @@ export default {
         suggestions[currentID].classList.remove("nav-location");
         suggestions[nextID].classList.add("nav-location");
         this.$refs.searchInput.value = suggestions[nextID].dataset.entry;
-        this.keyword = suggestions[nextID].dataset.entry;
+        this.selectedSuggestion = suggestions[nextID].dataset.entry;
         this.currentSuggestionID = nextID;
       }
 
@@ -280,7 +283,7 @@ export default {
       if (currentID === minID) {
         suggestions[currentID].classList.add("nav-location");
         this.$refs.searchInput.value = suggestions[currentID].dataset.entry;
-        this.keyword = suggestions[currentID].dataset.entry;
+        this.selectedSuggestion = suggestions[currentID].dataset.entry;
         this.currentSuggestionID = currentID;
       }
     },
@@ -300,7 +303,7 @@ export default {
         this.isNavigatingSuggestions = true;
         suggestions[0].classList.add("nav-location");
         this.$refs.searchInput.value = suggestions[0].dataset.entry;
-        this.keyword = suggestions[0].dataset.entry;
+        this.selectedSuggestion = suggestions[0].dataset.entry;
         this.currentSuggestionID = 0;
         return;
       }
@@ -311,7 +314,7 @@ export default {
         suggestions[currentID].classList.remove("nav-location");
         suggestions[nextID].classList.add("nav-location");
         this.$refs.searchInput.value = suggestions[nextID].dataset.entry;
-        this.keyword = suggestions[nextID].dataset.entry;
+        this.selectedSuggestion = suggestions[nextID].dataset.entry;
         this.currentSuggestionID = nextID;
       }
 
@@ -320,13 +323,14 @@ export default {
       if (currentID === maxID) {
         suggestions[currentID].classList.add("nav-location");
         this.$refs.searchInput.value = suggestions[currentID].dataset.entry;
-        this.keyword = suggestions[currentID].dataset.entry;
+        this.selectedSuggestion = suggestions[currentID].dataset.entry;
         this.currentSuggestionID = currentID;
       }
     },
     resetSuggestionNavigation() {
       this.isNavigatingSuggestions = false;
       this.currentSuggestionID = 0;
+      this.selectedSuggestion = ''
     },
   },
   watch: {},

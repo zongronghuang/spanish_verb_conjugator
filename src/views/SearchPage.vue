@@ -5,7 +5,7 @@
   >
     <!-- 搜尋區域 -->
     <div id="frame">
-      <h3 class="w-100 mb-3 py-1 text-center" id="title">
+      <h3 class="w-100 text-center" id="title">
         Spanish Verb Conjugator
       </h3>
       <SearchBar class="py-2 mt-5 mx-auto" />
@@ -62,12 +62,12 @@ export default {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) skewY(30deg) scaleX(1.5);
+  transform: translate(-50%, -80%) skewY(30deg) scaleX(1.5);
   transition: transform 2s;
 }
 
 #frame:hover {
-  transform: translate(-50%, -50%) skewY(0deg) scale(1.5);
+  transform: translate(-50%, -80%) skewY(0deg) scale(1.5);
 }
 
 #heart-icon {
