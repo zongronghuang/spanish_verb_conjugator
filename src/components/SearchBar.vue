@@ -33,7 +33,7 @@
           class="btn btn-primary btn-outline-light rounded-right"
           type="button"
           id="search-btn"
-          title="Click to search the verb's conjugations"
+          title="Find the verb's conjugations"
           @click.prevent.stop="searchByInput"
         >
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
@@ -111,7 +111,6 @@
 <script>
 import { mapState } from "vuex";
 
-
 export default {
   name: "search-bar",
   data() {
@@ -173,13 +172,13 @@ export default {
     },
     searchByInput() {
       // 優先搜尋使用者主動選擇的 autocomplete suggestion
-      // 如果沒有選擇 autocomplete suggestion，則以 input 欄位的值進行搜尋  
+      // 如果沒有選擇 autocomplete suggestion，則以 input 欄位的值進行搜尋
       if (this.selectedSuggestion) {
-        this.input = this.selectedSuggestion
-        this.checkInfinitiveExistence()
+        this.input = this.selectedSuggestion;
+        this.checkInfinitiveExistence();
       } else {
-        this.isInputValid()
-        this.checkInfinitiveExistence()
+        this.isInputValid();
+        this.checkInfinitiveExistence();
       }
     },
     collapseAlert() {
@@ -330,7 +329,7 @@ export default {
     resetSuggestionNavigation() {
       this.isNavigatingSuggestions = false;
       this.currentSuggestionID = 0;
-      this.selectedSuggestion = ''
+      this.selectedSuggestion = "";
     },
   },
   watch: {},

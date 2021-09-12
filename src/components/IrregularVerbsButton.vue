@@ -4,6 +4,8 @@
     <!-- 不規則動詞清單按鈕 -->
     <a
       href=""
+      data-toggle="modal"
+      data-target="#irregularVerbsDialog"
       title="Check out essential Spanish irregular verbs"
       class="
         text-decoration-none text-white
@@ -11,7 +13,6 @@
         align-items-center
         justify-content-center
       "
-      @click.prevent.stop="showIrregularVerbsDialog"
     >
       <font-awesome-icon
         class="mr-3 align-middle"
@@ -22,8 +23,72 @@
       <span class="h5 py-0 my-0">Irregular verbs</span>
     </a>
 
+    <!-- modal -->
+    <div
+      class="modal fade"
+      id="irregularVerbsDialog"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Irregular verbs</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <section
+              class="
+                px-3
+                py-2
+                d-flex
+                justify-content-between
+                flex-wrap flex-row
+                w-100
+                bg-light
+              "
+            >
+              <p class="text-left">
+                Practice and master the most common irregular verbs.
+              </p>
+              <div
+                class="d-flex justify-content-between flex-wrap flex-row w-100"
+              >
+                <router-link
+                  class="btn btn-primary mx-1 my-1"
+                  v-for="(infinitive, id) in irregularInfinitives"
+                  :key="id"
+                  :title="infinitive"
+                  :to="{ name: 'main-page', params: { infinitive } }"
+                >
+                  {{ infinitive }}
+                </router-link>
+              </div>
+            </section>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 不規則動詞清單對話框 -->
-    <dialog
+    <!-- <dialog
       ref="irregularVerbsDialog"
       class="container w-50 rounded-lg px-0 py-0"
     >
@@ -36,10 +101,10 @@
         >
           <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
         </a>
-      </header>
+      </header> -->
 
-      <!-- 不規則動詞選單 -->
-      <section
+    <!-- 不規則動詞選單 -->
+    <!-- <section
         class="
           px-3
           py-2
@@ -65,7 +130,7 @@
           </router-link>
         </div>
       </section>
-    </dialog>
+    </dialog> -->
   </div>
 </template>
 

@@ -2,6 +2,8 @@
   <div>
     <a
       href=""
+      data-toggle="modal"
+      data-target="#randomVerbDialog"
       title="Get a random Spanish verb"
       class="
         text-decoration-none text-white
@@ -10,7 +12,6 @@
         flex-row
         align-items-center
       "
-      @click.prevent.stop="showAndCloseRandomVerbDialog"
     >
       <font-awesome-icon
         class="mr-3 align-middle"
@@ -21,8 +22,33 @@
       <span class="h5 py-0 my-0">Try Luck</span>
     </a>
 
+    <!-- modal -->
+    <div
+      class="modal fade"
+      id="randomVerbDialog"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div id="spinner">
+              <font-awesome-icon
+                class="mr-1"
+                :icon="['fas', 'spinner']"
+                size="5x"
+                :style="{ color: 'black' }"
+                pulse
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 旋轉圖示對話框 -->
-    <dialog
+    <!-- <dialog
       ref="randomVerbDialog"
       class="
         position-relative
@@ -44,7 +70,7 @@
           pulse
         />
       </div>
-    </dialog>
+    </dialog> -->
   </div>
 </template>
 

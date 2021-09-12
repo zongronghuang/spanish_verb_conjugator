@@ -5,9 +5,7 @@
   >
     <!-- 搜尋區域 -->
     <div id="frame">
-      <h3 class="w-100 text-center" id="title">
-        Spanish Verb Conjugator
-      </h3>
+      <h3 class="w-100 text-center" id="title">Spanish Verb Conjugator</h3>
       <SearchBar class="py-2 mt-5 mx-auto" />
     </div>
 

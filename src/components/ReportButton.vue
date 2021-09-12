@@ -8,8 +8,9 @@
         align-items-center
         justify-content-center
       "
+      data-toggle="modal"
+      data-target="#reportDialog"
       title="View the Spanish verbs that you've searched most"
-      @click.prevent.stop="showReportDialog"
     >
       <font-awesome-icon
         class="mr-3 align-middle"
@@ -20,8 +21,63 @@
       <span class="h5 py-0 my-0">Report</span>
     </a>
 
+    <!-- modal -->
+    <div
+      class="modal fade"
+      id="reportDialog"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <section class="px-3 py-2 bg-light">
+              <p class="text-left">
+                Find the 10 most searched verbs in the last 7 days of use.
+              </p>
+              <div
+                class="d-flex justify-content-between flex-wrap flex-row w-100"
+              >
+                <router-link
+                  class="btn btn-primary mx-1 my-1"
+                  v-for="verbEntry in mostSearchedVerbs"
+                  :key="verbEntry[0]"
+                  :data-verb="verbEntry[0]"
+                  :to="`/spanish-conjugator/${verbEntry[0]}`"
+                >
+                  {{ verbEntry[0] }}
+                  <span class="badge badge-warning">{{ verbEntry[1] }}</span>
+                </router-link>
+              </div>
+            </section>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 統計次數對話框 -->
-    <dialog ref="reportDialog" class="w-50 rounded-lg px-0 py-0">
+    <!-- <dialog ref="reportDialog" class="w-50 rounded-lg px-0 py-0">
       <header class="text-center py-2 px-1 w-100">
         <span class="h5 align-middle font-weight-bold">Report</span>
         <a
@@ -31,10 +87,10 @@
         >
           <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
         </a>
-      </header>
+      </header> -->
 
-      <!-- 最常搜尋動詞選單 -->
-      <section class="px-3 py-2 bg-light">
+    <!-- 最常搜尋動詞選單 -->
+    <!-- <section class="px-3 py-2 bg-light">
         <p class="text-left">
           Find the 10 most searched verbs in the last 7 days of use.
         </p>
@@ -50,8 +106,8 @@
             <span class="badge badge-warning">{{ verbEntry[1] }}</span>
           </router-link>
         </div>
-      </section>
-    </dialog>
+      </section> 
+    </dialog>-->
   </div>
 </template>
 

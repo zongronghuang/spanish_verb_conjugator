@@ -38,9 +38,10 @@
             </a>
             <a
               href=""
+              data-toggle="modal"
+              data-target="#verbInfoDialog"
               title="Check verb definition and more"
               class="align-middle"
-              @click.stop.prevent="showInfoDialog"
             >
               <font-awesome-icon :icon="['fas', 'info']" size="2x" />
             </a>
@@ -148,17 +149,13 @@
                 class="btn btn-primary mr-1 special-character"
                 v-for="(character, id) in specialCharacters"
                 :key="id"
-                :title="character"
                 :value="character"
               >
                 {{ character }}
               </button>
             </div>
 
-            <button
-              class="btn btn-primary"
-              @click.stop.prevent="checkInputs"
-            >
+            <button class="btn btn-primary" @click.stop.prevent="checkInputs">
               Check
             </button>
           </div>
@@ -184,7 +181,7 @@
     </div>
 
     <!-- info 對話框  -->
-    <dialog ref="infoDialog" class="w-50 rounded-lg px-0 py-0">
+    <!-- <dialog ref="infoDialog" class="w-50 rounded-lg px-0 py-0">
       <header class="text-center py-2 px-1 w-100">
         <span class="h5 align-middle">Word Info</span>
         <a href="" class="text-decoration-none float-right">
@@ -228,7 +225,7 @@
           </span>
         </p>
       </section>
-    </dialog>
+    </dialog> -->
   </div>
 </template>
 
@@ -499,6 +496,10 @@ img {
 
 .card-header {
   background-color: var(--spanish-yellow);
+}
+
+#verbInfoDialog {
+  z-index: 10;
 }
 
 dialog {

@@ -3,6 +3,8 @@
     <!-- 設定按鈕 -->
     <a
       href=""
+      data-toggle="modal"
+      data-target="#settingsDialog"
       title="View and change the app's settings"
       class="
         text-decoration-none text-white
@@ -10,7 +12,6 @@
         align-items-center
         justify-content-center
       "
-      @click.prevent.stop="showSettingsDialog"
     >
       <font-awesome-icon
         class="mr-3 align-middle"
@@ -21,8 +22,179 @@
       <span class="h5 py-0 my-0">Settings</span>
     </a>
 
+    <!-- Bootstrap modal -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="settingsDialog"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">App settings</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <section class="px-3 pt-2 bg-light">
+              <p class="text-left">
+                Choose a use mode or a conjugation by mood and tense for
+                practice.
+              </p>
+              <div class="w-100 d-flex flex-row align-items-center pb-2">
+                <span class="w-25 text-left font-weight-bold pl-1"
+                  >Use mode</span
+                >
+                <div
+                  class="
+                    w-75
+                    btn-group
+                    d-flex
+                    justify-content-between
+                    float-right
+                  "
+                  role="group"
+                  @click.stop.prevent="fetchUseMode"
+                >
+                  <button class="btn btn-primary" value="view">View</button>
+                  <button class="btn btn-primary" value="memory">
+                    Flash card
+                  </button>
+                  <button class="btn btn-primary" value="fill-in">
+                    Fill-in
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <hr class="bg-light my-0" />
+
+            <!-- mood 選單 -->
+            <section class="px-3 py-2 bg-light">
+              <div class="w-100 d-flex flex-row align-items-center">
+                <span class="w-25 text-left font-weight-bold pl-1"
+                  >Mood & tense</span
+                >
+                <div
+                  class="
+                    btn-group
+                    d-flex
+                    w-75
+                    justify-content-between
+                    float-right
+                  "
+                  role="group"
+                  @click.stop.prevent="fetchMood"
+                >
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    value="Indicative"
+                  >
+                    Indicative
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    value="Imperative"
+                  >
+                    Imperative
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    value="Subjunctive"
+                  >
+                    Subjunctive
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- mood & tense 選單-->
+            <section
+              class="px-3 py-2 btn-group w-100 bg-light"
+              role="group"
+              @click.stop.prevent="
+                (e) => fetchTense(e) || updateCurrentConjugations(e)
+              "
+            >
+              <!-- indicative tenses -->
+              <div
+                id="indicative-tenses"
+                class="d-flex justify-content-between flex-wrap flex-row w-100"
+                v-if="mood_english === 'Indicative'"
+              >
+                <button
+                  class="mx-1 my-1 btn btn-primary"
+                  v-for="tense in indicativeTenses"
+                  :key="tense"
+                  :value="tense"
+                  :title="tense"
+                >
+                  {{ tense | removeMood }}
+                </button>
+              </div>
+
+              <!-- imperative tenses -->
+              <div
+                id="imperative-tenses"
+                class="d-flex justify-content-start flex-wrap flex-row w-100"
+                v-if="mood_english === 'Imperative'"
+              >
+                <button
+                  class="mx-1 my-1 btn btn-primary"
+                  v-for="tense in imperativeTenses"
+                  :key="tense"
+                  :value="tense"
+                  :title="tense"
+                >
+                  {{ tense | removeMood }}
+                </button>
+              </div>
+
+              <!-- subjunctive tensess -->
+              <div
+                id="subjunctive-tenses"
+                class="d-flex justify-content-between flex-wrap flex-row w-100"
+                v-if="mood_english === 'Subjunctive'"
+              >
+                <button
+                  class="mx-1 my-1 btn btn-primary"
+                  v-for="tense in subjunctiveTenses"
+                  :key="tense"
+                  :value="tense"
+                  :title="tense"
+                >
+                  {{ tense | removeMood }}
+                </button>
+              </div>
+            </section>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 設定對話框 -->
-    <dialog ref="settingsDialog" class="container rounded-lg w-50 px-0 py-0">
+    <!-- <dialog ref="settingsDialog" class="container rounded-lg w-50 px-0 py-0">
       <header class="text-center py-2 px-1 w-100">
         <span class="h5 font-weight-bold align-middle">Settings</span>
         <a
@@ -32,10 +204,10 @@
         >
           <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
         </a>
-      </header>
+      </header> -->
 
-      <!-- use mode 選單 -->
-      <section class="px-3 pt-2 bg-light">
+    <!-- use mode 選單 -->
+    <!-- <section class="px-3 pt-2 bg-light">
         <p class="text-left">
           Choose a use mode or a conjugation by mood and tense for practice.
         </p>
@@ -53,10 +225,10 @@
         </div>
       </section>
 
-      <hr class="bg-light my-0" />
+      <hr class="bg-light my-0" /> -->
 
-      <!-- mood 選單 -->
-      <section class="px-3 py-2 bg-light">
+    <!-- mood 選單 -->
+    <!-- <section class="px-3 py-2 bg-light">
         <div class="w-100 d-flex flex-row align-items-center">
           <span class="w-25 text-left font-weight-bold pl-1">Mood & tense</span>
           <div
@@ -75,18 +247,18 @@
             </button>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <!-- mood & tense 選單-->
-      <section
+    <!-- mood & tense 選單-->
+    <!-- <section
         class="px-3 py-2 btn-group w-100 bg-light"
         role="group"
         @click.stop.prevent="
           (e) => fetchTense(e) || updateCurrentConjugations(e)
         "
-      >
-        <!-- indicative tenses -->
-        <div
+      > -->
+    <!-- indicative tenses -->
+    <!-- <div
           id="indicative-tenses"
           class="d-flex justify-content-between flex-wrap flex-row w-100"
           v-if="mood_english === 'Indicative'"
@@ -100,10 +272,10 @@
           >
             {{ tense | removeMood }}
           </button>
-        </div>
+        </div> -->
 
-        <!-- imperative tenses -->
-        <div
+    <!-- imperative tenses -->
+    <!-- <div
           id="imperative-tenses"
           class="d-flex justify-content-start flex-wrap flex-row w-100"
           v-if="mood_english === 'Imperative'"
@@ -117,10 +289,10 @@
           >
             {{ tense | removeMood }}
           </button>
-        </div>
+        </div> -->
 
-        <!-- subjunctive tensess -->
-        <div
+    <!-- subjunctive tensess -->
+    <!-- <div
           id="subjunctive-tenses"
           class="d-flex justify-content-between flex-wrap flex-row w-100"
           v-if="mood_english === 'Subjunctive'"
@@ -136,7 +308,7 @@
           </button>
         </div>
       </section>
-    </dialog>
+    </dialog> -->
   </div>
 </template>
 
@@ -187,12 +359,12 @@ export default {
     console.log("[created] SettingsButton");
   },
   methods: {
-    showSettingsDialog() {
-      this.$refs.settingsDialog.showModal();
-    },
-    closeSettingsDialog() {
-      this.$refs.settingsDialog.close();
-    },
+    // showSettingsDialog() {
+    //   this.$refs.settingsDialog.showModal();
+    // },
+    // closeSettingsDialog() {
+    //   this.$refs.settingsDialog.close();
+    // },
     fetchUseMode(event) {
       if (event.target.tagName !== "BUTTON") return;
       if (event.target.value === this.$store.state.configs.useMode) return;
