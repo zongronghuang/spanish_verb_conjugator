@@ -17,6 +17,7 @@
         :icon="['fas', 'notes-medical']"
         size="2x"
         :style="{ color: 'white' }"
+        title="yayay"
       />
       <span class="h5 py-0 my-0">Report</span>
     </a>
@@ -32,7 +33,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Search report</h5>
             <button
               type="button"
               class="close"
@@ -42,7 +43,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body px-0 py-0">
             <section class="px-3 py-2 bg-light">
               <p class="text-left">
                 Find the 10 most searched verbs in the last 7 days of use.
@@ -63,51 +64,10 @@
               </div>
             </section>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
+          <div class="modal-footer py-1 border-0"></div>
         </div>
       </div>
     </div>
-
-    <!-- 統計次數對話框 -->
-    <!-- <dialog ref="reportDialog" class="w-50 rounded-lg px-0 py-0">
-      <header class="text-center py-2 px-1 w-100">
-        <span class="h5 align-middle font-weight-bold">Report</span>
-        <a
-          href=""
-          class="text-decoration-none float-right"
-          @click.prevent.stop="closeReportDialog"
-        >
-          <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
-        </a>
-      </header> -->
-
-    <!-- 最常搜尋動詞選單 -->
-    <!-- <section class="px-3 py-2 bg-light">
-        <p class="text-left">
-          Find the 10 most searched verbs in the last 7 days of use.
-        </p>
-        <div class="d-flex justify-content-between flex-wrap flex-row w-100">
-          <router-link
-            class="btn btn-primary mx-1 my-1"
-            v-for="verbEntry in mostSearchedVerbs"
-            :key="verbEntry[0]"
-            :data-verb="verbEntry[0]"
-            :to="`/spanish-conjugator/${verbEntry[0]}`"
-          >
-            {{ verbEntry[0] }}
-            <span class="badge badge-warning">{{ verbEntry[1] }}</span>
-          </router-link>
-        </div>
-      </section> 
-    </dialog>-->
   </div>
 </template>
 
@@ -132,12 +92,6 @@ export default {
     this.currentVerbParam = this.$route.params.infinitive;
   },
   methods: {
-    showReportDialog() {
-      this.$refs.reportDialog.showModal();
-    },
-    closeReportDialog() {
-      this.$refs.reportDialog.close();
-    },
     getVerbCounts() {
       // 計算所有天數的動詞查詢總數
       const verbCounts = JSON.parse(localStorage.getItem("history"))
@@ -181,19 +135,5 @@ export default {
 </script>
 
 <style scoped>
-dialog > header {
-  background-image: linear-gradient(
-    45deg,
-    var(--spanish-red),
-    var(--spanish-yellow)
-  );
-}
 
-dialog {
-  border-width: 0px;
-}
-
-dialog svg {
-  color: var(--spanish-red);
-}
 </style>

@@ -28,13 +28,13 @@
       class="modal fade"
       id="irregularVerbsDialog"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="irregularVerbsModalDialog"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Irregular verbs</h5>
+            <h5 class="modal-title" id="irregularVerbsModalDialog">Irregular verbs</h5>
             <button
               type="button"
               class="close"
@@ -44,7 +44,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body px-0 py-0">
             <section
               class="
                 px-3
@@ -57,7 +57,7 @@
               "
             >
               <p class="text-left">
-                Practice and master the most common irregular verbs.
+                Practice the most common irregular verbs in Spanish.
               </p>
               <div
                 class="d-flex justify-content-between flex-wrap flex-row w-100"
@@ -74,63 +74,10 @@
               </div>
             </section>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
+          <div class="modal-footer py-1 border-0"></div>
         </div>
       </div>
     </div>
-
-    <!-- 不規則動詞清單對話框 -->
-    <!-- <dialog
-      ref="irregularVerbsDialog"
-      class="container w-50 rounded-lg px-0 py-0"
-    >
-      <header class="text-center py-2 px-1 w-100">
-        <span class="h5 align-middle font-weight-bold">Irregular verbs</span>
-        <a
-          href=""
-          class="text-decoration-none float-right"
-          @click.prevent.stop="closeIrregularVerbsDialog"
-        >
-          <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
-        </a>
-      </header> -->
-
-    <!-- 不規則動詞選單 -->
-    <!-- <section
-        class="
-          px-3
-          py-2
-          d-flex
-          justify-content-between
-          flex-wrap flex-row
-          w-100
-          bg-light
-        "
-      >
-        <p class="text-left">
-          Practice and master the most common irregular verbs.
-        </p>
-        <div class="d-flex justify-content-between flex-wrap flex-row w-100">
-          <router-link
-            class="btn btn-primary mx-1 my-1"
-            v-for="(infinitive, id) in irregularInfinitives"
-            :key="id"
-            :title="infinitive"
-            :to="{ name: 'main-page', params: { infinitive } }"
-          >
-            {{ infinitive }}
-          </router-link>
-        </div>
-      </section>
-    </dialog> -->
   </div>
 </template>
 
@@ -191,34 +138,11 @@ export default {
   },
   created() {
     console.log("[created] IrregularVerbsButton");
-  },
-  methods: {
-    showIrregularVerbsDialog() {
-      this.$refs.irregularVerbsDialog.showModal();
-    },
-    closeIrregularVerbsDialog() {
-      this.$refs.irregularVerbsDialog.close();
-    },
-  },
+  }
 };
 </script>
 
 <style scoped>
-dialog > header {
-  background-image: linear-gradient(
-    45deg,
-    var(--spanish-red),
-    var(--spanish-yellow)
-  );
-}
-
-dialog {
-  border-width: 0px;
-}
-
-dialog svg {
-  color: var(--spanish-red);
-}
 </style>
 
 

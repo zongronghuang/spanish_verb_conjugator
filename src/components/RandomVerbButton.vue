@@ -3,7 +3,7 @@
     <a
       href=""
       data-toggle="modal"
-      data-target="#randomVerbDialog"
+      data-target="#spinner"
       title="Get a random Spanish verb"
       class="
         text-decoration-none text-white
@@ -12,6 +12,7 @@
         flex-row
         align-items-center
       "
+     @click.stop.prevent="runTimedSpinnerAndPickRandomVerb"
     >
       <font-awesome-icon
         class="mr-3 align-middle"
@@ -25,17 +26,16 @@
     <!-- modal -->
     <div
       class="modal fade"
-      id="randomVerbDialog"
+      id="spinner"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="modalSpinner"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
-          <div class="modal-body">
-            <div id="spinner">
+          <div class="modal-body text-center">
+            <div>
               <font-awesome-icon
-                class="mr-1"
                 :icon="['fas', 'spinner']"
                 size="5x"
                 :style="{ color: 'black' }"
@@ -46,35 +46,12 @@
         </div>
       </div>
     </div>
-
-    <!-- 旋轉圖示對話框 -->
-    <!-- <dialog
-      ref="randomVerbDialog"
-      class="
-        position-relative
-        container
-        font-weight-bold
-        rounded-lg
-        text-center
-        border-0
-        w-25
-        h-25
-      "
-    >
-      <div id="spinner">
-        <font-awesome-icon
-          class="mr-1"
-          :icon="['fas', 'spinner']"
-          size="5x"
-          :style="{ color: 'black' }"
-          pulse
-        />
-      </div>
-    </dialog> -->
   </div>
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   name: "random-verb-button",
   methods: {
@@ -85,36 +62,21 @@ export default {
 
       this.$router.push(`/spanish-conjugator/${pickedInfinitive}`);
     },
-    showRandomVerbDialog() {
-      this.$refs.randomVerbDialog.showModal();
-    },
-    closeRandomVerbDialog() {
-      this.$refs.randomVerbDialog.close();
-    },
-    showAndCloseRandomVerbDialog() {
-      this.showRandomVerbDialog();
+    runTimedSpinnerAndPickRandomVerb() {
+      const dialog = $('#spinner')
+      dialog.modal('show')
 
       setTimeout(() => {
-        this.closeRandomVerbDialog();
+        dialog.modal('hide')
         //  this.pickRandomVerb();
-      }, 1700);
+      }, 1500);
     },
   },
 };
 </script>
 
 <style scoped>
-dialog {
-  background-image: linear-gradient(
-    45deg,
-    var(--spanish-red),
-    var(--spanish-yellow)
-  );
-}
-#spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.modal-content {
+  background-image: linear-gradient(45deg, var(--spanish-yellow), var(--spanish-red));
 }
 </style>

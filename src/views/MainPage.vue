@@ -45,13 +45,13 @@
       class="modal fade"
       id="verbInfoDialog"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="verbInfoModalDialog"
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="verbInfoModalDialog">Verb info</h5>
             <button
               type="button"
               class="close"
@@ -61,13 +61,13 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body px-0 py-0">
             <section class="px-3 py-2 bg-light">
               <p>
                 <span>Definition: </span>
                 <span>
                   <strong>
-                    <i> infinitive </i>
+                    <i> {{verb.infinitive_english}} </i>
                   </strong>
                 </span>
               </p>
@@ -75,7 +75,7 @@
                 <span>Gerund: </span>
                 <span>
                   <strong>
-                    <i> gerund </i>
+                    <i> {{verb.gerund}} </i>
                   </strong>
                 </span>
               </p>
@@ -83,21 +83,13 @@
                 <span>Past participle: </span>
                 <span>
                   <strong>
-                    <i> past participle </i>
+                    <i> {{verb.pastparticiple}} </i>
                   </strong>
                 </span>
               </p>
             </section>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
+         <div class="modal-footer py-1 border-0"></div>
         </div>
       </div>
     </div>
@@ -183,7 +175,7 @@ export default {
     next();
   },
   computed: {
-    ...mapState(["infinitives"]),
+    ...mapState(["infinitives", 'verb']),
   },
 };
 </script>

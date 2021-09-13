@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'normalize.css/normalize.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 // 匯入 fontawesome 圖示
 import { faKeyboard, faSearch, faClipboardList, faEye, faEyeSlash, faChevronCircleLeft, faChevronCircleRight, faWindowClose, faExclamation, faCheck, faHeart, faCog, faInfo, faDice, faNotesMedical, faSpinner, faCamera } from '@fortawesome/free-solid-svg-icons'

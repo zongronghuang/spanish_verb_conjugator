@@ -10,7 +10,6 @@
   >
     <div id="left-buttons" class="d-flex justify-content-around flex-row w-25">
       <IrregularVerbsButton />
-
       <RandomVerbButton />
     </div>
 
@@ -18,10 +17,9 @@
 
     <div
       id="right-buttons"
-      class="d-flex justify-content-around flex-row w-25 d-none"
+      class="d-flex justify-content-around flex-row w-25"
     >
       <ReportButton :lastSearchTime="lastSearchTime" />
-
       <SettingsButton />
     </div>
   </nav>

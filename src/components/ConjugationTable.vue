@@ -179,53 +179,6 @@
         alt=""
       />
     </div>
-
-    <!-- info 對話框  -->
-    <!-- <dialog ref="infoDialog" class="w-50 rounded-lg px-0 py-0">
-      <header class="text-center py-2 px-1 w-100">
-        <span class="h5 align-middle">Word Info</span>
-        <a href="" class="text-decoration-none float-right">
-          <font-awesome-icon
-            :icon="['fas', 'window-close']"
-            size="1x"
-            @click.prevent.stop="closeInfoDialog"
-          />
-        </a>
-      </header>
-
-      <section class="px-3 py-2 bg-light">
-        <p>
-          <span>Definition: </span>
-          <span>
-            <strong>
-              <i>
-                {{ verb.infinitive_english }}
-              </i>
-            </strong>
-          </span>
-        </p>
-        <p>
-          <span>Gerund: </span>
-          <span>
-            <strong>
-              <i>
-                {{ verb.gerund }}
-              </i>
-            </strong>
-          </span>
-        </p>
-        <p>
-          <span>Past participle: </span>
-          <span>
-            <strong>
-              <i>
-                {{ verb.pastparticiple }}
-              </i>
-            </strong>
-          </span>
-        </p>
-      </section>
-    </dialog> -->
   </div>
 </template>
 
@@ -349,12 +302,6 @@ export default {
       this.areInputsCorrect = this.areInputsCorrect.map(
         (result, index) => userInputs[index] === this.conjugations[index]
       );
-    },
-    showInfoDialog() {
-      this.$refs.infoDialog.showModal();
-    },
-    closeInfoDialog() {
-      this.$refs.infoDialog.close();
     },
     getCardFrontSize() {
       // 用 clientwidth clientheight 試試看?
@@ -496,22 +443,6 @@ img {
 
 .card-header {
   background-color: var(--spanish-yellow);
-}
-
-#verbInfoDialog {
-  z-index: 10;
-}
-
-dialog {
-  border-width: 0px;
-}
-
-dialog > header {
-  background-image: linear-gradient(
-    45deg,
-    var(--spanish-red),
-    var(--spanish-yellow)
-  );
 }
 
 svg {

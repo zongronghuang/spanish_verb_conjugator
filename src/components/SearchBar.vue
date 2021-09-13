@@ -362,7 +362,7 @@ export default {
 #alert,
 #keyboard {
   max-width: 450px;
-  min-width: 350px;
+  min-width: 200px;
 }
 
 #keyboard {
