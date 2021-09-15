@@ -21,23 +21,12 @@ export default {
 };
 </script>
 
-<style>
-html,
-body,
+<style scoped>
 #verb-conjugator {
+  /* background-image: url("./assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg");
+  background-size: cover; */
   margin: 0;
   padding: 0;
-  height: 100vh;
-  min-height: 100vh;
-  width: 100vw;
-  border: none;
-}
-
-#verb-conjugator {
-  background-image: url("./assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg");
-  background-size: cover;
-  min-width: 700px;
-  min-height: 600px;
 }
 </style>
 

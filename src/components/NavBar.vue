@@ -57,6 +57,7 @@ export default {
 nav {
   background-color: var(--spanish-red);
   max-height: 60px;
+  width: 100%;
 }
 
 .search-bar {

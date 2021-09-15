@@ -3,6 +3,7 @@
     <a
       href=""
       class="
+        mx-1
         text-decoration-none text-white
         d-flex
         align-items-center
@@ -13,7 +14,7 @@
       title="View the Spanish verbs that you've searched most"
     >
       <font-awesome-icon
-        class="mr-3 align-middle"
+        class="mr-1 align-middle"
         :icon="['fas', 'notes-medical']"
         size="2x"
         :style="{ color: 'white' }"

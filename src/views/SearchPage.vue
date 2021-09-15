@@ -47,9 +47,9 @@ export default {
 
 <style scoped>
 #search-page {
-  height: 100%;
-  width: 100%;
-  background-color: var(--spanish-red);
+  height: 0;
+  width: 0;
+  background-color: gold;
 }
 
 #title {

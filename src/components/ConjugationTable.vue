@@ -176,7 +176,7 @@
         src="../assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg"
         :style="cardBackImgStyle"
         class="rounded-lg"
-        alt=""
+        alt="Spanish flag"
       />
     </div>
   </div>

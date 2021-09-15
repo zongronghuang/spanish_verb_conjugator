@@ -186,7 +186,7 @@ main {
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 600px;
+  min-width: 500px;
 }
 
 small > a {

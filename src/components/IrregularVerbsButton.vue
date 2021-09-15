@@ -8,6 +8,7 @@
       data-target="#irregularVerbsDialog"
       title="Check out essential Spanish irregular verbs"
       class="
+        mx-1
         text-decoration-none text-white
         d-flex
         align-items-center
@@ -15,7 +16,7 @@
       "
     >
       <font-awesome-icon
-        class="mr-3 align-middle"
+        class="mr-1 align-middle"
         :icon="['fas', 'clipboard-list']"
         :style="{ color: 'white' }"
         size="2x"

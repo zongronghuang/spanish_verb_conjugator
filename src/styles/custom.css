@@ -3,6 +3,22 @@
   --spanish-yellow: #f1bf00;
 }
 
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("../assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg");
+  background-size: cover;
+}
+
 .modal-header {
   background-image: linear-gradient(
     45deg,

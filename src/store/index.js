@@ -28,8 +28,6 @@ export default new Vuex.Store({
     infinitives: [],
     configs: {
       useMode: 'view',
-      mood_english: 'Indicative',
-      tense_english: 'Present'
     }
   },
   mutations: {

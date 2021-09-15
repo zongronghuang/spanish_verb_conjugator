@@ -247,8 +247,6 @@ export default {
       this.resetSuggestionNavigation();
     },
     navigateSuggestionsByUpArrow() {
-      console.log("up up up");
-
       const { children: suggestions } = this.$refs.autocompletePane;
       const numOfSuggestions = suggestions.length;
       const currentID = this.currentSuggestionID;
@@ -287,7 +285,6 @@ export default {
       }
     },
     navigateSuggestionsByDownArrow() {
-      console.log("down down down");
       const { children: suggestions } = this.$refs.autocompletePane;
       const numOfSuggestions = suggestions.length;
       const currentID = this.currentSuggestionID;
@@ -362,7 +359,7 @@ export default {
 #alert,
 #keyboard {
   max-width: 450px;
-  min-width: 200px;
+  min-width: 310px;
 }
 
 #keyboard {
@@ -412,8 +409,8 @@ input::placeholder {
   border-radius: 0px 0px 5px 5px !important;
 }
 
-.nav-location,
-.nav-location:hover {
-  background-color: lightgray !important;
+#autocomplete-pane > div:hover,
+.nav-location {
+  background-color: gainsboro !important;
 }
 </style>

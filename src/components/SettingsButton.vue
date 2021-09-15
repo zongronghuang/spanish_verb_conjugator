@@ -7,6 +7,7 @@
       data-target="#settingsDialog"
       title="View and change the app's settings"
       class="
+        mx-1
         text-decoration-none text-white
         d-flex
         align-items-center
@@ -14,7 +15,7 @@
       "
     >
       <font-awesome-icon
-        class="mr-3 align-middle"
+        class="mr-1 align-middle"
         :icon="['fas', 'cog']"
         size="2x"
         :style="{ color: 'white' }"
@@ -46,8 +47,7 @@
           <div class="modal-body px-0 py-0">
             <section class="px-3 pt-2 bg-light">
               <p class="text-left">
-                Choose a use mode or a conjugation by mood and tense for
-                practice.
+                Choose how you want to practice Spanish conjugations.
               </p>
               <div class="w-100 d-flex flex-row align-items-center pb-2">
                 <span class="w-25 text-left font-weight-bold"
@@ -65,11 +65,29 @@
                   role="group"
                   @click.stop.prevent="fetchUseMode"
                 >
-                  <button class="btn btn-primary active" value="view">View</button>
-                  <button class="btn btn-primary" value="memory">
+                  <button 
+                    :class="(configs.useMode === 'view') 
+                      ? 'btn btn-primary active' 
+                      : 'btn btn-primary'" 
+                    value="view"
+                    title="View verb conjugations by person, mood, and tense."
+                    >View</button>
+                  <button 
+                    :class="(configs.useMode === 'memory') 
+                      ? 'btn btn-primary active' 
+                      : 'btn btn-primary'"  
+                      value="memory"
+                      title="Flip the table to test your memory."
+                    >
                     Flash card
                   </button>
-                  <button class="btn btn-primary" value="fill-in">
+                  <button 
+                    :class="(configs.useMode === 'fill-in') 
+                      ? 'btn btn-primary active' 
+                      : 'btn btn-primary'"  
+                    value="fill-in"
+                    title="Enter your answers in the table and verify the result."
+                    >
                     Fill-in
                   </button>
                 </div>
@@ -80,6 +98,9 @@
 
             <!-- mood 選單 -->
             <section class="px-3 py-2 bg-light">
+              <p class="text-left">
+                Choose a conjugation of the verb by mood and tense.
+              </p>
               <div class="w-100 d-flex flex-row align-items-center">
                 <span class="w-25 text-left font-weight-bold"
                   >Mood & tense</span
@@ -97,21 +118,27 @@
                   @click.stop.prevent="fetchMood"
                 >
                   <button
-                    class="btn btn-primary active"
+                    :class="(selectedMood === 'Indicative') 
+                      ? 'btn btn-primary active' 
+                      : 'btn btn-primary'" 
                     type="button"
                     value="Indicative"
                   >
                     Indicative
                   </button>
                   <button
-                    class="btn btn-primary"
+                     :class="(selectedMood.includes('Imperative')) 
+                      ? 'btn btn-primary active' 
+                      : 'btn btn-primary'" 
                     type="button"
                     value="Imperative"
                   >
                     Imperative
                   </button>
                   <button
-                    class="btn btn-primary"
+                     :class="(selectedMood === 'Subjunctive') 
+                      ? 'btn btn-primary active' 
+                      : 'btn btn-primary'" 
                     type="button"
                     value="Subjunctive"
                   >
@@ -134,10 +161,12 @@
               <div
                 id="indicative-tenses"
                 class="d-flex justify-content-between flex-wrap flex-row w-100"
-                v-if="mood_english === 'Indicative'"
+                v-if="selectedMood === 'Indicative'"
               >
                 <button
-                  class="mx-1 my-1 btn btn-primary"
+                  :class="(selectedMoodAndTense === tense) 
+                    ? 'mx-1 my-1 btn btn-primary active'
+                    : 'mx-1 my-1 btn btn-primary'"
                   v-for="tense in indicativeTenses"
                   :key="tense"
                   :value="tense"
@@ -150,10 +179,12 @@
               <div
                 id="imperative-tenses"
                 class="d-flex justify-content-start flex-wrap flex-row w-100"
-                v-if="mood_english === 'Imperative'"
+                v-if="selectedMood.includes('Imperative')"
               >
                 <button
-                  class="mx-1 my-1 btn btn-primary"
+                  :class="(selectedMoodAndTense === tense) 
+                    ? 'mx-1 my-1 btn btn-primary active'
+                    : 'mx-1 my-1 btn btn-primary'"
                   v-for="tense in imperativeTenses"
                   :key="tense"
                   :value="tense"
@@ -166,10 +197,12 @@
               <div
                 id="subjunctive-tenses"
                 class="d-flex justify-content-between flex-wrap flex-row w-100"
-                v-if="mood_english === 'Subjunctive'"
+                v-if="selectedMood === 'Subjunctive'"
               >
                 <button
-                  class="mx-1 my-1 btn btn-primary"
+                  :class="(selectedMoodAndTense === tense) 
+                    ? 'mx-1 my-1 btn btn-primary active'
+                    : 'mx-1 my-1 btn btn-primary'"
                   v-for="tense in subjunctiveTenses"
                   :key="tense"
                   :value="tense"
@@ -202,6 +235,8 @@ export default {
   data() {
     return {
       mood_english: "Indicative",
+      selectedMood: 'Indicative',
+      selectedMoodAndTense: 'Indicative Present',
       indicativeTenses: [
         "Indicative Present",
         "Indicative Future",
@@ -232,10 +267,6 @@ export default {
   created() {
     console.log("[created] SettingsButton");
   },
-  mounted() {
-    // 初始化 => indicative present 按鈕加上 active class
-    this.markActiveButton('tense', 'Indicative Present')
-  },
   methods: {
     fetchUseMode(event) {
       if (event.target.tagName !== "BUTTON") return;
@@ -243,33 +274,27 @@ export default {
 
       const useMode = event.target.value;
       this.$store.commit("setConfigs", { useMode });
-
-      this.markActiveButton('use mode', useMode)
     },
     fetchMood(event) {
       if (event.target.tagName !== "BUTTON") return;
-      const mood_english = event.target.value
-      this.mood_english = mood_english
-
-      this.markActiveButton('mood', mood_english)
+      const mood = event.target.value
+      this.selectedMood = mood
     },
     fetchTense(event) {
       if (event.target.tagName !== "BUTTON") return;
 
       const value = event.target.value; // 按鍵的值，帶有 mood 和 tense
+      this.selectedMoodAndTense = value
 
       // 針對 Imperative mood 做處理
-      let mood_english = this.mood_english;
       if (value.includes("Imperative Affirmative"))
-        mood_english = "Imperative Affirmative";
+        this.selectedMood = "Imperative Affirmative";
       if (value.includes("Imperative Negative"))
-        mood_english = "Imperative Negative";
+        this.selectedMood = "Imperative Negative";
 
-      const tense_english = value.substring(mood_english.length).trim();
-
-      this.$store.commit("setConfigs", { mood_english, tense_english });
-
-      this.markActiveButton('tense', value) // tense button value 含有 mood 和 tense
+      const tense = value.substring(this.selectedMood.length).trim();
+  
+      this.$store.commit("setConfigs", { mood_english: this.selectedMood, tense_english: tense });
     },
     updateCurrentConjugations() {
       const { mood_english, tense_english } = this.$store.state.configs;
@@ -282,22 +307,7 @@ export default {
       );
 
       this.$store.commit("setVerbData", currentConjugations);
-    },
-    markActiveButton(type, targetValue) {
-      const btnGroups = {
-        'use mode': this.$refs.useModes,
-        'mood': this.$refs.moods,
-        'tense': this.$refs.tenses.children[0]
-      }
-
-      btnGroups[type].children.forEach(child => {
-        if (child.value === targetValue) {
-          child.classList.add('active')
-        } else {
-          child.classList.remove('active')
-        }
-      })
-    },
+    }
   },
   computed: {
     ...mapState({
@@ -305,6 +315,15 @@ export default {
       configs: (state) => state.configs,
     }),
   },
+  watch: {
+    verb: {
+      handler: function (newValue) {
+        const {mood_english, tense_english} = newValue
+        this.selectedMood = mood_english
+        this.selectedMoodAndTense = mood_english + ' ' + tense_english 
+      }
+    }
+  }
 };
 </script>
 

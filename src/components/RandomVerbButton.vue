@@ -7,7 +7,7 @@
       title="Get a random Spanish verb"
       class="
         text-decoration-none text-white
-        mx-2
+        mx-1
         d-flex
         flex-row
         align-items-center
@@ -15,7 +15,7 @@
      @click.stop.prevent="runTimedSpinnerAndPickRandomVerb"
     >
       <font-awesome-icon
-        class="mr-3 align-middle"
+        class="mr-1 align-middle"
         :icon="['fas', 'dice']"
         size="2x"
         :style="{ color: 'white' }"
