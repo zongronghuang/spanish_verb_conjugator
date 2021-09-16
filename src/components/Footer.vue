@@ -1,18 +1,8 @@
 <template>
-  <div
-    class="pb-1 d-flex flex-column align-items-center justify-content-center"
-    id="search-page"
-  >
-    <!-- 搜尋區域 -->
-    <div id="frame">
-      <h3 class="w-100 text-center" id="title">Spanish Verb Conjugator</h3>
-      <SearchBar class="py-2 mt-5 mx-auto" />
-    </div>
-
- <Footer />
-    <!-- <footer>
-<small
-      class="fixed-bottom w-100 text-center mb-4 font-weight-bold text-light"
+   <footer class="fixed-bottom mb-3 d-flex justify-content-between align-items-center">
+     <small id="space-filler" class="w-25"></small>
+     <small
+      class="font-weight-bold text-light text-center w-50"
     >
       Made with
       <font-awesome-icon
@@ -31,9 +21,9 @@
       </a>
     </small>
 
-    <small class="text-light d-flex align-items-center">
+    <small class="text-light w-25 text-right pr-3">
         <a
-          class="text-decoration-none font-weight-light"
+          class="text-decoration-none font-weight-bold"
           href="https://unsplash.com/@rotivartic"
           target="_blank"
         >
@@ -45,50 +35,24 @@
           Rotiv Artic
         </a>
       </small>
-    </footer> -->
-  </div>
+    </footer>
 </template>
 
 <script>
-import SearchBar from "../components/SearchBar.vue";
-import Footer from '../components/Footer.vue'
-
 export default {
-  name: "search-page",
-  components: {
-    SearchBar,
-    Footer
-  },
+  name: 'footer',
   created() {
-    console.log("[created] SearchPage");
-  },
-};
+    console.log('[created] Footer')
+  }
+}
 </script>
 
 <style scoped>
-#search-page {
-  height: 0;
-  width: 0;
-  background-color: gold;
-}
-
-#title {
+small > a {
   color: var(--spanish-yellow);
 }
 
-#frame {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -80%) skewY(30deg) scaleX(1.5);
-  transition: transform 2s;
-}
-
-#frame:hover {
-  transform: translate(-50%, -80%) skewY(0deg) scale(1.5);
-}
-
-/* #heart-icon {
+#heart-icon {
   color: var(--spanish-yellow);
 }
 
@@ -111,5 +75,5 @@ export default {
   100% {
     transform: scale(1);
   }
-} */
+}
 </style>

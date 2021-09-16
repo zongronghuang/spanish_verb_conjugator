@@ -12,33 +12,7 @@
       <RightArrow />
     </main>
 
-    <div
-      class="
-        fixed-bottom
-        d-flex
-        justify-content-end
-        align-items-center
-        mr-2
-        mb-2
-        bg-transparent
-        font-italic
-      "
-    >
-      <small class="text-light d-flex align-items-center">
-        <a
-          class="text-decoration-none font-weight-light"
-          href="https://unsplash.com/@rotivartic"
-          target="_blank"
-        >
-          <font-awesome-icon
-            :icon="['fas', 'camera']"
-            size="1x"
-            :style="{ color: 'white' }"
-          />
-          Rotiv Artic
-        </a>
-      </small>
-    </div>
+    <Footer />
 
     <!-- modal -->
     <div
@@ -101,9 +75,10 @@ import NavBar from "../components/NavBar.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
 import LeftArrow from "../components/subcomponents/LeftArrow.vue";
 import RightArrow from "../components/subcomponents/RightArrow.vue";
+import Footer from '../components/Footer.vue'
 
-import { collectSearchedVerbToLocalStorage } from "../utils/mixins.js";
 import { mapState } from "vuex";
+import { collectSearchedVerbToLocalStorage } from "../utils/mixins.js";
 import datasetAPIs from "../apis/dataset.js";
 
 export default {
@@ -113,6 +88,7 @@ export default {
     ConjugationTable,
     LeftArrow,
     RightArrow,
+    Footer
   },
   mixins: [collectSearchedVerbToLocalStorage],
   data() {
