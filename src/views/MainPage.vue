@@ -41,7 +41,7 @@
                 <span>Definition: </span>
                 <span>
                   <strong>
-                    <i> {{verb.infinitive_english}} </i>
+                   {{verb.infinitive_english}}
                   </strong>
                 </span>
               </p>
@@ -49,7 +49,7 @@
                 <span>Gerund: </span>
                 <span>
                   <strong>
-                    <i> {{verb.gerund}} </i>
+                    {{verb.gerund}}
                   </strong>
                 </span>
               </p>
@@ -57,7 +57,7 @@
                 <span>Past participle: </span>
                 <span>
                   <strong>
-                    <i> {{verb.pastparticiple}} </i>
+                    {{verb.pastparticiple}}
                   </strong>
                 </span>
               </p>

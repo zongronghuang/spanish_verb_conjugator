@@ -6,7 +6,7 @@
       href=""
       data-toggle="modal"
       data-target="#irregularVerbsDialog"
-      title="Check out essential Spanish irregular verbs"
+      title="Check out essential irregular verbs in Spanish"
       class="
         mx-1
         text-decoration-none text-white

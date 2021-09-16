@@ -23,7 +23,7 @@
         <button
           class="btn btn-info btn-outline-light"
           type="button"
-          title="Open the built-in keyboard for easy typing"
+          title="Open the keyboard to type in special characters in Spanish"
           @click.stop.prevent="toggleKeyboard"
         >
           <font-awesome-icon :icon="['fas', 'keyboard']" size="1x" />
@@ -360,6 +360,7 @@ export default {
 #keyboard {
   max-width: 450px;
   min-width: 310px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #keyboard {

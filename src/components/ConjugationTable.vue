@@ -5,7 +5,7 @@
       class="card-front"
       @mouseenter.prevent.stop="getCardFrontSize"
     >
-      <div class="card border border-warning w-100">
+      <div class="card w-100">
         <!-- 動詞名稱 + 時態名稱 -->
         <div
           class="
@@ -18,13 +18,14 @@
           "
         >
           <span
-            class="h2 font-weight-bold align-middle font-italic mr-3 py-0 my-0"
+            class="h3 font-weight-bold align-middle mr-3 py-0 my-0"
           >
             {{ verb.infinitive | capitalize }}
           </span>
-          <span class="h4 align-middle font-italic mr-1 py-0 my-0">
+          <span class="h5 font-weight-bold  align-middle mr-1 py-0 my-0">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
+
 
           <div>
             <a
@@ -63,7 +64,7 @@
                 <!-- view 和 memory 模式 -->
                 <td
                   v-if="configs.useMode !== 'fill-in'"
-                  class="col-6 h5 align-middle"
+                  class="col-6 h4 align-middle"
                 >
                   {{ conjugations[id] }}
                 </td>
@@ -197,12 +198,12 @@ export default {
   data() {
     return {
       persons: [
-        "yo",
-        "tú",
-        "él/ella/usted",
-        "nosotros",
-        "vosotros",
-        "ellos/ellas/ustedes",
+        "Yo",
+        "Tú",
+        "Él · Ella · Usted",
+        "Nosotros",
+        "Vosotros",
+        "Ellos · Ellas · Ustedes",
       ],
       specialCharacters: ["á", "é", "í", "ó", "ú", "ü", "ñ"],
       conjugations: [],

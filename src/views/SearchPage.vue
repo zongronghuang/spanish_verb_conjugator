@@ -9,43 +9,7 @@
       <SearchBar class="py-2 mt-5 mx-auto" />
     </div>
 
- <Footer />
-    <!-- <footer>
-<small
-      class="fixed-bottom w-100 text-center mb-4 font-weight-bold text-light"
-    >
-      Made with
-      <font-awesome-icon
-        id="heart-icon"
-        :icon="['fas', 'heart']"
-        size="1x"
-        class="mx-1"
-      />
-      by
-      <a
-        class="text-decoration-none"
-        href="https://github.com/zongronghuang/spanish_verb_conjugator"
-        target="_blank"
-      >
-        Zong-Rong
-      </a>
-    </small>
-
-    <small class="text-light d-flex align-items-center">
-        <a
-          class="text-decoration-none font-weight-light"
-          href="https://unsplash.com/@rotivartic"
-          target="_blank"
-        >
-          <font-awesome-icon
-            :icon="['fas', 'camera']"
-            size="1x"
-            :style="{ color: 'white' }"
-          />
-          Rotiv Artic
-        </a>
-      </small>
-    </footer> -->
+    <Footer />
   </div>
 </template>
 
@@ -74,6 +38,7 @@ export default {
 
 #title {
   color: var(--spanish-yellow);
+  font-family: 'Montserrat', sans-serif;
 }
 
 #frame {

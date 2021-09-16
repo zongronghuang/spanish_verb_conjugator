@@ -23,8 +23,6 @@ export default {
 
 <style scoped>
 #verb-conjugator {
-  /* background-image: url("./assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg");
-  background-size: cover; */
   margin: 0;
   padding: 0;
 }

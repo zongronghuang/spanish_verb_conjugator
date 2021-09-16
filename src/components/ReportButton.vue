@@ -18,7 +18,6 @@
         :icon="['fas', 'notes-medical']"
         size="2x"
         :style="{ color: 'white' }"
-        title="yayay"
       />
       <span class="h5 py-0 my-0">Report</span>
     </a>

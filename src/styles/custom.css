@@ -17,6 +17,15 @@ body {
   width: 100%;
   background-image: url("../assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg");
   background-size: cover;
+  font-family: "Open Sans", sans-serif;
+}
+
+nav {
+  font-family: "Roboto", sans-serif;
+}
+
+.modal {
+  font-family: "Open Sans", sans-serif;
 }
 
 .modal-header {
