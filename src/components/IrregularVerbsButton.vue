@@ -104,7 +104,7 @@ export default {
         "encontrar",
         "entender",
         "estar",
-        "haber", //
+        "haber",
         "hacer",
         "ir",
         "jugar",
@@ -120,7 +120,7 @@ export default {
         "producir",
         "querer",
         "recordar",
-        "referir", //
+        "referir",
         "repetir",
         "resolver",
         "saber",
