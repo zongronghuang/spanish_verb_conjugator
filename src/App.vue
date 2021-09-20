@@ -22,10 +22,6 @@ export default {
 </script>
 
 <style scoped>
-#verb-conjugator {
-  margin: 0;
-  padding: 0;
-}
 </style>
 
 

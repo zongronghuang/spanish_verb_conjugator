@@ -1,27 +1,14 @@
 <template>
-   <footer class="fixed-bottom mb-3 d-flex justify-content-between align-items-center">
-     <small id="space-filler" class="w-25"></small>
-     <small
-      class="font-weight-bold text-light text-center w-50"
-    >
-      Made with
-      <font-awesome-icon
-        id="heart-icon"
-        :icon="['fas', 'heart']"
-        size="1x"
-        class="mx-1"
-      />
-      by
-      <a
-        class="text-decoration-none"
-        href="https://github.com/zongronghuang/spanish_verb_conjugator"
-        target="_blank"
-      >
-        Zong-Rong
-      </a>
-    </small>
+  <footer class="d-flex flex-column mb-2">
+    <div class="w-25">
+      <small id="space-filler"></small>
+    </div>
 
-    <small class="text-light w-25 text-right pr-3">
+    <div class="mx-auto">
+      <small
+        class="text-light w-100 text-right"
+        title="Check out Rotiv Artic's photography on Unsplash."
+      >
         <a
           class="text-decoration-none font-weight-bold"
           href="https://unsplash.com/@rotivartic"
@@ -35,16 +22,37 @@
           Rotiv Artic
         </a>
       </small>
-    </footer>
+    </div>
+
+    <div class="mx-auto">
+      <small class="font-weight-bold text-light text-center">
+        Made with
+        <font-awesome-icon
+          id="heart-icon"
+          :icon="['fas', 'heart']"
+          size="1x"
+          class="mx-1"
+        />
+        by
+        <a
+          class="text-decoration-none"
+          href="https://github.com/zongronghuang/spanish_verb_conjugator"
+          target="_blank"
+        >
+          Zong-Rong
+        </a>
+      </small>
+    </div>
+  </footer>
 </template>
 
 <script>
 export default {
-  name: 'footer',
+  name: "footer",
   created() {
-    console.log('[created] Footer')
-  }
-}
+    console.log("[created] Footer");
+  },
+};
 </script>
 
 <style scoped>

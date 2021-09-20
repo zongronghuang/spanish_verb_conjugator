@@ -3,21 +3,33 @@
   --spanish-yellow: #f1bf00;
 }
 
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   margin: 0;
   padding: 0;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
+
 }
 
 body {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 100%;
+  width: 100vw;
   background-image: url("../assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   font-family: "Open Sans", sans-serif;
+}
+
+#verb-conjugator {
+  margin: 0;
+  padding: 0;
 }
 
 nav {
@@ -35,3 +47,5 @@ nav {
     var(--spanish-red)
   );
 }
+
+

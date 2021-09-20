@@ -356,18 +356,19 @@ export default {
 
 <style scoped>
 #search-area,
+#search-bar,
 #alert,
 #keyboard {
-  max-width: 450px;
-  min-width: 310px;
-  font-family: 'Open Sans', sans-serif;
+  max-width: 600px;
+  min-width: 280px;
+  font-family: "Open Sans", sans-serif;
 }
 
 #keyboard {
   position: absolute;
   top: 100%;
   z-index: 10;
-  transform: translateY(50%);
+  transform: translateY(10%);
 }
 
 #keyboard button {
@@ -378,15 +379,8 @@ export default {
 #alert {
   position: absolute;
   top: 100%;
-  transform: translateY(50%);
+  transform: translateY(10%);
   z-index: 20;
-}
-
-#search-bar {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 #cross:hover {
