@@ -1,18 +1,19 @@
 <template>
   <div id="main-page">
     <NavBar :lastSearchTime="lastSearchTime" />
-    <main
-      class="w-75 d-flex justify-content-between align-items-center mx-auto"
-    >
-      <LeftArrow />
+
+    <main class="d-flex w-100 h-75 justify-content-between align-items-center">
       <ConjugationTable
+        class="conjugation-table"
         :mode="mode"
         :selectedConjugations="selectedConjugations"
       />
-      <RightArrow />
     </main>
 
-    <Footer />
+    <footer class="fixed-bottom d-flex justify-content-between w-100 mb-2">
+      <LeftArrow />
+      <RightArrow />
+    </footer>
 
     <!-- modal -->
     <div
@@ -41,7 +42,7 @@
                 <span>Definition: </span>
                 <span>
                   <strong>
-                   {{verb.infinitive_english}}
+                    {{ verb.infinitive_english }}
                   </strong>
                 </span>
               </p>
@@ -49,7 +50,7 @@
                 <span>Gerund: </span>
                 <span>
                   <strong>
-                    {{verb.gerund}}
+                    {{ verb.gerund }}
                   </strong>
                 </span>
               </p>
@@ -57,13 +58,13 @@
                 <span>Past participle: </span>
                 <span>
                   <strong>
-                    {{verb.pastparticiple}}
+                    {{ verb.pastparticiple }}
                   </strong>
                 </span>
               </p>
             </section>
           </div>
-         <div class="modal-footer py-1 border-0"></div>
+          <div class="modal-footer py-1 border-0"></div>
         </div>
       </div>
     </div>
@@ -75,7 +76,7 @@ import NavBar from "../components/NavBar.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
 import LeftArrow from "../components/subcomponents/LeftArrow.vue";
 import RightArrow from "../components/subcomponents/RightArrow.vue";
-import Footer from '../components/Footer.vue'
+//import Footer from '../components/Footer.vue'
 
 import { mapState } from "vuex";
 import { collectSearchedVerbToLocalStorage } from "../utils/mixins.js";
@@ -88,7 +89,6 @@ export default {
     ConjugationTable,
     LeftArrow,
     RightArrow,
-    Footer
   },
   mixins: [collectSearchedVerbToLocalStorage],
   data() {
@@ -151,21 +151,75 @@ export default {
     next();
   },
   computed: {
-    ...mapState(["infinitives", 'verb']),
+    ...mapState(["infinitives", "verb"]),
   },
 };
 </script>
 
 <style scoped>
 main {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 500px;
+  margin-top: 18%;
+  width: 100%;
+  height: 75%;
 }
 
-small > a {
-  color: var(--spanish-yellow);
+/* @media screen and (min-width: 600px) and (orientation: landscape) {
+  main {
+    top: 95%;
+    transform: translate(-50%, -50%);
+  }
+  .conjugation-table {
+    font-size: 1.3rem;
+  }
 }
+
+@media screen and (width: 653px) and (orientation: landscape) {
+  .conjugation-table {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    top: 95%;
+  }
+  .conjugation-table {
+    transform: scale(1.05, 1.05);
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (orientation: landscape) {
+  main {
+    top: 93%;
+  }
+
+  .conjugation-table {
+    transform: scale(0.8, 0.8);
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  main {
+    top: 90%;
+  }
+  .conjugation-table {
+    transform: scale(1.05, 1.05);
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  main {
+    top: 90%;
+  }
+}
+
+@media screen and (min-width: 1366px) and (orientation: landscape) {
+  .conjugation-table {
+    transform: scale(1.1, 1.1);
+    font-size: 2rem;
+  }
+} */
 </style>

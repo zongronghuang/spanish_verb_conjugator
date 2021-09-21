@@ -8,7 +8,7 @@
       align-items-center
     "
   >
-    <div id="left-buttons" class="d-flex justify-content-around flex-row w-25">
+    <div id="left-buttons" class="d-flex justify-content-between flex-row w-25">
       <IrregularVerbsButton />
       <RandomVerbButton />
     </div>
@@ -17,7 +17,7 @@
 
     <div
       id="right-buttons"
-      class="d-flex justify-content-around flex-row w-25"
+      class="d-flex justify-content-between flex-row w-25"
     >
       <ReportButton :lastSearchTime="lastSearchTime" />
       <SettingsButton />
@@ -56,18 +56,60 @@ export default {
 <style scoped>
 nav {
   background-color: var(--spanish-red);
-  max-height: 60px;
+  max-height: 40px;
   width: 100%;
 }
 
 .search-bar {
-  transform: scale(1.1);
+  transform: scale(0.8, 0.8);
 }
 
-@media only screen and (max-width: 800px) {
+#left-buttons,
+#right-buttons {
+  visibility: hidden;
+}
+
+@media screen and (min-width: 360px) and (orientation: landscape) {
+  nav {
+    height: 45px;
+  }
+
+  #left-buttons,
+  #right-buttons,
+  .search-bar {
+    transform: scale(0.7, 0.7);
+  }
+}
+
+@media only screen and (min-width: 600px) {
   #left-buttons,
   #right-buttons {
-    visibility: hidden;
+    transform: scale(0.8, 0.8);
+    visibility: visible;
+  }
+}
+
+@media screen and (min-width: 600px) and (orientation: landscape) {
+  nav {
+    height: 30px;
+  }
+  #left-buttons,
+  #right-buttons,
+  .search-bar {
+    transform: scale(0.6, 0.6);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  nav {
+    height: 100px;
+    max-height: 100px;
+  }
+
+  #left-buttons,
+  #right-buttons,
+  .search-bar {
+    transform: scale(1.3, 1.3);
   }
 }
 </style>

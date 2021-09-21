@@ -43,7 +43,7 @@
       <!-- autocomplete 搜尋提示 -->
       <div
         id="autocomplete-pane"
-        class="position-absolute w-100"
+        class="w-100"
         v-show="matchedInfinitives.length"
         ref="autocompletePane"
       >
@@ -177,8 +177,7 @@ export default {
         this.input = this.selectedSuggestion;
         this.checkInfinitiveExistence();
       } else {
-        this.isInputValid();
-        this.checkInfinitiveExistence();
+        if (this.isInputValid()) this.checkInfinitiveExistence();
       }
     },
     collapseAlert() {
@@ -394,10 +393,13 @@ input {
 input::placeholder {
   color: gray;
   opacity: 70%;
+  font-size: 0.9rem;
 }
 
 #autocomplete-pane {
+  position: absolute;
   top: 100%;
+  font-size: 0.9rem;
 }
 
 #autocomplete-pane > div:last-child {

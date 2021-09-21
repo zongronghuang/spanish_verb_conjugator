@@ -9,16 +9,17 @@
         class="text-light w-100 text-right"
         title="Check out Rotiv Artic's photography on Unsplash."
       >
+        <font-awesome-icon
+          :icon="['fas', 'camera']"
+          size="1x"
+          id="camera-icon"
+        />
+        Photo credit:
         <a
           class="text-decoration-none font-weight-bold"
           href="https://unsplash.com/@rotivartic"
           target="_blank"
         >
-          <font-awesome-icon
-            :icon="['fas', 'camera']"
-            size="1x"
-            :style="{ color: 'white' }"
-          />
           Rotiv Artic
         </a>
       </small>
@@ -60,7 +61,8 @@ small > a {
   color: var(--spanish-yellow);
 }
 
-#heart-icon {
+#heart-icon,
+#camera-icon {
   color: var(--spanish-yellow);
 }
 

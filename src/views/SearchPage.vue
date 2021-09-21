@@ -11,10 +11,6 @@
     id="search-page"
   >
     <!-- 搜尋區域 -->
-    <!-- <div id="frame">
-      <h3 class="w-100 text-center" id="title">Spanish Verb Conjugator</h3>
-      <SearchBar class="py-2 mx-auto" />
-    </div> -->
     <h3 class="text-center mb-0 pb-0" id="title">Spanish Verb Conjugator</h3>
     <SearchBar class="mx-auto shadowed search-bar" />
     <Footer class="footer" />

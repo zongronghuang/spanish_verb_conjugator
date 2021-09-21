@@ -1,5 +1,5 @@
 <template>
-  <div class="card-frame w-75">
+  <div class="card-frame">
     <div
       ref="cardFront"
       class="card-front"
@@ -14,28 +14,26 @@
             flex-row
             justify-content-between
             align-items-center
-            py-2
+            py-1
+            px-1
           "
         >
-          <span
-            class="h3 font-weight-bold align-middle mr-3 py-0 my-0"
-          >
+          <span id="verb-name" class="align-middle mr-2 py-0 my-0">
             {{ verb.infinitive | capitalize }}
           </span>
-          <span class="h5 font-weight-bold  align-middle mr-1 py-0 my-0">
+          <span id="mood-tense" class="small align-middle mr-1 py-0 my-0">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
 
-
-          <div>
+          <div class="icons">
             <a
               href=""
-              class="mr-3 align-middle"
+              class="mr-1 align-middle"
               title="Flip the card to hide the content"
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
             >
-              <font-awesome-icon :icon="['fas', 'eye-slash']" size="2x" />
+              <font-awesome-icon :icon="['fas', 'eye-slash']" size="1x" />
             </a>
             <a
               href=""
@@ -44,7 +42,7 @@
               title="Check verb definition and more"
               class="align-middle"
             >
-              <font-awesome-icon :icon="['fas', 'info']" size="2x" />
+              <font-awesome-icon :icon="['fas', 'info']" size="1x" />
             </a>
           </div>
         </div>
@@ -57,14 +55,17 @@
           >
             <tbody class="container-fluid">
               <tr v-for="(person, id) in persons" :key="id">
-                <th scope="row" class="col-4 text-left align-middle">
+                <th
+                  scope="row"
+                  class="col-4 small text-left align-middle my-0 py-0"
+                >
                   {{ person }}
                 </th>
 
                 <!-- view 和 memory 模式 -->
                 <td
                   v-if="configs.useMode !== 'fill-in'"
-                  class="col-6 h4 align-middle"
+                  class="col-6 align-middle py-1 mx-0"
                 >
                   {{ conjugations[id] }}
                 </td>
@@ -381,11 +382,15 @@ export default {
 <style scoped>
 /* >>> card flipping effect >>> */
 .card-frame {
-  position: absolute;
-  top: -350%;
-  left: 12.5%;
-  width: 75%;
+  position: relative;
+
+  left: 2.5%;
+  /* top: -1230%; */
+  /* top: -430px;
+  left: 2.5%; */
+  width: 95%;
   transform-style: preserve-3d;
+  font-size: 1.1rem;
 }
 
 .card-front,
@@ -446,6 +451,10 @@ img {
   background-color: var(--spanish-yellow);
 }
 
+/* th {
+  font-size: 1rem;
+} */
+
 svg {
   color: var(--spanish-red);
 }
@@ -454,4 +463,85 @@ svg {
   color: blue;
   font-weight: bold;
 }
+
+/* @media screen and (min-width: 320px) and (orientation: landscape) {
+  .card-frame {
+    top: -650%;
+    width: 90%;
+    left: 5%;
+    transform: scale(0.9, 0.9);
+  }
+}
+
+@media screen and (min-width: 600px) and (orientation: landscape) {
+  .card-frame {
+    top: -750%;
+  }
+}
+
+@media screen and (width: 653px) and (orientation: landscape) {
+  .card-frame {
+    top: -600%;
+  }
+}
+
+@media screen and (min-width: 720px) and (orientation: landscape) {
+  .card-frame {
+    top: -800%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card-frame {
+    top: -2000%;
+  }
+}
+
+@media screen and (min-width: 768px) and (orientation: landscape) {
+  .card-frame {
+    top: -800%;
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  .card-frame {
+    top: -1300%;
+  }
+}
+
+@media screen and (min-width: 1366px) and (orientation: landscape) {
+  .card-frame {
+    top: -1800%;
+  }
+} */
+
+/* @media screen and (min-width: 768px) {
+  .card-frame {
+    top: -2000%;
+  }
+
+  #verb-name,
+  #mood-tense,
+  .icons {
+    font-size: 1.4rem;
+  }
+} */
+
+/* @media screen and (min-width: 1024px) {
+  .card-frame {
+    top: -2500%;
+    font-size: 1.6rem;
+    transform: scaleY(2);
+  }
+
+  #verb-name,
+  #mood-tense,
+  .icons {
+    font-size: 1.8rem;
+  }
+
+  td span {
+    top: -90%;
+  }
+} */
 </style>
