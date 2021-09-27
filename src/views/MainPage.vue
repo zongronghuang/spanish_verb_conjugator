@@ -1,8 +1,8 @@
 <template>
-  <div id="main-page">
+  <div id="main-page" class="border d-flex flex-column justify-content-between">
     <NavBar :lastSearchTime="lastSearchTime" />
 
-    <main class="d-flex w-100 h-75 justify-content-between align-items-center">
+    <main class="d-flex border border-dark flex-grow-1 align-items-center">
       <ConjugationTable
         class="conjugation-table"
         :mode="mode"
@@ -10,13 +10,13 @@
       />
     </main>
 
-    <footer class="fixed-bottom d-flex justify-content-between w-100 mb-2">
+    <footer class="d-flex justify-content-between w-100 mb-2">
       <LeftArrow />
       <RightArrow />
     </footer>
 
     <!-- modal -->
-    <div
+    <!-- <div
       class="modal fade"
       id="verbInfoDialog"
       tabindex="-1"
@@ -67,7 +67,7 @@
           <div class="modal-footer py-1 border-0"></div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -157,11 +157,18 @@ export default {
 </script>
 
 <style scoped>
-main {
+#main-page {
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  margin-left: 0;
+  margin-right: 0;
+}
+/* main {
   margin-top: 18%;
   width: 100%;
   height: 75%;
-}
+} */
 
 /* @media screen and (min-width: 600px) and (orientation: landscape) {
   main {
@@ -222,4 +229,13 @@ main {
     font-size: 2rem;
   }
 } */
+
+@media screen and (min-height: 1024px) and (orientation: portrait) {
+  footer {
+    height: 5%;
+  }
+}
+
+@media screen and (min-height: 1366px) and (orientation: portrait) {
+}
 </style>

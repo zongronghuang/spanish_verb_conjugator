@@ -1,5 +1,5 @@
 <template>
-  <div class="card-frame">
+  <div class="card-frame border">
     <div
       ref="cardFront"
       class="card-front"
@@ -383,12 +383,17 @@ export default {
 /* >>> card flipping effect >>> */
 .card-frame {
   position: relative;
+  top: -40%;
+  /* transform: translateY(-50%); */
+  width: 97%;
+  margin: 0 auto;
+  /* left: 2.5%; */
 
-  left: 2.5%;
+  /* left: 2.5%; */
   /* top: -1230%; */
   /* top: -430px;
   left: 2.5%; */
-  width: 95%;
+  /* width: 95%; */
   transform-style: preserve-3d;
   font-size: 1.1rem;
 }
@@ -396,9 +401,11 @@ export default {
 .card-front,
 .card-back {
   position: absolute;
+
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+
   transition-duration: 700ms;
 }
 
@@ -462,6 +469,26 @@ svg {
 .active {
   color: blue;
   font-weight: bold;
+}
+
+@media screen and (min-height: 700px) and (orientation: portrait) {
+  .card-frame {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (min-height: 1024px) and (orientation: portrait) {
+  .card-frame {
+    top: -25%;
+    font-size: 2.1rem;
+  }
+}
+
+@media screen and (min-height: 1356px) and (orientation: portrait) {
+  .card-frame {
+    top: -20%;
+    font-size: 2.5rem;
+  }
 }
 
 /* @media screen and (min-width: 320px) and (orientation: landscape) {

@@ -13,6 +13,7 @@
       >
         <font-awesome-icon
           :icon="['fas', 'chevron-circle-right']"
+          class="h-100"
           :style="{ color: 'white' }"
           size="2x"
         />
