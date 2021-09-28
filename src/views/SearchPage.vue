@@ -94,7 +94,7 @@ export default {
     font-size: 4.5rem;
   }
   .search-bar {
-    transform: scale(2.5, 2.5);
+    transform: scale(2, 2);
     margin-top: -100px;
   }
   .footer {

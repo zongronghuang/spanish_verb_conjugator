@@ -384,16 +384,8 @@ export default {
 .card-frame {
   position: relative;
   top: -40%;
-  /* transform: translateY(-50%); */
   width: 97%;
   margin: 0 auto;
-  /* left: 2.5%; */
-
-  /* left: 2.5%; */
-  /* top: -1230%; */
-  /* top: -430px;
-  left: 2.5%; */
-  /* width: 95%; */
   transform-style: preserve-3d;
   font-size: 1.1rem;
 }
@@ -401,11 +393,9 @@ export default {
 .card-front,
 .card-back {
   position: absolute;
-
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-
   transition-duration: 700ms;
 }
 
@@ -458,10 +448,6 @@ img {
   background-color: var(--spanish-yellow);
 }
 
-/* th {
-  font-size: 1rem;
-} */
-
 svg {
   color: var(--spanish-red);
 }
@@ -471,12 +457,14 @@ svg {
   font-weight: bold;
 }
 
+/* smart phones + portrait orientation */
 @media screen and (min-height: 700px) and (orientation: portrait) {
   .card-frame {
     font-size: 1.4rem;
   }
 }
 
+/* tablets + portrait orientaiton */
 @media screen and (min-height: 1024px) and (orientation: portrait) {
   .card-frame {
     top: -25%;
@@ -491,84 +479,57 @@ svg {
   }
 }
 
-/* @media screen and (min-width: 320px) and (orientation: landscape) {
+/* smart phones + landscape orientation */
+@media screen and (min-height: 280px) and (orientation: landscape) {
   .card-frame {
-    top: -650%;
-    width: 90%;
-    left: 5%;
+    font-size: 1rem;
+    transform: scale(0.8, 0.8);
+  }
+}
+
+@media screen and (min-height: 320px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-height: 400px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 1.4rem;
     transform: scale(0.9, 0.9);
   }
 }
 
-@media screen and (min-width: 600px) and (orientation: landscape) {
+/* tablets + landscape orientation */
+@media screen and (min-height: 540px) and (orientation: landscape) {
   .card-frame {
-    top: -750%;
-  }
-}
-
-@media screen and (width: 653px) and (orientation: landscape) {
-  .card-frame {
-    top: -600%;
-  }
-}
-
-@media screen and (min-width: 720px) and (orientation: landscape) {
-  .card-frame {
-    top: -800%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .card-frame {
-    top: -2000%;
-  }
-}
-
-@media screen and (min-width: 768px) and (orientation: landscape) {
-  .card-frame {
-    top: -800%;
-  }
-}
-
-@media screen and (min-width: 1024px) and (orientation: landscape) {
-  .card-frame {
-    top: -1300%;
-  }
-}
-
-@media screen and (min-width: 1366px) and (orientation: landscape) {
-  .card-frame {
-    top: -1800%;
-  }
-} */
-
-/* @media screen and (min-width: 768px) {
-  .card-frame {
-    top: -2000%;
-  }
-
-  #verb-name,
-  #mood-tense,
-  .icons {
     font-size: 1.4rem;
+    transform: scale(1, 1);
+    width: 75%;
   }
-} */
+}
 
-/* @media screen and (min-width: 1024px) {
+@media screen and (min-height: 768px) and (orientation: landscape) {
   .card-frame {
-    top: -2500%;
-    font-size: 1.6rem;
-    transform: scaleY(2);
+    font-size: 2rem;
+    transform: scale(1, 1);
   }
+}
 
-  #verb-name,
-  #mood-tense,
-  .icons {
-    font-size: 1.8rem;
+@media screen and (min-height: 1024px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 2.2rem;
+    top: -27%;
+    width: 75%;
   }
+}
 
-  td span {
-    top: -90%;
+/* desktops */
+@media screen and (min-width: 1367px) {
+  .card-frame {
+    font-size: 2rem;
+    top: -30%;
+    width: 50%;
   }
-} */
+}
 </style>

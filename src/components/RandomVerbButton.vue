@@ -12,7 +12,7 @@
         flex-row
         align-items-center
       "
-     @click.stop.prevent="runTimedSpinnerAndPickRandomVerb"
+      @click.stop.prevent="runTimedSpinnerAndPickRandomVerb"
     >
       <font-awesome-icon
         class="mr-1 align-middle"
@@ -24,7 +24,7 @@
     </a>
 
     <!-- modal -->
-    <div
+    <!-- <div
       class="modal fade"
       id="spinner"
       tabindex="-1"
@@ -45,12 +45,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 
 export default {
   name: "random-verb-button",
@@ -63,11 +63,11 @@ export default {
       this.$router.push(`/spanish-conjugator/${pickedInfinitive}`);
     },
     runTimedSpinnerAndPickRandomVerb() {
-      const dialog = $('#spinner')
-      dialog.modal('show')
+      const dialog = $("#spinner");
+      dialog.modal("show");
 
       setTimeout(() => {
-        dialog.modal('hide')
+        dialog.modal("hide");
         //  this.pickRandomVerb();
       }, 1700);
     },
@@ -77,6 +77,10 @@ export default {
 
 <style scoped>
 .modal-content {
-  background-image: linear-gradient(45deg, var(--spanish-yellow), var(--spanish-red));
+  background-image: linear-gradient(
+    45deg,
+    var(--spanish-yellow),
+    var(--spanish-red)
+  );
 }
 </style>

@@ -15,15 +15,39 @@
       <RightArrow />
     </footer>
 
-    <!-- modal -->
-    <!-- <div
+    <!-- random spinner modal -->
+    <div
+      class="modal fade"
+      id="spinner"
+      tabindex="-1"
+      aria-labelledby="modalSpinner"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <div>
+              <font-awesome-icon
+                :icon="['fas', 'spinner']"
+                size="5x"
+                :style="{ color: 'black' }"
+                pulse
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- verb info modal -->
+    <div
       class="modal fade"
       id="verbInfoDialog"
       tabindex="-1"
       aria-labelledby="verbInfoModalDialog"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="verbInfoModalDialog">Verb info</h5>
@@ -67,7 +91,7 @@
           <div class="modal-footer py-1 border-0"></div>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -164,78 +188,25 @@ export default {
   margin-left: 0;
   margin-right: 0;
 }
-/* main {
-  margin-top: 18%;
-  width: 100%;
-  height: 75%;
-} */
 
-/* @media screen and (min-width: 600px) and (orientation: landscape) {
-  main {
-    top: 95%;
-    transform: translate(-50%, -50%);
-  }
-  .conjugation-table {
-    font-size: 1.3rem;
-  }
-}
-
-@media screen and (width: 653px) and (orientation: landscape) {
-  .conjugation-table {
-    font-size: 1rem;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  main {
-    top: 95%;
-  }
-  .conjugation-table {
-    transform: scale(1.05, 1.05);
-    font-size: 1.8rem;
-  }
-}
-
-@media screen and (min-width: 768px) and (orientation: landscape) {
-  main {
-    top: 93%;
-  }
-
-  .conjugation-table {
-    transform: scale(0.8, 0.8);
-    font-size: 1.4rem;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  main {
-    top: 90%;
-  }
-  .conjugation-table {
-    transform: scale(1.05, 1.05);
-    font-size: 2rem;
-  }
-}
-
-@media screen and (min-width: 1024px) and (orientation: landscape) {
-  main {
-    top: 90%;
-  }
-}
-
-@media screen and (min-width: 1366px) and (orientation: landscape) {
-  .conjugation-table {
-    transform: scale(1.1, 1.1);
-    font-size: 2rem;
-  }
-} */
-
+/* tablets + portrait orientation */
 @media screen and (min-height: 1024px) and (orientation: portrait) {
   footer {
     height: 5%;
   }
 }
 
-@media screen and (min-height: 1366px) and (orientation: portrait) {
+/* small phones + landscape orientation */
+@media screen and (min-height: 280px) and (orientation: landscape) {
+  footer {
+    height: 12%;
+  }
+}
+
+/* desktops  */
+@media screen and (min-width: 1366px) and (min-height: 900px) {
+  footer {
+    height: 5%;
+  }
 }
 </style>
