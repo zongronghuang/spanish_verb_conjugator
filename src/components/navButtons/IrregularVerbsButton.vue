@@ -1,6 +1,6 @@
 <template>
   <!-- 常見不規則動詞列表 -->
-  <div id="irregular-infinitive-list">
+  <div id="irregular-infinitive-list" class="border">
     <!-- 不規則動詞清單按鈕 -->
     <a
       href=""
@@ -8,7 +8,6 @@
       data-target="#irregularVerbsDialog"
       title="Check out essential irregular verbs in Spanish"
       class="
-        mx-1
         text-decoration-none text-white
         d-flex
         align-items-center

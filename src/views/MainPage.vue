@@ -1,5 +1,5 @@
 <template>
-  <div id="main-page" class="border d-flex flex-column justify-content-between">
+  <div id="main-page" class="d-flex flex-column justify-content-between">
     <NavBar  />
 
     <main class="d-flex border border-dark flex-grow-1 align-items-center">
@@ -129,13 +129,20 @@ export default {
   width: 100vw;
   margin-left: 0;
   margin-right: 0;
+  gap: 7%;
+}
+
+main {
+  height: 60%;
+}
+
+footer {
+  height: 7%;
 }
 
 /* tablets + portrait orientation */
 @media screen and (min-height: 1024px) and (orientation: portrait) {
-  footer {
-    height: 5%;
-  }
+
 }
 
 /* small phones + landscape orientation */
@@ -148,7 +155,7 @@ export default {
 /* desktops  */
 @media screen and (min-width: 1366px) and (min-height: 900px) {
   footer {
-    height: 5%;
+    height: 7%;
   }
 }
 </style>

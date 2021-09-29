@@ -68,7 +68,7 @@
       class="
         w-25
         mt-1
-        py-2
+        py-1
         d-flex
         justify-content-around
         bg-primary

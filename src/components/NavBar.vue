@@ -1,23 +1,23 @@
 <template>
   <nav
     class="
-      py-2
+      
       d-flex
       flex-row flex-nowrap
       justify-content-around
       align-items-center
     "
   >
-    <div id="left-buttons" class="d-flex justify-content-between flex-row w-25">
+    <div id="left-buttons" class="ml-2 d-flex justify-content-between flex-row flex-grow-1 border">
       <IrregularVerbsButton />
       <RandomVerbButton />
     </div>
 
-    <SearchBar class="search-bar" />
+    <SearchBar class="search-bar flex-grow-2" />
 
     <div
       id="right-buttons"
-      class="d-flex justify-content-between flex-row w-25"
+      class="mr-2 d-flex justify-content-beween flex-row flex-grow-1 border"
     >
       <ReportButton />
       <SettingsButton />
@@ -50,12 +50,13 @@ export default {
 <style scoped>
 nav {
   background-color: var(--spanish-red);
-  max-height: 40px;
+  /* max-height: 40px; */
+  height: 10%;
   width: 100%;
 }
 
 .search-bar {
-  transform: scale(0.8, 0.8);
+  transform: scale(0.95, 0.95);
 }
 
 #left-buttons,
@@ -63,10 +64,46 @@ nav {
   visibility: hidden;
 }
 
-@media screen and (min-width: 360px) and (orientation: landscape) {
-  nav {
-    height: 45px;
+/* smart phones + portrait orientation */
+@media screen and (min-width: 360px) and (orientation: portrait) {
+  .search-bar {
+    transform: scale(1, 1);
   }
+}
+
+@media screen and (min-width: 411px) and (orientation: portrait) {
+  .search-bar {
+    transform: scale(1.2, 1.2);
+  }
+}
+
+/* tablets + portrait orientation */
+@media screen and (min-width: 768px) and (orientation: portrait) {
+  .search-bar {
+    transform: scale(0.9, 0.9);
+  }
+
+  #left-buttons,
+  #right-buttons {
+  visibility: visible;
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: portrait) {
+  .search-bar {
+    transform: scale(1.1, 1.1);
+  }
+}
+
+/* smart phones + landscape orientation */
+
+
+
+/* tablets + landscape orientation */
+@media screen and (min-width: 360px) and (orientation: landscape) {
+  /* nav {
+    height: 45px;
+  } */
 
   #left-buttons,
   #right-buttons,
@@ -75,7 +112,7 @@ nav {
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 600px) and (orientation: landscape) {
   #left-buttons,
   #right-buttons {
     transform: scale(0.8, 0.8);
@@ -94,7 +131,7 @@ nav {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) and (orientation: landscape) {
   nav {
     height: 100px;
     max-height: 100px;
@@ -106,5 +143,9 @@ nav {
     transform: scale(1.3, 1.3);
   }
 }
+
+/* desktops */
+
+
 </style>
 

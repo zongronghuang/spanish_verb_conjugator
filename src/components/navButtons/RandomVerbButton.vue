@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="border">
     <a
       href=""
       data-toggle="modal"

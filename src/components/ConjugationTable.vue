@@ -383,7 +383,7 @@ export default {
 /* >>> card flipping effect >>> */
 .card-frame {
   position: relative;
-  top: -40%;
+  top: -50%;
   width: 97%;
   margin: 0 auto;
   transform-style: preserve-3d;
