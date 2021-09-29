@@ -1,37 +1,12 @@
 <template>
-  <div>
-    <!-- 設定按鈕 -->
-    <a
-      href=""
-      data-toggle="modal"
-      data-target="#settingsDialog"
-      title="View and change the app's settings"
-      class="
-        mx-1
-        text-decoration-none text-white
-        d-flex
-        align-items-center
-        justify-content-center
-      "
-    >
-      <font-awesome-icon
-        class="mr-1 align-middle"
-        :icon="['fas', 'cog']"
-        size="2x"
-        :style="{ color: 'white' }"
-      />
-      <span class="h5 py-0 my-0">Settings</span>
-    </a>
-
-    <!-- Bootstrap modal -->
-    <div
+  <div
       class="modal fade"
       id="settingsDialog"
       tabindex="-1"
       aria-labelledby="settingsModalDialog"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="settingsModalDialog">App settings</h5>
@@ -216,14 +191,11 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
-  name: "settings-button",
+  name: 'settings-modal',
   filters: {
     removeMood(tense) {
       const newTense = tense.split(" ");
@@ -231,6 +203,16 @@ export default {
       const name = newTense.join(" ");
       return name;
     },
+  },
+  props: {
+    configs: {
+      type: Object,
+      required: true
+    },
+    verb: {
+      type: Object,
+      required: true
+    }
   },
   data() {
     return {
@@ -265,7 +247,7 @@ export default {
     };
   },
   created() {
-    console.log("[created] SettingsButton");
+    console.log("[created] SettingsModal");
   },
   methods: {
     fetchUseMode(event) {
@@ -309,12 +291,6 @@ export default {
       this.$store.commit("setVerbData", currentConjugations);
     }
   },
-  computed: {
-    ...mapState({
-      verb: (state) => state.verb,
-      configs: (state) => state.configs,
-    }),
-  },
   watch: {
     verb: {
       handler: function (newValue) {
@@ -324,7 +300,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>

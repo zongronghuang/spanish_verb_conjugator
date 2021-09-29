@@ -524,12 +524,21 @@ svg {
   }
 }
 
-/* desktops */
-@media screen and (min-width: 1367px) {
+@media screen and (min-width: 1366px) and (orientation: landscape) {
   .card-frame {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    top: -30%;
+    width: 65%;
+  }
+}
+
+/* desktops */
+@media screen and (min-width: 1400px) {
+  .card-frame {
+    font-size: 2.2rem;
     top: -30%;
     width: 50%;
   }
 }
+
 </style>

@@ -58,6 +58,10 @@ export default {
   box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.6);
 }
 
+.footer {
+  font-size: 0.5rem;
+}
+
 /* portrait small tablets */
 @media screen and (min-width: 600px) {
   #title {
@@ -68,9 +72,7 @@ export default {
     margin-top: 0px;
     transform: scale(1.2, 1.2);
   }
-  .footer {
-    font-size: 1rem;
-  }
+
 }
 
 /* landscape tablets */
@@ -83,7 +85,7 @@ export default {
     transform: scale(1.8, 1.8);
   }
   .footer {
-    font-size: 1.5rem;
+    font-size: 0.7rem;
   }
 }
 
@@ -98,7 +100,7 @@ export default {
     margin-top: -100px;
   }
   .footer {
-    font-size: 1.5rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -109,6 +111,9 @@ export default {
   }
   .search-bar {
     margin-top: -50px;
+  }
+  .footer {
+    font-size: 1.1rem;
   }
 }
 </style>

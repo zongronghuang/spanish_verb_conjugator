@@ -1,29 +1,5 @@
 <template>
-  <div>
-    <a
-      href=""
-      class="
-        mx-1
-        text-decoration-none text-white
-        d-flex
-        align-items-center
-        justify-content-center
-      "
-      data-toggle="modal"
-      data-target="#reportDialog"
-      title="View the Spanish verbs that you've searched most"
-    >
-      <font-awesome-icon
-        class="mr-1 align-middle"
-        :icon="['fas', 'notes-medical']"
-        size="2x"
-        :style="{ color: 'white' }"
-      />
-      <span class="h5 py-0 my-0">Report</span>
-    </a>
-
-    <!-- modal -->
-    <div
+  <div
       class="modal fade"
       id="reportDialog"
       tabindex="-1"
@@ -68,12 +44,11 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  name: "report-button",
+  name: 'report-modal',
   props: {
     lastSearchTime: {
       type: Number,
@@ -87,7 +62,7 @@ export default {
     };
   },
   created() {
-    console.log("[created] ReportButton");
+    console.log("[created] ReportModal");
     this.getVerbCounts();
     this.currentVerbParam = this.$route.params.infinitive;
   },
@@ -131,7 +106,7 @@ export default {
       },
     },
   },
-};
+}
 </script>
 
 <style scoped>

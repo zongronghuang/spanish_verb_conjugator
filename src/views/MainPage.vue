@@ -1,6 +1,6 @@
 <template>
   <div id="main-page" class="border d-flex flex-column justify-content-between">
-    <NavBar :lastSearchTime="lastSearchTime" />
+    <NavBar  />
 
     <main class="d-flex border border-dark flex-grow-1 align-items-center">
       <ConjugationTable
@@ -15,92 +15,29 @@
       <RightArrow />
     </footer>
 
-    <!-- random spinner modal -->
-    <div
-      class="modal fade"
-      id="spinner"
-      tabindex="-1"
-      aria-labelledby="modalSpinner"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content">
-          <div class="modal-body text-center">
-            <div>
-              <font-awesome-icon
-                :icon="['fas', 'spinner']"
-                size="5x"
-                :style="{ color: 'black' }"
-                pulse
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- modals -->
+    <VerbInfoModal :verb="verb" />
 
-    <!-- verb info modal -->
-    <div
-      class="modal fade"
-      id="verbInfoDialog"
-      tabindex="-1"
-      aria-labelledby="verbInfoModalDialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="verbInfoModalDialog">Verb info</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body px-0 py-0">
-            <section class="px-3 py-2 bg-light">
-              <p>
-                <span>Definition: </span>
-                <span>
-                  <strong>
-                    {{ verb.infinitive_english }}
-                  </strong>
-                </span>
-              </p>
-              <p>
-                <span>Gerund: </span>
-                <span>
-                  <strong>
-                    {{ verb.gerund }}
-                  </strong>
-                </span>
-              </p>
-              <p>
-                <span>Past participle: </span>
-                <span>
-                  <strong>
-                    {{ verb.pastparticiple }}
-                  </strong>
-                </span>
-              </p>
-            </section>
-          </div>
-          <div class="modal-footer py-1 border-0"></div>
-        </div>
-      </div>
-    </div>
+    <RandomSpinnerModal />
+
+    <IrregularVerbsModal />
+
+    <ReportModal :lastSearchTime="lastSearchTime"/>
+
+    <SettingsModal :configs="configs" :verb="verb" />
   </div>
 </template>
 
 <script>
 import NavBar from "../components/NavBar.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
-import LeftArrow from "../components/subcomponents/LeftArrow.vue";
-import RightArrow from "../components/subcomponents/RightArrow.vue";
-//import Footer from '../components/Footer.vue'
+import LeftArrow from "../components/arrows/LeftArrow.vue";
+import RightArrow from "../components/arrows/RightArrow.vue";
+import VerbInfoModal from '../components/modals/VerbInfoModal.vue'
+import RandomSpinnerModal from '../components/modals/RandomSpinnerModal.vue'
+import IrregularVerbsModal from '../components/modals/IrregularVerbsModal.vue'
+import ReportModal from '../components/modals/ReportModal.vue'
+import SettingsModal from '../components/modals/SettingsModal.vue'
 
 import { mapState } from "vuex";
 import { collectSearchedVerbToLocalStorage } from "../utils/mixins.js";
@@ -113,6 +50,11 @@ export default {
     ConjugationTable,
     LeftArrow,
     RightArrow,
+    VerbInfoModal,
+    RandomSpinnerModal,
+    IrregularVerbsModal,
+    ReportModal,
+    SettingsModal
   },
   mixins: [collectSearchedVerbToLocalStorage],
   data() {
@@ -175,7 +117,7 @@ export default {
     next();
   },
   computed: {
-    ...mapState(["infinitives", "verb"]),
+    ...mapState(["infinitives", "verb", "configs"]),
   },
 };
 </script>

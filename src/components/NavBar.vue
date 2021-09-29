@@ -19,7 +19,7 @@
       id="right-buttons"
       class="d-flex justify-content-between flex-row w-25"
     >
-      <ReportButton :lastSearchTime="lastSearchTime" />
+      <ReportButton />
       <SettingsButton />
     </div>
   </nav>
@@ -27,10 +27,10 @@
 
 <script>
 import SearchBar from "./SearchBar.vue";
-import IrregularVerbsButton from "./IrregularVerbsButton.vue";
-import SettingsButton from "./SettingsButton.vue";
-import ReportButton from "./ReportButton.vue";
-import RandomVerbButton from "./RandomVerbButton.vue";
+import IrregularVerbsButton from "./navButtons/IrregularVerbsButton.vue";
+import SettingsButton from "./navButtons/SettingsButton.vue";
+import ReportButton from "./navButtons/ReportButton.vue";
+import RandomVerbButton from "./navButtons/RandomVerbButton.vue";
 
 export default {
   name: "nav-bar",
@@ -40,12 +40,6 @@ export default {
     SettingsButton,
     ReportButton,
     RandomVerbButton,
-  },
-  props: {
-    lastSearchTime: {
-      type: Number,
-      required: true,
-    },
   },
   created() {
     console.log("[created] NavBar");

@@ -26,7 +26,7 @@
     </div>
 
     <div class="mx-auto">
-      <small class="font-weight-bold text-light text-center">
+      <small class="text-light text-center">
         Made with
         <font-awesome-icon
           id="heart-icon"
@@ -36,7 +36,7 @@
         />
         by
         <a
-          class="text-decoration-none"
+          class="text-decoration-none font-weight-bold"
           href="https://github.com/zongronghuang/spanish_verb_conjugator"
           target="_blank"
         >
