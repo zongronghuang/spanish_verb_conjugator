@@ -18,32 +18,28 @@
             px-1
           "
         >
-          <span id="verb-name" class="align-middle mr-2 py-0 my-0">
+          <button
+            id="verb-name"
+            class="btn align-middle p-1 my-0"
+            data-toggle="modal"
+            data-target="#verbInfoDialog"
+            title="Check verb definition and more"
+          >
             {{ verb.infinitive | capitalize }}
-          </span>
+          </button>
           <span id="mood-tense" class="small align-middle mr-1 py-0 my-0">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
 
-          <div class="icons">
-            <a
-              href=""
-              class="mr-1 align-middle"
+          <div>
+            <button
+              class="btn mr-1 align-middle"
               title="Flip the card to hide the content"
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
             >
-              <font-awesome-icon :icon="['fas', 'eye-slash']" size="1x" />
-            </a>
-            <a
-              href=""
-              data-toggle="modal"
-              data-target="#verbInfoDialog"
-              title="Check verb definition and more"
-              class="align-middle"
-            >
-              <font-awesome-icon :icon="['fas', 'info']" size="1x" />
-            </a>
+              <font-awesome-icon :icon="['fas', 'eye-slash']" size="2x" />
+            </button>
           </div>
         </div>
 
@@ -452,6 +448,11 @@ svg {
   color: var(--spanish-red);
 }
 
+#verb-name {
+  background-color: var(--spanish-red);
+  color: white;
+}
+
 .active {
   color: blue;
   font-weight: bold;
@@ -540,5 +541,4 @@ svg {
     width: 50%;
   }
 }
-
 </style>

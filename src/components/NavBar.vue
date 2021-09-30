@@ -1,23 +1,27 @@
 <template>
   <nav
     class="
-      
       d-flex
       flex-row flex-nowrap
       justify-content-around
       align-items-center
     "
   >
-    <div id="left-buttons" class="ml-2 d-flex justify-content-between flex-row flex-grow-1 border">
+    <div
+      id="left-buttons"
+      class="d-flex justify-content-between flex-row flex-grow-1 border"
+    >
       <IrregularVerbsButton />
       <RandomVerbButton />
     </div>
 
-    <SearchBar class="search-bar flex-grow-2" />
+    <div class="d-flex w-100 border search-bar">
+      <SearchBar />
+    </div>
 
     <div
       id="right-buttons"
-      class="mr-2 d-flex justify-content-beween flex-row flex-grow-1 border"
+      class="d-flex justify-content-beween flex-row flex-grow-1 border"
     >
       <ReportButton />
       <SettingsButton />
@@ -57,6 +61,7 @@ nav {
 
 .search-bar {
   transform: scale(0.95, 0.95);
+  width: 100%;
 }
 
 #left-buttons,
@@ -85,7 +90,7 @@ nav {
 
   #left-buttons,
   #right-buttons {
-  visibility: visible;
+    visibility: visible;
   }
 }
 
@@ -96,8 +101,6 @@ nav {
 }
 
 /* smart phones + landscape orientation */
-
-
 
 /* tablets + landscape orientation */
 @media screen and (min-width: 360px) and (orientation: landscape) {
@@ -145,7 +148,5 @@ nav {
 }
 
 /* desktops */
-
-
 </style>
 
