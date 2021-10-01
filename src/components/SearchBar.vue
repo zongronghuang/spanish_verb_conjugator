@@ -1,12 +1,12 @@
 <template>
   <div
     id="search-area"
-    class="w-25 d-flex flex-column justify-content-between position-relative"
+    class="d-flex flex-column justify-content-between"
     @keyup.enter="searchByInput"
     @keyup.up="navigateSuggestionsByUpArrow"
     @keyup.down="navigateSuggestionsByDownArrow"
   >
-    <div class="input-group" id="search-bar">
+    <div class="input-group position-relative" id="search-bar">
       <input
         type="text"
         class="form-control font-weight-bold"
@@ -409,5 +409,38 @@ input::placeholder {
 #autocomplete-pane > div:hover,
 .nav-location {
   background-color: gainsboro !important;
+}
+
+
+/* tablets + portrait orientation */
+
+@media screen and (min-width: 768px) and (orientation: portrait) {
+    input {
+    height: 2.5rem;
+  }
+
+  #search-bar button {
+    width: 2.5rem;
+    font-size: 1.1rem;
+  }
+
+   input::placeholder {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: portrait) {
+  input {
+    height: 3.5rem;
+  }
+
+  #search-bar button {
+    width: 3.5rem;
+    font-size: 1.4rem;
+  }
+
+   input::placeholder {
+    font-size: 1.4rem;
+  }
 }
 </style>

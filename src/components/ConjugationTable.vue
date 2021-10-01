@@ -14,13 +14,13 @@
             flex-row
             justify-content-between
             align-items-center
-            py-1
+            py-0
             px-1
           "
         >
           <button
             id="verb-name"
-            class="btn align-middle p-1 my-0"
+            class="btn align-middle px-0 py-0 my-0"
             data-toggle="modal"
             data-target="#verbInfoDialog"
             title="Check verb definition and more"
@@ -38,7 +38,7 @@
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
             >
-              <font-awesome-icon :icon="['fas', 'eye-slash']" size="2x" />
+              <font-awesome-icon :icon="['fas', 'eye-slash']" size="1x" />
             </button>
           </div>
         </div>

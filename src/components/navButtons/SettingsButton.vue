@@ -8,19 +8,18 @@
       title="View and change the app's settings"
       class="
         mx-1
-        text-decoration-none text-white
+        text-decoration-none
         d-flex
+        flex-column
         align-items-center
-        justify-content-center
       "
     >
       <font-awesome-icon
         class="mr-1 align-middle"
         :icon="['fas', 'cog']"
-        size="2x"
-        :style="{ color: 'white' }"
+        size="3x"
       />
-      <span class="h5 py-0 my-0">Settings</span>
+      <span class="h6 pt-2 my-0">Settings</span>
     </a>
 
 
@@ -37,4 +36,11 @@ export default {
 </script>
 
 <style scoped>
+a, a:visited {
+  color: white;
+}
+
+a:hover, a:active {
+  color: var(--spanish-yellow);
+}
 </style>

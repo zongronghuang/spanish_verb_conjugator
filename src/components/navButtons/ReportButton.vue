@@ -4,10 +4,10 @@
       href=""
       class="
         mx-1
-        text-decoration-none text-white
+        text-decoration-none 
         d-flex
+        flex-column
         align-items-center
-        justify-content-center
       "
       data-toggle="modal"
       data-target="#reportDialog"
@@ -16,10 +16,9 @@
       <font-awesome-icon
         class="mr-1 align-middle"
         :icon="['fas', 'notes-medical']"
-        size="2x"
-        :style="{ color: 'white' }"
+        size="3x"
       />
-      <span class="h5 py-0 my-0">Report</span>
+      <span class="h6 pt-2 my-0">Report</span>
     </a>
   </div>
 </template>
@@ -34,5 +33,11 @@ export default {
 </script>
 
 <style scoped>
+a, a:visited {
+  color: white;
+}
 
+a:hover, a:active {
+  color: var(--spanish-yellow);
+}
 </style>

@@ -1,30 +1,30 @@
 <template>
   <nav
     class="
-      d-flex
-      flex-row flex-nowrap
-      justify-content-around
-      align-items-center
+
+      px-0
+      mx-0
     "
   >
     <div
       id="left-buttons"
-      class="d-flex justify-content-between flex-row flex-grow-1 border"
+      class="border px-1"
     >
-      <IrregularVerbsButton />
+   <IrregularVerbsButton />
+      
       <RandomVerbButton />
     </div>
 
-    <div class="d-flex w-100 border search-bar">
+    <div class="search-bar border">
       <SearchBar />
     </div>
 
     <div
       id="right-buttons"
-      class="d-flex justify-content-beween flex-row flex-grow-1 border"
+      class=" border px-1"
     >
       <ReportButton />
-      <SettingsButton />
+      <SettingsButton  />
     </div>
   </nav>
 </template>
@@ -40,7 +40,7 @@ export default {
   name: "nav-bar",
   components: {
     SearchBar,
-    IrregularVerbsButton,
+   IrregularVerbsButton,
     SettingsButton,
     ReportButton,
     RandomVerbButton,
@@ -54,25 +54,34 @@ export default {
 <style scoped>
 nav {
   background-color: var(--spanish-red);
-  /* max-height: 40px; */
   height: 10%;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .search-bar {
   transform: scale(0.95, 0.95);
-  width: 100%;
+  margin: 0 auto;
 }
 
 #left-buttons,
 #right-buttons {
   visibility: hidden;
+  width: 0;
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
 }
 
 /* smart phones + portrait orientation */
 @media screen and (min-width: 360px) and (orientation: portrait) {
   .search-bar {
-    transform: scale(1, 1);
+    transform: scale(1.1, 1.1);
   }
 }
 
@@ -85,7 +94,8 @@ nav {
 /* tablets + portrait orientation */
 @media screen and (min-width: 768px) and (orientation: portrait) {
   .search-bar {
-    transform: scale(0.9, 0.9);
+    transform: scale(1, 1);
+    width: 40%;
   }
 
   #left-buttons,
@@ -95,12 +105,26 @@ nav {
 }
 
 @media screen and (min-width: 1024px) and (orientation: portrait) {
-  .search-bar {
-    transform: scale(1.1, 1.1);
+  #right-buttons, #left-buttons {
+    font-size: 1.5rem;
   }
 }
 
 /* smart phones + landscape orientation */
+@media screen and (min-height: 320px) and (orientation: landscape) {
+  nav {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #right-buttons, #left-buttons {
+    visibility: visible;
+    width: 200px ;
+    font-size: 0.5rem;
+  }
+}
+
+
 
 /* tablets + landscape orientation */
 @media screen and (min-width: 360px) and (orientation: landscape) {
@@ -115,7 +139,7 @@ nav {
   }
 }
 
-@media only screen and (min-width: 600px) and (orientation: landscape) {
+@media only screen and (min-width: 768px) and (orientation: landscape) {
   #left-buttons,
   #right-buttons {
     transform: scale(0.8, 0.8);
@@ -123,7 +147,7 @@ nav {
   }
 }
 
-@media screen and (min-width: 600px) and (orientation: landscape) {
+/* @media screen and (min-width: 600px) and (orientation: landscape) {
   nav {
     height: 30px;
   }
@@ -132,7 +156,7 @@ nav {
   .search-bar {
     transform: scale(0.6, 0.6);
   }
-}
+} */
 
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   nav {

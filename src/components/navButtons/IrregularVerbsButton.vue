@@ -1,6 +1,6 @@
 <template>
   <!-- 常見不規則動詞列表 -->
-  <div id="irregular-infinitive-list" class="border">
+  <div id="irregular-infinitive-list">
     <!-- 不規則動詞清單按鈕 -->
     <a
       href=""
@@ -8,19 +8,15 @@
       data-target="#irregularVerbsDialog"
       title="Check out essential irregular verbs in Spanish"
       class="
-        text-decoration-none text-white
-        d-flex
-        align-items-center
-        justify-content-center
+        text-decoration-none mx-1
       "
     >
       <font-awesome-icon
-        class="mr-1 align-middle"
+        class=""
         :icon="['fas', 'clipboard-list']"
-        :style="{ color: 'white' }"
-        size="2x"
+        size="3x"
       />
-      <span class="h5 py-0 my-0">Irregular verbs</span>
+      <span class="h6 pt-2 my-0">Irregular </span>
     </a>
   </div>
 </template>
@@ -35,6 +31,36 @@ export default {
 </script>
 
 <style scoped>
+a {
+  display: inline-block flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a > * {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+a, a:visited {
+  color: white;
+}
+
+a:hover, a:active {
+  color: var(--spanish-yellow);
+}
+
+/* @media screen and (min-height: 320px) and (orientation: landscape) {
+  a {
+  flex-direction: row;
+
+  justify-content: space-between;
+  font-size: 1rem;
+  flex-grow: 1;
+  width: 100px;
+  } 
+}*/
 </style>
 
 

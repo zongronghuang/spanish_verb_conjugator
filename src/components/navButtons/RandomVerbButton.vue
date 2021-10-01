@@ -1,26 +1,22 @@
 <template>
-  <div class="border">
+  <div>
     <a
       href=""
       data-toggle="modal"
       data-target="#spinner"
       title="Get a random Spanish verb"
       class="
-        text-decoration-none text-white
+        text-decoration-none
         mx-1
-        d-flex
-        flex-row
-        align-items-center
       "
       @click.stop.prevent="runTimedSpinnerAndPickRandomVerb"
     >
       <font-awesome-icon
-        class="mr-1 align-middle"
+        class=""
         :icon="['fas', 'dice']"
-        size="2x"
-        :style="{ color: 'white' }"
+        size="3x"
       />
-      <span class="h5 py-0 my-0">Try Luck</span>
+      <span class="h6 pt-2 my-0">Try Luck</span>
     </a>
   </div>
 </template>
@@ -55,4 +51,35 @@ export default {
 </script>
 
 <style scoped>
+a {
+  display: inline-block flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a > * {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+a, a:visited {
+  color: white;
+}
+
+a:hover, a:active {
+  color: var(--spanish-yellow);
+}
+
+/* @media screen and (min-height: 320px) and (orientation: landscape) {
+  a {
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 0.5rem;
+  flex-grow: 1;
+  }
+
+} */
+
 </style>
