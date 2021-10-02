@@ -1,8 +1,8 @@
 <template>
   <div id="main-page" class="d-flex flex-column justify-content-between">
-    <NavBar  />
+    <NavBar />
 
-    <main class="d-flex border border-dark flex-grow-1 align-items-center">
+    <main class="d-flex flex-grow-1 align-items-center">
       <ConjugationTable
         class="conjugation-table"
         :mode="mode"
@@ -10,7 +10,10 @@
       />
     </main>
 
-    <footer class="d-flex justify-content-between w-100 mb-2">
+    <footer
+      class="d-flex justify-content-between w-100 mb-2"
+      v-if="configs.useMode !== 'fill-in'"
+    >
       <LeftArrow />
       <RightArrow />
     </footer>
@@ -22,7 +25,7 @@
 
     <IrregularVerbsModal />
 
-    <ReportModal :lastSearchTime="lastSearchTime"/>
+    <ReportModal :lastSearchTime="lastSearchTime" />
 
     <SettingsModal :configs="configs" :verb="verb" />
   </div>
@@ -33,11 +36,11 @@ import NavBar from "../components/NavBar.vue";
 import ConjugationTable from "../components/ConjugationTable.vue";
 import LeftArrow from "../components/arrows/LeftArrow.vue";
 import RightArrow from "../components/arrows/RightArrow.vue";
-import VerbInfoModal from '../components/modals/VerbInfoModal.vue'
-import RandomSpinnerModal from '../components/modals/RandomSpinnerModal.vue'
-import IrregularVerbsModal from '../components/modals/IrregularVerbsModal.vue'
-import ReportModal from '../components/modals/ReportModal.vue'
-import SettingsModal from '../components/modals/SettingsModal.vue'
+import VerbInfoModal from "../components/modals/VerbInfoModal.vue";
+import RandomSpinnerModal from "../components/modals/RandomSpinnerModal.vue";
+import IrregularVerbsModal from "../components/modals/IrregularVerbsModal.vue";
+import ReportModal from "../components/modals/ReportModal.vue";
+import SettingsModal from "../components/modals/SettingsModal.vue";
 
 import { mapState } from "vuex";
 import { collectSearchedVerbToLocalStorage } from "../utils/mixins.js";
@@ -54,7 +57,7 @@ export default {
     RandomSpinnerModal,
     IrregularVerbsModal,
     ReportModal,
-    SettingsModal
+    SettingsModal,
   },
   mixins: [collectSearchedVerbToLocalStorage],
   data() {
@@ -142,13 +145,20 @@ footer {
 
 /* tablets + portrait orientation */
 @media screen and (min-height: 1024px) and (orientation: portrait) {
-
 }
 
 /* small phones + landscape orientation */
 @media screen and (min-height: 280px) and (orientation: landscape) {
   footer {
-    height: 12%;
+    height: 10%;
+    font-size: 0.7rem;
+  }
+}
+
+/* tablets + landscape orientation */
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  footer {
+    font-size: 1.8rem;
   }
 }
 

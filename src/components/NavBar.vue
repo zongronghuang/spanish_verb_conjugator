@@ -1,30 +1,18 @@
 <template>
-  <nav
-    class="
+  <nav class="px-0 mx-0">
+    <div id="left-buttons" class="px-1 mx-0">
+      <IrregularVerbsButton />
 
-      px-0
-      mx-0
-    "
-  >
-    <div
-      id="left-buttons"
-      class="border px-1"
-    >
-   <IrregularVerbsButton />
-      
       <RandomVerbButton />
     </div>
 
-    <div class="search-bar border">
+    <div class="search-bar mx-0">
       <SearchBar />
     </div>
 
-    <div
-      id="right-buttons"
-      class=" border px-1"
-    >
+    <div id="right-buttons" class="px-1 mx-0">
       <ReportButton />
-      <SettingsButton  />
+      <SettingsButton />
     </div>
   </nav>
 </template>
@@ -40,7 +28,7 @@ export default {
   name: "nav-bar",
   components: {
     SearchBar,
-   IrregularVerbsButton,
+    IrregularVerbsButton,
     SettingsButton,
     ReportButton,
     RandomVerbButton,
@@ -59,7 +47,7 @@ nav {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -72,7 +60,6 @@ nav {
 #right-buttons {
   visibility: hidden;
   width: 0;
-  flex-grow: 1;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
@@ -93,6 +80,10 @@ nav {
 
 /* tablets + portrait orientation */
 @media screen and (min-width: 768px) and (orientation: portrait) {
+  nav {
+    justify-content: space-around;
+  }
+
   .search-bar {
     transform: scale(1, 1);
     width: 40%;
@@ -101,73 +92,58 @@ nav {
   #left-buttons,
   #right-buttons {
     visibility: visible;
+    width: 25%;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  #left-buttons {
+    width: 30%;
   }
 }
 
 @media screen and (min-width: 1024px) and (orientation: portrait) {
-  #right-buttons, #left-buttons {
+  #right-buttons,
+  #left-buttons {
     font-size: 1.5rem;
   }
 }
 
 /* smart phones + landscape orientation */
-@media screen and (min-height: 320px) and (orientation: landscape) {
+@media screen and (min-height: 280px) and (orientation: landscape) {
   nav {
-    display: flex;
-    justify-content: space-around;
+    height: 13%;
   }
-
-  #right-buttons, #left-buttons {
-    visibility: visible;
-    width: 200px ;
-    font-size: 0.5rem;
-  }
-}
-
-
-
-/* tablets + landscape orientation */
-@media screen and (min-width: 360px) and (orientation: landscape) {
-  /* nav {
-    height: 45px;
-  } */
-
-  #left-buttons,
-  #right-buttons,
   .search-bar {
-    transform: scale(0.7, 0.7);
+    display: none;
   }
-}
 
-@media only screen and (min-width: 768px) and (orientation: landscape) {
   #left-buttons,
   #right-buttons {
-    transform: scale(0.8, 0.8);
     visibility: visible;
+    width: 50%;
+    font-size: 0.7rem;
   }
 }
 
-/* @media screen and (min-width: 600px) and (orientation: landscape) {
-  nav {
-    height: 30px;
-  }
-  #left-buttons,
-  #right-buttons,
-  .search-bar {
-    transform: scale(0.6, 0.6);
-  }
-} */
-
+/* tablets + landscape orientation */
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   nav {
     height: 100px;
     max-height: 100px;
   }
 
+  .search-bar {
+    display: initial;
+    width: 50%;
+  }
+
   #left-buttons,
   #right-buttons,
   .search-bar {
-    transform: scale(1.3, 1.3);
+    transform: scale(1, 1);
+    font-size: 1rem;
   }
 }
 

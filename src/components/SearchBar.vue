@@ -411,11 +411,10 @@ input::placeholder {
   background-color: gainsboro !important;
 }
 
-
 /* tablets + portrait orientation */
 
 @media screen and (min-width: 768px) and (orientation: portrait) {
-    input {
+  input {
     height: 2.5rem;
   }
 
@@ -424,7 +423,7 @@ input::placeholder {
     font-size: 1.1rem;
   }
 
-   input::placeholder {
+  input::placeholder {
     font-size: 1rem;
   }
 }
@@ -439,8 +438,24 @@ input::placeholder {
     font-size: 1.4rem;
   }
 
-   input::placeholder {
+  input::placeholder {
     font-size: 1.4rem;
+  }
+}
+
+/* tablets + landscape orientation */
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  input {
+    height: 3rem;
+  }
+
+  #search-bar button {
+    width: 3rem;
+    font-size: 1.4rem;
+  }
+
+  input::placeholder {
+    font-size: 1.2rem;
   }
 }
 </style>

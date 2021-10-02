@@ -1,5 +1,5 @@
 <template>
-  <div class="card-frame border">
+  <div class="card-frame">
     <div
       ref="cardFront"
       class="card-front"
@@ -20,19 +20,20 @@
         >
           <button
             id="verb-name"
-            class="btn align-middle px-0 py-0 my-0"
+            class="align-middle px-1 py-0 my-0"
             data-toggle="modal"
             data-target="#verbInfoDialog"
             title="Check verb definition and more"
           >
             {{ verb.infinitive | capitalize }}
           </button>
-          <span id="mood-tense" class="small align-middle mr-1 py-0 my-0">
+          <span id="mood-tense" class="small align-middle ml-1 py-0 my-0">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
 
           <div>
             <button
+              id="flip-icon"
               class="btn mr-1 align-middle"
               title="Flip the card to hide the content"
               v-if="configs.useMode === 'memory'"
@@ -451,6 +452,7 @@ svg {
 #verb-name {
   background-color: var(--spanish-red);
   color: white;
+  border-radius: 5px;
 }
 
 .active {
@@ -471,6 +473,10 @@ svg {
     top: -25%;
     font-size: 2.1rem;
   }
+
+  #flip-icon {
+    font-size: 2rem;
+  }
 }
 
 @media screen and (min-height: 1356px) and (orientation: portrait) {
@@ -485,12 +491,14 @@ svg {
   .card-frame {
     font-size: 1rem;
     transform: scale(0.8, 0.8);
+    top: -57%;
   }
 }
 
 @media screen and (min-height: 320px) and (orientation: landscape) {
   .card-frame {
     font-size: 1.2rem;
+    top: -55%;
   }
 }
 
@@ -514,6 +522,15 @@ svg {
   .card-frame {
     font-size: 2rem;
     transform: scale(1, 1);
+    top: -45%;
+  }
+
+  #verb-name {
+    font-size: 1.5rem;
+  }
+
+  #flip-icon {
+    font-size: 2rem;
   }
 }
 
