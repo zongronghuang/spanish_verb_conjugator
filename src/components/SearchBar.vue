@@ -414,6 +414,11 @@ input::placeholder {
 /* tablets + portrait orientation */
 
 @media screen and (min-width: 768px) and (orientation: portrait) {
+  input,
+  #autocomplete-pane {
+    font-size: 1.5rem;
+  }
+
   input {
     height: 2.5rem;
   }
@@ -429,6 +434,11 @@ input::placeholder {
 }
 
 @media screen and (min-width: 1024px) and (orientation: portrait) {
+  input,
+  #autocomplete-pane {
+    font-size: 1.5rem;
+  }
+
   input {
     height: 3.5rem;
   }
@@ -445,6 +455,11 @@ input::placeholder {
 
 /* tablets + landscape orientation */
 @media screen and (min-width: 1024px) and (orientation: landscape) {
+  input,
+  #autocomplete-pane {
+    font-size: 1.5rem;
+  }
+
   input {
     height: 3rem;
   }

@@ -6,7 +6,7 @@
     aria-labelledby="irregularVerbsModalDialog"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="irregularVerbsModalDialog">
@@ -119,4 +119,9 @@ export default {
 </script>
 
 <style scoped>
+/* @media screen and (min-width: 768px) {
+  .modal {
+    transform: scale(1.2, 1.2);
+  }
+} */
 </style>

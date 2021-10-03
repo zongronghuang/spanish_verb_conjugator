@@ -78,7 +78,7 @@ a:active {
     width: 90px;
   }
   span {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin-left: 10px;
   }
 }

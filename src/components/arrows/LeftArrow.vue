@@ -48,24 +48,4 @@ export default {
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 }
-
-/* @media screen and (min-width: 768px) {
-  #left-panel {
-    width: 25%;
-    display: flex;
-    justify-content: center;
-  }
-
-  #left-panel > div {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  #left-panel {
-    background-color: var(--spanish-yellow);
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-  }
-} */
 </style>

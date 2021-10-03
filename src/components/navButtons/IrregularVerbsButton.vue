@@ -10,7 +10,7 @@
       class="text-decoration-none mx-1"
     >
       <font-awesome-icon class="" :icon="['fas', 'clipboard-list']" size="3x" />
-      <span class="h6 pt-2 my-0">Irregular Verbs</span>
+      <span class="h6 pt-2 my-0">Irregulars</span>
     </a>
   </div>
 </template>
@@ -89,10 +89,10 @@ a:active {
 /* tablets & desktops + landscape orientation */
 @media screen and (min-width: 1024px) {
   a > * {
-    width: 110px;
+    width: 99px;
   }
   span {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin-left: 10px;
   }
 }

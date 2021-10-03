@@ -47,3 +47,29 @@ nav {
     var(--spanish-red)
   );
 }
+
+/* responsive modals */
+
+@media screen and (min-width: 768px) and (orientation: portrait) {
+  .modal {
+    transform: scale(1.2, 1.2);
+  }
+}
+
+@media screen and (min-height: 768px) and (orientation: landscape) {
+  .modal {
+    transform: scale(1.2, 1.2);
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: portrait) {
+  .modal {
+    transform: scale(1.5, 1.5);
+  }
+}
+
+@media screen and (min-height: 1024px) and (orientation: landscape) {
+  .modal {
+    transform: scale(1.5, 1.5);
+  }
+}

@@ -1,54 +1,54 @@
 <template>
   <div
-      class="modal fade"
-      id="reportDialog"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Search report</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body px-0 py-0">
-            <section class="px-3 py-2 bg-light">
-              <p class="text-left">
-                Find the 10 most searched verbs in the last 7 days of use.
-              </p>
-              <div
-                class="d-flex justify-content-between flex-wrap flex-row w-100"
-              >
-                <router-link
-                  class="btn btn-primary mx-1 my-1"
-                  v-for="verbEntry in mostSearchedVerbs"
-                  :key="verbEntry[0]"
-                  :data-verb="verbEntry[0]"
-                  :to="`/spanish-conjugator/${verbEntry[0]}`"
-                >
-                  {{ verbEntry[0] }}
-                  <span class="badge badge-warning">{{ verbEntry[1] }}</span>
-                </router-link>
-              </div>
-            </section>
-          </div>
-          <div class="modal-footer py-1 border-0"></div>
+    class="modal fade"
+    id="reportDialog"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Search report</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body px-0 py-0">
+          <section class="px-3 py-2 bg-light">
+            <p class="text-left">
+              Find the 10 most searched verbs in the last 7 days of use.
+            </p>
+            <div
+              class="d-flex justify-content-between flex-wrap flex-row w-100"
+            >
+              <router-link
+                class="btn btn-primary mx-1 my-1"
+                v-for="verbEntry in mostSearchedVerbs"
+                :key="verbEntry[0]"
+                :data-verb="verbEntry[0]"
+                :to="`/spanish-conjugator/${verbEntry[0]}`"
+              >
+                {{ verbEntry[0] }}
+                <span class="badge badge-warning">{{ verbEntry[1] }}</span>
+              </router-link>
+            </div>
+          </section>
+        </div>
+        <div class="modal-footer py-1 border-0"></div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'report-modal',
+  name: "report-modal",
   props: {
     lastSearchTime: {
       type: Number,
@@ -106,9 +106,19 @@ export default {
       },
     },
   },
-}
+};
 </script>
 
 <style scoped>
+/* @media screen and (min-width: 768px) {
+  .modal {
+    transform: scale(1.2, 1.2);
+  }
+}
 
+@media screen and (min-width: 1024px) {
+  .modal {
+    transform: scale(1.5, 1.5);
+  }
+} */
 </style>

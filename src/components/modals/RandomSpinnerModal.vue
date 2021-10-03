@@ -1,35 +1,35 @@
 <template>
   <div
-      class="modal fade"
-      id="spinner"
-      tabindex="-1"
-      aria-labelledby="modalSpinner"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-body text-center">
-            <div>
-              <font-awesome-icon
-                :icon="['fas', 'spinner']"
-                size="5x"
-                :style="{ color: 'black' }"
-                pulse
-              />
-            </div>
+    class="modal fade"
+    id="spinner"
+    tabindex="-1"
+    aria-labelledby="modalSpinner"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div>
+            <font-awesome-icon
+              :icon="['fas', 'spinner']"
+              size="5x"
+              :style="{ color: 'black' }"
+              pulse
+            />
           </div>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'random-spinner-modal',
+  name: "random-spinner-modal",
   created() {
-    console.log('[created] RandomSpinnerModal')
-  }
-}
+    console.log("[created] RandomSpinnerModal");
+  },
+};
 </script>
 
 <style scoped>
@@ -40,4 +40,10 @@ export default {
     var(--spanish-red)
   );
 }
+
+/* @media screen and (min-width: 768px) {
+  .modal {
+    transform: scale(1.2, 1.2);
+  }
+} */
 </style>

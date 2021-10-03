@@ -86,34 +86,27 @@
 
                   <span
                     class="
-                      position-absolute
-                      float-right
                       badge badge-warning
                       align-middle
-                      p-2
-                      ml-5
-                      mt-4
                       d-flex
+                      ml-3
+                      p-1
                       flex-row
                       justify-content-center
                     "
                     title="Correct!"
                     v-if="areInputsCorrect[id] === true"
                   >
-                    <font-awesome-icon :icon="['fas', 'check']" size="2x" />
+                    <font-awesome-icon :icon="['fas', 'check']" size="1x" />
                   </span>
 
                   <!-- 答案錯誤 -->
                   <span
                     class="
-                      position-absolute
-                      float-right
                       badge badge-warning
-                      align-middle
                       d-flex
-                      p-2
-                      ml-5
-                      mt-4
+                      ml-3
+                      p-1
                       flex-row
                       justify-content-center
                     "
@@ -123,11 +116,11 @@
                     <font-awesome-icon
                       :icon="['fas', 'exclamation']"
                       flip="both"
-                      size="2x"
+                      size="1x"
                     />
                     <font-awesome-icon
                       :icon="['fas', 'exclamation']"
-                      size="2x"
+                      size="1x"
                     />
                   </span>
                 </td>
@@ -470,7 +463,7 @@ svg {
 /* tablets + portrait orientaiton */
 @media screen and (min-height: 1024px) and (orientation: portrait) {
   .card-frame {
-    top: -25%;
+    top: -40%;
     font-size: 2.1rem;
   }
 
@@ -481,7 +474,7 @@ svg {
 
 @media screen and (min-height: 1356px) and (orientation: portrait) {
   .card-frame {
-    top: -20%;
+    top: -40%;
     font-size: 2.5rem;
   }
 }
@@ -545,7 +538,7 @@ svg {
 @media screen and (min-width: 1366px) and (orientation: landscape) {
   .card-frame {
     font-size: 2.5rem;
-    top: -30%;
+    top: -40%;
     width: 65%;
   }
 }
@@ -554,7 +547,7 @@ svg {
 @media screen and (min-width: 1400px) {
   .card-frame {
     font-size: 2.2rem;
-    top: -30%;
+    top: -35%;
     width: 50%;
   }
 }

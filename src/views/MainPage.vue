@@ -156,16 +156,24 @@ footer {
 }
 
 /* tablets + landscape orientation */
-@media screen and (min-width: 1024px) and (orientation: landscape) {
+@media screen and (min-width: 768px) and (orientation: portrait) {
   footer {
-    font-size: 1.8rem;
+    height: 7%;
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-height: 768px) and (orientation: landscape) {
+  footer {
+    height: 7%;
+    font-size: 1.5rem;
   }
 }
 
 /* desktops  */
-@media screen and (min-width: 1366px) and (min-height: 900px) {
+@media screen and (min-width: 1024px) and (orientation: portrait) {
   footer {
-    height: 7%;
+    height: 5%;
   }
 }
 </style>
