@@ -8,8 +8,8 @@
       class="text-decoration-none mx-1"
       @click.stop.prevent="runTimedSpinnerAndPickRandomVerb"
     >
-      <font-awesome-icon class="" :icon="['fas', 'dice']" size="3x" />
-      <span class="h6 pt-2 my-0">Lucky</span>
+      <font-awesome-icon class="" :icon="['fas', 'dice']" size="2x" />
+      <span class="h6 pt-2 my-0">Chance</span>
     </a>
   </div>
 </template>
@@ -66,16 +66,6 @@ a:active {
   color: var(--spanish-yellow);
 }
 
-/* @media screen and (min-height: 320px) and (orientation: landscape) {
-  a {
-  flex-direction: row;
-  justify-content: space-between;
-  font-size: 0.5rem;
-  flex-grow: 1;
-  }
-
-} */
-
 @media screen and (min-height: 280px) and (orientation: landscape) {
   a {
     flex-direction: row;
@@ -101,13 +91,48 @@ a:active {
 }
 
 /* tablets & desktops + landscape orientation */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) and (orientation: portrait) {
+  svg {
+    font-size: 3rem;
+  }
+  span {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-height: 768px) and (orientation: landscape) {
+  svg {
+    font-size: 3rem;
+  }
+
+  span {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: portrait) {
+  svg {
+    font-size: 4rem;
+  }
+
+  span {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-height: 1024px) and (orientation: landscape) {
   a > * {
     width: 100px;
   }
+
+  svg {
+    font-size: 3.5rem;
+  }
+
   span {
     font-size: 1.5rem;
     margin-left: 10px;
+    text-align: center;
   }
 }
 </style>

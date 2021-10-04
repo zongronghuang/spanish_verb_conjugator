@@ -8,7 +8,7 @@
       title="View and change the app's settings"
       class="mx-1 text-decoration-none"
     >
-      <font-awesome-icon class="" :icon="['fas', 'cog']" size="3x" />
+      <font-awesome-icon class="" :icon="['fas', 'cog']" size="2x" />
       <span class="h6 pt-2 my-0">Settings</span>
     </a>
   </div>
@@ -73,10 +73,44 @@ a:active {
 }
 
 /* tablets & desktops + landscape orientation */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) and (orientation: portrait) {
+  svg {
+    font-size: 3rem;
+  }
+  span {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-height: 768px) and (orientation: landscape) {
+  svg {
+    font-size: 3rem;
+  }
+
+  span {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: portrait) {
+  svg {
+    font-size: 4rem;
+  }
+
+  span {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-height: 1024px) and (orientation: landscape) {
   a > * {
     width: 90px;
   }
+
+  svg {
+    font-size: 3.5rem;
+  }
+
   span {
     font-size: 1.5rem;
     margin-left: 10px;

@@ -20,12 +20,12 @@
         >
           <button
             id="verb-name"
-            class="align-middle px-1 py-0 my-0"
+            class="align-middle my-0"
             data-toggle="modal"
             data-target="#verbInfoDialog"
             title="Check verb definition and more"
           >
-            {{ verb.infinitive | capitalize }}
+            {{ verb.infinitive }}
           </button>
           <span id="mood-tense" class="small align-middle ml-1 py-0 my-0">
             {{ verb.mood_english }} {{ verb.tense_english }}
@@ -90,7 +90,7 @@
                       align-middle
                       d-flex
                       ml-3
-                      p-1
+                      p-2
                       flex-row
                       justify-content-center
                     "
@@ -106,7 +106,7 @@
                       badge badge-warning
                       d-flex
                       ml-3
-                      p-1
+                      p-2
                       flex-row
                       justify-content-center
                     "
@@ -205,11 +205,6 @@ export default {
         height: "",
       },
     };
-  },
-  filters: {
-    capitalize(text) {
-      return text.toUpperCase();
-    },
   },
   created() {
     console.log("[created] ConjugationTable");
@@ -436,6 +431,8 @@ img {
 
 .card-header {
   background-color: var(--spanish-yellow);
+  letter-spacing: -0.05rem;
+  color: #333;
 }
 
 svg {
@@ -445,37 +442,32 @@ svg {
 #verb-name {
   background-color: var(--spanish-red);
   color: white;
+  padding: 2px 4px;
   border-radius: 5px;
+  letter-spacing: -0.1rem;
+  text-transform: capitalize;
 }
 
-.active {
-  color: blue;
-  font-weight: bold;
+th {
+  letter-spacing: -0.05rem;
+  color: #333;
+}
+
+td {
+  letter-spacing: -0.05rem;
+  word-spacing: 0.3rem;
+  color: #333;
+}
+
+input {
+  font-size: 1.2rem;
+  color: #333;
 }
 
 /* smart phones + portrait orientation */
 @media screen and (min-height: 700px) and (orientation: portrait) {
   .card-frame {
     font-size: 1.4rem;
-  }
-}
-
-/* tablets + portrait orientaiton */
-@media screen and (min-height: 1024px) and (orientation: portrait) {
-  .card-frame {
-    top: -40%;
-    font-size: 2.1rem;
-  }
-
-  #flip-icon {
-    font-size: 2rem;
-  }
-}
-
-@media screen and (min-height: 1356px) and (orientation: portrait) {
-  .card-frame {
-    top: -40%;
-    font-size: 2.5rem;
   }
 }
 
@@ -502,12 +494,36 @@ svg {
   }
 }
 
+/* tablets + portrait orientaiton */
+
+@media screen and (min-height: 1356px) and (orientation: portrait) {
+  .card-frame {
+    top: -40%;
+    font-size: 2.5rem;
+  }
+
+  #verb-name {
+    font-size: 2.5rem;
+  }
+
+  th,
+  td,
+  .card-header {
+    letter-spacing: -0.12rem;
+  }
+}
+
 /* tablets + landscape orientation */
+/* surface duo */
 @media screen and (min-height: 540px) and (orientation: landscape) {
   .card-frame {
     font-size: 1.4rem;
     transform: scale(1, 1);
     width: 75%;
+  }
+
+  input {
+    font-size: 1.4rem;
   }
 }
 
@@ -522,24 +538,73 @@ svg {
     font-size: 1.5rem;
   }
 
+  th,
+  td,
+  .card-header {
+    letter-spacing: -0.12rem;
+  }
+
+  input {
+    font-size: 1.4rem;
+  }
+
   #flip-icon {
     font-size: 2rem;
   }
 }
 
-@media screen and (min-height: 1024px) and (orientation: landscape) {
+/* ipad */
+@media screen and (min-height: 1024px) and (orientation: portrait) {
   .card-frame {
-    font-size: 2.2rem;
-    top: -27%;
-    width: 75%;
+    top: -40%;
+    font-size: 2.1rem;
+  }
+
+  th,
+  td,
+  .card-header {
+    letter-spacing: -0.1rem;
+  }
+
+  input {
+    font-size: 2rem;
+  }
+
+  #flip-icon {
+    font-size: 2rem;
   }
 }
 
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 2.2rem;
+    top: -42%;
+    width: 75%;
+  }
+
+  #verb-name,
+  input {
+    font-size: 2rem;
+  }
+}
+
+/* ipad pro */
 @media screen and (min-width: 1366px) and (orientation: landscape) {
   .card-frame {
     font-size: 2.5rem;
     top: -40%;
     width: 65%;
+  }
+
+  th,
+  td,
+  .card-header {
+    letter-spacing: -0.14rem;
+  }
+
+  input,
+  #verb-name {
+    font-size: 2rem;
   }
 }
 

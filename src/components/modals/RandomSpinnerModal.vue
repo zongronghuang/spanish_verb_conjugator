@@ -40,10 +40,4 @@ export default {
     var(--spanish-red)
   );
 }
-
-/* @media screen and (min-width: 768px) {
-  .modal {
-    transform: scale(1.2, 1.2);
-  }
-} */
 </style>

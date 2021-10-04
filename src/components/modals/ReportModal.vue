@@ -110,15 +110,4 @@ export default {
 </script>
 
 <style scoped>
-/* @media screen and (min-width: 768px) {
-  .modal {
-    transform: scale(1.2, 1.2);
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .modal {
-    transform: scale(1.5, 1.5);
-  }
-} */
 </style>

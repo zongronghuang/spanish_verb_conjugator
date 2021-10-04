@@ -97,10 +97,6 @@ nav {
     text-align: center;
     margin: 0 auto;
   }
-
-  #left-buttons {
-    width: 30%;
-  }
 }
 
 @media screen and (min-width: 1024px) and (orientation: portrait) {
@@ -130,7 +126,7 @@ nav {
 /* tablets + landscape orientation */
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   nav {
-    height: 100px;
+    height: 80px;
     max-height: 100px;
   }
 
@@ -146,7 +142,5 @@ nav {
     font-size: 1rem;
   }
 }
-
-/* desktops */
 </style>
 

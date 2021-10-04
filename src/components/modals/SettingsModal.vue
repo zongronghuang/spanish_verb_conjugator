@@ -20,7 +20,7 @@
           </button>
         </div>
         <div class="modal-body px-0 py-0">
-          <section class="px-3 pt-2 bg-light">
+          <section class="px-3 py-3 bg-light">
             <p class="text-left">
               Choose how you want to practice Spanish conjugations.
             </p>
@@ -75,10 +75,10 @@
             </div>
           </section>
 
-          <hr class="bg-light my-0" />
+          <hr class="my-0" />
 
           <!-- mood 選單 -->
-          <section class="px-3 py-2 bg-light">
+          <section class="px-3 py-3 bg-light">
             <p class="text-left">
               Choose a conjugation of the verb by mood and tense.
             </p>
@@ -327,28 +327,4 @@ export default {
   background-color: var(--spanish-yellow) !important;
   color: black !important;
 }
-
-/* @media screen and (min-width: 768px) and (orientation: portrait) {
-  .modal {
-    transform: scale(1.2, 1.2);
-  }
-}
-
-@media screen and (min-width: 1024px) and (orientation: landscape) {
-  .modal {
-    transform: scale(1.2, 1.2);
-  }
-}
-
-@media screen and (min-width: 1024px) and (orientation: portrait) {
-  .modal {
-    transform: scale(1.5, 1.5);
-  }
-}
-
-@media screen and (min-width: 1366px) and (orientation: landscape) {
-  .modal {
-    transform: scale(1.5, 1.5);
-  }
-} */
 </style>
