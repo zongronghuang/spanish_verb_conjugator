@@ -36,7 +36,7 @@ export default {
 
       setTimeout(() => {
         dialog.modal("hide");
-        //  this.pickRandomVerb();
+        this.pickRandomVerb();
       }, 1700);
     },
   },

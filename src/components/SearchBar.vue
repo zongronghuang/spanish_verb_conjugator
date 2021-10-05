@@ -340,8 +340,8 @@ export default {
         entry.match(regex)
       );
 
-      // 最多列出 3 個符合項目
-      const maxEntries = 3;
+      // 最多列出 2 個符合項目
+      const maxEntries = 2;
       if (matchedEntries.length > maxEntries) {
         const slicedMatchedEntries = matchedEntries.slice(0, maxEntries);
         return slicedMatchedEntries;

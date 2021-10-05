@@ -20,7 +20,7 @@
         >
           <button
             id="verb-name"
-            class="align-middle my-0"
+            class="align-middle"
             data-toggle="modal"
             data-target="#verbInfoDialog"
             title="Check verb definition and more"
@@ -147,7 +147,7 @@
               </button>
             </div>
 
-            <button class="btn btn-primary " @click.stop.prevent="checkInputs">
+            <button class="btn btn-primary" @click.stop.prevent="checkInputs">
               Check
             </button>
           </div>
@@ -442,11 +442,10 @@ svg {
 #verb-name {
   background-color: var(--spanish-red);
   color: white;
+  margin: 3px 3px;
   padding: 2px 4px;
-  margin-left: 2px;
   border-radius: 5px;
   letter-spacing: -0.1rem;
-  text-transform: capitalize;
 }
 
 th {
@@ -463,10 +462,6 @@ td {
 input {
   font-size: 1.2rem;
   color: #333;
-}
-
-.keyboard button {
-
 }
 
 /* smart phones + portrait orientation */
