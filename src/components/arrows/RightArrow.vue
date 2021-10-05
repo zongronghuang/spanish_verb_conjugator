@@ -44,7 +44,7 @@ export default {
 #right-panel {
   width: 25%;
   margin-right: 5px;
-  background-color: var(--spanish-yellow);
+  background-color: transparent;
   box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 }

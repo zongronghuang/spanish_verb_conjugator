@@ -22,7 +22,7 @@
         <div class="modal-body px-0 py-0">
           <section class="px-3 py-3 bg-light">
             <p class="text-left">
-              Choose how you want to practice Spanish conjugations.
+              Choose how to practice with the verbal conjugations.
             </p>
             <div class="w-100 d-flex flex-row align-items-center pb-2">
               <span class="w-25 text-left font-weight-bold">Use mode</span>

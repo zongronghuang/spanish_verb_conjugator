@@ -15,7 +15,7 @@
             justify-content-between
             align-items-center
             py-0
-            px-1
+            px-0
           "
         >
           <button
@@ -138,7 +138,7 @@
               @click.stop.prevent="inputSpecialCharacter"
             >
               <button
-                class="btn btn-primary mr-1 special-character"
+                class="btn btn-primary mr-1"
                 v-for="(character, id) in specialCharacters"
                 :key="id"
                 :value="character"
@@ -147,7 +147,7 @@
               </button>
             </div>
 
-            <button class="btn btn-primary" @click.stop.prevent="checkInputs">
+            <button class="btn btn-primary " @click.stop.prevent="checkInputs">
               Check
             </button>
           </div>
@@ -443,6 +443,7 @@ svg {
   background-color: var(--spanish-red);
   color: white;
   padding: 2px 4px;
+  margin-left: 2px;
   border-radius: 5px;
   letter-spacing: -0.1rem;
   text-transform: capitalize;
@@ -462,6 +463,10 @@ td {
 input {
   font-size: 1.2rem;
   color: #333;
+}
+
+.keyboard button {
+
 }
 
 /* smart phones + portrait orientation */
@@ -557,7 +562,7 @@ input {
 @media screen and (min-height: 1024px) and (orientation: portrait) {
   .card-frame {
     top: -40%;
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
 
   th,
@@ -577,7 +582,7 @@ input {
 
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   .card-frame {
-    font-size: 2.2rem;
+    font-size: 2rem;
     top: -42%;
     width: 75%;
   }
@@ -591,7 +596,7 @@ input {
 /* ipad pro */
 @media screen and (min-width: 1366px) and (orientation: landscape) {
   .card-frame {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     top: -40%;
     width: 65%;
   }

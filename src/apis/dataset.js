@@ -56,6 +56,23 @@ export default {
     conjugations = conjugations.map(conjugation => {
       if (conjugation.mood_english === 'Imperative Affirmative') {
         conjugation.form_1p = imperative_1P
+
+        // -se 類反身動詞
+        const reflexiveStart = 'nos '
+        if(conjugation.form_1p.startsWith(reflexiveStart)) {
+          conjugation.form_1p = conjugation.form_1p
+            .replace(reflexiveStart, '')
+          
+          // -erse 和 -irse 1P 人稱動詞
+          if(conjugation.form_1p.endsWith('amos')) {
+            conjugation.form_1p = conjugation.form_1p.replace('amos', 'ámonos')
+          }
+
+          // -arse 1P 人稱動詞
+          if (conjugation.form_1p.endsWith('emos')) {
+            conjugation.form_1p = conjugation.form_1p.replace('emos', 'émonos')
+          }
+        }
       }
 
       if (conjugation.mood_english === 'Imperative Negative') {
@@ -113,6 +130,18 @@ export default {
         form_1p: root + 'ésemos',
         form_2p: root + 'eseis',
         form_3p: root + 'esen'
+      }
+    }
+
+    // -se 類反身動詞 (處理代名詞變化)
+    const reflexiveStart = 'se '
+    if (root.startsWith(reflexiveStart)) {
+      subjunctiveImperfect2 = {
+        ...subjunctiveImperfect2,
+        form_1s: subjunctiveImperfect2.form_1s.replace(reflexiveStart, 'me '),
+        form_2s: subjunctiveImperfect2.form_2s.replace(reflexiveStart, 'te '),
+        form_1p: subjunctiveImperfect2.form_1p.replace(reflexiveStart, 'nos '),
+        form_2p: subjunctiveImperfect2.form_2p.replace(reflexiveStart, 'os ')
       }
     }
 
