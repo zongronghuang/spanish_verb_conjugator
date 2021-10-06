@@ -38,6 +38,7 @@
             </p>
             <div
               class="d-flex justify-content-between flex-wrap flex-row w-100"
+              @click.prevent.stop="closeModal"
             >
               <router-link
                 class="btn btn-primary mx-1 my-1"
@@ -58,6 +59,8 @@
 </template>
 
 <script>
+import $ from "jquery";
+
 export default {
   name: "irregular-verbs-modal",
   created() {
@@ -115,6 +118,14 @@ export default {
       ],
     };
   },
+  methods: {
+    closeModal(event) {
+      if(event.target.tagName !== 'A') return
+
+      const dialog = $('#irregularVerbsDialog')
+      dialog.modal('hide')
+    }
+  }
 };
 </script>
 

@@ -36,7 +36,7 @@
                 "
                 ref="useModes"
                 role="group"
-                @click.stop.prevent="fetchUseMode"
+                @click.stop.prevent="(e) => fetchUseMode(e) || closeModal(e)"
               >
                 <button
                   :class="
@@ -139,8 +139,8 @@
             role="group"
             ref="tenses"
             @click.stop.prevent="
-              (e) => fetchTense(e) || updateCurrentConjugations(e)
-            "
+              (e) => fetchTense(e) || updateCurrentConjugations(e) ||
+              closeModal(e)"
           >
             <!-- indicative tenses -->
             <div
@@ -210,6 +210,8 @@
 </template>
 
 <script>
+import $ from "jquery";
+
 export default {
   name: "settings-modal",
   filters: {
@@ -309,6 +311,12 @@ export default {
 
       this.$store.commit("setVerbData", currentConjugations);
     },
+    closeModal(event) {
+      if(event.target.tagName !== 'BUTTON') return
+
+      const dialog = $('#settingsDialog')
+      dialog.modal('hide')
+    }
   },
   watch: {
     verb: {

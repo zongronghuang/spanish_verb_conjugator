@@ -20,7 +20,7 @@ export default {
   name: "irregular-infinitive-list",
   created() {
     console.log("[created] IrregularVerbsButton");
-  },
+  }
 };
 </script>
 

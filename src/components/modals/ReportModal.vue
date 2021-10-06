@@ -26,6 +26,7 @@
             </p>
             <div
               class="d-flex justify-content-between flex-wrap flex-row w-100"
+              @click.prevent.stop="closeModal"
             >
               <router-link
                 class="btn btn-primary mx-1 my-1"
@@ -47,6 +48,8 @@
 </template>
 
 <script>
+import $ from "jquery";
+
 export default {
   name: "report-modal",
   props: {
@@ -94,6 +97,12 @@ export default {
 
       this.mostSearchedVerbs = [...mostSearchedVerbs];
     },
+    closeModal(event) {
+      if(event.target.tagName !== 'A') return
+
+      const dialog = $('#reportDialog')
+      dialog.modal('hide')
+    }
   },
   watch: {
     lastSearchTime: {

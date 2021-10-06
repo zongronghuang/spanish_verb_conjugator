@@ -51,6 +51,7 @@ export default {
 
 .search-bar {
   margin-top: 0px;
+  margin-bottom: 60px;
   transform: scale(0.9, 0.9);
 }
 

@@ -340,8 +340,10 @@ export default {
         entry.match(regex)
       );
 
+      console.log('current route', this.$router.currentRoute.name)
+ 
       // 最多列出 2 個符合項目
-      const maxEntries = 2;
+      const maxEntries = 2
       if (matchedEntries.length > maxEntries) {
         const slicedMatchedEntries = matchedEntries.slice(0, maxEntries);
         return slicedMatchedEntries;

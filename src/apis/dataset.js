@@ -145,7 +145,9 @@ export default {
       }
     }
 
-    conjugations.push(subjunctiveImperfect2)
+    // 將 Subjunctive Imperfect 2 加到 Subjunctive Imperfect 後面
+    const subjunctiveImperfectID = conjugations.findIndex(conjugation => conjugation.mood_english === 'Subjunctive' && conjugation.tense_english === 'Imperfect')
+    conjugations.splice(subjunctiveImperfectID + 1, 0, subjunctiveImperfect2)
 
     return conjugations
   }
