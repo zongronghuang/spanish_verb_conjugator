@@ -1,364 +1,619 @@
 <template>
-  <div class="container pt-2">
-    <div class="row mb-1">
-      <div class="col-6 mx-auto position-relative" id="upper-display">
-        <button class="btn btn-info mt-3 font-weight-bold" id="add-to-list">
-          Add to list
-        </button>
-
-        <div class="d-flex flex-column text-center mb-3 mx-1">
-          <h1>{{ "comer" | capitalize }}</h1>
-          <span class="h4 mt-2">to eat</span>
-        </div>
-
+  <div class="card-frame">
+    <div
+      ref="cardFront"
+      class="card-front"
+      @mouseenter.prevent.stop="getCardFrontSize"
+    >
+      <div class="card w-100">
+        <!-- 動詞名稱 + 時態名稱 -->
         <div
-          class="mt-3 h4 font-weight-bold"
-          id="hits"
-          v-show="chosenMode === '2'"
+          class="
+            card-header
+            d-flex
+            flex-row
+            justify-content-between
+            align-items-center
+            py-0
+            px-0
+          "
         >
-          <span>{{ correctHits }}</span>
-          <span>/</span>
-          <span>6</span>
-        </div>
-
-        <button
-          class="btn btn-warning mt-3 font-weight-bold"
-          id="peek"
-          v-show="chosenMode === '1'"
-          @click.stop.prevent="peekToggle"
-        >
-          {{ displayText ? "Hide" : "Peek" }}
-        </button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="text-center col-6 mx-auto">
-        <span class="h4 my-4">{{ tense }}</span>
-      </div>
-    </div>
-
-    <div class="row mt-3 mb-1">
-      <table class="table mx-auto col-6 text-center shadow">
-        <tbody @click.prevent.stop="markAsActiveInput">
-          <!-- //////////////////////////////////////////////////// -->
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">yo</th>
-
-            <!-- mode 0 -->
-            <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[0] }}
-            </td>
-
-            <!-- mode 1 -->
-            <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[0] : "&iquest; &quest;" }}
-            </td>
-
-            <!-- mode 2 -->
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" v-model="inputs[0]" />
-            </td>
-            <td class="align-middle" v-if="chosenMode === '2'">
-              <button
-                class="btn btn-warning"
-                data-id="0"
-                @click.prevent.stop="hintToggle(0)"
-                v-show="results[0] === false"
-              >
-                {{ displayHints[0] ? conjugations[0] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-          <!-- //////////////////////////////////////////////////////// -->
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">tú</th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[1] }}
-            </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[1] : "&iquest; &quest;" }}
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" v-model="inputs[1]" />
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="hintToggle(1)"
-                v-show="results[1] === false"
-              >
-                {{ displayHints[1] ? conjugations[1] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">
-              él <br />ella <br />usted
-            </th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[2] }}
-            </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[2] : "&iquest; &quest;" }}
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" v-model="inputs[2]" />
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="hintToggle(2)"
-                v-show="results[2] === false"
-              >
-                {{ displayHints[2] ? conjugations[2] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">nosotros</th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[3] }}
-            </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[3] : "&iquest; &quest;" }}
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" v-model="inputs[3]" />
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="hintToggle(3)"
-                v-show="results[3] === false"
-              >
-                {{ displayHints[3] ? conjugations[3] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">vosotros</th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[4] }}
-            </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[4] : "&iquest; &quest;" }}
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" v-model="inputs[4]" />
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="hintToggle(4)"
-                v-show="results[4] === false"
-              >
-                {{ displayHints[4] ? conjugations[4] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-          <tr class="border">
-            <th scope="row" class="w-25 align-middle">
-              ellos <br />
-              ellas <br />
-              ustedes
-            </th>
-            <td class="align-middle h5" v-show="chosenMode === '0'">
-              {{ conjugations[5] }}
-            </td>
-            <td class="align-middle h5" v-show="chosenMode === '1'">
-              {{ displayText ? conjugations[5] : "&iquest; &quest;" }}
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <input type="text" v-model="inputs[5]" />
-            </td>
-            <td class="align-middle" v-show="chosenMode === '2'">
-              <button
-                class="btn btn-warning"
-                @click.prevent.stop="hintToggle(5)"
-                v-show="results[5] === false"
-              >
-                {{ displayHints[5] ? conjugations[5] : "&iexcl; &excl;" }}
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="row" v-show="chosenMode === '2'">
-      <div class="col-6 mx-auto" id="lower-display">
-        <div
-          id="stressed-letters"
-          class="mr-2"
-          @click.prevent.stop="typeCharacter"
-        >
-          <button class="btn btn-info font-weight-bold mr-2">á</button>
-          <button class="btn btn-info font-weight-bold mr-2">é</button>
-          <button class="btn btn-info font-weight-bold mr-2">í</button>
-          <button class="btn btn-info font-weight-bold mr-2">ó</button>
-          <button class="btn btn-info font-weight-bold mr-2">ú</button>
-          <button class="btn btn-info font-weight-bold mr-2">ü</button>
-          <button class="btn btn-info font-weight-bold">ñ</button>
-        </div>
-
-        <div id="check">
           <button
-            class="btn btn-warning font-weight-bold"
-            @click.stop.prevent="checkInputs"
+            id="verb-name"
+            class="align-middle"
+            data-toggle="modal"
+            data-target="#verbInfoDialog"
+            title="Check verb definition and more"
           >
-            Check
+            {{ verb.infinitive }}
           </button>
+          <span id="mood-tense" class="small align-middle ml-1 py-0 my-0">
+            {{ verb.mood_english }} {{ verb.tense_english }}
+          </span>
+
+          <div>
+            <button
+              id="flip-icon"
+              class="btn mr-1 align-middle"
+              title="Flip the card to hide the content"
+              v-if="configs.useMode === 'memory'"
+              @click.prevent.stop="addCardFlippingEffect"
+            >
+              <font-awesome-icon :icon="['fas', 'eye-slash']" size="1x" />
+            </button>
+          </div>
+        </div>
+
+        <!-- 動詞變化卡片 -->
+        <div class="card-body px-0 py-0">
+          <table
+            class="table table-striped table-borderless my-0"
+            @input.prevent.stop="markActiveInput"
+          >
+            <tbody class="container-fluid">
+              <tr v-for="(person, id) in persons" :key="id">
+                <th
+                  scope="row"
+                  class="col-4 small text-left align-middle my-0 py-0"
+                >
+                  {{ person }}
+                </th>
+
+                <!-- view 和 memory 模式 -->
+                <td
+                  v-if="configs.useMode !== 'fill-in'"
+                  class="col-6 align-middle py-1 mx-0"
+                >
+                  {{ conjugations[id] }}
+                </td>
+
+                <!-- fill-in 模式 -->
+                <td v-else class="col-6 py-0 align-middle">
+                  <input
+                    type="text"
+                    class="form-control table-input"
+                    :data-id="id"
+                    v-model="inputs[id]"
+                  />
+                </td>
+
+                <!-- fill-in 模式的答對/答錯提示 -->
+                <td
+                  v-if="configs.useMode === 'fill-in'"
+                  class="col-2 d-flex justify-content-center align-items-center"
+                >
+                  <!-- 答案正確 -->
+
+                  <span
+                    class="
+                      badge badge-warning
+                      align-middle
+                      d-flex
+                      ml-3
+                      p-2
+                      flex-row
+                      justify-content-center
+                    "
+                    title="Correct!"
+                    v-if="areInputsCorrect[id] === true"
+                  >
+                    <font-awesome-icon :icon="['fas', 'check']" size="1x" />
+                  </span>
+
+                  <!-- 答案錯誤 -->
+                  <span
+                    class="
+                      badge badge-warning
+                      d-flex
+                      ml-3
+                      p-2
+                      flex-row
+                      justify-content-center
+                    "
+                    :title="`Answer: ${conjugations[id]}`"
+                    v-if="areInputsCorrect[id] === false"
+                  >
+                    <font-awesome-icon
+                      :icon="['fas', 'exclamation']"
+                      flip="both"
+                      size="1x"
+                    />
+                    <font-awesome-icon
+                      :icon="['fas', 'exclamation']"
+                      size="1x"
+                    />
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 特殊字元鍵盤 -->
+          <div
+            class="card-footer d-flex flex-row justify-content-between"
+            v-if="configs.useMode === 'fill-in'"
+          >
+            <div
+              class="d-flex flex-row"
+              @click.stop.prevent="inputSpecialCharacter"
+            >
+              <button
+                class="btn btn-primary mr-1"
+                v-for="(character, id) in specialCharacters"
+                :key="id"
+                :value="character"
+              >
+                {{ character }}
+              </button>
+            </div>
+
+            <button class="btn btn-primary" @click.stop.prevent="checkInputs">
+              Check
+            </button>
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- 卡片背面 -->
+    <div
+      ref="cardBack"
+      class="card-back"
+      :style="cardBackImgStyle"
+      title="Flip the card to show the content"
+      @click.prevent.stop="removeCardFlippingEffect"
+    >
+      <font-awesome-icon id="open-icon" :icon="['fas', 'eye']" size="2x" />
+      <img
+        src="../assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg"
+        :style="cardBackImgStyle"
+        class="rounded-lg"
+        alt="Spanish flag"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "conjugation-table",
+  components: {},
   props: {
-    chosenMode: {
-      type: String,
-      required: true,
-    },
-    selectedTense: {
-      type: String,
+    // [{...}]
+    selectedConjugations: {
+      type: Array,
     },
   },
   data() {
     return {
-      conjugations: ["como", "comes", "come", "comemos", "coméis", "comen"],
-      inputs: Array(6),
-      results: Array(6),
-      displayText: false,
-      correctHits: 0,
-      displayHints: Array(6).fill(false),
-      tense: "Indicative Present",
+      persons: [
+        "Yo",
+        "Tú",
+        "Él · Ella · Usted",
+        "Nosotros",
+        "Vosotros",
+        "Ellos · Ellas · Ustedes",
+      ],
+      specialCharacters: ["á", "é", "í", "ó", "ú", "ü", "ñ"],
+      conjugations: [],
+      inputs: Array(6).fill(""),
+      areInputsCorrect: Array(6).fill(undefined),
+      cardBackImgStyle: {
+        width: "",
+        height: "",
+      },
     };
   },
-  filters: {
-    capitalize(text) {
-      return text.toUpperCase();
-    },
+  created() {
+    console.log("[created] ConjugationTable");
+    this.getVerb();
   },
   methods: {
-    peekToggle() {
-      this.displayText = !this.displayText;
-    },
-    hintToggle(index) {
-      // 開關個別 tooltip
-      const status = !this.displayHints[index];
-      this.displayHints.splice(index, 1, status);
-    },
-    markAsActiveInput(event) {
-      const currentInput = event.target;
-      const inputs = document.querySelectorAll("input");
+    getVerb() {
+      const { mood_english, tense_english } = this.verb;
 
-      // 清除所有 input 的 activeInput class
-      inputs.forEach((input) => {
-        if (input.classList.contains("activeInput"))
-          input.classList.remove("activeInput");
+      console.log("this.verb.allConjugations", this.verb.allConjugations);
+      const conjugationGroup = this.verb.allConjugations.filter(
+        (conjugation) =>
+          conjugation.mood_english === mood_english &&
+          conjugation.tense_english === tense_english
+      )[0];
+
+      // console.log("conjugations in ConjugationTable", conjugationGroup);
+
+      const { form_1s, form_2s, form_3s, form_1p, form_2p, form_3p } =
+        conjugationGroup;
+
+      this.conjugations = [
+        form_1s,
+        form_2s,
+        form_3s,
+        form_1p,
+        form_2p,
+        form_3p,
+      ];
+    },
+    markActiveInput(event) {
+      if (!event.target.classList.contains("table-input")) return;
+
+      const focusedInput = event.target;
+      const tableInputs = document.querySelectorAll(".table-input");
+
+      // 移除所有 tableInputs 的 active class
+      tableInputs.forEach((input) => {
+        if (input.classList.contains("active")) {
+          input.classList.remove("active");
+        }
       });
 
-      // 把按到的 input 加上 activeInput class
-      if (currentInput.tagName === "INPUT") {
-        currentInput.classList.add("activeInput");
-      }
+      // 有 focus 的 input 加上 active class
+      focusedInput.classList.add("active");
     },
-    typeCharacter(event) {
-      const target = event.target;
-      const character = target.innerText;
-      const activeInput = document.querySelector(".activeInput");
+    inputSpecialCharacter(event) {
+      if (!event.target.classList.contains("special-character")) return;
 
-      // 將字母加到輸入框中 + focus 輸入框
-      if (target.tagName === "BUTTON") {
-        activeInput.value = activeInput.value + character;
-        activeInput.focus();
-      }
+      const specialCharacter = event.target.value;
+
+      // 找到目前正在填寫的 iput 並取出資料
+      const activeInput = document.querySelector(".table-input.active");
+      const {
+        value,
+        selectionStart: start,
+        selectionEnd: end,
+        dataset: { id: dataId },
+      } = activeInput;
+
+      // 如果 start 和 end 一樣，代表只移動滑鼠游標 => 直接插入特殊字元
+      // 如果 start 和 end 不一樣，代表選取一段文字 => 文字區塊替換成特殊字
+      const newValue =
+        value.slice(0, start) + specialCharacter + value.slice(end);
+
+      // 更新畫面上 input 欄位的值和元件 data
+      activeInput.value = newValue;
+      this.inputs[dataId] = newValue;
+      this.inputs = [...this.inputs];
+
+      // 重新設定游標插入點 (新輸入的字元位置)
+      activeInput.setSelectionRange(start + 1, start + 1);
+      activeInput.focus();
     },
     checkInputs() {
-      // 人稱 * 單複數 = 6
-      const numberOfConjugations = 6;
-
-      // 之後要決定如何確認：length 數值 === 6 或每個 input 皆有值
-      if (this.inputs.length < numberOfConjugations) {
-        return alert("所有空格都要填入答案");
-      }
-
       // 強制將輸入文字轉為小寫 + 去除兩旁空格
-      this.inputs = this.inputs.map((input) => input.trim().toLowerCase());
+      const userInputs = this.inputs.map((input) =>
+        input ? input.trim().toLowerCase() : ""
+      );
 
-      // 比對結果 + 計算正確答案數量
-      this.results = [];
-      this.correctHits = 0;
-      for (let i = 0; i < numberOfConjugations; i++) {
-        if (this.inputs[i] === this.conjugations[i]) {
-          this.results.push(true);
-          this.correctHits++;
-        } else {
-          this.results.push(false);
-        }
-      }
+      // 比對結果 + 計算正確答案
+      this.areInputsCorrect = this.areInputsCorrect.map(
+        (result, index) => userInputs[index] === this.conjugations[index]
+      );
+    },
+    getCardFrontSize() {
+      // 用 clientwidth clientheight 試試看?
+      const cardFront = document.querySelector(".card-front");
+      const { scrollHeight, scrollWidth } = cardFront;
+
+      this.cardBackImgStyle = {
+        ...this.cardBackImgStyle,
+        height: scrollHeight + "px",
+        width: scrollWidth + "px",
+      };
+    },
+    addCardFlippingEffect() {
+      this.$refs.cardFront.classList.add("flipping-card-front");
+      this.$refs.cardBack.classList.add("flipping-card-back");
+    },
+    removeCardFlippingEffect() {
+      this.$refs.cardFront.classList.remove("flipping-card-front");
+      this.$refs.cardBack.classList.remove("flipping-card-back");
     },
   },
   watch: {
-    chosenMode: function (newMode) {
-      if (newMode === "1") this.displayText = false;
+    // 關注 vuex 中的 verb 物件是否改變 (處理 IrregularInfinitiveList 所選的特殊動詞)
+    verb: function (newVerb) {
+      const { allConjugations, tense_english, mood_english } = newVerb;
+
+      const conjugations = allConjugations.filter(
+        (conjugations) =>
+          conjugations.tense_english === tense_english &&
+          conjugations.mood_english === mood_english
+      );
+
+      this.conjugations = [
+        conjugations[0].form_1s,
+        conjugations[0].form_2s,
+        conjugations[0].form_3s,
+        conjugations[0].form_1p,
+        conjugations[0].form_2p,
+        conjugations[0].form_3p,
+      ];
+
+      // 清除之前輸入內容、清除答案比對結果、隱藏答案提示按鍵
+      this.inputs = Array(6).fill("");
+      this.areInputsCorrect = Array(6).fill(undefined);
     },
-    selectedTense: function (newTense) {
-      this.tense = newTense;
+    // 處理 TenseMenu 傳入的動態變化
+    selectedConjugations: function (newSelectedConjugations) {
+      // 選取新的動詞變化，重設每個人稱的動詞變化
+      this.conjugations = [
+        newSelectedConjugations[0].form_1s,
+        newSelectedConjugations[0].form_2s,
+        newSelectedConjugations[0].form_3s,
+        newSelectedConjugations[0].form_1p,
+        newSelectedConjugations[0].form_2p,
+        newSelectedConjugations[0].form_3p,
+      ];
+
+      // 清除之前輸入內容、清除答案比對結果、隱藏答案提示按鍵
+      this.inputs = Array(6).fill("");
+      this.areInputsCorrect = Array(6).fill(undefined);
     },
+  },
+  computed: {
+    ...mapState({
+      verb: (state) => {
+        console.log("computed verb from CT");
+        return state.verb;
+      },
+      infinitives: (state) => state.infinitives,
+      configs: (state) => state.configs,
+    }),
   },
 };
 </script>
 
 <style scoped>
-#upper-display,
-#lower-display,
-table {
-  min-width: 400px;
+/* >>> card flipping effect >>> */
+.card-frame {
+  position: relative;
+  top: -50%;
+  width: 97%;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  font-size: 1.1rem;
 }
 
-#peek {
+.card-front,
+.card-back {
   position: absolute;
-  right: 0%;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition-duration: 700ms;
+}
+
+.card-front {
+  transform: none;
+}
+
+.card-back {
   top: 0%;
-}
-
-#add-to-list {
-  position: absolute;
   left: 0%;
-  top: -5%;
+  overflow: hidden;
+  border: 1px dotted var(--spanish-yellow);
+  border-radius: 5px;
+  cursor: pointer;
+  transform: rotateY(180deg);
 }
 
-#hits {
+.card-back:hover #open-icon {
+  visibility: visible;
   position: absolute;
-  top: 0%;
-  right: 0%;
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  height: 25%;
+  z-index: 5;
+  color: rgba(100%, 100%, 100%, 0.5);
+  transform: translate(-50%, -50%);
+  transition-delay: 500ms;
 }
 
-#stressed-letters {
-  position: absolute;
-  left: 0%;
-  margin-bottom: 15px;
+.card-back:not(:hover) #open-icon {
+  display: none;
 }
 
-#check {
-  position: absolute;
-  right: 0%;
+.flipping-card-front {
+  transform: rotateY(180deg);
 }
 
-#lower-display {
-  margin-bottom: 60px;
+.flipping-card-back {
+  transform: none;
 }
 
-#xxx {
-  filter: blur(5px);
+img {
+  object-fit: cover;
+  filter: saturate(150%);
+}
+/* <<< card flipping effect <<< */
+
+.card-header {
+  background-color: var(--spanish-yellow);
+  letter-spacing: -0.05rem;
+  color: #333;
 }
 
-.activeInput {
-  font-weight: bold;
+svg {
+  color: var(--spanish-red);
+}
+
+#verb-name {
+  background-color: var(--spanish-red);
+  color: white;
+  margin: 3px 3px;
+  padding: 2px 4px;
+  border-radius: 5px;
+  letter-spacing: -0.1rem;
+}
+
+th {
+  letter-spacing: -0.05rem;
+  color: #333;
+}
+
+td {
+  letter-spacing: -0.05rem;
+  word-spacing: 0.3rem;
+  color: #333;
+}
+
+input {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* smart phones + portrait orientation */
+@media screen and (min-height: 700px) and (orientation: portrait) {
+  .card-frame {
+    font-size: 1.4rem;
+  }
+}
+
+/* smart phones + landscape orientation */
+@media screen and (min-height: 280px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 1rem;
+    transform: scale(0.8, 0.8);
+    top: -57%;
+  }
+}
+
+@media screen and (min-height: 320px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 1.2rem;
+    top: -55%;
+  }
+}
+
+@media screen and (min-height: 400px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 1.4rem;
+    transform: scale(0.9, 0.9);
+  }
+}
+
+/* tablets + portrait orientaiton */
+
+@media screen and (min-height: 1356px) and (orientation: portrait) {
+  .card-frame {
+    top: -40%;
+    font-size: 2.5rem;
+  }
+
+  #verb-name {
+    font-size: 2.5rem;
+  }
+
+  th,
+  td,
+  .card-header {
+    letter-spacing: -0.12rem;
+  }
+}
+
+/* tablets + landscape orientation */
+/* surface duo */
+@media screen and (min-height: 540px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 1.4rem;
+    transform: scale(1, 1);
+    width: 75%;
+  }
+
+  input {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (min-height: 768px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 2rem;
+    transform: scale(1, 1);
+    top: -45%;
+  }
+
+  #verb-name {
+    font-size: 1.5rem;
+  }
+
+  th,
+  td,
+  .card-header {
+    letter-spacing: -0.12rem;
+  }
+
+  input {
+    font-size: 1.4rem;
+  }
+
+  #flip-icon {
+    font-size: 2rem;
+  }
+}
+
+/* ipad */
+@media screen and (min-height: 1024px) and (orientation: portrait) {
+  .card-frame {
+    top: -40%;
+    font-size: 2rem;
+  }
+
+  th,
+  td,
+  .card-header {
+    letter-spacing: -0.1rem;
+  }
+
+  input {
+    font-size: 2rem;
+  }
+
+  #flip-icon {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 2rem;
+    top: -42%;
+    width: 75%;
+  }
+
+  #verb-name,
+  input {
+    font-size: 2rem;
+  }
+}
+
+/* ipad pro */
+@media screen and (min-width: 1366px) and (orientation: landscape) {
+  .card-frame {
+    font-size: 2.3rem;
+    top: -40%;
+    width: 65%;
+  }
+
+  th,
+  td,
+  .card-header {
+    letter-spacing: -0.14rem;
+  }
+
+  input,
+  #verb-name {
+    font-size: 2rem;
+  }
+}
+
+/* desktops */
+@media screen and (min-width: 1400px) {
+  .card-frame {
+    font-size: 2.2rem;
+    top: -35%;
+    width: 50%;
+  }
 }
 </style>
