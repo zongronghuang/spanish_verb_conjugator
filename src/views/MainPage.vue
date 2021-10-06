@@ -44,7 +44,7 @@ import SettingsModal from "../components/modals/SettingsModal.vue";
 
 import { mapState } from "vuex";
 import { collectSearchedVerbToLocalStorage } from "../utils/mixins.js";
-import datasetAPIs from "../apis/dataset.js";
+import datasetAPIs from "../utils/dataset.js";
 
 export default {
   name: "main-page",
