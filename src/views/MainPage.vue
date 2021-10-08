@@ -143,10 +143,6 @@ footer {
   height: 7%;
 }
 
-/* tablets + portrait orientation */
-@media screen and (min-height: 1024px) and (orientation: portrait) {
-}
-
 /* small phones + landscape orientation */
 @media screen and (min-height: 280px) and (orientation: landscape) {
   footer {
@@ -155,25 +151,41 @@ footer {
   }
 }
 
-/* tablets + landscape orientation */
+/* tablets */
 @media screen and (min-width: 768px) and (orientation: portrait) {
   footer {
     height: 7%;
-    font-size: 1.5rem;
+    font-size: 1.9rem;
   }
 }
 
 @media screen and (min-height: 768px) and (orientation: landscape) {
   footer {
     height: 7%;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 
-/* desktops  */
 @media screen and (min-width: 1024px) and (orientation: portrait) {
   footer {
-    height: 5%;
+    height: 7%;
+    font-size: 2.3rem;
+  }
+}
+
+@media screen and (min-height: 1024px) and (orientation: landscape) {
+  footer {
+    height: 7%;
+    font-size: 1.8rem;
+  }
+}
+
+
+/* desktops  */
+@media screen and (min-width: 1367px) {
+  footer {
+    height: 7%;
+    font-size: 1.2rem;
   }
 }
 </style>

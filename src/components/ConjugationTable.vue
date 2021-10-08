@@ -138,7 +138,7 @@
               @click.stop.prevent="inputSpecialCharacter"
             >
               <button
-                class="btn btn-primary mr-1"
+                class="btn btn-primary mr-1 special-character"
                 v-for="(character, id) in specialCharacters"
                 :key="id"
                 :value="character"
@@ -429,6 +429,10 @@ img {
 }
 /* <<< card flipping effect <<< */
 
+.card {
+  box-shadow: 0px 0px 15px 10px rgba(131, 60, 60, 0.5);
+}
+
 .card-header {
   background-color: var(--spanish-yellow);
   letter-spacing: -0.05rem;
@@ -462,6 +466,10 @@ td {
 input {
   font-size: 1.2rem;
   color: #333;
+}
+
+.active {
+  font-weight: bold;
 }
 
 /* smart phones + portrait orientation */
@@ -609,10 +617,10 @@ input {
 }
 
 /* desktops */
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1367px) {
   .card-frame {
     font-size: 2.2rem;
-    top: -35%;
+    top: -45%;
     width: 50%;
   }
 }

@@ -114,4 +114,11 @@ a:active {
     margin-left: 10px;
   }
 }
+
+/* desktops */
+@media screen and (min-width: 1367px) {
+  span {
+    font-size: 1.5rem;
+  }
+}
 </style>

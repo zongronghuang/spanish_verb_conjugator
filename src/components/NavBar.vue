@@ -139,8 +139,28 @@ nav {
   #right-buttons,
   .search-bar {
     transform: scale(1, 1);
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
+}
+
+/* desktops */ 
+@media screen and (min-width: 1367px) {
+  nav {
+    height: 60px;
+  }
+
+.search-bar {
+    display: initial;
+    width: 50%;
+  }
+
+  #left-buttons,
+  #right-buttons,
+  .search-bar {
+    transform: scale(1, 1);
+    font-size: 1.3rem;
+  }
+
 }
 </style>
 

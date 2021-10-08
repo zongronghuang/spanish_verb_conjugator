@@ -94,11 +94,11 @@ export default {
 @media screen and (min-width: 992px) {
   #title {
     margin-top: 10%;
-    font-size: 4.5rem;
+    font-size: 3.5rem;
   }
   .search-bar {
-    transform: scale(2, 2);
-    margin-top: -100px;
+    transform: scale(1.2, 1.2);
+    margin-top: -10px;
   }
   .footer {
     font-size: 0.9rem;
