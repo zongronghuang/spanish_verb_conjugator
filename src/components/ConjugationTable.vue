@@ -392,7 +392,6 @@ export default {
   top: 0%;
   left: 0%;
   overflow: hidden;
-  border: 1px dotted var(--spanish-yellow);
   border-radius: 5px;
   cursor: pointer;
   transform: rotateY(180deg);
@@ -429,8 +428,9 @@ img {
 }
 /* <<< card flipping effect <<< */
 
-.card {
-  box-shadow: 0px 0px 15px 10px rgba(131, 60, 60, 0.5);
+.card,
+.card-back {
+  box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
 }
 
 .card-header {
