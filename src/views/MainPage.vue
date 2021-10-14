@@ -180,12 +180,11 @@ footer {
   }
 }
 
-
 /* desktops  */
 @media screen and (min-width: 1367px) {
   footer {
     height: 7%;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 }
 </style>

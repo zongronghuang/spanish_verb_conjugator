@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 a {
-  display: block flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }

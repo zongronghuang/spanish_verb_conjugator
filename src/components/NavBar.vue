@@ -106,11 +106,12 @@ nav {
   }
 }
 
-/* smart phones + landscape orientation */
+/* smart phones */
 @media screen and (min-height: 280px) and (orientation: landscape) {
   nav {
     height: 13%;
   }
+
   .search-bar {
     display: none;
   }
@@ -143,13 +144,13 @@ nav {
   }
 }
 
-/* desktops */ 
+/* desktops */
 @media screen and (min-width: 1367px) {
   nav {
     height: 60px;
   }
 
-.search-bar {
+  .search-bar {
     display: initial;
     width: 50%;
   }
@@ -160,7 +161,6 @@ nav {
     transform: scale(1, 1);
     font-size: 1.3rem;
   }
-
 }
 </style>
 

@@ -45,7 +45,7 @@ export default {
 
 <style scoped>
 a {
-  display: block flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -53,7 +53,6 @@ a {
 a > * {
   display: inline-block;
   margin: 0 auto;
-  text-align: left;
 }
 
 a,
@@ -66,10 +65,12 @@ a:active {
   color: var(--spanish-yellow);
 }
 
+/* smart phones */
 @media screen and (min-height: 280px) and (orientation: landscape) {
   a {
     flex-direction: row;
     align-items: center;
+    border: 1px solid black;
   }
 
   a > * {

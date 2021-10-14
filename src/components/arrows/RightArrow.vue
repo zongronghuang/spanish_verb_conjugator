@@ -45,7 +45,8 @@ export default {
   width: 25%;
   margin-right: 5px;
   background-color: var(--spanish-yellow);
-  box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px -3px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
+  cursor: pointer;
 }
 </style>

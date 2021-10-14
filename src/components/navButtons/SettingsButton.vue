@@ -25,7 +25,7 @@ export default {
 
 <style scoped>
 a {
-  display: block flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -54,13 +54,13 @@ a:active {
   }
 
   a > * {
-    width: 100px;
+    width: 50px;
     line-height: 100%;
     margin: 0 3px;
   }
 
   span {
-    margin-left: 3px;
+    margin-left: 1px;
   }
 }
 

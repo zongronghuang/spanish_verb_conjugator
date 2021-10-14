@@ -20,13 +20,13 @@ export default {
   name: "irregular-infinitive-list",
   created() {
     console.log("[created] IrregularVerbsButton");
-  }
+  },
 };
 </script>
 
 <style scoped>
 a {
-  display: block flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -47,6 +47,7 @@ a:active {
   color: var(--spanish-yellow);
 }
 
+/* smart phones */
 @media screen and (min-height: 280px) and (orientation: landscape) {
   a {
     flex-direction: row;
@@ -54,12 +55,12 @@ a:active {
   }
 
   a > * {
-    width: 110px;
+    width: 80px;
     line-height: 100%;
   }
 
   span {
-    margin-left: 3px;
+    margin-left: 0px;
   }
 }
 
@@ -119,8 +120,6 @@ a:active {
     font-size: 1.5rem;
   }
 }
-
-
 </style>
 
 
