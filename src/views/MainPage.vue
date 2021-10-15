@@ -184,7 +184,7 @@ footer {
 @media screen and (min-width: 1367px) {
   footer {
     height: 7%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
 </style>

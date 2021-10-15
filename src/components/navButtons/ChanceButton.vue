@@ -18,7 +18,7 @@
 import $ from "jquery";
 
 export default {
-  name: "random-verb-button",
+  name: "chance-button",
   created() {
     console.log("[created] RandomVerbButton");
   },
@@ -53,6 +53,7 @@ a {
 a > * {
   display: inline-block;
   margin: 0 auto;
+  text-align: left;
 }
 
 a,
@@ -70,12 +71,12 @@ a:active {
   a {
     flex-direction: row;
     align-items: center;
-    border: 1px solid black;
   }
 
   a > * {
     width: 100px;
     line-height: 100%;
+    margin: 0 3px;
   }
 
   span {
@@ -133,7 +134,7 @@ a:active {
   span {
     font-size: 1.5rem;
     margin-left: 10px;
-    text-align: center;
+ 
   }
 }
 

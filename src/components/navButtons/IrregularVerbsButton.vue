@@ -34,7 +34,7 @@ a {
 a > * {
   display: inline-block;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
 }
 
 a,
@@ -55,12 +55,13 @@ a:active {
   }
 
   a > * {
-    width: 80px;
+    width: 100px;
     line-height: 100%;
+    margin: 0 3px;
   }
 
   span {
-    margin-left: 0px;
+    margin-left: 3px;
   }
 }
 

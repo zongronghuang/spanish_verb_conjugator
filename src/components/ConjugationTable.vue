@@ -430,7 +430,7 @@ img {
 
 .card,
 .card-back {
-  box-shadow: 15px -15px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .card-header {

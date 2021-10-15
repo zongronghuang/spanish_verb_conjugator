@@ -2,8 +2,7 @@
   <nav class="px-0 mx-0">
     <div id="left-buttons" class="px-1 mx-0">
       <IrregularVerbsButton />
-
-      <RandomVerbButton />
+      <ChanceButton />
     </div>
 
     <div class="search-bar mx-0">
@@ -22,7 +21,7 @@ import SearchBar from "./SearchBar.vue";
 import IrregularVerbsButton from "./navButtons/IrregularVerbsButton.vue";
 import SettingsButton from "./navButtons/SettingsButton.vue";
 import ReportButton from "./navButtons/ReportButton.vue";
-import RandomVerbButton from "./navButtons/RandomVerbButton.vue";
+import ChanceButton from "./navButtons/ChanceButton.vue";
 
 export default {
   name: "nav-bar",
@@ -31,7 +30,7 @@ export default {
     IrregularVerbsButton,
     SettingsButton,
     ReportButton,
-    RandomVerbButton,
+    ChanceButton,
   },
   created() {
     console.log("[created] NavBar");
@@ -93,7 +92,7 @@ nav {
   #right-buttons {
     visibility: visible;
     width: 25%;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
     margin: 0 auto;
   }
@@ -106,7 +105,7 @@ nav {
   }
 }
 
-/* smart phones */
+/* smart phones + landscape*/
 @media screen and (min-height: 280px) and (orientation: landscape) {
   nav {
     height: 13%;
@@ -121,6 +120,14 @@ nav {
     visibility: visible;
     width: 50%;
     font-size: 0.7rem;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-height: 360px) and (orientation: landscape) {
+  #left-buttons,
+  #right-buttons {
+    font-size: 1rem;
   }
 }
 
@@ -141,6 +148,11 @@ nav {
   .search-bar {
     transform: scale(1, 1);
     font-size: 1.2rem;
+  }
+
+  #left-buttons,
+  #right-buttons {
+    justify-content: space-around;
   }
 }
 

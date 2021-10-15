@@ -60,7 +60,7 @@ a:active {
   }
 
   span {
-    margin-left: 1px;
+    margin-left: 3px;
   }
 }
 
