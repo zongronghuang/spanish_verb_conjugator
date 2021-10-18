@@ -17,7 +17,7 @@ export default {
     if (infinitives instanceof Array) {
       this.$store.commit("setInfinitives", infinitives);
     }
-  },
+  }
 };
 </script>
 
