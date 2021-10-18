@@ -31,15 +31,15 @@
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
 
-          <div>
+          <div class="h-100 d-flex">
             <button
               id="flip-icon"
-              class="btn mr-1 align-middle"
+              class="mr-1 align-middle py-1 rounded-lg my-1"
               title="Flip the card to hide the content"
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
             >
-              <font-awesome-icon :icon="['fas', 'eye-slash']" size="1x" />
+              <font-awesome-icon :icon="['fas', 'eye-slash']" size="1x" :style="{ color: 'white' }" />
             </button>
           </div>
         </div>
@@ -472,6 +472,11 @@ input {
   font-weight: bold;
 }
 
+#flip-icon {
+ background-color: var(--spanish-red);
+}
+
+
 /* smart phones + portrait orientation */
 @media screen and (min-height: 700px) and (orientation: portrait) {
   .card-frame {
@@ -622,6 +627,11 @@ input {
     font-size: 2.2rem;
     top: -45%;
     width: 50%;
+  }
+
+  #flip-icon {
+    font-size: 1.4rem;  
+    background-color: var(--spanish-red);
   }
 }
 </style>
