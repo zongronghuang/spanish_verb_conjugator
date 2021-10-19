@@ -34,9 +34,10 @@ export default {
       const dialog = $("#spinner");
       dialog.modal("show");
 
-      setTimeout(() => {
+      const timerId = setTimeout(() => {
         dialog.modal("hide");
         this.pickRandomVerb();
+        clearTimeout(timerId) 
       }, 1700);
     },
   },
