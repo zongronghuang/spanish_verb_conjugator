@@ -77,7 +77,7 @@
       "
       id="keyboard"
       v-if="keyboard"
-      @click.stop.prevent="inputSpecialCharacter"
+      @click.stop.prevent="(e) => inputSpecialCharacter(e) || toggleKeyboard()"
     >
       <button class="btn btn-info font-weight-bold">á</button>
       <button class="btn btn-info font-weight-bold">é</button>
