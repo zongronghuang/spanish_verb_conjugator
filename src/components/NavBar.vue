@@ -1,6 +1,6 @@
 <template>
   <nav class="px-0 mx-0">
-    <div id="left-buttons" class="px-1 mx-0">
+    <div id="left-buttons" class="left-buttons px-1 mx-0">
       <IrregularVerbsButton />
       <ChanceButton />
     </div>
@@ -9,7 +9,7 @@
       <SearchBar />
     </div>
 
-    <div id="right-buttons" class="px-1 mx-0">
+    <div id="right-buttons" class="right-buttons px-1 mx-0">
       <ReportButton />
       <SettingsButton />
     </div>
@@ -55,8 +55,8 @@ nav {
   margin: 0 auto;
 }
 
-#left-buttons,
-#right-buttons {
+.left-buttons,
+.right-buttons {
   visibility: hidden;
   width: 0;
   display: flex;
@@ -88,8 +88,8 @@ nav {
     width: 40%;
   }
 
-  #left-buttons,
-  #right-buttons {
+  .left-buttons,
+  .right-buttons {
     visibility: visible;
     width: 25%;
     justify-content: space-between;
@@ -99,8 +99,8 @@ nav {
 }
 
 @media screen and (min-width: 1024px) and (orientation: portrait) {
-  #right-buttons,
-  #left-buttons {
+  .right-buttons,
+  .left-buttons {
     font-size: 1.5rem;
   }
 }
@@ -115,8 +115,8 @@ nav {
     display: none;
   }
 
-  #left-buttons,
-  #right-buttons {
+  .left-buttons,
+  .right-buttons {
     visibility: visible;
     width: 50%;
     font-size: 0.7rem;
@@ -125,8 +125,8 @@ nav {
 }
 
 @media screen and (min-height: 360px) and (orientation: landscape) {
-  #left-buttons,
-  #right-buttons {
+  .left-buttons,
+  .right-buttons {
     font-size: 1rem;
   }
 }
@@ -143,15 +143,15 @@ nav {
     width: 50%;
   }
 
-  #left-buttons,
-  #right-buttons,
+  .left-buttons,
+  .right-buttons,
   .search-bar {
     transform: scale(1, 1);
     font-size: 1.2rem;
   }
 
-  #left-buttons,
-  #right-buttons {
+  .left-buttons,
+  .right-buttons {
     justify-content: space-around;
   }
 }
@@ -167,8 +167,8 @@ nav {
     width: 50%;
   }
 
-  #left-buttons,
-  #right-buttons,
+  .left-buttons,
+  .right-buttons,
   .search-bar {
     transform: scale(1, 1);
     font-size: 1.3rem;

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <a
       href=""
       data-toggle="modal"
@@ -8,7 +8,7 @@
       class="text-decoration-none mx-1"
       @click.stop.prevent="runTimedSpinnerAndPickRandomVerb"
     >
-      <font-awesome-icon class="" :icon="['fas', 'dice']" size="2x" />
+      <font-awesome-icon :icon="['fas', 'dice']" size="2x" />
       <span class="h6 pt-2 my-0">Chance</span>
     </a>
   </div>

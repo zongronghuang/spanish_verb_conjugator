@@ -20,21 +20,21 @@
         >
           <button
             id="verb-name"
-            class="align-middle"
+            class="verb-name align-middle"
             data-toggle="modal"
             data-target="#verbInfoDialog"
             title="Check verb definition and more"
           >
             {{ verb.infinitive }}
           </button>
-          <span id="mood-tense" class="small align-middle ml-1 py-0 my-0">
+          <span id="mood-tense" class="mood-tense small align-middle ml-1 py-0 my-0">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
 
           <div class="h-100 d-flex">
             <button
               id="flip-icon"
-              class="mr-1 align-middle py-1 rounded-lg my-1"
+              class="flip-icon mr-1 align-middle py-1 rounded-lg my-1"
               title="Flip the card to hide the content"
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
@@ -163,7 +163,7 @@
       title="Flip the card to show the content"
       @click.prevent.stop="removeCardFlippingEffect"
     >
-      <font-awesome-icon id="open-icon" :icon="['fas', 'eye']" size="2x" />
+      <font-awesome-icon class="open-icon" :icon="['fas', 'eye']" size="2x" />
       <img
         src="../assets/rotiv-artic-g_wXjMR2n8M-unsplash.jpg"
         :style="cardBackImgStyle"
@@ -397,7 +397,7 @@ export default {
   transform: rotateY(180deg);
 }
 
-.card-back:hover #open-icon {
+.card-back:hover .open-icon {
   visibility: visible;
   position: absolute;
   top: 50%;
@@ -410,7 +410,7 @@ export default {
   transition-delay: 500ms;
 }
 
-.card-back:not(:hover) #open-icon {
+.card-back:not(:hover) .open-icon {
   display: none;
 }
 
@@ -443,7 +443,7 @@ svg {
   color: var(--spanish-red);
 }
 
-#verb-name {
+.verb-name {
   background-color: var(--spanish-red);
   color: white;
   margin: 3px 3px;
@@ -472,7 +472,7 @@ input {
   font-weight: bold;
 }
 
-#flip-icon {
+.flip-icon {
  background-color: var(--spanish-red);
 }
 
@@ -515,7 +515,7 @@ input {
     font-size: 2.5rem;
   }
 
-  #verb-name {
+  .verb-name {
     font-size: 2.5rem;
   }
 
@@ -547,7 +547,7 @@ input {
     top: -45%;
   }
 
-  #verb-name {
+  .verb-name {
     font-size: 1.5rem;
   }
 
@@ -561,7 +561,7 @@ input {
     font-size: 1.4rem;
   }
 
-  #flip-icon {
+  .flip-icon {
     font-size: 2rem;
   }
 }
@@ -583,7 +583,7 @@ input {
     font-size: 2rem;
   }
 
-  #flip-icon {
+  .flip-icon {
     font-size: 2rem;
   }
 }
@@ -595,7 +595,7 @@ input {
     width: 75%;
   }
 
-  #verb-name,
+  .verb-name,
   input {
     font-size: 2rem;
   }
@@ -616,7 +616,7 @@ input {
   }
 
   input,
-  #verb-name {
+  .verb-name {
     font-size: 2rem;
   }
 }
@@ -629,7 +629,7 @@ input {
     width: 50%;
   }
 
-  #flip-icon {
+  .flip-icon {
     font-size: 1.4rem;  
     background-color: var(--spanish-red);
   }

@@ -1,7 +1,7 @@
 <template>
   <footer class="d-flex flex-column mb-2">
     <div class="w-25">
-      <small id="space-filler"></small>
+      <small id="space-filler" class="space-filler"></small>
     </div>
 
     <div class="mx-auto">
@@ -12,7 +12,7 @@
         <font-awesome-icon
           :icon="['fas', 'camera']"
           size="1x"
-          id="camera-icon"
+          class="camera-icon"
         />
         Photo credit:
         <a
@@ -32,7 +32,7 @@
           id="heart-icon"
           :icon="['fas', 'heart']"
           size="1x"
-          class="mx-1"
+          class="heart-icon mx-1"
         />
         by
         <a
@@ -61,12 +61,12 @@ small > a {
   color: var(--spanish-yellow);
 }
 
-#heart-icon,
-#camera-icon {
+.heart-icon,
+.camera-icon {
   color: var(--spanish-yellow);
 }
 
-#heart-icon:hover {
+.heart-icon:hover {
   transform: scale(1);
   animation-name: beating-heart;
   animation-duration: 0.9s;

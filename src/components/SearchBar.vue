@@ -1,12 +1,12 @@
 <template>
   <div
     id="search-area"
-    class="d-flex flex-column justify-content-between"
+    class="search-area d-flex flex-column justify-content-between"
     @keyup.enter="searchByInput"
     @keyup.up="navigateSuggestionsByUpArrow"
     @keyup.down="navigateSuggestionsByDownArrow"
   >
-    <div class="input-group position-relative" id="search-bar">
+    <div class="search-bar input-group position-relative" id="search-bar">
       <input
         type="text"
         class="form-control font-weight-bold"
@@ -30,7 +30,7 @@
         </button>
 
         <button
-          class="btn btn-primary btn-outline-light rounded-right"
+          class="search-btn btn btn-primary btn-outline-light rounded-right"
           type="button"
           id="search-btn"
           title="Find the verb's conjugations"
@@ -43,7 +43,7 @@
       <!-- autocomplete 搜尋提示 -->
       <div
         id="autocomplete-pane"
-        class="w-100"
+        class="autocomplete-pane w-100"
         v-show="matchedInfinitives.length"
         ref="autocompletePane"
       >
@@ -66,14 +66,16 @@
     <!-- 輸入輔助鍵 -->
     <div
       class="
+      
         w-25
         mt-1
-        py-1
+        p-1
         d-flex
         justify-content-around
         bg-primary
         rounded-lg
         shadow
+        keyboard
       "
       id="keyboard"
       v-if="keyboard"
@@ -90,14 +92,14 @@
 
     <!-- 錯誤訊息 -->
     <div
-      class="alert alert-warning w-100 mt-1 mx-auto rounded-lg shadow"
+      class="alert-msg alert alert-warning w-100 mt-1 mx-auto rounded-lg shadow"
       role="alert"
       id="alert"
       v-show="alert"
     >
       <span class="text-left">{{ alert }}</span>
       <span
-        class="float-right font-weight-bold mr-2"
+        class="alert-cross float-right font-weight-bold mr-2"
         id="cross"
         @click.stop.prevent="collapseAlert"
       >
@@ -211,7 +213,7 @@ export default {
     },
     changeBorderCorners(event) {
       const searchInput = event.target;
-      const searchBtn = document.querySelector("#search-btn");
+      const searchBtn = document.querySelector(".search-btn");
 
       // 沒有 autocomplete suggestion，搜尋欄下方顯示圓角
       if (this.matchedInfinitives.length === 0) {
@@ -356,35 +358,35 @@ export default {
 </script>
 
 <style scoped>
-#search-area,
-#search-bar,
-#alert,
-#keyboard {
+.search-area,
+.search-bar,
+.alert-msg,
+.keyboard {
   max-width: 600px;
   min-width: 280px;
   font-family: "Open Sans", sans-serif;
 }
 
-#keyboard {
+.keyboard {
   position: absolute;
   top: 100%;
   z-index: 10;
   transform: translateY(10%);
 }
 
-#keyboard button {
+.keyboard button {
   background-color: var(--spanish-yellow);
   color: black;
 }
 
-#alert {
+.alert-msg {
   position: absolute;
   top: 100%;
   transform: translateY(10%);
   z-index: 20;
 }
 
-#cross:hover {
+.alert-cross:hover {
   cursor: pointer;
 }
 
@@ -398,17 +400,17 @@ input::placeholder {
   font-size: 0.9rem;
 }
 
-#autocomplete-pane {
+.autocomplete-pane {
   position: absolute;
   top: 100%;
   font-size: 0.9rem;
 }
 
-#autocomplete-pane > div:last-child {
+.autocomplete-pane > div:last-child {
   border-radius: 0px 0px 5px 5px !important;
 }
 
-#autocomplete-pane > div:hover,
+.autocomplete-pane > div:hover,
 .nav-location {
   background-color: gainsboro !important;
 }
@@ -417,7 +419,7 @@ input::placeholder {
 
 @media screen and (min-width: 768px) and (orientation: portrait) {
   input,
-  #autocomplete-pane {
+  .autocomplete-pane {
     font-size: 1.5rem;
   }
 
@@ -425,7 +427,7 @@ input::placeholder {
     height: 2.5rem;
   }
 
-  #search-bar button {
+  .search-bar button {
     width: 2.5rem;
     font-size: 1.1rem;
   }
@@ -437,7 +439,7 @@ input::placeholder {
 
 @media screen and (min-width: 1024px) and (orientation: portrait) {
   input,
-  #autocomplete-pane {
+  .autocomplete-pane {
     font-size: 1.5rem;
   }
 
@@ -445,7 +447,7 @@ input::placeholder {
     height: 3.5rem;
   }
 
-  #search-bar button {
+  .search-bar button {
     width: 3.5rem;
     font-size: 1.4rem;
   }
@@ -458,7 +460,7 @@ input::placeholder {
 /* tablets + landscape orientation */
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   input,
-  #autocomplete-pane {
+  .autocomplete-pane {
     font-size: 1.5rem;
   }
 
@@ -466,7 +468,7 @@ input::placeholder {
     height: 3rem;
   }
 
-  #search-bar button {
+  .search-bar button {
     width: 3rem;
     font-size: 1.4rem;
   }

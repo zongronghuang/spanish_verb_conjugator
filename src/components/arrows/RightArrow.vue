@@ -1,12 +1,12 @@
 <template>
   <div
-    class="d-flex align-items-center justify-content-center"
+    class="right-panel d-flex align-items-center justify-content-center"
     id="right-panel"
     @click.prevent.stop="switchToNewConjugationGroup('next')"
   >
     <div>
       <router-link
-        class="d-inline-block text-decoration-none w-100 my-1"
+        class="right-arrow d-inline-block text-decoration-none w-100 my-1"
         id="right-arrow"
         to=""
         title="Next"
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-#right-panel {
+.right-panel {
   width: 25%;
   margin-right: 5px;
   background-color: var(--spanish-yellow);

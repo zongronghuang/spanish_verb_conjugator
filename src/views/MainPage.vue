@@ -1,8 +1,8 @@
 <template>
-  <div id="main-page" class="d-flex flex-column justify-content-between">
+  <div id="main-page" class="main-page d-flex flex-column justify-content-between">
     <NavBar />
 
-    <main class="d-flex flex-grow-1 align-items-center">
+    <main class="main-display d-flex flex-grow-1 align-items-center">
       <ConjugationTable
         class="conjugation-table"
         :mode="mode"
@@ -11,7 +11,7 @@
     </main>
 
     <footer
-      class="d-flex justify-content-between w-100 mb-2"
+      class="main-footer d-flex justify-content-between w-100 mb-2"
       v-if="configs.useMode !== 'fill-in'"
     >
       <LeftArrow />
@@ -126,7 +126,7 @@ export default {
 </script>
 
 <style scoped>
-#main-page {
+.main-page {
   padding: 0;
   height: 100vh;
   width: 100vw;
@@ -135,17 +135,17 @@ export default {
   gap: 7%;
 }
 
-main {
+.main-display {
   height: 60%;
 }
 
-footer {
+.main-footer {
   height: 7%;
 }
 
 /* small phones + landscape orientation */
 @media screen and (min-height: 280px) and (orientation: landscape) {
-  footer {
+  .main-footer {
     height: 10%;
     font-size: 0.7rem;
   }
@@ -153,28 +153,28 @@ footer {
 
 /* tablets */
 @media screen and (min-width: 768px) and (orientation: portrait) {
-  footer {
+  .main-footer {
     height: 7%;
     font-size: 1.9rem;
   }
 }
 
 @media screen and (min-height: 768px) and (orientation: landscape) {
-  footer {
+  .main-footer {
     height: 7%;
     font-size: 1.4rem;
   }
 }
 
 @media screen and (min-width: 1024px) and (orientation: portrait) {
-  footer {
+  .main-footer {
     height: 7%;
     font-size: 2.3rem;
   }
 }
 
 @media screen and (min-height: 1024px) and (orientation: landscape) {
-  footer {
+  .main-footer {
     height: 7%;
     font-size: 1.8rem;
   }
@@ -182,7 +182,7 @@ footer {
 
 /* desktops  */
 @media screen and (min-width: 1367px) {
-  footer {
+  .main-footer {
     height: 7%;
     font-size: 1.3rem;
   }

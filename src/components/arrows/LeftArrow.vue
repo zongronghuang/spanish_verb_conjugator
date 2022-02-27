@@ -1,12 +1,12 @@
 <template>
   <div
-    class="d-flex align-items-center justify-content-center"
+    class="left-panel d-flex align-items-center justify-content-center"
     id="left-panel"
     @click.prevent.stop="switchToNewConjugationGroup('back')"
   >
     <div>
       <router-link
-        class="d-inline-block text-decoration-none w-100 my-1"
+        class="left-arrow d-inline-block text-decoration-none w-100 my-1"
         to=""
         id="left-arrow"
         title="Back"
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-#left-panel {
+.left-panel {
   width: 25%;
   margin-left: 5px;
   background-color: var(--spanish-yellow);

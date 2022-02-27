@@ -1,6 +1,7 @@
 <template>
   <div
     class="
+      search-page
       pb-1
       d-flex
       w-100
@@ -8,11 +9,10 @@
       align-items-center
       justify-content-between
     "
-    id="search-page"
   >
     <!-- 搜尋區域 -->
-    <h3 class="text-center mb-0 pb-0" id="title">Spanish Verb Conjugator</h3>
-    <SearchBar class="mx-auto shadowed search-bar" />
+    <h1 class="app-title text-center mb-0 pb-0">Spanish Verb Conjugator</h1>
+    <SearchBar class="search-bar shadowed mx-auto" />
     <Footer class="footer" />
   </div>
 </template>
@@ -34,24 +34,27 @@ export default {
 </script>
 
 <style scoped>
-#search-page {
-  padding: 0;
+.search-page {
   height: 100vh;
   width: 100vw;
-  margin-left: 0;
-  margin-right: 0;
+/* 
+  margin: 0;
+  padding: 0; */
+  /* margin-left: 0;
+  margin-right: 0; */
 }
 
-#title {
+.app-title {
+  margin-top: 30%;
+  font-size: 5.3rem;
   color: var(--spanish-yellow);
   font-family: "Montserrat", sans-serif;
-  margin-top: 10%;
-  font-size: 2.3rem;
 }
 
 .search-bar {
   margin-top: 0px;
   margin-bottom: 60px;
+
   transform: scale(0.9, 0.9);
 }
 
@@ -65,7 +68,7 @@ export default {
 
 /* portrait small tablets */
 @media screen and (min-width: 600px) {
-  #title {
+  .app-title {
     font-size: 2rem;
     margin-top: 10%;
   }
@@ -78,7 +81,7 @@ export default {
 
 /* landscape tablets */
 @media screen and (min-width: 768px) {
-  #title {
+  .app-title {
     margin-top: 10%;
     font-size: 3.5rem;
   }
@@ -92,7 +95,7 @@ export default {
 
 /* laptops and desktops */
 @media screen and (min-width: 992px) {
-  #title {
+  .app-title {
     margin-top: 10%;
     font-size: 3.5rem;
   }
@@ -107,7 +110,7 @@ export default {
 
 /* large laptops and desktops */
 @media screen and (min-width: 1200px) {
-  #title {
+  .app-title {
     margin-top: 10%;
   }
   .search-bar {
