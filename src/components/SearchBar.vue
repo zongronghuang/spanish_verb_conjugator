@@ -1,15 +1,15 @@
 <template>
   <div
     id="search-area"
-    class="search-area d-flex flex-column justify-content-between"
+    class="search-area position-relative d-flex flex-column justify-content-between"
     @keyup.enter="searchByInput"
     @keyup.up="navigateSuggestionsByUpArrow"
     @keyup.down="navigateSuggestionsByDownArrow"
   >
-    <div class="search-bar input-group position-relative" id="search-bar">
+    <div class="search-bar position-relative w-100 input-group overflow-hidden" id="search-bar">
       <input
         type="text"
-        class="form-control font-weight-bold"
+        class="form-control py-0 font-weight-bold"
         placeholder="Infinitive (-ar, -er, -ir, -se)"
         aria-label="Feed an infinitive Spanish verb"
         aria-describedby="button-addon2"
@@ -21,7 +21,7 @@
       <!-- 虛擬鍵盤呼叫和搜尋鍵 -->
       <div class="input-group-append shadow">
         <button
-          class="btn btn-info btn-outline-light"
+          class="btn btn-info "
           type="button"
           title="Open the keyboard to type in special characters in Spanish"
           @click.stop.prevent="toggleKeyboard"
@@ -30,7 +30,7 @@
         </button>
 
         <button
-          class="search-btn btn btn-primary btn-outline-light rounded-right"
+          class="search-btn btn btn-primary "
           type="button"
           id="search-btn"
           title="Find the verb's conjugations"
@@ -39,43 +39,20 @@
           <font-awesome-icon :icon="['fas', 'search']" size="1x" />
         </button>
       </div>
-
-      <!-- autocomplete 搜尋提示 -->
-      <div
-        id="autocomplete-pane"
-        class="autocomplete-pane w-100"
-        v-show="matchedInfinitives.length"
-        ref="autocompletePane"
-      >
-        <div
-          v-for="(entry, id) in matchedInfinitives"
-          :key="entry"
-          :data-entry="entry"
-          :data-id="id"
-          class="bg-light"
-        >
-          <router-link
-            class="text-decoration-none ml-3 text-muted"
-            :to="`/spanish-conjugator/${entry}`"
-            >{{ entry }}</router-link
-          >
-        </div>
-      </div>
     </div>
 
     <!-- 輸入輔助鍵 -->
     <div
       class="
-      
-        w-25
-        mt-1
-        p-1
+        keyboard
         d-flex
         justify-content-around
-        bg-primary
+        w-100
+        mt-1
+        p-1
         rounded-lg
-        shadow
-        keyboard
+        bg-primary
+ 
       "
       id="keyboard"
       v-if="keyboard"
@@ -92,20 +69,44 @@
 
     <!-- 錯誤訊息 -->
     <div
-      class="alert-msg alert alert-warning w-100 mt-1 mx-auto rounded-lg shadow"
+      class="alert-msg alert alert-warning d-flex align-items-center justify-content-between w-100 mt-1 mx-auto rounded-lg"
       role="alert"
       id="alert"
-      v-show="alert"
+      v-if="alert"
     >
       <span class="text-left">{{ alert }}</span>
       <span
-        class="alert-cross float-right font-weight-bold mr-2"
+        class="alert-cross font-weight-bold"
         id="cross"
+   
         @click.stop.prevent="collapseAlert"
       >
         <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
       </span>
     </div>
+
+     <!-- autocomplete 搜尋提示 -->
+      <div
+        id="autocomplete-pane"
+        class="autocomplete-pane w-100"
+        v-show="matchedInfinitives.length"
+        ref="autocompletePane"
+      >
+        <div
+          v-for="(entry, id) in matchedInfinitives"
+          :key="entry"
+          :data-entry="entry"
+          :data-id="id"
+          class="d-flex align-items-center bg-light"
+        >
+          <router-link
+            class="flex-grow-1 ml-3 text-muted text-decoration-none "
+            role="button"
+            :to="`/spanish-conjugator/${entry}`"
+            >{{ entry }}</router-link
+          >
+        </div>
+      </div>
   </div>
 </template>
 
@@ -358,23 +359,40 @@ export default {
 </script>
 
 <style scoped>
-.search-area,
+.search-area {
+  width: 95%;
+  max-width: 600px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
+}
+
 .search-bar,
 .alert-msg,
 .keyboard {
-  max-width: 600px;
-  min-width: 280px;
   font-family: "Open Sans", sans-serif;
+}
+
+.search-bar input {
+  font-size: 1rem;
+}
+
+.search-bar input::placeholder {
+  color: gray;
+  opacity: 70%;
+  font-size: 0.85rem;
 }
 
 .keyboard {
   position: absolute;
   top: 100%;
+  height:3em;
   z-index: 10;
   transform: translateY(10%);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
 .keyboard button {
+  width: 2.5em;
   background-color: var(--spanish-yellow);
   color: black;
 }
@@ -384,26 +402,19 @@ export default {
   top: 100%;
   transform: translateY(10%);
   z-index: 20;
-}
-
-.alert-cross:hover {
-  cursor: pointer;
-}
-
-input {
-  border-radius: 5px 0px 0px 5px !important;
-}
-
-input::placeholder {
-  color: gray;
-  opacity: 70%;
-  font-size: 0.9rem;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
 .autocomplete-pane {
   position: absolute;
   top: 100%;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  z-index: 10;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+.autocomplete-pane div {
+  height: 2em;
 }
 
 .autocomplete-pane > div:last-child {
@@ -415,66 +426,87 @@ input::placeholder {
   background-color: gainsboro !important;
 }
 
-/* tablets + portrait orientation */
-
-@media screen and (min-width: 768px) and (orientation: portrait) {
-  input,
-  .autocomplete-pane {
-    font-size: 1.5rem;
+@media (min-width: 360px) {
+  .keyboard {
+    height: 3.5em;
   }
 
-  input {
-    height: 2.5rem;
+  .keyboard button {
+    font-size: 1.2rem;
+  }
+  
+  .search-bar input {
+  font-size: 1.2rem;
+}
+
+  .search-bar input::placeholder {
+    font-size: 1.2rem;
+  }
+
+  .alert-msg {
+    font-size: 1.2rem;
+  }
+
+  .autocomplete-pane div {
+  height: 2.2em;
+  font-size: 1.2rem;
+}
+}
+
+@media (min-width: 600px) {
+  .search-bar input {
+    font-size: 2rem;
+  }
+
+  .search-bar input::placeholder {
+    font-size: 1.8rem;
   }
 
   .search-bar button {
-    width: 2.5rem;
-    font-size: 1.1rem;
+    width: 2em;
+    font-size: 2rem;
   }
 
-  input::placeholder {
-    font-size: 1rem;
+  .keyboard {
+    height: 4em;
+  }
+
+  .keyboard button {
+    font-size: 1.6rem;
+  }
+
+  .alert-msg {
+    font-size: 1.6rem;
+  }
+
+    .autocomplete-pane div {
+  height: 2.5em;
+  font-size: 1.6rem;
+}
+}
+
+/* tablets + portrait orientation */
+@media screen and (min-width: 768px) and (orientation: portrait) {
+  .search-bar input {
+  font-size: 2rem;
+}
+
+  .search-bar input::placeholder {
+    font-size: 2rem;
+  }
+
+  .search-bar button {
+    font-size: 2rem;
   }
 }
 
 @media screen and (min-width: 1024px) and (orientation: portrait) {
-  input,
-  .autocomplete-pane {
-    font-size: 1.5rem;
-  }
-
-  input {
-    height: 3.5rem;
+  .search-bar input::placeholder {
+    font-size: 2.2rem;
   }
 
   .search-bar button {
-    width: 3.5rem;
-    font-size: 1.4rem;
-  }
-
-  input::placeholder {
-    font-size: 1.4rem;
-  }
-}
-
-/* tablets + landscape orientation */
-@media screen and (min-width: 1024px) and (orientation: landscape) {
-  input,
-  .autocomplete-pane {
-    font-size: 1.5rem;
-  }
-
-  input {
-    height: 3rem;
-  }
-
-  .search-bar button {
-    width: 3rem;
-    font-size: 1.4rem;
-  }
-
-  input::placeholder {
-    font-size: 1.2rem;
+    font-size: 2.7rem;
   }
 }
 </style>

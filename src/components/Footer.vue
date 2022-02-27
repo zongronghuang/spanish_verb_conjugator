@@ -1,5 +1,5 @@
 <template>
-  <footer class="d-flex flex-column mb-2">
+  <footer class="footer d-flex flex-column w-100 ">
     <div class="w-25">
       <small id="space-filler" class="space-filler"></small>
     </div>
@@ -16,9 +16,10 @@
         />
         Photo credit:
         <a
-          class="text-decoration-none font-weight-bold"
+          class="text-decoration-none"
           href="https://unsplash.com/@rotivartic"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Rotiv Artic
         </a>
@@ -36,9 +37,10 @@
         />
         by
         <a
-          class="text-decoration-none font-weight-bold"
+          class="text-decoration-none"
           href="https://github.com/zongronghuang/spanish_verb_conjugator"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Zong-Rong
         </a>
@@ -57,10 +59,14 @@ export default {
 </script>
 
 <style scoped>
-small > a {
+/* small > a {
   color: var(--spanish-yellow);
+} */
+.footer {
+  font-size: 1rem;
 }
 
+.footer a,
 .heart-icon,
 .camera-icon {
   color: var(--spanish-yellow);
@@ -86,4 +92,16 @@ small > a {
     transform: scale(1);
   }
 }
+
+  @media (min-width: 600px) {
+    .footer {
+      font-size: 1.3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer {
+      font-size: 1.5rem;
+    }
+  }
 </style>
