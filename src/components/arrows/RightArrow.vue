@@ -6,7 +6,7 @@
   >
     <div>
       <router-link
-        class="right-arrow d-inline-block text-decoration-none w-100 my-1"
+        class="right-arrow d-inline-block w-100 text-decoration-none"
         id="right-arrow"
         to=""
         title="Next"
@@ -42,11 +42,12 @@ export default {
 
 <style scoped>
 .right-panel {
-  width: 25%;
-  margin-right: 5px;
-  background-color: var(--spanish-yellow);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
+  width: 40%;
+  background-color: var(--spanish-red);
   cursor: pointer;
+}
+
+.right-arrow {
+  font-size: 2vh;
 }
 </style>

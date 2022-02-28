@@ -6,7 +6,7 @@
   >
     <div>
       <router-link
-        class="left-arrow d-inline-block text-decoration-none w-100 my-1"
+        class="left-arrow d-inline-block w-100 text-decoration-none"
         to=""
         id="left-arrow"
         title="Back"
@@ -42,11 +42,12 @@ export default {
 
 <style scoped>
 .left-panel {
-  width: 25%;
-  margin-left: 5px;
-  background-color: var(--spanish-yellow);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
+  width: 40%;
+  background-color: var(--spanish-red);
   cursor: pointer;
+}
+
+.left-arrow {
+  font-size: 2vh;
 }
 </style>

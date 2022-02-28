@@ -11,7 +11,7 @@
     </main>
 
     <footer
-      class="main-footer d-flex justify-content-between w-100 mb-2"
+      class="main-footer d-flex justify-content-between w-100"
       v-if="configs.useMode !== 'fill-in'"
     >
       <LeftArrow />
@@ -127,64 +127,21 @@ export default {
 
 <style scoped>
 .main-page {
-  padding: 0;
+  /* padding: 0; */
   height: 100vh;
   width: 100vw;
-  margin-left: 0;
-  margin-right: 0;
-  gap: 7%;
+  /* margin-left: 0;
+  margin-right: 0; */
+  /* gap: 7%; */
 }
 
 .main-display {
   height: 60%;
+  background-color: var(--spanish-yellow);
 }
 
 .main-footer {
-  height: 7%;
-}
-
-/* small phones + landscape orientation */
-@media screen and (min-height: 280px) and (orientation: landscape) {
-  .main-footer {
-    height: 10%;
-    font-size: 0.7rem;
-  }
-}
-
-/* tablets */
-@media screen and (min-width: 768px) and (orientation: portrait) {
-  .main-footer {
-    height: 7%;
-    font-size: 1.9rem;
-  }
-}
-
-@media screen and (min-height: 768px) and (orientation: landscape) {
-  .main-footer {
-    height: 7%;
-    font-size: 1.4rem;
-  }
-}
-
-@media screen and (min-width: 1024px) and (orientation: portrait) {
-  .main-footer {
-    height: 7%;
-    font-size: 2.3rem;
-  }
-}
-
-@media screen and (min-height: 1024px) and (orientation: landscape) {
-  .main-footer {
-    height: 7%;
-    font-size: 1.8rem;
-  }
-}
-
-/* desktops  */
-@media screen and (min-width: 1367px) {
-  .main-footer {
-    height: 7%;
-    font-size: 1.3rem;
-  }
+  height: 7vh;
+  background-color: var(--spanish-yellow);
 }
 </style>
