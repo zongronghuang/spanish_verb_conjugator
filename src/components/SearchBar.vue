@@ -85,12 +85,12 @@
       </span>
     </div>
 
-     <!-- autocomplete 搜尋提示 -->
+     <!-- autosuggestion 搜尋提示 -->
       <div
-        id="autocomplete-pane"
-        class="autocomplete-pane w-100"
+        id="autosuggestion-pane"
+        class="autosuggestion-pane w-100"
         v-show="matchedInfinitives.length"
-        ref="autocompletePane"
+        ref="autosuggestionPane"
       >
         <div
           v-for="(entry, id) in matchedInfinitives"
@@ -174,8 +174,8 @@ export default {
       }
     },
     searchByInput() {
-      // 優先搜尋使用者主動選擇的 autocomplete suggestion
-      // 如果沒有選擇 autocomplete suggestion，則以 input 欄位的值進行搜尋
+      // 優先搜尋使用者主動選擇的 autosuggestion
+      // 如果沒有選擇 autosuggestion，則以 input 欄位的值進行搜尋
       if (this.selectedSuggestion) {
         this.input = this.selectedSuggestion;
         this.checkInfinitiveExistence();
@@ -216,7 +216,7 @@ export default {
       const searchInput = event.target;
       const searchBtn = document.querySelector(".search-btn");
 
-      // 沒有 autocomplete suggestion，搜尋欄下方顯示圓角
+      // 沒有 autosuggestion suggestion，搜尋欄下方顯示圓角
       if (this.matchedInfinitives.length === 0) {
         searchInput.style.setProperty(
           "border-radius",
@@ -230,7 +230,7 @@ export default {
         );
       }
 
-      // 有 autocomplete suggestion，搜尋欄下方顯示直角
+      // 有 autosuggestion suggestion，搜尋欄下方顯示直角
       if (this.matchedInfinitives.length !== 0) {
         searchInput.style.setProperty(
           "border-radius",
@@ -249,7 +249,7 @@ export default {
       this.resetSuggestionNavigation();
     },
     navigateSuggestionsByUpArrow() {
-      const { children: suggestions } = this.$refs.autocompletePane;
+      const { children: suggestions } = this.$refs.autosuggestionPane;
       const numOfSuggestions = suggestions.length;
       const currentID = this.currentSuggestionID;
       const nextID = currentID - 1;
@@ -287,7 +287,7 @@ export default {
       }
     },
     navigateSuggestionsByDownArrow() {
-      const { children: suggestions } = this.$refs.autocompletePane;
+      const { children: suggestions } = this.$refs.autosuggestionPane;
       const numOfSuggestions = suggestions.length;
       const currentID = this.currentSuggestionID;
       const nextID = currentID + 1;
@@ -361,7 +361,7 @@ export default {
 <style scoped>
 .search-area {
   width: 95%;
-  max-width: 600px;
+  max-width: 500px;
   border-radius: 5px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
@@ -405,108 +405,48 @@ export default {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
-.autocomplete-pane {
+.autosuggestion-pane {
   position: absolute;
-  top: 100%;
+  top: 98.5%;
   font-size: 1rem;
   z-index: 10;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
-.autocomplete-pane div {
+.autosuggestion-pane div {
   height: 2em;
 }
 
-.autocomplete-pane > div:last-child {
+.autosuggestion-pane > div:last-child {
   border-radius: 0px 0px 5px 5px !important;
 }
 
-.autocomplete-pane > div:hover,
+.autosuggestion-pane > div:hover,
 .nav-location {
   background-color: gainsboro !important;
 }
 
 @media (min-width: 360px) {
-  .keyboard {
-    height: 3.5em;
+  .search-area {
+    transform: scaleY(1.1);
   }
-
-  .keyboard button {
-    font-size: 1.2rem;
-  }
-  
-  .search-bar input {
-  font-size: 1.2rem;
-}
-
-  .search-bar input::placeholder {
-    font-size: 1.2rem;
-  }
-
-  .alert-msg {
-    font-size: 1.2rem;
-  }
-
-  .autocomplete-pane div {
-  height: 2.2em;
-  font-size: 1.2rem;
-}
 }
 
 @media (min-width: 600px) {
-  .search-bar input {
-    font-size: 2rem;
-  }
-
-  .search-bar input::placeholder {
-    font-size: 1.8rem;
-  }
-
-  .search-bar button {
-    width: 2em;
-    font-size: 2rem;
-  }
-
-  .keyboard {
-    height: 4em;
-  }
-
-  .keyboard button {
-    font-size: 1.6rem;
-  }
-
-  .alert-msg {
-    font-size: 1.6rem;
-  }
-
-    .autocomplete-pane div {
-  height: 2.5em;
-  font-size: 1.6rem;
-}
-}
-
-/* tablets + portrait orientation */
-@media screen and (min-width: 768px) and (orientation: portrait) {
-  .search-bar input {
-  font-size: 2rem;
-}
-
-  .search-bar input::placeholder {
-    font-size: 2rem;
-  }
-
-  .search-bar button {
-    font-size: 2rem;
+  .search-area {
+    transform: scale(1.2, 1.35);
   }
 }
 
-@media screen and (min-width: 1024px) and (orientation: portrait) {
-  .search-bar input::placeholder {
-    font-size: 2.2rem;
+@media (min-width:768px) {
+  .search-area {
+    transform: scale(1.4, 1.55);
   }
+}
 
-  .search-bar button {
-    font-size: 2.7rem;
+@media (min-width: 1024px) {
+  .search-area {
+    transform: scale(1.6, 1.75);
   }
 }
 </style>
