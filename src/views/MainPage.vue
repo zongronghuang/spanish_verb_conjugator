@@ -24,6 +24,7 @@
     <RandomSpinnerModal />
 
     <IrregularVerbsModal />
+    <SlideMenuModal />
 
     <ReportModal :lastSearchTime="lastSearchTime" />
 
@@ -41,6 +42,7 @@ import RandomSpinnerModal from "../components/modals/RandomSpinnerModal.vue";
 import IrregularVerbsModal from "../components/modals/IrregularVerbsModal.vue";
 import ReportModal from "../components/modals/ReportModal.vue";
 import SettingsModal from "../components/modals/SettingsModal.vue";
+import SlideMenuModal from '../components/modals/SlideMenuModal.vue'
 
 import { mapState } from "vuex";
 import { collectSearchedVerbToLocalStorage } from "../utils/mixins.js";
@@ -58,6 +60,7 @@ export default {
     IrregularVerbsModal,
     ReportModal,
     SettingsModal,
+    SlideMenuModal,
   },
   mixins: [collectSearchedVerbToLocalStorage],
   data() {

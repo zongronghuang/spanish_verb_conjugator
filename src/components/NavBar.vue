@@ -1,12 +1,17 @@
 <template>
-  <nav class="px-0 mx-0">
+  <nav>
     <div id="left-buttons" class="left-buttons px-1 mx-0">
       <IrregularVerbsButton />
       <ChanceButton />
     </div>
 
     <div class="search-bar mx-0">
-      <SearchBar />
+      <!-- <SearchBar /> -->
+      <InlineSearchBar />
+    </div>
+
+    <div class="mobile-menu">
+      <MenuButton/>
     </div>
 
     <div id="right-buttons" class="right-buttons px-1 mx-0">
@@ -17,20 +22,24 @@
 </template>
 
 <script>
-import SearchBar from "./SearchBar.vue";
+//import SearchBar from "./SearchBar.vue";
+import InlineSearchBar from './InlineSearchBar.vue'
 import IrregularVerbsButton from "./navButtons/IrregularVerbsButton.vue";
 import SettingsButton from "./navButtons/SettingsButton.vue";
 import ReportButton from "./navButtons/ReportButton.vue";
 import ChanceButton from "./navButtons/ChanceButton.vue";
+import MenuButton from './navButtons/MenuButton.vue'
 
 export default {
   name: "nav-bar",
   components: {
-    SearchBar,
+    // SearchBar,
+    InlineSearchBar,
     IrregularVerbsButton,
     SettingsButton,
     ReportButton,
     ChanceButton,
+    MenuButton
   },
   created() {
     console.log("[created] NavBar");
@@ -50,7 +59,13 @@ nav {
   align-items: center;
 }
 
-.search-bar {
+.search-bar, 
+.left-buttons,
+.right-buttons {
+  display: none;
+}
+
+/* .search-bar {
   transform: scale(0.95, 0.95);
   margin: 0 auto;
 }
@@ -62,7 +77,7 @@ nav {
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
-}
+} */
 
 /* smart phones + portrait orientation */
 @media screen and (min-width: 360px) and (orientation: portrait) {
