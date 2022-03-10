@@ -2,13 +2,12 @@
   <div id="main-page" class="main-page d-flex flex-column justify-content-between">
     <NavBar />
 
-    <main class="main-display d-flex flex-grow-1 align-items-center">
+    <div class="main-display flex-grow-1">
       <ConjugationTable
-        class="conjugation-table"
         :mode="mode"
         :selectedConjugations="selectedConjugations"
       />
-    </main>
+    </div>
 
     <footer
       class="main-footer d-flex justify-content-between w-100"
@@ -139,7 +138,10 @@ export default {
 }
 
 .main-display {
-  height: 60%;
+  /* height: 60%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--spanish-yellow);
 }
 

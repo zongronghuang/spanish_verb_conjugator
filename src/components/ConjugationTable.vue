@@ -2,20 +2,19 @@
   <div class="card-frame">
     <div
       ref="cardFront"
-      class="card-front"
+      class="card-front d-flex align-items-center justify-content-center"
       @mouseenter.prevent.stop="getCardFrontSize"
     >
-      <div class="card w-100">
+      <div class="card">
         <!-- 動詞名稱 + 時態名稱 -->
         <div
           class="
             card-header
             d-flex
-            flex-row
+      
             justify-content-between
             align-items-center
-            py-0
-            px-0
+            p-1
           "
         >
           <button
@@ -27,7 +26,7 @@
           >
             {{ verb.infinitive }}
           </button>
-          <span id="mood-tense" class="mood-tense small align-middle ml-1 py-0 my-0">
+          <span id="mood-tense" class="mood-tense small align-middle ml-4 py-0 my-0 ">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
 
@@ -368,11 +367,12 @@ export default {
 /* >>> card flipping effect >>> */
 .card-frame {
   position: relative;
-  top: -50%;
-  width: 97%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  margin: 0;
   transform-style: preserve-3d;
-  font-size: 1.1rem;
+  font-size: calc(1em + 1.2vw);
 }
 
 .card-front,
@@ -382,10 +382,6 @@ export default {
   height: 100%;
   backface-visibility: hidden;
   transition-duration: 700ms;
-}
-
-.card-front {
-  transform: none;
 }
 
 .card-back {
@@ -446,7 +442,7 @@ svg {
 .verb-name {
   background-color: var(--spanish-red);
   color: white;
-  margin: 3px 3px;
+  /* margin: 3px 3px; */
   padding: 2px 4px;
   border-radius: 5px;
   letter-spacing: -0.1rem;
@@ -474,164 +470,5 @@ input {
 
 .flip-icon {
  background-color: var(--spanish-red);
-}
-
-
-/* smart phones + portrait orientation */
-@media screen and (min-height: 700px) and (orientation: portrait) {
-  .card-frame {
-    font-size: 1.4rem;
-  }
-}
-
-/* smart phones + landscape orientation */
-@media screen and (min-height: 280px) and (orientation: landscape) {
-  .card-frame {
-    font-size: 1rem;
-    transform: scale(0.8, 0.8);
-    top: -57%;
-  }
-}
-
-@media screen and (min-height: 320px) and (orientation: landscape) {
-  .card-frame {
-    font-size: 1.2rem;
-    top: -55%;
-  }
-}
-
-@media screen and (min-height: 400px) and (orientation: landscape) {
-  .card-frame {
-    font-size: 1.4rem;
-    transform: scale(0.9, 0.9);
-  }
-}
-
-/* tablets + portrait orientaiton */
-
-@media screen and (min-height: 1356px) and (orientation: portrait) {
-  .card-frame {
-    top: -40%;
-    font-size: 2.5rem;
-  }
-
-  .verb-name {
-    font-size: 2.5rem;
-  }
-
-  th,
-  td,
-  .card-header {
-    letter-spacing: -0.12rem;
-  }
-}
-
-/* tablets + landscape orientation */
-/* surface duo */
-@media screen and (min-height: 540px) and (orientation: landscape) {
-  .card-frame {
-    font-size: 1.4rem;
-    transform: scale(1, 1);
-    width: 75%;
-  }
-
-  input {
-    font-size: 1.4rem;
-  }
-}
-
-@media screen and (min-height: 768px) and (orientation: landscape) {
-  .card-frame {
-    font-size: 2rem;
-    transform: scale(1, 1);
-    top: -45%;
-  }
-
-  .verb-name {
-    font-size: 1.5rem;
-  }
-
-  th,
-  td,
-  .card-header {
-    letter-spacing: -0.12rem;
-  }
-
-  input {
-    font-size: 1.4rem;
-  }
-
-  .flip-icon {
-    font-size: 2rem;
-  }
-}
-
-/* ipad */
-@media screen and (min-height: 1024px) and (orientation: portrait) {
-  .card-frame {
-    top: -40%;
-    font-size: 2rem;
-  }
-
-  th,
-  td,
-  .card-header {
-    letter-spacing: -0.1rem;
-  }
-
-  input {
-    font-size: 2rem;
-  }
-
-  .flip-icon {
-    font-size: 2rem;
-  }
-}
-
-@media screen and (min-width: 1024px) and (orientation: landscape) {
-  .card-frame {
-    font-size: 2rem;
-    top: -42%;
-    width: 75%;
-  }
-
-  .verb-name,
-  input {
-    font-size: 2rem;
-  }
-}
-
-/* ipad pro */
-@media screen and (min-width: 1366px) and (orientation: landscape) {
-  .card-frame {
-    font-size: 2.3rem;
-    top: -40%;
-    width: 65%;
-  }
-
-  th,
-  td,
-  .card-header {
-    letter-spacing: -0.14rem;
-  }
-
-  input,
-  .verb-name {
-    font-size: 2rem;
-  }
-}
-
-/* desktops */
-@media screen and (min-width: 1367px) {
-  .card-frame {
-    font-size: 2.2rem;
-    top: -45%;
-    width: 50%;
-  }
-
-  .flip-icon {
-    font-size: 1.4rem;  
-    background-color: var(--spanish-red);
-  }
 }
 </style>

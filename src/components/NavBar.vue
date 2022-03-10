@@ -50,7 +50,7 @@ export default {
 <style scoped>
 nav {
   background-color: var(--spanish-red);
-  height: 10%;
+  height: 7vh;
   width: 100%;
   display: flex;
   flex-direction: row;
