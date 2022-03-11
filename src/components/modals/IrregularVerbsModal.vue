@@ -37,7 +37,7 @@
               Practice the most common irregular verbs in Spanish.
             </p>
             <div
-              class="d-flex justify-content-between flex-wrap flex-row w-100"
+              class="word-list d-flex justify-content-between flex-wrap flex-row w-100"
               @click.prevent.stop="closeModal"
             >
               <router-link
@@ -130,4 +130,7 @@ export default {
 </script>
 
 <style scoped>
+.modal {
+  overflow: auto;
+}
 </style>
