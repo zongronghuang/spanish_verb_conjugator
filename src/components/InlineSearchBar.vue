@@ -24,6 +24,7 @@ export default {
 <style scoped>
 .inline-search-bar {
   box-shadow: initial;
+  transform: scale(1.3, 1.3);
 }
 
 

@@ -1,6 +1,6 @@
 <template>
-  <nav class="d-flex justify-content-between align-items-center py-2">
-    <div id="left-buttons" class="left-buttons w-25 h-100 ">
+  <nav class="d-flex justify-content-between align-items-center py-0">
+    <div id="left-buttons" class="left-buttons w-25 h-100 py-2">
       <IrregularVerbsButton />
       <ChanceButton />
     </div>
@@ -10,11 +10,11 @@
       <InlineSearchBar />
     </div>
 
-    <div class="mobile-menu text-center flex-grow-1">
+    <div class="mobile-menu text-center flex-grow-1 py-2">
       <MenuButton/>
     </div>
 
-    <div id="right-buttons " class="right-buttons  w-25 h-100">
+    <div id="right-buttons " class="right-buttons  w-25 h-100 py-2">
       <ReportButton />
       <SettingsButton />
     </div>
@@ -74,6 +74,7 @@ nav {
 
   .search-bar {
     display: block;
+    margin-top: 0;
   }
 
   .left-buttons,

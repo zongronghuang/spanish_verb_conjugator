@@ -3,7 +3,7 @@
     <div
       ref="cardFront"
       class="card-front d-flex align-items-center justify-content-center"
-      @mouseenter.prevent.stop="getCardFrontSize"
+      @mouseenter.prevent.stop="getCardSize"
     >
       <div class="card">
         <!-- 動詞名稱 + 時態名稱 -->
@@ -157,7 +157,7 @@
     <!-- 卡片背面 -->
     <div
       ref="cardBack"
-      class="card-back"
+      class="card-back d-flex align-items-center justify-content-center"
       :style="cardBackImgStyle"
       title="Flip the card to show the content"
       @click.prevent.stop="removeCardFlippingEffect"
@@ -169,6 +169,7 @@
         class="rounded-lg"
         alt="Spanish flag"
       />
+
     </div>
   </div>
 </template>
@@ -289,15 +290,25 @@ export default {
         (result, index) => userInputs[index] === this.conjugations[index]
       );
     },
-    getCardFrontSize() {
+    getCardSize() {
       // 用 clientwidth clientheight 試試看?
-      const cardFront = document.querySelector(".card-front");
-      const { scrollHeight, scrollWidth } = cardFront;
+      // const cardFront = document.querySelector(".card-front");
+      // const { scrollHeight, scrollWidth } = cardFront;
+
+      // this.cardBackImgStyle = {
+      //   ...this.cardBackImgStyle,
+      //   height: scrollHeight + "px",
+      //   width: scrollWidth + "px",
+      // };
+      const card = document.querySelector(".card");
+      const { scrollHeight, scrollWidth, offsetLeft, offsetTop } = card;
 
       this.cardBackImgStyle = {
         ...this.cardBackImgStyle,
         height: scrollHeight + "px",
         width: scrollWidth + "px",
+        top: offsetTop + 'px',
+        left: offsetLeft + 'px'
       };
     },
     addCardFlippingEffect() {
@@ -372,7 +383,7 @@ export default {
   height: 100%;
   margin: 0;
   transform-style: preserve-3d;
-  font-size: calc(1em + 1.2vw);
+  font-size: calc(1em + 1.6vw);
 }
 
 .card-front,
@@ -383,6 +394,10 @@ export default {
   backface-visibility: hidden;
   transition-duration: 700ms;
 }
+
+/* .card-front {
+  transform: none;
+} */
 
 .card-back {
   top: 0%;
