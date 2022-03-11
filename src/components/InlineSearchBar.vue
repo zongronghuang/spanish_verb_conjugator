@@ -1,5 +1,5 @@
 <template>
-  <SearchBar />
+  <SearchBar class="inline-search-bar"/>
 </template>
 
 <script>
@@ -11,9 +11,9 @@ export default {
     SearchBar
   },
   data () {
-    // return {
+    return {
 
-    // }
+    }
   },
   methods: {
     
@@ -22,7 +22,9 @@ export default {
 </script>
 
 <style scoped>
-
+.inline-search-bar {
+  box-shadow: initial;
+}
 
 
 </style>

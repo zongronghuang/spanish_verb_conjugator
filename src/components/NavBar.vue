@@ -1,20 +1,20 @@
 <template>
-  <nav>
-    <div id="left-buttons" class="left-buttons px-1 mx-0">
+  <nav class="d-flex justify-content-between align-items-center py-2">
+    <div id="left-buttons" class="left-buttons w-25 h-100 ">
       <IrregularVerbsButton />
       <ChanceButton />
     </div>
 
-    <div class="search-bar mx-0">
+    <div class="search-bar pl-2">
       <!-- <SearchBar /> -->
       <InlineSearchBar />
     </div>
 
-    <div class="mobile-menu">
+    <div class="mobile-menu text-center flex-grow-1">
       <MenuButton/>
     </div>
 
-    <div id="right-buttons" class="right-buttons px-1 mx-0">
+    <div id="right-buttons " class="right-buttons  w-25 h-100">
       <ReportButton />
       <SettingsButton />
     </div>
@@ -50,13 +50,15 @@ export default {
 <style scoped>
 nav {
   background-color: var(--spanish-red);
-  height: 7vh;
+  /* height: 10vh; */
   width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+
+
 }
 
 .search-bar, 
@@ -64,6 +66,26 @@ nav {
 .right-buttons {
   display: none;
 }
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none;
+  }
+
+  .search-bar {
+    display: block;
+  }
+
+  .left-buttons,
+  .right-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+
 
 /* .search-bar {
   transform: scale(0.95, 0.95);
@@ -80,7 +102,7 @@ nav {
 } */
 
 /* smart phones + portrait orientation */
-@media screen and (min-width: 360px) and (orientation: portrait) {
+/* @media screen and (min-width: 360px) and (orientation: portrait) {
   .search-bar {
     transform: scale(1.1, 1.1);
   }
@@ -90,10 +112,10 @@ nav {
   .search-bar {
     transform: scale(1.2, 1.2);
   }
-}
+} */
 
 /* tablets + portrait orientation */
-@media screen and (min-width: 768px) and (orientation: portrait) {
+/* @media screen and (min-width: 768px) and (orientation: portrait) {
   nav {
     justify-content: space-around;
   }
@@ -118,10 +140,10 @@ nav {
   .left-buttons {
     font-size: 1.5rem;
   }
-}
+} */
 
 /* smart phones + landscape*/
-@media screen and (min-height: 280px) and (orientation: landscape) {
+/* @media screen and (min-height: 280px) and (orientation: landscape) {
   nav {
     height: 13%;
   }
@@ -144,10 +166,10 @@ nav {
   .right-buttons {
     font-size: 1rem;
   }
-}
+} */
 
 /* tablets + landscape orientation */
-@media screen and (min-width: 1024px) and (orientation: landscape) {
+/* @media screen and (min-width: 1024px) and (orientation: landscape) {
   nav {
     height: 80px;
     max-height: 100px;
@@ -169,10 +191,10 @@ nav {
   .right-buttons {
     justify-content: space-around;
   }
-}
+} */
 
 /* desktops */
-@media screen and (min-width: 1367px) {
+/* @media screen and (min-width: 1367px) {
   nav {
     height: 60px;
   }
@@ -188,6 +210,6 @@ nav {
     transform: scale(1, 1);
     font-size: 1.3rem;
   }
-}
+} */
 </style>
 
