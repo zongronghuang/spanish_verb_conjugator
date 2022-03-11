@@ -20,7 +20,7 @@
           </button>
         </div>
         <div class="modal-body px-0 pb-4 d-flex justify-content-center">
-          <InlineSearchBar />
+          <InlineSearchBar class="inline-search-bar" />
         </div>
         <div class="modal-footer py-1 mt-5">
           <div class="mt-2 w-100 d-flex justify-content-around">
@@ -39,7 +39,6 @@
 </template>
 
 <script>
-// import $ from "jquery";
 import InlineSearchBar from '../InlineSearchBar.vue'
 import ChanceButton from '../navButtons/ChanceButton.vue'
 import IrregularVerbsButton from '../navButtons/IrregularVerbsButton.vue'
@@ -62,6 +61,10 @@ export default {
 </script>
 
 <style scoped>
+.inline-search-bar {
+  box-shadow: initial;
+  transform: scale(99%);
+}
 
 .modal-footer {
   background-color: var(--spanish-red);

@@ -8,7 +8,6 @@
       title="show menu"
     >
       <font-awesome-icon class="" :icon="['fas', 'bars']" size="2x" />
-      <!-- <span class="h6 pt-2 my-0">Report</span> -->
     </a>
   </div>
 </template>
@@ -18,10 +17,7 @@ export default {
   name: 'menu-button',
   created() {
     console.log('[created] MenuButton')
-  },
-  components: {},
-  data(){return {}},
-  methods: {}
+  }
 }
 </script>
 

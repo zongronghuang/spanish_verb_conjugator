@@ -11,7 +11,6 @@
           class="
             card-header
             d-flex
-      
             justify-content-between
             align-items-center
             p-1
