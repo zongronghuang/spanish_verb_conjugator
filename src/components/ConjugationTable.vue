@@ -66,10 +66,10 @@
                 </td>
 
                 <!-- fill-in 模式 -->
-                <td v-else class="col-6 py-0 align-middle">
+                <td v-else class="col-7 py-0 align-middle">
                   <input
                     type="text"
-                    class="form-control table-input"
+                    class="form-control table-input my-1"
                     :data-id="id"
                     v-model="inputs[id]"
                   />
@@ -78,7 +78,7 @@
                 <!-- fill-in 模式的答對/答錯提示 -->
                 <td
                   v-if="configs.useMode === 'fill-in'"
-                  class="col-2 d-flex justify-content-center align-items-center"
+                  class="col-1 py-0 align-middle"
                 >
                   <!-- 答案正確 -->
 
@@ -87,9 +87,8 @@
                       badge badge-warning
                       align-middle
                       d-flex
-                      ml-3
+                      ml-2
                       p-2
-                      flex-row
                       justify-content-center
                     "
                     title="Correct!"
@@ -102,10 +101,10 @@
                   <span
                     class="
                       badge badge-warning
+                      align-middle
                       d-flex
-                      ml-3
+                      ml-2
                       p-2
-                      flex-row
                       justify-content-center
                     "
                     :title="`Answer: ${conjugations[id]}`"
@@ -128,15 +127,15 @@
 
           <!-- 特殊字元鍵盤 -->
           <div
-            class="card-footer d-flex flex-row justify-content-between"
+            class="card-footer d-flex flex-row justify-content-between px-2"
             v-if="configs.useMode === 'fill-in'"
           >
             <div
-              class="d-flex flex-row"
+              class="d-flex flex-row flex-wrap"
               @click.stop.prevent="inputSpecialCharacter"
             >
               <button
-                class="btn btn-primary mr-1 special-character"
+                class="btn btn-primary mr-1 mt-1 special-character"
                 v-for="(character, id) in specialCharacters"
                 :key="id"
                 :value="character"
@@ -145,7 +144,7 @@
               </button>
             </div>
 
-            <button class="btn btn-primary" @click.stop.prevent="checkInputs">
+            <button class="btn btn-info mt-1" @click.stop.prevent="checkInputs">
               Check
             </button>
           </div>
