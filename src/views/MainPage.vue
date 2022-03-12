@@ -20,10 +20,11 @@
     <!-- modals -->
     <VerbInfoModal :verb="verb" />
 
+    <SlideMenuModal />
+
     <RandomSpinnerModal />
 
     <IrregularVerbsModal />
-    <SlideMenuModal />
 
     <ReportModal :lastSearchTime="lastSearchTime" />
 
@@ -129,16 +130,11 @@ export default {
 
 <style scoped>
 .main-page {
-  /* padding: 0; */
   height: 100vh;
   width: 100vw;
-  /* margin-left: 0;
-  margin-right: 0; */
-  /* gap: 7%; */
 }
 
 .main-display {
-  /* height: 60%; */
   display: flex;
   justify-content: center;
   align-items: center;

@@ -24,15 +24,16 @@
             <p class="text-left">
               Choose how to practice with the verbal conjugations.
             </p>
-            <div class="w-100 d-flex flex-row align-items-center pb-2">
-              <span class="w-25 text-left font-weight-bold">Use mode</span>
+            <div class="w-100 d-flex flex-column align-items-center pb-2">
+              <span class="w-50 text-center font-weight-bold">Use mode</span>
               <div
                 class="
-                  w-75
+                  w-100
+                  mt-2
                   btn-group
                   d-flex
+                  flex-wrap
                   justify-content-between
-                  float-right
                 "
                 ref="useModes"
                 role="group"
@@ -82,15 +83,16 @@
             <p class="text-left">
               Choose a conjugation of the verb by mood and tense.
             </p>
-            <div class="w-100 d-flex flex-row align-items-center">
-              <span class="w-25 text-left font-weight-bold">Mood & tense</span>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <span class="w-50 text-center font-weight-bold">Mood & tense</span>
               <div
                 class="
                   btn-group
                   d-flex
-                  w-75
+                  flex-wrap
+                  w-100
+                  mt-2
                   justify-content-between
-                  float-right
                 "
                 role="group"
                 ref="moods"
@@ -331,6 +333,11 @@ export default {
 </script>
 
 <style scoped>
+/* 讓 modal 可以 scroll */
+.modal {
+  overflow: auto;
+}
+
 .active {
   background-color: var(--spanish-yellow) !important;
   color: black !important;

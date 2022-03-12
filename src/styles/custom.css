@@ -1,6 +1,6 @@
 :root {
   --spanish-red: #aa151b;
-  --spanish-yellow: #f1bf00;
+  --spanish-yellow: rgb(241, 191, 0);
   font-size: 1em;
 }
 

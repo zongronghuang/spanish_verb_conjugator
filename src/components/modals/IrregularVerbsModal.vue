@@ -130,6 +130,7 @@ export default {
 </script>
 
 <style scoped>
+/* 讓 modal 可以 scroll */
 .modal {
   overflow: auto;
 }
