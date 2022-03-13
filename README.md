@@ -31,18 +31,17 @@ The search bar helps you access conjugations of a desired Spanish verb with ease
 
 1. Click on the magnifying-glass icon, click on a displayed verb match, or hit Enter to search the verb's conjugations.
 
-### :eyeglasses: Switch between conjugations
+![](/doc/search_verb.png)
 
-![switch conjugation video](/doc/switch_conjugations.mov)
+### :eyeglasses: Switch between conjugations
 
 You can browse a specific conjugation of the verb in either way:
 
 - Click on the left and right arrows on the page bottom.
 - Click **Settings** (the cogwheel icon) in the top right corner. Then, select the desired mood and tense in the **Mood & tense** section to show the corresponding conjugation.
+  ![](/doc/settings.png)
 
 ### :cookie: Play with use modes
-
-![use modes video](/doc/use_modes.mov)
 
 You can practice with Spanish conjugations in three modes:
 
@@ -50,11 +49,11 @@ You can practice with Spanish conjugations in three modes:
 1. Choose a use mode in the **Use mode** section:
    - **View**: You can browse all the conjugations of the verb.
    - **Flash card**: You can flip open and close the conjugation table as a card by clicking on the eye icons.
+     ![](/doc/memory_mode.png)
    - **Fill-in**: You can fill in conjugation forms by person in the corresponding fields and verify your answers.
+     ![](/doc/fill-in_mode.png)
 
 ### :circus_tent: Try learning tools
-
-![learning helpers video](/doc/learning_helpers.mov)
 
 You can experiment with other tools for learning Spanish verb conjugations:
 
@@ -63,15 +62,15 @@ You can experiment with other tools for learning Spanish verb conjugations:
 - **Random verb**: Show a random verb and its conjugations by clicking **Chance** in the top bar.
 - **Personal search history**: Show the top 10 verbs that you have searched most often during the past seven days of use by clicking **Report** in the top bar.
 
+![](/doc/settings.png)
+
 ### :sunglasses: Learn even while offline
 
 After the app is downloaded to the browser, you can use it offline until you close the tab.
 
-### :iphone: Responsive to various screen sizes
+### :iphone: Responsive to screen sizes
 
-You can use the app and its full features on a regular desktop computer, laptop, tablet, or mobile phones.
-
-![](/doc/mobile.png =200x)
+You can use the app and its full features on regular desktop computers, laptops, tablets, or mobile phones.
 
 ---
 
