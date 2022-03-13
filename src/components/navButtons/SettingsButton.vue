@@ -2,14 +2,13 @@
   <div>
     <!-- 設定按鈕 -->
     <a
-      href=""
       data-toggle="modal"
       data-target="#settingsDialog"
       title="View and change the app's settings"
-      class="mx-1 text-decoration-none"
+      class="text-decoration-none mx-1"
     >
-      <font-awesome-icon class="" :icon="['fas', 'cog']" size="2x" />
-      <span class="h6 pt-2 my-0">Settings</span>
+      <font-awesome-icon :icon="['fas', 'cog']" size="2x" />
+      <span class="my-0 pt-2 h6">Settings</span>
     </a>
   </div>
 </template>

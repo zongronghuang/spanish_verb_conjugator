@@ -1,7 +1,6 @@
 <template>
   <div>
     <a
-      href=""
       data-toggle="modal"
       data-target="#spinner"
       title="Get a random Spanish verb"
@@ -9,7 +8,7 @@
       @click.stop.prevent="runTimedSpinnerAndPickRandomVerb"
     >
       <font-awesome-icon :icon="['fas', 'dice']" size="2x" />
-      <span class="h6 pt-2 my-0">Chance</span>
+      <span class="my-0 pt-2 h6">Chance</span>
     </a>
   </div>
 </template>

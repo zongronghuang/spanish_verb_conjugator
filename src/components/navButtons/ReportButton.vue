@@ -1,14 +1,13 @@
 <template>
   <div>
     <a
-      href=""
-      class="text-decoration-none mx-1"
+      class="mx-1 text-decoration-none"
       data-toggle="modal"
       data-target="#reportDialog"
       title="View the Spanish verbs that you've searched most"
     >
-      <font-awesome-icon class="" :icon="['fas', 'notes-medical']" size="2x" />
-      <span class="h6 pt-2 my-0">Report</span>
+      <font-awesome-icon :icon="['fas', 'notes-medical']" size="2x" />
+      <span class="my-0 pt-2 h6">Report</span>
     </a>
   </div>
 </template>

@@ -3,14 +3,13 @@
   <div id="irregular-infinitive-list h-100">
     <!-- 不規則動詞清單按鈕 -->
     <a
-      href=""
       data-toggle="modal"
       data-target="#irregularVerbsDialog"
       title="Check out essential irregular verbs in Spanish"
       class="text-decoration-none"
     >
-      <font-awesome-icon class="" :icon="['fas', 'clipboard-list']" size="2x" />
-      <span class="h6 pt-2 my-0">Irregulars</span>
+      <font-awesome-icon :icon="['fas', 'clipboard-list']" size="2x" />
+      <span class="my-0 pt-2 h6">Irregulars</span>
     </a>
   </div>
 </template>

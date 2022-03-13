@@ -41,7 +41,7 @@
             </div>
           </section>
         </div>
-        <div class="modal-footer py-1 border-0"></div>
+        <div class="modal-footer border-0 py-1"></div>
       </div>
     </div>
   </div>

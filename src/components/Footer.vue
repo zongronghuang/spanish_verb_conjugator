@@ -1,12 +1,12 @@
 <template>
-  <footer class="footer d-flex flex-column w-100 ">
+  <footer class="footer d-flex flex-column w-100">
     <div class="w-25">
       <small id="space-filler" class="space-filler"></small>
     </div>
 
     <div class="mx-auto">
       <small
-        class="text-light w-100 text-right"
+        class="w-100 text-right text-light"
         title="Check out Rotiv Artic's photography on Unsplash."
       >
         <font-awesome-icon
@@ -59,9 +59,6 @@ export default {
 </script>
 
 <style scoped>
-/* small > a {
-  color: var(--spanish-yellow);
-} */
 .footer {
   font-size: 1rem;
 }

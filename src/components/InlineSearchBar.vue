@@ -9,14 +9,6 @@ export default {
   name: 'inline-search-bar',
   components: {
     SearchBar
-  },
-  data () {
-    return {
-
-    }
-  },
-  methods: {
-    
   }
 }
 </script>
@@ -26,6 +18,4 @@ export default {
   box-shadow: initial;
   transform: scale(1.3, 1.3);
 }
-
-
 </style>

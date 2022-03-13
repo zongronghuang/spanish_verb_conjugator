@@ -24,12 +24,12 @@
         <div class="modal-body px-0 py-0">
           <section
             class="
-              px-3
-              py-2
               d-flex
               justify-content-between
               flex-wrap flex-row
               w-100
+              px-3
+              py-2
               bg-light
             "
           >
@@ -52,7 +52,7 @@
             </div>
           </section>
         </div>
-        <div class="modal-footer py-1 border-0"></div>
+        <div class="modal-footer border-0 py-1"></div>
       </div>
     </div>
   </div>

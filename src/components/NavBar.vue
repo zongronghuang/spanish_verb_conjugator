@@ -9,11 +9,11 @@
       <InlineSearchBar />
     </div>
 
-    <div class="mobile-menu text-center flex-grow-1 py-2">
+    <div class="mobile-menu flex-grow-1 py-2 text-center">
       <MenuButton/>
     </div>
 
-    <div id="right-buttons " class="right-buttons  w-25 h-100 py-2">
+    <div id="right-buttons " class="right-buttons w-25 h-100 py-2">
       <ReportButton />
       <SettingsButton />
     </div>

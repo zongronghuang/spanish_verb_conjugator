@@ -19,15 +19,15 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body px-0 pb-4 d-flex justify-content-center">
+        <div class="modal-body d-flex justify-content-center px-0 pb-4">
           <InlineSearchBar class="inline-search-bar" />
         </div>
-        <div class="modal-footer py-1 mt-5">
-          <div class="mt-2 w-100 d-flex justify-content-around">
+        <div class="modal-footer mt-5 py-1">
+          <div class="d-flex justify-content-around w-100 mt-2">
             <IrregularVerbsButton />
             <ChanceButton/>
           </div>
-          <div class="mt-4 w-100 d-flex justify-content-around">
+          <div class="d-flex justify-content-around w-100 mt-4">
             <ReportButton/>
             <SettingsButton />
           </div>

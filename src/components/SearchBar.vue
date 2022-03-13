@@ -6,7 +6,7 @@
     @keyup.up="navigateSuggestionsByUpArrow"
     @keyup.down="navigateSuggestionsByDownArrow"
   >
-    <div class="search-bar position-relative w-100 input-group overflow-hidden" id="search-bar">
+    <div class="search-bar position-relative input-group w-100 overflow-hidden" id="search-bar">
       <input
         type="text"
         class="form-control py-0 font-weight-bold"
@@ -52,7 +52,6 @@
         p-1
         rounded-lg
         bg-primary
- 
       "
       id="keyboard"
       v-if="keyboard"
@@ -78,7 +77,6 @@
       <span
         class="alert-cross font-weight-bold"
         id="cross"
-   
         @click.stop.prevent="collapseAlert"
       >
         <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />

@@ -25,14 +25,14 @@
           >
             {{ verb.infinitive }}
           </button>
-          <span id="mood-tense" class="mood-tense small align-middle ml-4 py-0 my-0 ">
+          <span id="mood-tense" class="mood-tense align-middle ml-4 my-0  py-0 small">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
 
-          <div class="h-100 d-flex">
+          <div class="d-flex h-100">
             <button
               id="flip-icon"
-              class="flip-icon mr-1 align-middle py-1 rounded-lg my-1"
+              class="flip-icon align-middle mr-1 my-1 py-1 rounded-lg"
               title="Flip the card to hide the content"
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
@@ -53,7 +53,7 @@
               <tr v-for="(person, id) in persons" :key="id">
                 <th
                   scope="row"
-                  class="col-4 small text-left align-middle my-0 py-0"
+                  class="col-4 align-middle my-0 py-0 small text-left"
                 >
                   {{ person }}
                 </th>
@@ -61,13 +61,13 @@
                 <!-- view 和 memory 模式 -->
                 <td
                   v-if="configs.useMode !== 'fill-in'"
-                  class="col-6 align-middle py-1 mx-0"
+                  class="col-6 align-middle  mx-0 py-1"
                 >
                   {{ conjugations[id] }}
                 </td>
 
                 <!-- fill-in 模式 -->
-                <td v-else class="col-7 py-0 align-middle">
+                <td v-else class="col-7 align-middle py-0">
                   <input
                     type="text"
                     class="form-control table-input my-1"
@@ -79,18 +79,18 @@
                 <!-- fill-in 模式的答對/答錯提示 -->
                 <td
                   v-if="configs.useMode === 'fill-in'"
-                  class="col-1 py-0 align-middle"
+                  class="col-1 align-middle py-0"
                 >
                   <!-- 答案正確 -->
 
                   <span
                     class="
                       badge badge-warning
-                      align-middle
                       d-flex
+                      justify-content-center
+                      align-middle
                       ml-2
                       p-2
-                      justify-content-center
                     "
                     title="Correct!"
                     v-if="areInputsCorrect[id] === true"
@@ -102,11 +102,11 @@
                   <span
                     class="
                       badge badge-warning
-                      align-middle
                       d-flex
+                      justify-content-center
+                      align-middle
                       ml-2
                       p-2
-                      justify-content-center
                     "
                     :title="`Answer: ${conjugations[id]}`"
                     v-if="areInputsCorrect[id] === false"
@@ -136,7 +136,7 @@
               @click.stop.prevent="inputSpecialCharacter"
             >
               <button
-                class="btn btn-primary mr-1 mt-1 special-character"
+                class="special-character btn btn-primary mr-1 mt-1"
                 v-for="(character, id) in specialCharacters"
                 :key="id"
                 :value="character"

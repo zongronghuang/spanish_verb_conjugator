@@ -2,16 +2,16 @@
   <div
     class="
       search-page
-      pb-1
       d-flex
-      w-100
       flex-column
       align-items-center
       justify-content-around
+      w-100
+      pb-1
     "
   >
     <!-- 搜尋區域 -->
-    <h1 class="app-title text-center mt-5 mb-0">Spanish Verb Conjugator</h1>
+    <h1 class="app-title mt-5 mb-0 text-center">Spanish Verb Conjugator</h1>
     <SearchBar class="mx-auto" />
     <Footer  />
   </div>

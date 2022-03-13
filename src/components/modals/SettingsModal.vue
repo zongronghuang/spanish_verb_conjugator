@@ -24,16 +24,16 @@
             <p class="text-left">
               Choose how to practice with the verbal conjugations.
             </p>
-            <div class="w-100 d-flex flex-column align-items-center pb-2">
+            <div class="d-flex flex-column align-items-center w-100 pb-2">
               <span class="w-50 text-center font-weight-bold">Use mode</span>
               <div
                 class="
-                  w-100
-                  mt-2
                   btn-group
                   d-flex
                   flex-wrap
                   justify-content-between
+                  w-100
+                  mt-2
                 "
                 ref="useModes"
                 role="group"
@@ -42,7 +42,7 @@
                 <button
                   :class="
                     configs.useMode === 'view'
-                      ? 'btn btn-primary active'
+                      ? 'active btn btn-primary'
                       : 'btn btn-primary'
                   "
                   value="view"
@@ -53,7 +53,7 @@
                 <button
                   :class="
                     configs.useMode === 'memory'
-                      ? 'btn btn-primary active'
+                      ? 'active btn btn-primary'
                       : 'btn btn-primary'
                   "
                   value="memory"
@@ -64,7 +64,7 @@
                 <button
                   :class="
                     configs.useMode === 'fill-in'
-                      ? 'btn btn-primary active'
+                      ? 'active btn btn-primary'
                       : 'btn btn-primary'
                   "
                   value="fill-in"
@@ -83,16 +83,16 @@
             <p class="text-left">
               Choose a conjugation of the verb by mood and tense.
             </p>
-            <div class="w-100 d-flex flex-column align-items-center">
+            <div class="d-flex flex-column align-items-center w-100">
               <span class="w-50 text-center font-weight-bold">Mood & tense</span>
               <div
                 class="
                   btn-group
                   d-flex
                   flex-wrap
+                  justify-content-between
                   w-100
                   mt-2
-                  justify-content-between
                 "
                 role="group"
                 ref="moods"
@@ -101,7 +101,7 @@
                 <button
                   :class="
                     selectedMood === 'Indicative'
-                      ? 'btn btn-primary active'
+                      ? 'active btn btn-primary'
                       : 'btn btn-primary'
                   "
                   type="button"
@@ -112,7 +112,7 @@
                 <button
                   :class="
                     selectedMood.includes('Imperative')
-                      ? 'btn btn-primary active'
+                      ? 'active btn btn-primary'
                       : 'btn btn-primary'
                   "
                   type="button"
@@ -123,7 +123,7 @@
                 <button
                   :class="
                     selectedMood === 'Subjunctive'
-                      ? 'btn btn-primary active'
+                      ? 'active btn btn-primary'
                       : 'btn btn-primary'
                   "
                   type="button"
@@ -137,7 +137,7 @@
 
           <!-- mood & tense 選單-->
           <section
-            class="px-3 py-2 btn-group w-100 bg-light"
+            class="btn-group w-100 px-3 py-2 bg-light"
             role="group"
             ref="tenses"
             @click.stop.prevent="
@@ -153,8 +153,8 @@
               <button
                 :class="
                   selectedMoodAndTense === tense
-                    ? 'mx-1 my-1 btn btn-primary active'
-                    : 'mx-1 my-1 btn btn-primary'
+                    ? 'active btn btn-primary mx-1 my-1'
+                    : 'btn btn-primary mx-1 my-1'
                 "
                 v-for="tense in indicativeTenses"
                 :key="tense"
@@ -173,8 +173,8 @@
               <button
                 :class="
                   selectedMoodAndTense === tense
-                    ? 'mx-1 my-1 btn btn-primary active'
-                    : 'mx-1 my-1 btn btn-primary'
+                    ? 'active btn btn-primary mx-1 my-1'
+                    : 'btn btn-primary mx-1 my-1'
                 "
                 v-for="tense in imperativeTenses"
                 :key="tense"
@@ -193,8 +193,8 @@
               <button
                 :class="
                   selectedMoodAndTense === tense
-                    ? 'mx-1 my-1 btn btn-primary active'
-                    : 'mx-1 my-1 btn btn-primary'
+                  ? 'active btn btn-primary mx-1 my-1'
+                  : 'btn btn-primary mx-1 my-1'
                 "
                 v-for="tense in subjunctiveTenses"
                 :key="tense"
@@ -205,7 +205,7 @@
             </div>
           </section>
         </div>
-        <div class="modal-footer py-1 border-0"></div>
+        <div class="modal-footer border-0 py-1"></div>
       </div>
     </div>
   </div>
