@@ -220,8 +220,6 @@ export default {
           conjugation.tense_english === tense_english
       )[0];
 
-      // console.log("conjugations in ConjugationTable", conjugationGroup);
-
       const { form_1s, form_2s, form_3s, form_1p, form_2p, form_3p } =
         conjugationGroup;
 
@@ -290,15 +288,6 @@ export default {
       );
     },
     getCardSize() {
-      // 用 clientwidth clientheight 試試看?
-      // const cardFront = document.querySelector(".card-front");
-      // const { scrollHeight, scrollWidth } = cardFront;
-
-      // this.cardBackImgStyle = {
-      //   ...this.cardBackImgStyle,
-      //   height: scrollHeight + "px",
-      //   width: scrollWidth + "px",
-      // };
       const card = document.querySelector(".card");
       const { scrollHeight, scrollWidth, offsetLeft, offsetTop } = card;
 
@@ -394,10 +383,6 @@ export default {
   transition-duration: 700ms;
 }
 
-/* .card-front {
-  transform: none;
-} */
-
 .card-back {
   top: 0%;
   left: 0%;
@@ -456,7 +441,6 @@ svg {
 .verb-name {
   background-color: var(--spanish-red);
   color: white;
-  /* margin: 3px 3px; */
   padding: 2px 4px;
   border-radius: 5px;
   letter-spacing: -0.1rem;
