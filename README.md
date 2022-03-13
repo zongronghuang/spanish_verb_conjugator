@@ -1,24 +1,23 @@
 # Spanish Verb Conjugator
 
-> App version: 0.1
+> App version: 0.2
 
 ## Introduction
 
-**Spanish Verb Conjugator** is a web app developed to help Spanish learners better explore and memorize conjugations of Spanish verbs. This app comes with conjugation data of over 600 verbs and provides multiple tools for browsing and practicing with the conjugations.
+**Spanish Verb Conjugator** helps Spanish learners explore and memorize conjugations of Spanish verbs. This app comes with conjugations of over 600 verbs and multiple tools for practice.
 
-![search page](search-page.png)
+![search page](/doc/search_page.png)
 
 Demo: [https://zongronghuang.github.io/spanish_verb_conjugator/](https://zongronghuang.github.io/spanish_verb_conjugator/)
 
 > Note:
 >
 > - For users with limited data usage or slow network connection, this app (with the Spanish verb conjugation database included) may consume excessive resources.
-> - When using mobile devices with a small screen, you can change the device orientation to unlock certain features.
 > - The _vos_ forms in Argentine Spanish are not available in this web app.
 
 ## Usage instructions
 
-![conjugation table](conjugation-table.png)
+![conjugation table](/doc/main_page.png)
 
 ### :mag_right: Search a verb
 
@@ -34,12 +33,16 @@ The search bar helps you access conjugations of a desired Spanish verb with ease
 
 ### :eyeglasses: Switch between conjugations
 
+![switch conjugation video](/doc/switch_conjugations.mov)
+
 You can browse a specific conjugation of the verb in either way:
 
 - Click on the left and right arrows on the page bottom.
 - Click **Settings** (the cogwheel icon) in the top right corner. Then, select the desired mood and tense in the **Mood & tense** section to show the corresponding conjugation.
 
 ### :cookie: Play with use modes
+
+![use modes video](/doc/use_modes.mov)
 
 You can practice with Spanish conjugations in three modes:
 
@@ -51,6 +54,8 @@ You can practice with Spanish conjugations in three modes:
 
 ### :circus_tent: Try learning tools
 
+![learning helpers video](/doc/learning_helpers.mov)
+
 You can experiment with other tools for learning Spanish verb conjugations:
 
 - **Verb information**: View the verbs definition, gerund and past participle by clicking the infinitive form in the top left corner of the conjugation table.
@@ -61,6 +66,12 @@ You can experiment with other tools for learning Spanish verb conjugations:
 ### :sunglasses: Learn even while offline
 
 After the app is downloaded to the browser, you can use it offline until you close the tab.
+
+### :iphone: Responsive to various screen sizes
+
+You can use the app and its full features on a regular desktop computer, laptop, tablet, or mobile phones.
+
+![](/doc/mobile.png =200x)
 
 ---
 
