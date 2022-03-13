@@ -47,6 +47,7 @@
           <table
             class="table table-striped table-borderless my-0"
             @input.prevent.stop="markActiveInput"
+            @click.prevent.stop="markActiveInput"
           >
             <tbody class="container-fluid">
               <tr v-for="(person, id) in persons" :key="id">
@@ -479,6 +480,8 @@ input {
 
 .active {
   font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--spanish-red);
 }
 
 .flip-icon {

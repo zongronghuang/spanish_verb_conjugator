@@ -19,15 +19,10 @@
 
     <!-- modals -->
     <VerbInfoModal :verb="verb" />
-
     <SlideMenuModal />
-
     <RandomSpinnerModal />
-
     <IrregularVerbsModal />
-
     <ReportModal :lastSearchTime="lastSearchTime" />
-
     <SettingsModal :configs="configs" :verb="verb" />
   </div>
 </template>
