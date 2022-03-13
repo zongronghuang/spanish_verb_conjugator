@@ -32,7 +32,7 @@
           <div class="d-flex h-100">
             <button
               id="flip-icon"
-              class="flip-icon align-middle mr-1 my-1 py-1 rounded-lg"
+              class="flip-icon align-middle m1 py-1 rounded-lg"
               title="Flip the card to hide the content"
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
