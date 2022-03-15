@@ -6,7 +6,7 @@
 
 **Spanish Verb Conjugator** helps Spanish learners explore and memorize conjugations of Spanish verbs. This app comes with conjugations of over 600 verbs and multiple tools for practice.
 
-![search page](/doc/search_page.png)
+<img src="/doc/search_page.png" width=75% >
 
 Demo: [https://zongronghuang.github.io/spanish_verb_conjugator/](https://zongronghuang.github.io/spanish_verb_conjugator/)
 
@@ -17,7 +17,7 @@ Demo: [https://zongronghuang.github.io/spanish_verb_conjugator/](https://zongron
 
 ## Usage instructions
 
-![conjugation table](/doc/main_page.png)
+<img src="/doc/main_page.png" width=75% >
 
 ### :mag_right: Search a verb
 
@@ -31,7 +31,7 @@ The search bar helps you access conjugations of a desired Spanish verb with ease
 
 1. Click on the magnifying-glass icon, click on a displayed verb match, or hit Enter to search the verb's conjugations.
 
-![](/doc/search_verb.png)
+<img src="/doc/search_verb.png" width=75% >
 
 ### :eyeglasses: Switch between conjugations
 
@@ -39,7 +39,7 @@ You can browse a specific conjugation of the verb in either way:
 
 - Click on the left and right arrows on the page bottom.
 - Click **Settings** (the cogwheel icon) in the top right corner. Then, select the desired mood and tense in the **Mood & tense** section to show the corresponding conjugation.
-  ![](/doc/settings.png)
+  <img src="/doc/settings.png" width=75% >
 
 ### :cookie: Play with use modes
 
@@ -49,9 +49,9 @@ You can practice with Spanish conjugations in three modes:
 1. Choose a use mode in the **Use mode** section:
    - **View**: You can browse all the conjugations of the verb.
    - **Flash card**: You can flip open and close the conjugation table as a card by clicking on the eye icons.
-     ![](/doc/memory_mode.png)
+     <img src="/doc/memory_mode.png" width=75% >
    - **Fill-in**: You can fill in conjugation forms by person in the corresponding fields and verify your answers.
-     ![](/doc/fill-in_mode.png)
+     <img src="/doc/fill-in_mode.png" width=75% >
 
 ### :circus_tent: Try learning tools
 
@@ -62,7 +62,7 @@ You can experiment with other tools for learning Spanish verb conjugations:
 - **Random verb**: Show a random verb and its conjugations by clicking **Chance** in the top bar.
 - **Personal search history**: Show the top 10 verbs that you have searched most often during the past seven days of use by clicking **Report** in the top bar.
 
-![](/doc/settings.png)
+<img src="/doc/settings.png" width=75% >
 
 ### :sunglasses: Learn even while offline
 
