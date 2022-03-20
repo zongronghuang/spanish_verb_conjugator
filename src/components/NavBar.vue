@@ -36,7 +36,7 @@ export default {
     SettingsButton,
     ReportButton,
     ChanceButton,
-    MenuButton
+    MenuButton,
   },
   created() {
     console.log("[created] NavBar");

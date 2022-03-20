@@ -18,21 +18,22 @@
         >
           <button
             id="verb-name"
-            class="verb-name align-middle"
+            class="verb-name align-middle mr-2"
             data-toggle="modal"
             data-target="#verbInfoDialog"
             title="Check verb definition and more"
           >
             {{ verb.infinitive }}
           </button>
-          <span id="mood-tense" class="mood-tense align-middle ml-4 my-0  py-0 small">
+
+          <span id="mood-tense" class="mood-tense align-middle mx-1 py-0 small text-center">
             {{ verb.mood_english }} {{ verb.tense_english }}
           </span>
 
           <div class="d-flex h-100">
             <button
               id="flip-icon"
-              class="flip-icon align-middle m1 py-1 rounded-lg"
+              class="flip-icon align-middle py-1 rounded-lg"
               title="Flip the card to hide the content"
               v-if="configs.useMode === 'memory'"
               @click.prevent.stop="addCardFlippingEffect"
@@ -426,6 +427,10 @@ img {
 .card,
 .card-back {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.card {
+  width: 100%;
 }
 
 .card-header {

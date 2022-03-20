@@ -41,6 +41,29 @@
       </div>
     </div>
 
+    <!-- autosuggestion 搜尋提示 -->
+    <div
+      id="autosuggestion-pane"
+      class="autosuggestion-pane w-100"
+      v-show="matchedInfinitives.length"
+      ref="autosuggestionPane"
+    >
+      <div
+        v-for="(entry, id) in matchedInfinitives"
+        :key="entry"
+        :data-entry="entry"
+        :data-id="id"
+        class="d-flex align-items-center bg-light"
+      >
+        <router-link
+          class="flex-grow-1 ml-3 text-muted text-decoration-none "
+          role="button"
+          :to="`/spanish-conjugator/${entry}`"
+          >{{ entry }}</router-link
+        >
+      </div>
+    </div>
+
     <!-- 輸入輔助鍵 -->
     <div
       class="
@@ -82,29 +105,6 @@
         <font-awesome-icon :icon="['fas', 'window-close']" size="1x" />
       </span>
     </div>
-
-     <!-- autosuggestion 搜尋提示 -->
-      <div
-        id="autosuggestion-pane"
-        class="autosuggestion-pane w-100"
-        v-show="matchedInfinitives.length"
-        ref="autosuggestionPane"
-      >
-        <div
-          v-for="(entry, id) in matchedInfinitives"
-          :key="entry"
-          :data-entry="entry"
-          :data-id="id"
-          class="d-flex align-items-center bg-light"
-        >
-          <router-link
-            class="flex-grow-1 ml-3 text-muted text-decoration-none "
-            role="button"
-            :to="`/spanish-conjugator/${entry}`"
-            >{{ entry }}</router-link
-          >
-        </div>
-      </div>
   </div>
 </template>
 
@@ -384,7 +384,6 @@ export default {
   position: absolute;
   top: 100%;
   height:3em;
-  z-index: 10;
   transform: translateY(10%);
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
@@ -399,7 +398,6 @@ export default {
   position: absolute;
   top: 100%;
   transform: translateY(10%);
-  z-index: 20;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
@@ -407,7 +405,6 @@ export default {
   position: absolute;
   top: 98.5%;
   font-size: 1rem;
-  z-index: 10;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
