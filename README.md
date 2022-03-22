@@ -6,7 +6,7 @@
 
 **Spanish Verb Conjugator** helps Spanish learners explore and memorize conjugations of Spanish verbs. This app comes with conjugations of over 600 verbs and multiple tools for practice.
 
-<img src="/doc/search_page.png" width=75% >
+<img src="/doc/search_page.png" width=80% >
 
 Demo: [https://zongronghuang.github.io/spanish_verb_conjugator/](https://zongronghuang.github.io/spanish_verb_conjugator/)
 
