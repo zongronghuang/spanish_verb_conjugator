@@ -51,9 +51,9 @@
 
 <script>
 export default {
-  name: "footer",
+  name: "search-footer",
   created() {
-    console.log("[created] Footer");
+    console.log("[created] SearchFooter");
   },
 };
 </script>

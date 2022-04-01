@@ -13,19 +13,19 @@
     <!-- 搜尋區域 -->
     <h1 class="app-title mt-5 mb-0 text-center">Spanish Verb Conjugator</h1>
     <SearchBar class="mx-auto" />
-    <Footer  />
+    <SearchFooter  />
   </div>
 </template>
 
 <script>
 import SearchBar from "../components/SearchBar.vue";
-import Footer from "../components/Footer.vue";
+import SearchFooter from "../components/SearchFooter.vue";
 
 export default {
   name: "search-page",
   components: {
     SearchBar,
-    Footer,
+    SearchFooter,
   },
   created() {
     console.log("[created] SearchPage");

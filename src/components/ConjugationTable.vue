@@ -213,8 +213,6 @@ export default {
   methods: {
     getVerb() {
       const { mood_english, tense_english } = this.verb;
-
-      console.log("this.verb.allConjugations", this.verb.allConjugations);
       const conjugationGroup = this.verb.allConjugations.filter(
         (conjugation) =>
           conjugation.mood_english === mood_english &&
@@ -353,7 +351,7 @@ export default {
   computed: {
     ...mapState({
       verb: (state) => {
-        console.log("computed verb from CT");
+        console.log("computed verb from CT", state);
         return state.verb;
       },
       infinitives: (state) => state.infinitives,
