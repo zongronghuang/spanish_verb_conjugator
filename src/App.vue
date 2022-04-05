@@ -7,16 +7,14 @@
 <script>
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import datasetAPIs from "./utils/dataset.js";
+import { getInfinitiveList } from "./utils/datastore/getInfinitiveList";
 import "./styles/custom.css";
 
 export default {
   name: "App",
   created() {
-    const infinitives = datasetAPIs.fetchInfinitives();
-    if (infinitives instanceof Array) {
-      this.$store.commit("setInfinitives", infinitives);
-    }
+    const infinitiveList = getInfinitiveList();
+    this.$store.commit('setInfinitives', infinitiveList)
   }
 };
 </script>

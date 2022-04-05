@@ -41,7 +41,7 @@ import SlideMenuModal from '../components/modals/SlideMenuModal.vue'
 
 import { mapState } from "vuex";
 import { collectSearchedVerbToLocalStorage } from "../utils/mixins.js";
-import datasetAPIs from "../utils/dataset.js";
+import { getConjugationGroupsByInfinitive } from "../utils/datastore/getConjugationGroupsByInfinitive";
 
 export default {
   name: "main-page",
@@ -72,8 +72,7 @@ export default {
 
     // 取得搜尋的 infinitive 所有動詞變化
     const { infinitive } = this.$route.params;
-
-    const conjugations = datasetAPIs.getAllConjugationsByVerb(
+    const conjugations = getConjugationGroupsByInfinitive(
       infinitive,
       this.infinitives
     );
@@ -97,7 +96,7 @@ export default {
     const { infinitive } = to.params;
 
     // 取得 infinitive 的所有動詞變化
-    const conjugations = datasetAPIs.getAllConjugationsByVerb(
+    const conjugations = getConjugationGroupsByInfinitive(
       infinitive,
       this.infinitives
     );
